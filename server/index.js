@@ -3,6 +3,7 @@ require('dotenv').config();
 
 //Libraries
 const https = require('https'); //Only for testing locally?
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -42,7 +43,7 @@ passport.serializeUser(function(user, done) {
   
 //Auth Deserialize
 passport.deserializeUser(function(user, done) {
-    done(null, user[0]);
+    done(null, user);
 });
 
 //Battle.net Auth0
@@ -51,21 +52,21 @@ app.get('/login', passport.authenticate('bnet'));
 //Battle.net Auth0 Callback
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), (req, res) => {
     //Put user information on Store here?
-    console.log(res);
-    return res.redirect('/');
+    console.log(req.user);
+    return res.redirect('http://localhost:3000');
 });
 
 //Logout endpoint
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    return res.redirect(`http://localhost:3000#/`);
+    return res.redirect(`http://localhost:3000`);
 })
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
 
 //Start server
-let port = process.env.PORT || 3008;
+let port = process.env.PORT || 3050;
 server.listen( port, () => {
     console.log( 'Express server listening on port ' + server.address().port );
 });

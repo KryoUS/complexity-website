@@ -6,7 +6,7 @@ module.exports = new BnetStrategy({
     clientID: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
     scope: "wow.profile sc2.profile",
-    callbackURL: "https://localhost:3000/auth/bnet/callback"
+    callbackURL: "https://localhost:3050/auth/bnet/callback"
 },
 function(accessToken, refreshToken, extraParams, profile, done) {
     // accessToken is the token to call Auth0 API (not needed in the most cases)
