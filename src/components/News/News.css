@@ -1,0 +1,13 @@
+.news-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-row {
+    margin: 15px;
+    width: 80vw;
+    color: white;
+    border: 2px solid grey;
+}

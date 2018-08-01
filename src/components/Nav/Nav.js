@@ -9,7 +9,8 @@ class Nav extends Component {
             <div className="nav-div">
                 <div className="nav-flex-container">
                     <p>This is Nav.</p> <br />
-                    <Link to="/login"><button className="nav-button"> Login </button></Link>
+                    <Link to=""><button className="nav-button"> Login </button></Link> 
+                    {/* axios to get */}
                 </div>
             </div>
         )
