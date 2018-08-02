@@ -1,0 +1,89 @@
+.nav-flex-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    height: 100px;
+}
+
+.logo-container, .login-container {
+    width: 230px;
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    max-height: 100px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 0;
+    color: white;
+    border-bottom: 2px solid transparent;
+    transition: border 1s;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid #00d99e;
+}
+
+.nav-routes {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+}
+
+.login {
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 0;
+    color: white;
+    border-bottom: 2px solid transparent;
+    animation: pulse 6s infinite;
+    -o-animation: pulse 6s infinite;
+    -webkit-animation: pulse 6s infinite;
+    -moz-animation: pulse 6s infinite;
+}
+
+.login:hover {
+    border-bottom: 2px solid #00d99e;
+    animation: none;
+    -o-animation: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% { border-bottom: 2px solid #00d99e }
+    50% { border-bottom: 2px solid transparent }
+}
+
+@-o-keyframes pulse {
+    0%, 100% { border-bottom: 2px solid #00d99e }
+    50% { border-bottom: 2px solid transparent }
+}
+
+@-moz-keyframes pulse {
+    0%, 100% { border-bottom: 2px solid #00d99e }
+    50% { border-bottom: 2px solid transparent }
+}
+
+@-webkit-keyframes pulse {
+    0%, 100% { border-bottom: 2px solid #00d99e }
+    50% { border-bottom: 2px solid transparent }
+}

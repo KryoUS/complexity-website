@@ -59,15 +59,19 @@ app.get('/login', passport.authenticate('bnet'));
 
 //Check for auth on server session
 app.get('/auth', (req, res) => {
-    if (req.session.user) {
-        res.status(200).send(req.session.user.id);
+    console.log('Auth hit')
+    console.log(res.session)
+    if (req.session.passport) {
+        res.status(200).send(req.session.passport.user.id);
     } else {
-        res.status(404);
+        res.status(404).send('Login required');
     }
 });
 
 //Battle.net Auth0 Callback
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), (req, res) => {
+    console.log(req.session.passport.user)
+    //need to res to the front-end, save id to database, make api call for characters object
     return res.redirect('https://localhost:3000');
 });
 
@@ -79,7 +83,7 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('/news', (req, res) => {
     const db = app.get('db');
-    db.query('select * from news order by news_datetime desc limit 10').then(response => {
+    db.query('select * from news order by news_datetime desc limit 5').then(response => {
         res.status(200).send(response);
     }).catch(error => {
         console.log(error)
