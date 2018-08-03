@@ -18,6 +18,7 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0"
   },
+  "proxy": "https://localhost:3050",
   "scripts": {
     "start": "set HTTPS=true&&react-scripts start",
     "build": "react-scripts build",

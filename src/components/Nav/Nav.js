@@ -5,10 +5,20 @@ import axios from 'axios';
 import './Nav.css';
 
 class Nav extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            user: {},
+            loggedIn: false
+        }
+    }
 
     componentDidMount = () => {
-        axios.get('https://localhost:3050/auth').then(res => {
-            console.log(res.data)
+        axios.get('/auth').then(res => {
+            this.setState({user: res.data})
+            this.setState({loggedIn: true})
+            //res.data needs to go to redux
         }).catch(error => {
             console.log(error);
         })
@@ -29,9 +39,13 @@ class Nav extends Component {
                         <li><Link to="/" className="nav-link" >Youtube</Link></li>
                     </ul>
                     <div className="login-container">
-                        <a href="https://localhost:3050/login" className="login">Login</a>
+                        {this.state.loggedIn ?
+                            <img className="avatar" src={this.state.user.chars[11].avatarMed} alt={this.state.user.chars[0].name}/>
+                        :
+                            <a href="https://localhost:3050/login" className="login">Login</a>
+                        }
+                        
                     </div>
-                    {/* axios to get */}
                 </div>
             </div>
         )

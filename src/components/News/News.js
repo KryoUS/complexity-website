@@ -19,6 +19,10 @@ class News extends Component {
         })
     }
 
+    showText = id => {
+        this.setState({ [id]: true })
+    }
+
     render(){
         return(
             <div className="news-div">
@@ -26,17 +30,22 @@ class News extends Component {
                 {   this.state.news
                     ?
                     this.state.news.map(news => (
-                    <a key={news.id} className="news-row" href={news.link} target="_blank" >
+                    <a key={news.id} className="news-row" href={news.link} target="_blank" onMouseLeave={() => this.setState({ [news.id]: false})} onMouseEnter={() => this.showText(news.id)}>
                         <div className="news-image-container">
                             <img className ="news-image" src={news.image.replace('http', 'https')} alt={news.title}/>
                         </div>
-                        <div className="news-text-container">
+                        {this.state[news.id] ? (
+                            <div className="news-text-container">
                             <div className="news-title-container">
                                 <div className="news-title">{news.title} </div>
                                 <div className="news-datetime">{new Date(parseInt(news.news_datetime, 10)).toString()}</div>
                             </div>
                             <div className="news-desc">{news.description}</div>
                         </div>
+                        ) : (
+                            null
+                        )}
+    
                     </a>
                     ))
                     :

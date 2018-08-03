@@ -14,6 +14,7 @@ const passport = require('passport');
 const massive = require('massive');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
+const axios = require('axios');
 
 //Local testing SSL
 const httpsOptions = {
@@ -40,7 +41,14 @@ passport.use( bnetStrategy );
 // app.use(express.static(__dirname + '/../build'));
 
 //Massive
-massive(process.env.CONNECTION_STRING).then( db => {
+massive({
+    host: process.env.PGHOST,
+    port: process.env.PGPORT,
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    ssl: true
+}).then( db => {
     app.set('db', db);
 })
 
@@ -57,22 +65,97 @@ passport.deserializeUser(function(user, done) {
 //Battle.net Auth0
 app.get('/login', passport.authenticate('bnet'));
 
-//Check for auth on server session
+//Check for Passport(bnet) Session
 app.get('/auth', (req, res) => {
-    console.log('Auth hit')
-    console.log(res.session)
     if (req.session.passport) {
-        res.status(200).send(req.session.passport.user.id);
+        let userObj = {};
+        userObj.id = req.session.passport.user.id;
+        userObj.chars = req.session.passport.user.chars;
+        res.status(200).send(userObj);
     } else {
-        res.status(404).send('Login required');
+        res.sendStatus(401);
     }
 });
 
 //Battle.net Auth0 Callback
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), (req, res) => {
+    console.log('Callback Hit')
     console.log(req.session.passport.user)
-    //need to res to the front-end, save id to database, make api call for characters object
-    return res.redirect('https://localhost:3000');
+
+    if(req.isAuthenticated()) {
+        const db = app.get('db');
+
+        db.users.findOne({id: req.session.passport.user.id}).then(findRes => {
+
+            //If the Massive response is null, we need to insert the user
+            if (findRes === null) {
+                //Perform Massive insert to PostgreSQL
+                db.users.insert({id: req.session.passport.user.id}).then(response => {
+                    
+                    //Get User Character data
+                    axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
+                        console.log('User Character API Hit from Massive Insert');
+                        let userCharArray = [];
+
+                        //TODO: Modify for lastModified within X amount of time
+                        charRes.data.characters.forEach((charObj, i) => {
+                            if (!charObj.name.match(/\d+/) && charObj.lastModified > 0) {
+                                charObj.avatarSmall = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail}`;
+                                charObj.avatarMed = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}`;
+                                charObj.avatarLarge = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}`;
+                                userCharArray.push(charObj);
+                            }
+                            if (i === charRes.data.characters.length-1) {
+                                req.session.passport.user.chars = userCharArray;
+                                return res.redirect('https://localhost:3000');
+                            }
+                        });
+
+                    }).catch(blizzApiErr => {
+                        console.log('Blizzard API Error on Char Fetch');
+                        console.log(blizzApiErr);
+                    });
+
+                }).catch(insertError => {
+                    console.log('---------------------------------------');
+                    console.log('Massive Insert Error!');
+                    console.log(insertError);
+                    console.log('---------------------------------------');
+                });
+            } else {
+                 
+                //Get User Character data
+                axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
+                    console.log('User Character API Hit (no Massive Insert)');
+                    let userCharArray = [];
+
+                    charRes.data.characters.forEach((charObj, i) => {
+                        if (!charObj.name.match(/\d+/) && charObj.lastModified > 0) {
+                            charObj.avatarSmall = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail}`;
+                            charObj.avatarMed = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}`;
+                            charObj.avatarLarge = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}`;
+                            userCharArray.push(charObj);
+                        }
+                        if (i === charRes.data.characters.length-1) {
+                            req.session.passport.user.chars = userCharArray;
+                            return res.redirect('https://localhost:3000');
+                        }
+                    });
+
+                }).catch(blizzApiErr => {
+                    console.log('Blizzard API Error on Char Fetch');
+                    console.log(blizzApiErr);
+                });
+            }
+        }).catch(findErr => {
+            console.log('Massive Find Connection Error');
+            console.log(findErr);
+        });
+        
+    } else {
+        console.log('Blizzard OAuth or Session Error!')
+    }
+    //Maybe return a server error?
 });
 
 //Logout endpoint
