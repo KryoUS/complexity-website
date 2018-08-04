@@ -67,10 +67,15 @@ app.get('/login', passport.authenticate('bnet'));
 
 //Check for Passport(bnet) Session
 app.get('/auth', (req, res) => {
+    console.log('Auth Hit');
     if (req.session.passport) {
         let userObj = {};
         userObj.id = req.session.passport.user.id;
         userObj.chars = req.session.passport.user.chars;
+        userObj.main = req.session.passport.user.main;
+        userObj.mainAvatarSmall = req.session.passport.user.mainAvatarSmall;
+        userObj.mainAvatarMed = req.session.passport.user.mainAvatarMed;
+        userObj.mainAvatarLarge = req.session.passport.user.mainAvatarLarge;
         res.status(200).send(userObj);
     } else {
         res.sendStatus(401);
@@ -80,34 +85,51 @@ app.get('/auth', (req, res) => {
 //Battle.net Auth0 Callback
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), (req, res) => {
     console.log('Callback Hit')
-    console.log(req.session.passport.user)
 
-    if(req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
         const db = app.get('db');
+        const now = new Date();
 
         db.users.findOne({id: req.session.passport.user.id}).then(findRes => {
 
             //If the Massive response is null, we need to insert the user
             if (findRes === null) {
+
                 //Perform Massive insert to PostgreSQL
-                db.users.insert({id: req.session.passport.user.id}).then(response => {
+                db.users.insert({id: req.session.passport.user.id}).then(insertRes => {
                     
                     //Get User Character data
                     axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
                         console.log('User Character API Hit from Massive Insert');
                         let userCharArray = [];
 
-                        //TODO: Modify for lastModified within X amount of time
                         charRes.data.characters.forEach((charObj, i) => {
-                            if (!charObj.name.match(/\d+/) && charObj.lastModified > 0) {
-                                charObj.avatarSmall = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail}`;
-                                charObj.avatarMed = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}`;
-                                charObj.avatarLarge = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}`;
+                            // if (now - charObj.lastModified <= 1563480000) {
+                            if (charObj.spec) {
+                                charObj.avatarSmall = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                                charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                                charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
                                 userCharArray.push(charObj);
                             }
                             if (i === charRes.data.characters.length-1) {
-                                req.session.passport.user.chars = userCharArray;
-                                return res.redirect('https://localhost:3000');
+                                userCharArray.sort((a, b) => {
+                                    return b.lastModified - a.lastModified
+                                });
+                                db.users.update({
+                                    id: req.session.passport.user.id
+                                }, {
+                                    main: userCharArray[0].name, 
+                                    mainavatarsmall: userCharArray[0].avatarSmall,
+                                    mainavatarmed: userCharArray[0].avatarMed,
+                                    mainavatarlarge: userCharArray[0].avatarLarge
+                                }).then(updateRes => {
+                                    req.session.passport.user.main = updateRes[0].main;
+                                    req.session.passport.user.mainAvatarSmall = updateRes[0].mainavatarsmall;
+                                    req.session.passport.user.mainAvatarMed = updateRes[0].mainavatarmed;
+                                    req.session.passport.user.mainAvatarLarge = updateRes[0].mainavatarlarge;
+                                    req.session.passport.user.chars = userCharArray;
+                                    return res.redirect('https://localhost:3000');
+                                })
                             }
                         });
 
@@ -122,21 +144,30 @@ app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: 
                     console.log(insertError);
                     console.log('---------------------------------------');
                 });
+
             } else {
-                 
+                req.session.passport.user.main = findRes.main;
+                req.session.passport.user.mainAvatarSmall = findRes.mainavatarsmall;
+                req.session.passport.user.mainAvatarMed = findRes.mainavatarmed;
+                req.session.passport.user.mainAvatarLarge = findRes.mainavatarlarge;
+                
                 //Get User Character data
                 axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
                     console.log('User Character API Hit (no Massive Insert)');
                     let userCharArray = [];
 
                     charRes.data.characters.forEach((charObj, i) => {
-                        if (!charObj.name.match(/\d+/) && charObj.lastModified > 0) {
-                            charObj.avatarSmall = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail}`;
-                            charObj.avatarMed = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}`;
-                            charObj.avatarLarge = `http://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}`;
+                        // if (now - charObj.lastModified <= 1563480000) {
+                        if (charObj.spec) {
+                            charObj.avatarSmall = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                            charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                            charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
                             userCharArray.push(charObj);
                         }
                         if (i === charRes.data.characters.length-1) {
+                            userCharArray.sort((a, b) => {
+                                return b.lastModified - a.lastModified
+                            });
                             req.session.passport.user.chars = userCharArray;
                             return res.redirect('https://localhost:3000');
                         }

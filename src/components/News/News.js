@@ -2,6 +2,13 @@ import React,  { Component } from 'react';
 import axios from 'axios';
 import './News.css';
 
+let headerStyle = {
+    backgroundImage: `url('/images/news/news_header.jpg')`,
+    width: '100%', 
+    height: '500px', 
+    backgroundPosition: 'center'
+}
+
 class News extends Component {
     constructor() {
         super();
@@ -26,7 +33,7 @@ class News extends Component {
     render(){
         return(
             <div className="news-div">
-                <img className="news-header-image" src="/images/news/news_header.jpg" alt="news_header"/>
+                <div className="news-header" style={headerStyle}></div>
                 {   this.state.news
                     ?
                     this.state.news.map(news => (
