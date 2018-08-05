@@ -1,4 +1,5 @@
 import React,  { Component } from 'react';
+import Timer from '../Timer/Timer';
 import axios from 'axios';
 import './News.css';
 
@@ -14,51 +15,75 @@ class News extends Component {
         super();
 
         this.state = {
-            news: []
+            news: [],
+            releases: []
         }
     }
 
     componentDidMount = () => {
-        axios.get('https://localhost:3050/news').then(res => {
+        axios.get('/news').then(res => {
             this.setState({news: res.data});
         }).catch(error => {
+            console.log('News Error')
+            console.log(error);
+        });
+
+        axios.get('/releases').then(res => {
+            this.setState({releases: res.data});
+        }).catch(error => {
+            console.log('Releases Error')
             console.log(error);
         })
-    }
-
-    showText = id => {
-        this.setState({ [id]: true })
     }
 
     render(){
         return(
             <div className="news-div">
-                <div className="news-header" style={headerStyle}></div>
+                <div className="news-header" style={headerStyle}>
+                {   this.state.releases
+                    ?
+                    <div className="news-countdown">
+                    {this.state.releases.map(release => (
+                        <div className="news-flex-column" key={release.id}>
+                            <div className="news-countdown-timer">{release.title}</div>
+                            <div className="news-countdown-timer">
+                                <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
+                            </div>
+                        </div>
+                    ))}
+                    </div>
+                    :
+                    null
+                }
+                </div>
+                <div className="news-container">
                 {   this.state.news
                     ?
                     this.state.news.map(news => (
-                    <a key={news.id} className="news-row" href={news.link} target="_blank" onMouseLeave={() => this.setState({ [news.id]: false})} onMouseEnter={() => this.showText(news.id)}>
-                        <div className="news-image-container">
-                            <img className ="news-image" src={news.image.replace('http', 'https')} alt={news.title}/>
-                        </div>
-                        {this.state[news.id] ? (
-                            <div className="news-text-container">
-                            <div className="news-title-container">
-                                <div className="news-title">{news.title} </div>
-                                <div className="news-datetime">{new Date(parseInt(news.news_datetime, 10)).toString()}</div>
+                        <div className="news-card" key={news.id} style={{
+                            background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('${news.image.replace('http', 'https')}')`,
+                            width: '20%', 
+                            minWidth: '384px',
+                            height: '700px', 
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'}}>
+                            <div className="news-card-layer">
+                                <div className="news-title-container">
+                                    <div className="news-title-text">{news.title}</div>
+                                </div>
+                                <div className="news-desc-container">
+                                    <div className="news-desc-text">{news.description}</div>
+                                    <a className="news-button" href={news.link} target="_blank">Read More</a>
+                                </div>
                             </div>
-                            <div className="news-desc">{news.description}</div>
                         </div>
-                        ) : (
-                            null
-                        )}
-    
-                    </a>
                     ))
                     :
                     <div className="news-row">
                     </div>
                 }
+                </div>
             </div>
         )
     }

@@ -1,9 +1,17 @@
+.nav-div {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
 .nav-flex-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+    width: 100vw;
     height: 100px;
+    background-color: #160e37;
 }
 
 .logo-container, .login-container {
@@ -99,15 +107,6 @@ li {
     -moz-animation: none;
 }
 
-.loader {
-    border: 4px solid white;
-    border-top: 4px solid #00d99e;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 2s linear infinite;
-}
-
 .settings {
     margin-right: 5px;
     margin-bottom: 5px;
@@ -125,11 +124,6 @@ li {
     border: 2px solid #00d99e;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 @keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
@@ -140,17 +134,17 @@ li {
     50% { border-bottom: 2px solid transparent }
 }
 
+@-o-keyframes fadeIn {
+    0% { opacity:0 }
+    100% { opacity:1 }
+}
+
 @-o-keyframes pulse {
     0%, 100% { border-bottom: 2px solid #00d99e }
     50% { border-bottom: 2px solid transparent }
 }
 
-@-o-keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@-o-keyframes fadeIn {
+@-moz-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
 }
@@ -160,12 +154,7 @@ li {
     50% { border-bottom: 2px solid transparent }
 }
 
-@-moz-keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@-moz-keyframes fadeIn {
+@-webkit-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
 }
@@ -173,14 +162,4 @@ li {
 @-webkit-keyframes pulse {
     0%, 100% { border-bottom: 2px solid #00d99e }
     50% { border-bottom: 2px solid transparent }
-}
-
-@-webkit-keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@-webkit-keyframes fadeIn {
-    0% { opacity:0 }
-    100% { opacity:1 }
 }

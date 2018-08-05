@@ -10,23 +10,22 @@ class Nav extends Component {
 
         this.state = {
             user: {},
-            loggedIn: false,
-            loadDisplay: 'login'
+            loggedIn: false
         }
     }
 
     componentDidMount = () => {
         axios.get('/auth').then(res => {
-            console.log(res.data);
-            this.setState({user: res.data});    //res.data needs to go to redux
-            this.setState({loggedIn: true});
+            console.log('Auth User Object', res);
+            if (res.status === 200) {
+                this.setState({user: res.data});    //res.data needs to go to redux
+                this.setState({loggedIn: true});
+            } else {
+                console.log(`Something's not quite right...`)
+            }
         }).catch(error => {
-            console.log(error);
+            console.log(error.status);
         })
-    }
-
-    loaderToggle = () => {
-        this.setState({loadDisplay: 'loader'})
     }
 
     render(){
@@ -80,7 +79,7 @@ class Nav extends Component {
                                 <img className="settings" src="/images/settings.png" alt="Settings"/>
                             </div>
                         :
-                            <a href="https://localhost:3050/login" className={this.state.loadDisplay} onClick={() => {this.loaderToggle()}}>Login</a>
+                            <a href="https://localhost:3050/login" className="login">Login</a>
                         }
                         
                     </div>

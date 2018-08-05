@@ -15,6 +15,7 @@ const massive = require('massive');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const axios = require('axios');
+const releaseController = require('./controllers/releases_controller');
 
 //Local testing SSL
 const httpsOptions = {
@@ -69,13 +70,14 @@ app.get('/login', passport.authenticate('bnet'));
 app.get('/auth', (req, res) => {
     console.log('Auth Hit');
     if (req.session.passport) {
-        let userObj = {};
-        userObj.id = req.session.passport.user.id;
-        userObj.chars = req.session.passport.user.chars;
-        userObj.main = req.session.passport.user.main;
-        userObj.mainAvatarSmall = req.session.passport.user.mainAvatarSmall;
-        userObj.mainAvatarMed = req.session.passport.user.mainAvatarMed;
-        userObj.mainAvatarLarge = req.session.passport.user.mainAvatarLarge;
+        let userObj = {
+            id: req.session.passport.user.id,
+            chars: req.session.passport.user.chars,
+            main: req.session.passport.user.main,
+            mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
+            mainAvatarMed: req.session.passport.user.mainAvatarMed,
+            mainAvatarLarge: req.session.passport.user.mainAvatarLarge,
+        };
         res.status(200).send(userObj);
     } else {
         res.sendStatus(401);
@@ -107,8 +109,8 @@ app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: 
                             // if (now - charObj.lastModified <= 1563480000) {
                             if (charObj.spec) {
                                 charObj.avatarSmall = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
-                                charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
-                                charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                                charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/inset/${charObj.race}-${charObj.gender}.jpg`;
+                                charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/main/${charObj.race}-${charObj.gender}.jpg`;
                                 userCharArray.push(charObj);
                             }
                             if (i === charRes.data.characters.length-1) {
@@ -160,8 +162,8 @@ app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: 
                         // if (now - charObj.lastModified <= 1563480000) {
                         if (charObj.spec) {
                             charObj.avatarSmall = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
-                            charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
-                            charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/avatar/${charObj.race}-${charObj.gender}.jpg`;
+                            charObj.avatarMed = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'inset')}?alt=/wow/static/images/2d/inset/${charObj.race}-${charObj.gender}.jpg`;
+                            charObj.avatarLarge = `https://render-us.worldofwarcraft.com/character/${charObj.thumbnail.replace('avatar', 'main')}?alt=/wow/static/images/2d/main/${charObj.race}-${charObj.gender}.jpg`;
                             userCharArray.push(charObj);
                         }
                         if (i === charRes.data.characters.length-1) {
@@ -197,12 +199,28 @@ app.get('/auth/logout', (req, res) => {
 
 app.get('/news', (req, res) => {
     const db = app.get('db');
-    db.query('select * from news order by news_datetime desc limit 5').then(response => {
+    db.query('select * from news order by news_datetime desc limit 20').then(response => {
         res.status(200).send(response);
     }).catch(error => {
         console.log(error)
         res.sendStatus(503);
     })
+});
+
+app.get('/releases', (req, res) => {
+    const db = app.get('db');
+    const now = new Date().getTime();
+
+    db.query(`select * from releases where release_date > ${now} order by release_date limit 5`).then(response => {
+        if (response) {
+            res.status(200).send(response);
+        } else {
+            res.status(200).send(null);
+        }
+    }).catch(error => {
+        console.log('Releases Query Error');
+        console.log(error);
+    });
 });
 
 //Local testing SSL
