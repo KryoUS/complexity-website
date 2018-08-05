@@ -1,0 +1,33 @@
+.about-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+    color: white;
+}
+
+.about-header {
+    margin-top: -120px;
+}
+
+.header-gradient {
+    width: 100vw;
+    height: 500px;
+    /* opacity: .6; */
+}
+
+.about-text {
+    max-width: 60vw;
+    font-size: 20px;
+}
+
+.guild-news-container {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
+.guild-news-row {
+    border: 1px solid white;
+}

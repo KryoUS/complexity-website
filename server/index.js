@@ -223,6 +223,22 @@ app.get('/releases', (req, res) => {
     });
 });
 
+app.get('/guildnews', (req, res) => {
+    const db = app.get('db');
+    let newsFeed = {};
+
+    axios.get(`https://us.api.battle.net/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&apikey=${process.env.APIKEY}`).then(newsRes => {
+        
+        newsFeed.lastModified = newsRes.data.lastModified;
+        newsFeed.news = newsRes.data.news;
+        res.status(200).send(newsFeed);
+
+    }).catch(error => {
+        console.log('WoW API Error');
+        console.log(error);
+    })
+})
+
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
 

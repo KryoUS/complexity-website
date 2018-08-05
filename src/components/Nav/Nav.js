@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { setUser } from '../../ducks/reducer';
 import './Nav.css';
 
 class Nav extends Component {
@@ -16,9 +17,11 @@ class Nav extends Component {
 
     componentDidMount = () => {
         axios.get('/auth').then(res => {
-            console.log('Auth User Object', res);
+            console.log('Auth User Object', res.data);
             if (res.status === 200) {
-                this.setState({user: res.data});    //res.data needs to go to redux
+                const user = res.data;
+                this.setState({user: res.data});
+                setUser({user});
                 this.setState({loggedIn: true});
             } else {
                 console.log(`Something's not quite right...`)
@@ -30,35 +33,26 @@ class Nav extends Component {
 
     render(){
         let avatarStyle = {
-            paddingLeft: '5px',
-            paddingBottom: '5px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            backgroundImage: `url('${this.state.user.mainAvatarMed}')`, 
-            width: '230px', 
-            height: '100px', 
-            backgroundPosition: 'center',
-            color: 'white',
-            fontSize: '22px',
-            letterSpacing: 0
+            backgroundImage: `url('${this.state.user.mainAvatarSmall}')`, 
+            width: '54px', 
+            height: '54px'
         }
 
         return(
             <div className="nav-div">
                 <div className="nav-flex-container">
                     <div className="logo-container">
-                        <Link to="/"><img className="logo" src="/images/logo.png" alt="Complexity Logo"/></Link>
+                        <Link to="/"><img className="logo" src="/images/logov3.png" alt="Complexity Logo"/></Link>
                     </div>
                     <ul className="nav-routes">
-                        <li><Link to="/" className="nav-link" >Home</Link></li>
+                        <li><Link to="/" className="nav-no-menu" >Home</Link></li>
                         <li className="nav-menu">
                             Complexity
                             <ul className="nav-menu-content">
-                                <li className="nav-link">About</li>
+                                <Link className="nav-link" to="/about"><li>About</li></Link>
                                 <li className="nav-link">Raid Roster</li>
                                 <li className="nav-link">Members</li>
-                                <li className="nav-link">Stat Leaderboards</li>
+                                <li className="nav-link">Leaderboards</li>
                             </ul>
                         </li>
                         <li className="nav-menu">
@@ -69,30 +63,32 @@ class Nav extends Component {
                                 <li className="nav-link">Blizzcon 2015</li>
                             </ul>
                         </li>
-                        <li><Link to="/" className="nav-link" >Twitch</Link></li>
-                        <li><Link to="/" className="nav-link" >Youtube</Link></li>
+                        <li><Link to="/" className="nav-no-menu" >Twitch</Link></li>
+                        <li><Link to="/" className="nav-no-menu" >Youtube</Link></li>
                     </ul>
-                    <div className="login-container">
-                        {this.state.loggedIn ?
-                            <div className="avatar" style={avatarStyle} alt={this.state.user.main}>
-                                {this.state.user.main}
-                                <img className="settings" src="/images/settings.png" alt="Settings"/>
-                            </div>
-                        :
+                    
+                    {this.state.loggedIn ?
+                        <div className="login-container">
+                            <div className="avatar" style={avatarStyle} alt={this.state.user.main} />
+                            <ul className="nav-routes">
+                                <li className="nav-menu">
+                                    <div className="char-name">{this.state.user.main}</div>
+                                        <ul className="nav-menu-content">
+                                            <li className="nav-link">My Characters</li>
+                                            <li className="nav-link">Settings</li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    :
+                        <div className="login-container">
                             <a href="https://localhost:3050/login" className="login">Login</a>
-                        }
-                        
-                    </div>
+                        </div>
+                    }
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = ( state ) => {
-    return {
-        tempType: state.tempType
-    }
-}
-
-export default connect( mapStateToProps )( Nav );
+export default connect( state => state, {setUser} )( Nav );

@@ -40,21 +40,21 @@ class News extends Component {
         return(
             <div className="news-div">
                 <div className="news-header" style={headerStyle}>
-                {   this.state.releases
-                    ?
-                    <div className="news-countdown">
-                    {this.state.releases.map(release => (
-                        <div className="news-flex-column" key={release.id}>
-                            <div className="news-countdown-timer">{release.title}</div>
-                            <div className="news-countdown-timer">
-                                <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
-                            </div>
+                    {   this.state.releases.length &&
+                        <div className="news-countdown">
+                            {this.state.releases ?
+                                this.state.releases.map(release => (
+                                    <div className="news-flex-column" key={release.id}>
+                                        <div className="news-countdown-timer">{release.title}</div>
+                                        <div className="news-countdown-timer">
+                                            <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
+                                        </div>
+                                    </div>
+                                ))
+                                : null
+                            }
                         </div>
-                    ))}
-                    </div>
-                    :
-                    null
-                }
+                    }
                 </div>
                 <div className="news-container">
                 {   this.state.news
@@ -75,6 +75,7 @@ class News extends Component {
                                 <div className="news-desc-container">
                                     <div className="news-desc-text">{news.description}</div>
                                     <a className="news-button" href={news.link} target="_blank">Read More</a>
+                                    {news.source === "wowhead" && <img src="/images/news/wowhead_news.png" alt="Wowhead" />}
                                 </div>
                             </div>
                         </div>

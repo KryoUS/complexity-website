@@ -2,29 +2,29 @@
     position: fixed;
     top: 0;
     z-index: 1;
+    width: 100vw;
+    height: 60px;
+    background-color: #160e37;
+    border-bottom: 1px solid white;
 }
 
 .nav-flex-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
-    width: 100vw;
-    height: 100px;
-    background-color: #160e37;
 }
 
 .logo-container, .login-container {
     width: 230px;
-    height: 100px;
+    height: 60px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     animation: fadeIn 1s linear;
 }
 
 .logo {
-    max-height: 100px;
+    max-height: 60px;
 }
 
 .nav-menu {
@@ -32,6 +32,16 @@
     letter-spacing: 0;
     color: white;
     position: relative;
+    text-decoration: none;
+}
+
+.nav-no-menu {
+    text-decoration: none;
+    font-size: 20px;
+    letter-spacing: 0;
+    color: white;
+    border-bottom: 2px solid transparent;
+    transition: border 1s;
 }
 
 .nav-menu:hover, .nav-menu:focus {
@@ -48,25 +58,25 @@
     justify-content: space-evenly;
     align-items: center;
     position: absolute;
-    min-width: 180px;
+    min-width: 115px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
-    padding: 10px;
+    padding: 5px;
     background-color: #160e37;
+    box-shadow: 0px 0px 12px #160e37;
     animation: fadeIn 0.5s linear;
 }
 
 .nav-link {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 0;
     color: white;
     border-bottom: 2px solid transparent;
     transition: border 1s;
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover, .nav-link:focus, .nav-no-menu:hover, .nav-no-menu:focus {
     cursor: pointer;
     border-bottom: 2px solid #00d99e;
 }
@@ -107,21 +117,29 @@ li {
     -moz-animation: none;
 }
 
-.settings {
-    margin-right: 5px;
-    margin-bottom: 5px;
-    width: 25px;
-    height: 25px;
-}
-
 .avatar {
-    border: 2px solid white;
+    margin-right: 10px;
+    height: 60px;
+    width: 60px;
+    background-size: contain;
     transition: border 1s;
 }
 
-.avatar:hover, .avatar:focus {
+.avatar:hover .char-name, .avatar:focus .char-name {
     cursor: pointer;
-    border: 2px solid #00d99e;
+    border-bottom: 2px solid #00d99e;
+}
+
+.char-name {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 0;
+    border-bottom: 2px solid transparent;
+}
+
+.char-name:hover, .char-name:focus {
+    cursor: pointer;
+    border-bottom: 2px solid #00d99e;
 }
 
 @keyframes fadeIn {
