@@ -5,6 +5,7 @@
     align-items: center;
     margin-top: 60px;
     color: white;
+    overflow: hidden;
 }
 
 .about-header {
@@ -14,7 +15,6 @@
 .header-gradient {
     width: 100vw;
     height: 500px;
-    /* opacity: .6; */
 }
 
 .about-text {
@@ -23,11 +23,15 @@
 }
 
 .guild-news-container {
+    margin-top: 120px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 20vw;
 }
 
-.guild-news-row {
-    border: 1px solid white;
+.about-footer {
+    background: linear-gradient(transparent, #160e37);
+    width: 100vw;
+    height: 25vh;
+    z-index: 1;
 }
