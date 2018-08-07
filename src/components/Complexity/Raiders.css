@@ -1,0 +1,58 @@
+.raiders-div {
+    margin-top: 60px;
+    color: white;
+    overflow: hidden;
+    border-top: 1px solid white;
+}
+
+.raiders-list-container {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid white;
+}
+
+.raiders-char {
+    min-width: 230px;
+    min-height: 116px;
+    z-index: 1;
+}
+
+.raiders-char:hover {
+    cursor: pointer;
+}
+
+.raider-info-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+
+}
+
+.raider-spec {
+    width: 32px;
+    height: 32px;
+}
+
+.raider-blur {
+    z-index: -2;
+    filter: blur( 100px );
+    background-size: cover !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.raider-header {
+    box-shadow: none;
+    max-width: 1600px;
+    height: 750px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -100px;
+    margin: auto;
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+}

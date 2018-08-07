@@ -27,7 +27,7 @@ class Nav extends Component {
                 console.log(`Something's not quite right...`)
             }
         }).catch(error => {
-            console.log(error.status);
+            
         })
     }
 
@@ -50,7 +50,7 @@ class Nav extends Component {
                             Complexity
                             <ul className="nav-menu-content">
                                 <Link className="nav-link" to="/about"><li>About</li></Link>
-                                <li className="nav-link">Raid Roster</li>
+                                <Link className="nav-link" to="/raiders"><li>Raid Roster</li></Link>
                                 <li className="nav-link">Members</li>
                                 <li className="nav-link">Leaderboards</li>
                             </ul>

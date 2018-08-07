@@ -224,7 +224,6 @@ app.get('/releases', (req, res) => {
 });
 
 app.get('/guildnews', (req, res) => {
-    const db = app.get('db');
     let newsFeed = {};
 
     axios.get(`https://us.api.battle.net/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&apikey=${process.env.APIKEY}`).then(newsRes => {
@@ -237,6 +236,29 @@ app.get('/guildnews', (req, res) => {
         console.log('WoW API Error');
         console.log(error);
     })
+})
+
+app.get('/raiders', (req, res) => {
+    const db = app.get('db');
+
+    db.query('select character_name, rank, realm, avatar_med, avatar_large, spec_icon, spec_desc from characters where raider = 1').then(response => {
+        res.status(200).send(response);
+    }).catch(error => {
+        console.log('Raider DB Error');
+        console.log(error);
+    })
+})
+
+app.put('/characters/:name&:realm', (req, res) => {
+    const { name, realm } = req.params;
+
+    axios.get(`https://us.api.battle.net/wow/character/${realm}/${name}?fields=items&locale=en_US&apikey=${process.env.APIKEY}`).then(response => {
+        res.status(200).send(response.data);
+    }).catch(error => {
+        console.log('WoW Character Items API Error');
+        console.log(error);
+        res.status(500).send('WoW Character API Error');
+    });
 })
 
 //Local testing SSL
