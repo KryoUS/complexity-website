@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Achievement from '../Utils/Achievement';
+import Item from '../Utils/Item';
 import './Raiders.css';
 
 class Raiders extends Component {
@@ -9,7 +11,12 @@ class Raiders extends Component {
         this.state = {
             raiders: [],
             selectorIndex: 0,
-            items = {}
+            items: {},
+            loadItems: false,
+            feed: [],
+            character: '',
+            realm: '',
+            achievementLoader: 'loader'
         }
     }
 
@@ -27,9 +34,11 @@ class Raiders extends Component {
         this.setState({raiders: arrayCopy});
     }
 
-    charSelect = (charIndex) => {
+    charSelect = (charIndex, char, realm) => {
         let difference = this.state.selectorIndex - charIndex;
-        this.getCharItems(this.state.raiders[charIndex].character_name, this.state.raiders[charIndex].realm);
+
+        this.setState({achievementLoader: 'loader', feed: [], loadItems: false});
+        this.getCharItems(char, realm);
 
         if (difference > 0) {
             for (let i = 0; i < difference; i++) {
@@ -47,9 +56,8 @@ class Raiders extends Component {
     }
 
     getCharItems = (name, realm) => {
-        console.log(name, realm)
         axios.put(`/characters/${name}&${realm}`).then(res => {
-            this.setState({items: res.data.items});
+            this.setState({character: res.data.name, items: res.data.items, feed: res.data.feed, achievementLoader: '', loadItems: true});
         }).catch(error =>{
             console.log('Character API Failed');
             console.log(error);
@@ -61,13 +69,15 @@ class Raiders extends Component {
         axios.get('/raiders').then(res => {
             
             let selector = Math.floor(res.data.length / 2);
-            this.setState({selectorIndex: selector});
-            this.setState({raiders: res.data});
+            this.setState({selectorIndex: selector, raiders: res.data});
+            this.setState({character: this.state.raiders[selector].character_name, realm: this.state.raiders[selector].realm});
+            this.getCharItems(this.state.character, this.state.realm);
 
         }).catch(error => {
             console.log('Raider API Error');
             console.log(error);
-        })
+        });
+
     }
 
     render(){
@@ -84,7 +94,7 @@ class Raiders extends Component {
                     }
                     >
                         {this.state.raiders.map((char, index) => (
-                            <div key={char.character_name} className="raiders-char" id={index} onClick={(e) => {this.charSelect(e.target.id)}} style={
+                            <div key={char.character_name} className="raiders-char fade3s" char={char.character_name} id={index} onClick={(e) => {this.charSelect(e.target.id, char.character_name, char.realm)}} style={
                                 index === this.state.selectorIndex ?
                                 {backgroundImage: `url('${char.avatar_med}')`, boxShadow: 'inset 0px 0px 0px 2px white'}
                                 :
@@ -97,12 +107,52 @@ class Raiders extends Component {
                             </div>
                         ))}
                     </div>
-                        <div className="raider-blur" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
-                        <div className="raider-header" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
+                        <div className="raider-blur fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
+                        <div className="raider-header fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
+                        <div className="raider-info-container fade3s">
+                            <div className={`raider-achievement-container ${this.state.achievementLoader}`}>
+                            { this.state.feed.length > 0 &&
+                                this.state.feed.map((feed, index) => (
+                                    feed.type === "ACHIEVEMENT" ?
+                                    <Achievement achievement={feed} key={index} character={this.state.character}/>
+                                    :
+                                    null
+                                ))
+                            }
+                            </div>
+                            
+                            { this.state.loadItems ?
+                            <div className="raider-items-container">
+                                <div className="raider-items">
+                                    <Item item={this.state.items.mainHand}/>
+                                    {this.state.items.offHand && <Item item={this.state.items.offHand}/>}
+                                    <Item item={this.state.items.head}/>
+                                    <Item item={this.state.items.neck}/>
+                                </div>
+                                <div className="raider-items">
+                                    <Item item={this.state.items.shoulder}/>
+                                    <Item item={this.state.items.back}/>
+                                    <Item item={this.state.items.chest}/>
+                                    <Item item={this.state.items.wrist}/>
+                                </div>
+                                <div className="raider-items">
+                                    <Item item={this.state.items.hands}/>
+                                    <Item item={this.state.items.waist}/>
+                                    <Item item={this.state.items.legs}/>
+                                    <Item item={this.state.items.feet}/>
+                                </div>
+                                <div className="raider-items">
+                                    <Item item={this.state.items.finger1}/>
+                                    <Item item={this.state.items.finger2}/>
+                                    <Item item={this.state.items.trinket1}/>
+                                    <Item item={this.state.items.trinket2}/>
+                                </div>
+                            </div>
+                            :
+                            null}
+                        </div>
                 </div>
                 }
-                <button onClick={() => {this.shiftLeft()}} >Shift Left</button>
-                <button onClick={() => {this.shiftRight()}} >Shift Right</button>
             </div>
         )
     }

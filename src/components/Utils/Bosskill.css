@@ -1,0 +1,30 @@
+.bosskill-link {
+    text-decoration: none;
+    z-index: 1;
+}
+
+.bosskill-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    width: 500px;
+    height: 64px;
+    background: rgba( 0,0,0,0.3 );
+}
+
+.bosskill-icon {
+
+}
+
+.bosskill-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bosskill-title {
+    text-align: center;
+    color: white;
+}

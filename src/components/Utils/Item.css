@@ -1,0 +1,8 @@
+.item-icon {
+    margin: 2px;
+    height: 56px;
+    width: 56px;
+    z-index: 1;
+    overflow: hidden;
+    background-position: center;
+}

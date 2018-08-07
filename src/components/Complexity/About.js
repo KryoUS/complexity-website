@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Achievement from '../Utils/Achievement';
 import axios from 'axios';
 import './About.css';
 
@@ -50,13 +49,6 @@ class About extends Component {
                     <div className="header-gradient" style={headerStyle.backgroundLeftCover}>
                         <div className="header-gradient" style={headerStyle.backgroundRightCover}>
                             <div className="header-gradient" style={headerStyle.backgroundBottomCover}>
-                                <div className="guild-news-container">
-                                    { this.state.guildNews.news &&
-                                        this.state.guildNews.news.map(news => (
-                                            <Achievement key={news.character+news.timestamp+news.achievement.id} news={news} />
-                                        ))
-                                    }
-                                </div>
                             </div>
                         </div>
                     </div>

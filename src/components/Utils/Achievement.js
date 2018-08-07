@@ -3,21 +3,19 @@ import './Achievement.css';
 
 export default class Achievement extends Component {
     render () {
-        const { news } = this.props;
-        console.log(news);
-        const background = 'https://res.cloudinary.com/complexityguild/image/upload/v1533522105/wow/achievements/UI-Achievement-Alert-Background.png';
-        const frame = 'https://res.cloudinary.com/complexityguild/image/upload/v1533529660/wow/achievements/UI-Achievement-IconFrame.png';
-        const link = `https://www.wowhead.com/achievement=${news.achievement.id}`;
-        const wowhead = `who=${news.character}&amp;when=${news.timestamp}`;
-        const icon = `https://res.cloudinary.com/complexityguild/image/upload/v1533521204/wow/icons/${news.achievement.icon}.png`;
+        const { achievement, character } = this.props;
+        const wowhead = `who=${character}&amp;when=${achievement.timestamp}`;
+        const link = `https://www.wowhead.com/achievement=${achievement.achievement.id}`;
+        const icon = `https://res.cloudinary.com/complexityguild/image/upload/v1533521204/wow/icons/${achievement.achievement.icon}.png`;
 
         return (
-            <a className="link" href={link} target="_blank" data-wowhead={wowhead}>
-                <div className="achievement-row"  style={{backgroundImage: `url('${background}')`}}>
-                    <div className="achievement-icon" style={{backgroundImage: `url('${icon}')`}}>
-                        <div className="achievement-frame" style={{backgroundImage: `url('${frame}')`}} />
+            <a className="achievement-link" href={link} target="_blank" data-wowhead={wowhead}>
+                <div className="achievement-container">
+                    <img className="achievement-icon" src={icon} alt={achievement.achievement.title}/>
+                    <div className="achievement-text-container">
+                        <div className="achievement-title">{achievement.achievement.title}</div>
+                        <div className="achievement-description">{achievement.achievement.description}</div>
                     </div>
-                    <div className="achievement-title">{news.achievement.title}</div>
                 </div>
             </a>
         )

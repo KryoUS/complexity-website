@@ -16,7 +16,7 @@ function reducer(state = initialState, action){
 }
 
 export function setUser( userData ) {
-    console.log('setUser Fired', userData.user)
+    // console.log('setUser Fired', userData.user)
     const user = userData.user;
     return {user, type: SET_USER }
 }

@@ -16,3 +16,10 @@ body {
 body::-webkit-scrollbar {
   display:none;
 }
+
+.fade3s {
+  animation: fade 3s;
+  -o-animation: fade 3s;
+  -moz-animation: fade 3s;
+  -webkit-animation: fade 3s;
+}
