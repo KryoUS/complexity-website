@@ -21,7 +21,7 @@ class Nav extends Component {
             if (res.status === 200) {
                 const user = res.data;
                 this.setState({user: res.data});
-                setUser({user});
+                this.props.setUser({user});
                 this.setState({loggedIn: true});
             } else {
                 console.log(`Something's not quite right...`)

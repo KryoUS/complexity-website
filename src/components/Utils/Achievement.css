@@ -8,15 +8,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px;
     max-width: 500px;
-    height: 64px;
-    background: rgba( 0,0,0,0.3 );
+    height: 44px;
+    background: rgba( 0,0,0,0.2 );
     border: 2px solid rgba( 0,0,0,0.4 );
 }
 
 .achievement-icon {
-
+    width: 42px;
+    height: 42px;
 }
 
 .achievement-text-container {
@@ -28,13 +28,11 @@
 }
 
 .achievement-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 386px;
     text-align: center;
     color: white;
-}
-
-.achievement-description {
-    text-align: center;
-    color: white;
-    font-size: 12px;
-    padding: 0px 10px 0px 10px;
 }

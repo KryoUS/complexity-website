@@ -16,7 +16,7 @@ class Raiders extends Component {
             feed: [],
             character: '',
             realm: '',
-            achievementLoader: 'loader'
+            selectedClass: 0
         }
     }
 
@@ -37,7 +37,7 @@ class Raiders extends Component {
     charSelect = (charIndex, char, realm) => {
         let difference = this.state.selectorIndex - charIndex;
 
-        this.setState({achievementLoader: 'loader', feed: [], loadItems: false});
+        this.setState({feed: [], loadItems: false});
         this.getCharItems(char, realm);
 
         if (difference > 0) {
@@ -47,7 +47,7 @@ class Raiders extends Component {
         }
 
         if (difference < 0) {
-            difference = Math.abs(difference)
+            difference = Math.abs(difference);
             for (let i = 0; i < difference; i++) {
                 this.shiftLeft();
             }
@@ -57,7 +57,7 @@ class Raiders extends Component {
 
     getCharItems = (name, realm) => {
         axios.put(`/characters/${name}&${realm}`).then(res => {
-            this.setState({character: res.data.name, items: res.data.items, feed: res.data.feed, achievementLoader: '', loadItems: true});
+            this.setState({character: res.data.name, selectedClass: res.data.class, items: res.data.items, feed: res.data.feed, loadItems: true});
         }).catch(error =>{
             console.log('Character API Failed');
             console.log(error);
@@ -84,75 +84,65 @@ class Raiders extends Component {
 
         return(
             <div className="raiders-div">
-                { this.state.raiders.length > 0 &&
+                { this.state.loadItems &&
                 <div>
                     <div className="raiders-list-container" style={
                         this.state.raiders.length % 2 === 0 ?
                         {marginLeft: '-230px'}
                         :
                         {}
-                    }
-                    >
+                    }>
                         {this.state.raiders.map((char, index) => (
-                            <div key={char.character_name} className="raiders-char fade3s" char={char.character_name} id={index} onClick={(e) => {this.charSelect(e.target.id, char.character_name, char.realm)}} style={
-                                index === this.state.selectorIndex ?
-                                {backgroundImage: `url('${char.avatar_med}')`, boxShadow: 'inset 0px 0px 0px 2px white'}
-                                :
-                                {backgroundImage: `url('${char.avatar_med}')`}
-                            }>
-                                <div className="raider-info-container">
-                                    <div className="raider-char-name">{char.character_name}</div>
-                                    <img className="raider-spec" src={`https://res.cloudinary.com/complexityguild/image/upload/v1533521204/wow/icons/${char.spec_icon}.png`} alt={char.spec_icon}/>
-                                </div>
+                        <div key={char.character_name} className="raiders-char fade1s" char={char.character_name} id={index} onClick={(e) => {this.charSelect(e.target.id, char.character_name, char.realm)}} style={
+                            index === this.state.selectorIndex ?
+                            {backgroundImage: `url('${char.avatar_med}')`, boxShadow: 'inset 0px 0px 0px 2px white'}
+                            :
+                            {backgroundImage: `url('${char.avatar_med}')`}
+                        }>
+                            <div className="raider-info-container">
+                                <div className="raider-char-name">{char.character_name}</div>
+                                <img className="raider-spec" src={`https://res.cloudinary.com/complexityguild/image/upload/v1533521204/wow/icons/${char.spec_icon}.png`} alt={char.spec_icon}/>
                             </div>
+                        </div>
                         ))}
                     </div>
+                    {this.state.loadItems &&
+                    <div>
                         <div className="raider-blur fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
                         <div className="raider-header fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
                         <div className="raider-info-container fade3s">
-                            <div className={`raider-achievement-container ${this.state.achievementLoader}`}>
-                            { this.state.feed.length > 0 &&
-                                this.state.feed.map((feed, index) => (
-                                    feed.type === "ACHIEVEMENT" ?
-                                    <Achievement achievement={feed} key={index} character={this.state.character}/>
-                                    :
-                                    null
-                                ))
-                            }
+                            <div className="raider-achievement-container fade3s">
+                            {this.state.feed.map((feed, index) => (
+                                feed.type === "ACHIEVEMENT" ?
+                                <Achievement achievement={feed} key={index} character={this.state.character}/>
+                                :
+                                null
+                            ))}
                             </div>
-                            
-                            { this.state.loadItems ?
-                            <div className="raider-items-container">
-                                <div className="raider-items">
-                                    <Item item={this.state.items.mainHand}/>
-                                    {this.state.items.offHand && <Item item={this.state.items.offHand}/>}
-                                    <Item item={this.state.items.head}/>
-                                    <Item item={this.state.items.neck}/>
-                                </div>
-                                <div className="raider-items">
-                                    <Item item={this.state.items.shoulder}/>
-                                    <Item item={this.state.items.back}/>
-                                    <Item item={this.state.items.chest}/>
-                                    <Item item={this.state.items.wrist}/>
-                                </div>
-                                <div className="raider-items">
-                                    <Item item={this.state.items.hands}/>
-                                    <Item item={this.state.items.waist}/>
-                                    <Item item={this.state.items.legs}/>
-                                    <Item item={this.state.items.feet}/>
-                                </div>
-                                <div className="raider-items">
-                                    <Item item={this.state.items.finger1}/>
-                                    <Item item={this.state.items.finger2}/>
-                                    <Item item={this.state.items.trinket1}/>
-                                    <Item item={this.state.items.trinket2}/>
-                                </div>
+                            <div className="raider-items-container fade3s">
+                                <Item item={this.state.items.mainHand} selectedClass={this.state.selectedClass}/>
+                                {this.state.items.offHand && <Item item={this.state.items.offHand} selectedClass={this.state.selectedClass}/>}
+                                <Item item={this.state.items.head} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.neck} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.shoulder} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.back} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.chest} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.wrist} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.hands} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.waist} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.legs} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.feet} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.finger1} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.finger2} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.trinket1} selectedClass={this.state.selectedClass}/>
+                                <Item item={this.state.items.trinket2} selectedClass={this.state.selectedClass}/>
                             </div>
-                            :
-                            null}
                         </div>
+                    </div>
+                    }
                 </div>
                 }
+            <div className="raider-footer" />
             </div>
         )
     }

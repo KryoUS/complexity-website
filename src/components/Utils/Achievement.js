@@ -12,10 +12,7 @@ export default class Achievement extends Component {
             <a className="achievement-link" href={link} target="_blank" data-wowhead={wowhead}>
                 <div className="achievement-container">
                     <img className="achievement-icon" src={icon} alt={achievement.achievement.title}/>
-                    <div className="achievement-text-container">
-                        <div className="achievement-title">{achievement.achievement.title}</div>
-                        <div className="achievement-description">{achievement.achievement.description}</div>
-                    </div>
+                    <div className="achievement-title">{achievement.achievement.title}</div>
                 </div>
             </a>
         )

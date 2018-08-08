@@ -2,13 +2,11 @@
     margin-top: 60px;
     color: white;
     overflow: hidden;
-    border-top: 1px solid white;
 }
 
 .raiders-list-container {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid white;
 }
 
 .raiders-char {
@@ -21,24 +19,13 @@
     cursor: pointer;
 }
 
-.raider-achievement-container {
+.raider-achievement-container, .raider-items-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 5px;
-    max-height: 605px;
+    max-height: 705px;
     max-width: 500px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.raider-items-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 5px;
-    max-height: 605px;
-    width: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -58,7 +45,8 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 5px;
-
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .raider-spec {
@@ -80,7 +68,7 @@
 .raider-header {
     box-shadow: none;
     max-width: 1600px;
-    height: 900px;
+    height: 1000px;
     position: absolute;
     left: 0;
     right: 0;
@@ -102,11 +90,15 @@
 
 ::-webkit-scrollbar {
     width: 0px;
-    /* background: transparent;  optional: just make scrollbar invisible */
 }
 
-::-webkit-scrollbar-thumb {
-    background: #FF0000;
+.raider-footer {
+    background: rgba( 0,0,0,0.4 );
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: -1;
 }
 
 @keyframes spin {

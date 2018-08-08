@@ -256,7 +256,7 @@ app.put('/characters/:name&:realm', (req, res) => {
         res.status(200).send(response.data);
     }).catch(error => {
         console.log('WoW Character Items API Error');
-        console.log(error.response.status);
+        console.log(error);
         res.status(500).send('WoW Character API Error');
     });
 })
