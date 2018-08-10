@@ -52,7 +52,7 @@ class Nav extends Component {
                                 <Link className="nav-link" to="/about"><li>About</li></Link>
                                 <Link className="nav-link" to="/raiders"><li>Raid Roster</li></Link>
                                 <Link className="nav-link" to="/members"><li>Members</li></Link>
-                                <li className="nav-link">Leaderboards</li>
+                                <Link className="nav-link" to="/leaderboards"><li>Leaderboards</li></Link>
                             </ul>
                         </li>
                         <li className="nav-menu">

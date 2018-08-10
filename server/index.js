@@ -7,7 +7,7 @@ require('dotenv').config();
 //Libraries
 const https = require('https'); //Only for testing locally?
 const fs = require('fs');
-const express = require('express');
+const app = require('./app');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -16,15 +16,13 @@ const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const axios = require('axios');
 const releaseController = require('./controllers/releases_controller');
+const statsController = require('./controllers/stats_controller');
 
 //Local testing SSL
 const httpsOptions = {
     key: fs.readFileSync('./security/cert.key'),
     cert: fs.readFileSync('./security/cert.pem')
 };
-
-//Express
-const app = express();
 
 //Cors
 app.use(cors());
@@ -291,6 +289,8 @@ app.get('/members', (req, res) => {
         res.status(500).send('Member DB Call Error');
     })
 })
+
+app.get('/characterstats', statsController.characterStats);
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );

@@ -1,0 +1,11 @@
+.leaderboards-div {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboards-table {
+    display: flex;
+    flex-direction: column;
+}

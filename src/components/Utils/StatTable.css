@@ -1,0 +1,35 @@
+.table-div {
+    color: white;
+    max-height: 90%;
+    max-width: 80vw;
+    position: relative;
+    overflow-y: scroll;
+}
+
+table
+{
+	width: 80vw;
+	border-collapse: collapse;
+}
+
+thead
+{
+	display: block;
+	width: 80vw;
+	overflow: auto;
+}
+
+tbody
+{
+	display: block;
+	width: 80vw;
+	height: 200px;
+	overflow: auto;
+}
+
+th,td
+{
+	padding: .5em 1em;
+	text-align: left;
+	vertical-align: top;
+}
