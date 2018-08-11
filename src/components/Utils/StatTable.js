@@ -11,14 +11,10 @@ class StatTable extends Component {
             <div className="table-div">
                     <div className="table-header-row">
                         {headerRow.map(header => {
-                            if (header.name !== 'level' && header.name !== 'character_name' && header.name !== 'realm') {
-                                if (header.name === selectedHeader) {
-                                    return <div className="table-header hover selected" key={header.displayName} id={header.name} onClick={(e) => sortBy(e.target.id)} data-tip={header.tooltip}>{header.displayName}</div>
-                                } else {
-                                    return <div className="table-header hover" key={header.displayName} id={header.name} onClick={(e) => sortBy(e.target.id)} data-tip={header.tooltip}>{header.displayName}</div>
-                                }
+                            if (header.name === selectedHeader) {
+                                return <div className="table-header hover selected" key={header.displayName} id={header.name} onClick={(e) => sortBy(e.target.id)} data-tip={header.tooltip}>{header.displayName}</div>
                             } else {
-                                return <div className="table-header" key={header.displayName} id={header.name} data-tip={header.tooltip}>{header.displayName}</div>
+                                return <div className="table-header hover" key={header.displayName} id={header.name} onClick={(e) => sortBy(e.target.id)} data-tip={header.tooltip}>{header.displayName}</div>
                             }
                         })}
                     </div>

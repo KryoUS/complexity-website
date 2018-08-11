@@ -76,6 +76,7 @@ class Nav extends Component {
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
                                             <li className="nav-link">Settings</li>
+                                            <li className="nav-link">Log Out</li>
                                         </ul>
                                 </li>
                             </ul>

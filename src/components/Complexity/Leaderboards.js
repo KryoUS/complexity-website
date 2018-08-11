@@ -49,13 +49,13 @@ class Leaderboards extends Component {
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/kill.jpg")'}}>
                         <div className="stat-text-container">
                             <div className="stats-title">Kills</div>
-                            <div>Think your bloodthirsty? Are you a critter killer? Do you carry the might of the Alliance?</div>
+                            <div>Think you're bloodthirsty? Are you a critter killer? Do you carry the might of the Alliance?</div>
                         </div>
                     </div>
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/deaths.jpg")'}}>
                         <div className="stat-text-container">
                             <div className="stats-title">Deaths</div>
-                            <div>Characters that know every detail on every floor texture that exists, and Hogger?</div>
+                            <div>Characters that know every detail on every floor texture that exists and... Hogger?</div>
                         </div>
                     </div>
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/questing_dungeons_raids.jpg")'}}>
@@ -67,7 +67,7 @@ class Leaderboards extends Component {
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/professions.jpg")'}}>
                         <div className="stat-text-container">
                             <div className="stats-title">Professions</div>
-                            <div>Who makes the most meals, fishes the most, knows the most recipes, has maxed the most professions?</div>
+                            <div>Best chef? Expert fisherman? Most known recipes? Maxed the most professions?</div>
                         </div>
                     </div>
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/travel.jpg")'}}>
@@ -84,7 +84,7 @@ class Leaderboards extends Component {
                     </div>
                     <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/pvp_bg.jpg")'}}>
                         <div className="stat-text-container">
-                            <div className="stats-title">PVP, Duels, Battlegrounds</div>
+                            <div className="stats-title">Duels, Battlegrounds</div>
                             <div>See basic PVP stats from duels, Battlegrounds, and Rated Battlegrounds.</div>
                         </div>
                     </div>

@@ -260,10 +260,10 @@ app.put('/characters/:name&:realm', (req, res) => {
     });
 })
 
-app.get('/members', (req, res) => {
+app.get('/api/members', (req, res) => {
     const db = app.get('db');
 
-    db.query('select character_name, rank, class, race, level from characters order by rank, character_name').then(response => {
+    db.query('select character_name, rank, level, race, spec_name, class, realm from characters order by rank, character_name').then(response => {
         axios.get(`https://us.api.battle.net/wow/data/character/races?locale=en_US&apikey=${process.env.APIKEY}`).then(races => {
             axios.get(`https://us.api.battle.net/wow/data/character/classes?locale=en_US&apikey=${process.env.APIKEY}`).then(classes => {
                 response.map((char, index) => {
