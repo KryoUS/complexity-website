@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Slide from '@material-ui/core/Slide';
 import './Leaderboards.css';
 import CharacterStats from './Leaderboards/CharacterStats';
+import ConsumableStats from './Leaderboards/ConsumableStats';
 
 class Leaderboards extends Component {
     constructor() {
@@ -10,13 +11,15 @@ class Leaderboards extends Component {
         this.state = {
             section: 'none',
             mainSlide: true,
-            characterStats: false
+            characterStats: false,
+            consumableStats: false
         }
     }
 
     handleSection = (section) => {
-        section === 'character' && this.setState({ characterStats: !this.state.characterStats })
-        this.setState({mainSlide: !this.state.mainSlide})
+        section === 'character' && this.setState({ characterStats: !this.state.characterStats });
+        section === 'consumables' && this.setState({ consumableStats: !this.state.consumableStats });
+        this.setState({ mainSlide: !this.state.mainSlide });
     }
 
     render(){
@@ -31,7 +34,7 @@ class Leaderboards extends Component {
                             <div>See basic statistics like Exalted Reputations, Need Rolls, and Mounts collected.</div>
                         </div>
                     </div>
-                    <div className="stat-card" style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533950184/wow/sections/consumables.jpg")'}}>
+                    <div className="stat-card" onClick={() => this.handleSection('consumables')} style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533950184/wow/sections/consumables.jpg")'}}>
                         <div className="stat-text-container">
                             <div className="stats-title">Consumables</div>
                             <div>Let's see who the flask abuser is, or who remembers to use Healthstones the most.</div>
@@ -100,12 +103,10 @@ class Leaderboards extends Component {
                 </div>
                 </Slide>
                 <Slide direction="left" in={this.state.characterStats} mountOnEnter unmountOnExit>
-                    <div>
-                        <div className="stat-button-container">
-                            <div className="stat-back-button" onClick={() => this.handleSection('character')}>Back</div>
-                        </div>
-                        <CharacterStats handleSection={this.handleSection} loadThing={this.state.characterStats}/>
-                    </div>
+                    <CharacterStats handleSection={this.handleSection}/>
+                </Slide>
+                <Slide direction="left" in={this.state.consumableStats} mountOnEnter unmountOnExit>
+                    <ConsumableStats handleSection={this.handleSection}/>
                 </Slide>
             </div>
         )

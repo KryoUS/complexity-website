@@ -1,0 +1,35 @@
+.stats-div {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 85vh;
+    width: 100vw;
+}
+
+.stat-button-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 40px;
+}
+
+.stat-back-button {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    background-color: #160e37;
+    color: white;
+    font-weight: 700;
+}
+
+.stat-back-button:hover {
+    cursor: pointer;
+    background-color: #1a1241;
+}
