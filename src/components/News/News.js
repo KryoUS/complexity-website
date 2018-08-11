@@ -21,14 +21,14 @@ class News extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('/news').then(res => {
+        axios.get('/api/news').then(res => {
             this.setState({news: res.data});
         }).catch(error => {
             console.log('News Error')
             console.log(error);
         });
 
-        axios.get('/releases').then(res => {
+        axios.get('/api/releases').then(res => {
             this.setState({releases: res.data});
         }).catch(error => {
             console.log('Releases Error')

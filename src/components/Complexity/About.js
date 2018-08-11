@@ -23,7 +23,7 @@ class About extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('/guildnews').then(res => {
+        axios.get('/api/guildnews').then(res => {
             let newsArr = [];
             let count = 0;
             res.data.news.forEach((news, i) => {

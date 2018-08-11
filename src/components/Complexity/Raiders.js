@@ -66,7 +66,7 @@ class Raiders extends Component {
 
     componentDidMount = () => {
 
-        axios.get('/raiders').then(res => {
+        axios.get('/api/raiders').then(res => {
             
             let selector = Math.floor(res.data.length / 2);
             this.setState({selectorIndex: selector, raiders: res.data});

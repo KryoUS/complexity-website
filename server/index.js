@@ -195,7 +195,7 @@ app.get('/auth/logout', (req, res) => {
     return res.redirect(`https://localhost:3000`);
 })
 
-app.get('/news', (req, res) => {
+app.get('/api/news', (req, res) => {
     const db = app.get('db');
     db.query('select * from news order by news_datetime desc limit 20').then(response => {
         res.status(200).send(response);
@@ -205,7 +205,7 @@ app.get('/news', (req, res) => {
     })
 });
 
-app.get('/releases', (req, res) => {
+app.get('/api/releases', (req, res) => {
     const db = app.get('db');
     const now = new Date().getTime();
 
@@ -221,7 +221,7 @@ app.get('/releases', (req, res) => {
     });
 });
 
-app.get('/guildnews', (req, res) => {
+app.get('/api/guildnews', (req, res) => {
     let newsFeed = {};
 
     axios.get(`https://us.api.battle.net/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&apikey=${process.env.APIKEY}`).then(newsRes => {
@@ -236,7 +236,7 @@ app.get('/guildnews', (req, res) => {
     })
 })
 
-app.get('/raiders', (req, res) => {
+app.get('/api/raiders', (req, res) => {
     const db = app.get('db');
 
     db.query('select character_name, rank, realm, avatar_med, avatar_large, spec_icon, spec_desc from characters where raider = 1').then(response => {
