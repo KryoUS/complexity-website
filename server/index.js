@@ -16,7 +16,7 @@ const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const axios = require('axios');
 const releaseController = require('./controllers/releases_controller');
-const statsController = require('./controllers/stats_controller');
+const stats = require('./controllers/stats_controller');
 
 //Local testing SSL
 const httpsOptions = {
@@ -290,7 +290,19 @@ app.get('/members', (req, res) => {
     })
 })
 
-app.get('/characterstats', statsController.characterStats);
+//Stat Endpoints
+app.get('/api/stats/character', stats.characters);
+app.get('/api/stats/consumables', stats.consumables);
+app.get('/api/stats/combat', stats.combat);
+app.get('/api/stats/kills', stats.kills);
+app.get('/api/stats/deaths', stats.deaths);
+app.get('/api/stats/pve', stats.pve);
+app.get('/api/stats/professions', stats.professions);
+app.get('/api/stats/travel', stats.travel);
+app.get('/api/stats/emotes', stats.emotes);
+app.get('/api/stats/pvp', stats.pvp);
+app.get('/api/stats/arena', stats.arena);
+app.get('/api/stats/pets', stats.pets);
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );

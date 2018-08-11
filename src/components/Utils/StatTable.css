@@ -1,35 +1,58 @@
 .table-div {
     color: white;
-    max-height: 90%;
-    max-width: 80vw;
-    position: relative;
-    overflow-y: scroll;
+	max-width: 1600px;
+	height: 100%;
+	overflow: scroll;
 }
 
-table
-{
-	width: 80vw;
-	border-collapse: collapse;
+.table-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	max-width: 100%;
+	position: relative;
+	margin-top: 50px;
 }
 
-thead
-{
-	display: block;
-	width: 80vw;
-	overflow: auto;
+.table-header-row, .table-data-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	max-width: 100%;
 }
 
-tbody
-{
-	display: block;
-	width: 80vw;
-	height: 200px;
-	overflow: auto;
+.table-header-row {
+	background-color: #160e37;
+	position: fixed;
+	top: 0px;
+	z-index: 1;
 }
 
-th,td
-{
-	padding: .5em 1em;
-	text-align: left;
-	vertical-align: top;
+.table-data-row:nth-child(odd) {
+    background-color: #160e37;
+}
+
+.table-data-row:nth-child(even) {
+    background: #1a1241;
+}
+
+.table-header, .table-data {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: 115px;
+}
+
+.table-data {
+	height: 20px;
+	font-weight: 300;
+}
+
+.hover {
+	cursor: pointer;
+}
+
+.selected {
+	color: #00d99e;
 }

@@ -84,8 +84,7 @@ class Raiders extends Component {
 
         return(
             <div className="raiders-div">
-                { this.state.loadItems &&
-                <div>
+                { this.state.raiders.length > 0 &&
                     <div className="raiders-list-container" style={
                         this.state.raiders.length % 2 === 0 ?
                         {marginLeft: '-230px'}
@@ -106,7 +105,8 @@ class Raiders extends Component {
                         </div>
                         ))}
                     </div>
-                    {this.state.loadItems &&
+                }
+                {this.state.loadItems &&
                     <div>
                         <div className="raider-blur fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
                         <div className="raider-header fade3s" style={{background: `url('${this.state.raiders[this.state.selectorIndex].avatar_large}') top center no-repeat`}}/>
@@ -139,8 +139,6 @@ class Raiders extends Component {
                             </div>
                         </div>
                     </div>
-                    }
-                </div>
                 }
             <div className="raider-footer" />
             </div>
