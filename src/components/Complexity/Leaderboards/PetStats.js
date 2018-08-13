@@ -4,47 +4,47 @@ import Slide from '@material-ui/core/Slide';
 import StatTable from '../../Utils/StatTable';
 import './Stats.css';
 
-class ConsumableStats extends Component {
+class PetStats extends Component {
     constructor() {
         super();
 
         this.state = {
-            consumablesTable: [],
+            petsTable: [],
             sortMethod: 'desc',
             loadTable: false,
-            selectedHeader: 'stat_health_pots'
+            selectedHeader: 'stat_pets'
         }
     }
 
     componentDidMount = () => {
-        axios.get('/api/stats/consumables').then(response => {
-            this.setState({consumablesTable: response.data, loadTable: true})
+        axios.get('/api/stats/pets').then(response => {
+            this.setState({petsTable: response.data, loadTable: true})
         }).catch(error => {
-            console.log('Consumable Stat API Failed');
+            console.log('Pets Stat API Failed');
             console.log(error);
         })
     }
 
     sortBy = (orderBy) => {
         this.setState({selectedHeader: orderBy});
-        let sortArray = [...this.state.consumablesTable]
+        let sortArray = [...this.state.petsTable]
 
         if (this.state.sortMethod === 'asc') {
             sortArray.sort((a, b) => {
                 return a[orderBy] - b[orderBy]
             })
-            this.setState({sortMethod: 'desc', consumablesTable: sortArray});
+            this.setState({sortMethod: 'desc', petsTable: sortArray});
         } else {
             sortArray.sort((a, b) => {
                 return b[orderBy] - a[orderBy]
             })
-            this.setState({sortMethod: 'asc', consumablesTable: sortArray});
+            this.setState({sortMethod: 'asc', petsTable: sortArray});
         }
     }
 
     handleClick = () => {
         this.setState({loadTable: false});
-        this.props.handleSection('consumables');
+        this.props.handleSection('pets');
     }
 
     render(){
@@ -61,15 +61,13 @@ class ConsumableStats extends Component {
                             {displayName: 'Level', name: 'level', tooltip: 'The current level of the character.'},
                             {displayName: 'Character', name: 'character_name', tooltip: `The character's name.`},
                             {displayName: 'Realm', name: 'realm', tooltip: `The character's realm/server.`},
-                            {displayName: 'Health Potions', name: 'stat_health_pots', tooltip: 'How many Health Potions the character has consumed.'},
-                            {displayName: 'Mana Potions', name: 'stat_mana_pots', tooltip: 'How many Mana Potions the character has consumed.'},
-                            {displayName: 'Elixirs', name: 'stat_elixirs', tooltip: 'How many Elixirs the character has consumed.<br>'},
-                            {displayName: 'Flasks', name: 'stat_flasks', tooltip: 'How many Flasks the character has consumed.'},
-                            {displayName: 'Drinks', name: 'stat_drinks', tooltip: 'How many times the character has consumed a drink. (Does Alcohol count?)'},
-                            {displayName: 'Food', name: 'stat_foods', tooltip: 'How many times teh character has consumed food, and yes Mage food counts.'},
-                            {displayName: 'Healthstones', name: 'stat_healthstones', tooltip: 'How many Healthstones the character has used.'}
+                            {displayName: 'Pets', name: 'stat_pets', tooltip: 'How many pets the character has collected.'},
+                            {displayName: 'Pet Battle Victories', name: 'stat_pet_battles_won', tooltip: 'How many pet battles the character has won.'},
+                            {displayName: 'PVP Pet Battle Victories', name: 'stat_pvp_pet_battles_won', tooltip: 'How many pet battles the character has won versus other players.'},
+                            {displayName: 'PVP FullTeam Victories', name: 'stat_pvp_fullteam_pet_battles_won', tooltip: 'How many full team pet battles the character has won versus other players.'},
+                            {displayName: 'Celestial Tournaments', name: 'stat_pet_celestial_tour_won', tooltip: 'How many Celestial Tournaments the character has claimed victory.'}
                         ]}
-                        tableData={this.state.consumablesTable}
+                        tableData={this.state.petsTable}
                         sortBy={this.sortBy}
                         selectedHeader={this.state.selectedHeader}
                     />
@@ -80,4 +78,4 @@ class ConsumableStats extends Component {
     }
 }
 
-export default ConsumableStats
+export default PetStats
