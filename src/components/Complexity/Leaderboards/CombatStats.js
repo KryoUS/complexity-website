@@ -26,20 +26,46 @@ class CombatStats extends Component {
     }
 
     sortBy = (orderBy) => {
-        this.setState({selectedHeader: orderBy});
-        let sortArray = [...this.state.combatTable]
+        this.setState({selectedHeader: orderBy, loadTable: false});
+        let sortArray = [...this.state.combatTable];
 
+        if (isNaN(sortArray[0][orderBy])) {
+            this.letterSort(sortArray, orderBy);
+        } else {
+            this.numberSort(sortArray, orderBy);
+        }
+        
+    }
+
+    numberSort = (sortArray, orderBy) => {
+        
         if (this.state.sortMethod === 'asc') {
             sortArray.sort((a, b) => {
                 return a[orderBy] - b[orderBy]
             })
-            this.setState({sortMethod: 'desc', combatTable: sortArray});
+            this.setState({sortMethod: 'desc', combatTable: sortArray, loadTable: true});
         } else {
             sortArray.sort((a, b) => {
                 return b[orderBy] - a[orderBy]
             })
-            this.setState({sortMethod: 'asc', combatTable: sortArray});
+            this.setState({sortMethod: 'asc', combatTable: sortArray, loadTable: true});
         }
+    }
+
+    letterSort = (sortArray, orderBy) => {
+        
+        if (this.state.sortMethod === 'asc') {
+            sortArray.sort((a, b) => {
+                return a[orderBy] > b[orderBy] ? 1 : ((a[orderBy] < b[orderBy]) ? -1 : 0)
+            })
+            this.setState({sortMethod: 'desc', combatTable: sortArray, loadTable: true});
+        } else {
+            sortArray.sort((a, b) => {
+                return a[orderBy] < b[orderBy] ? 1 : ((a[orderBy] > b[orderBy]) ? -1 : 0)
+            })
+            this.setState({sortMethod: 'asc', combatTable: sortArray, loadTable: true});
+        }
+
     }
 
     handleClick = () => {
@@ -62,7 +88,7 @@ class CombatStats extends Component {
                             {displayName: 'Character', name: 'character_name', tooltip: `The character's name.`},
                             {displayName: 'Realm', name: 'realm', tooltip: `The character's realm/server.`},
                             {displayName: 'Damage Done', name: 'stat_damage_done', tooltip: 'How much total damage the character has done.'},
-                            {displayName: 'Damage Received', name: 'stat_damage_recieved', tooltip: 'How much total damage the character has received.'},
+                            {displayName: 'Damage Received', name: 'stat_damage_received', tooltip: 'How much total damage the character has received.'},
                             {displayName: 'Healing Done', name: 'stat_healing_done', tooltip: 'How much total healing the character has done.'},
                             {displayName: 'Healing Received', name: 'stat_healing_received', tooltip: 'How much total healing the character has recieved.'},
                             {displayName: 'Endless Damage', name: 'stat_highest_endless_dmg', tooltip: 'Highest score from the Proving Grounds Endless Damage.'},

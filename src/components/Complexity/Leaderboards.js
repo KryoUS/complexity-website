@@ -39,16 +39,16 @@ class Leaderboards extends Component {
     handleSection = (section) => {
         section === 'character' && this.setState({ characterStats: !this.state.characterStats });
         section === 'consumables' && this.setState({ consumableStats: !this.state.consumableStats });
-        section === 'combat' && this.setState({ consumableStats: !this.state.combatStats });
-        section === 'kills' && this.setState({ consumableStats: !this.state.killsStats });
-        section === 'deaths' && this.setState({ consumableStats: !this.state.deathStats });
-        section === 'pve' && this.setState({ consumableStats: !this.state.pveStats });
-        section === 'professions' && this.setState({ consumableStats: !this.state.professionStats });
-        section === 'travel' && this.setState({ consumableStats: !this.state.travelStats });
-        section === 'emotes' && this.setState({ consumableStats: !this.state.emoteStats });
-        section === 'pvp' && this.setState({ consumableStats: !this.state.pvpStats });
-        section === 'arena' && this.setState({ consumableStats: !this.state.arenaStats });
-        section === 'pets' && this.setState({ consumableStats: !this.state.petStats });
+        section === 'combat' && this.setState({ combatStats: !this.state.combatStats });
+        section === 'kills' && this.setState({ killsStats: !this.state.killsStats });
+        section === 'deaths' && this.setState({ deathStats: !this.state.deathStats });
+        section === 'pve' && this.setState({ pveStats: !this.state.pveStats });
+        section === 'professions' && this.setState({ professionStats: !this.state.professionStats });
+        section === 'travel' && this.setState({ travelStats: !this.state.travelStats });
+        section === 'emotes' && this.setState({ emoteStats: !this.state.emoteStats });
+        section === 'pvp' && this.setState({ pvpStats: !this.state.pvpStats });
+        section === 'arena' && this.setState({ arenaStats: !this.state.arenaStats });
+        section === 'pets' && this.setState({ petStats: !this.state.petStats });
         this.setState({ mainSlide: !this.state.mainSlide });
     }
 

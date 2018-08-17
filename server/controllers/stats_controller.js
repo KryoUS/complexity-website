@@ -28,7 +28,7 @@ module.exports = {
     combat: (req, res, next) => {
         const db = app.get('db');
 
-        db.query('select level, character_name, realm, stat_damage_done, stat_damage_recieved, stat_healing_done, stat_healing_received, stat_highest_endless_dmg, stat_highest_endless_tank, stat_highest_endless_heals, stat_rebirths, stat_raised, stat_soulstones from characters order by stat_damage_done desc').then(response => {
+        db.query('select level, character_name, realm, stat_damage_done, stat_damage_received, stat_healing_done, stat_healing_received, stat_highest_endless_dmg, stat_highest_endless_tank, stat_highest_endless_heals, stat_rebirths, stat_raised, stat_soulstones from characters order by stat_damage_done desc').then(response => {
             res.status(200).send(response);
         }).catch(error => {
             console.log('DB Combat Stats Error');
@@ -112,7 +112,7 @@ module.exports = {
     pvp: (req, res, next) => {
         const db = app.get('db');
 
-        db.query('select level, character_name, realm, stat_pvp_deaths, stat_horde_deaths, stat_duels_won, stat_duels_lost, stat_bgs_played, stat_bgs_won, stat_bgs_kbs, stat_rbgs_played, stat_rbgs_won from characters order by stat_pvp_deaths desc').then(response => {
+        db.query('select level, character_name, realm, stat_pvp_deaths, stat_horde_deaths, stat_duels_won, stat_duels_lost, stat_bgs_played, stat_bgs_won, stat_bg_kbs, stat_rbgs_played, stat_rbgs_won from characters order by stat_pvp_deaths desc').then(response => {
             res.status(200).send(response);
         }).catch(error => {
             console.log('DB pvp Stats Error');

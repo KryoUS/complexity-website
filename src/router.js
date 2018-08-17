@@ -5,6 +5,7 @@ import About from './components/Complexity/About';
 import Raiders from './components/Complexity/Raiders';
 import Members from './components/Complexity/Members';
 import Leaderboards from './components/Complexity/Leaderboards';
+import Settings from './components/Settings/Settings';
 
 
 export default (
@@ -14,5 +15,6 @@ export default (
         <Route component={Raiders} path='/raiders'/>
         <Route component={Members} path='/members'/>
         <Route component={Leaderboards} path='/leaderboards'/>
+        <Route component={Settings} path='/settings' />
     </Switch>
 )

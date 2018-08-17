@@ -46,6 +46,11 @@ class Nav extends Component {
                     </div>
                     <ul className="nav-routes">
                         <li><Link to="/" className="nav-no-menu" >Home</Link></li>
+                        <li><Link className="nav-no-menu" to="/about">About</Link></li>
+                        <li><Link className="nav-no-menu" to="/raiders">Raid Roster</Link></li>
+                        <li><Link className="nav-no-menu" to="/members">Members</Link></li>
+                        <li><Link className="nav-no-menu" to="/leaderboards">Leaderboards</Link></li>
+                        {/* NOT MVP AND WILL BE ADDED LATER IN TIME
                         <li className="nav-menu">
                             Complexity
                             <ul className="nav-menu-content">
@@ -64,7 +69,7 @@ class Nav extends Component {
                             </ul>
                         </li>
                         <li><Link to="/" className="nav-no-menu" >Twitch</Link></li>
-                        <li><Link to="/" className="nav-no-menu" >Youtube</Link></li>
+                        <li><Link to="/" className="nav-no-menu" >Youtube</Link></li> */}
                     </ul>
                     
                     {this.state.loggedIn ?
@@ -75,7 +80,7 @@ class Nav extends Component {
                                     <div className="char-name">{this.state.user.main}</div>
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
-                                            <li className="nav-link">Settings</li>
+                                            <li><Link className="nav-link" to="/settings">Settings</Link></li>
                                             <li className="nav-link">Log Out</li>
                                         </ul>
                                 </li>

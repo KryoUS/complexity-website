@@ -26,20 +26,46 @@ class PveStats extends Component {
     }
 
     sortBy = (orderBy) => {
-        this.setState({selectedHeader: orderBy});
-        let sortArray = [...this.state.pveTable]
+        this.setState({selectedHeader: orderBy, loadTable: false});
+        let sortArray = [...this.state.pveTable];
 
+        if (isNaN(sortArray[0][orderBy])) {
+            this.letterSort(sortArray, orderBy);
+        } else {
+            this.numberSort(sortArray, orderBy);
+        }
+        
+    }
+
+    numberSort = (sortArray, orderBy) => {
+        
         if (this.state.sortMethod === 'asc') {
             sortArray.sort((a, b) => {
                 return a[orderBy] - b[orderBy]
             })
-            this.setState({sortMethod: 'desc', pveTable: sortArray});
+            this.setState({sortMethod: 'desc', pveTable: sortArray, loadTable: true});
         } else {
             sortArray.sort((a, b) => {
                 return b[orderBy] - a[orderBy]
             })
-            this.setState({sortMethod: 'asc', pveTable: sortArray});
+            this.setState({sortMethod: 'asc', pveTable: sortArray, loadTable: true});
         }
+    }
+
+    letterSort = (sortArray, orderBy) => {
+        
+        if (this.state.sortMethod === 'asc') {
+            sortArray.sort((a, b) => {
+                return a[orderBy] > b[orderBy] ? 1 : ((a[orderBy] < b[orderBy]) ? -1 : 0)
+            })
+            this.setState({sortMethod: 'desc', pveTable: sortArray, loadTable: true});
+        } else {
+            sortArray.sort((a, b) => {
+                return a[orderBy] < b[orderBy] ? 1 : ((a[orderBy] > b[orderBy]) ? -1 : 0)
+            })
+            this.setState({sortMethod: 'asc', pveTable: sortArray, loadTable: true});
+        }
+
     }
 
     handleClick = () => {
