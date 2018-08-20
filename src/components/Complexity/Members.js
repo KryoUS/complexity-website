@@ -71,8 +71,11 @@ class Members extends Component {
     render(){
 
         return(
-            <div className="stats-div">
+            <div className="stats-div" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/members.jpg') top center no-repeat`}}>
                 <Slide direction="up" in={this.state.loadTable} mountOnEnter unmountOnExit>
+                <div>
+                        <div className="stat-button-container">
+                        </div>
                         <StatTable 
                         headerRow={[
                             {displayName: 'Character', name: 'character_name', tooltip: `The character's name.`},
@@ -87,6 +90,7 @@ class Members extends Component {
                         sortBy={this.sortBy}
                         selectedHeader={this.state.selectedHeader}
                     />
+                </div>
                 </Slide>
             </div>
         )

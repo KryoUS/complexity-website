@@ -1,11 +1,11 @@
 .stats-div {
-    margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 85vh;
+    height: 93vh;
     width: 100vw;
+    margin-top: 60px;
 }
 
 .stat-button-container {

@@ -55,7 +55,7 @@ class Leaderboards extends Component {
     render(){
 
         return(
-            <div>
+            <div style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/stats.jpg') top center no-repeat`, maxWidth: '100vw;', maxHeight: '100vw;'}}>
                 <Slide direction="right" in={this.state.mainSlide} mountOnEnter unmountOnExit>
                 <div className="leaderboards-div">
                     <div className="stat-card" onClick={() => this.handleSection('character')} style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533948801/wow/sections/character_stats.jpg")'}}>
@@ -132,42 +132,18 @@ class Leaderboards extends Component {
                     </div>                
                 </div>
                 </Slide>
-                <Slide direction="left" in={this.state.characterStats} mountOnEnter unmountOnExit>
-                    <CharacterStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.consumableStats} mountOnEnter unmountOnExit>
-                    <ConsumableStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.combatStats} mountOnEnter unmountOnExit>
-                    <CombatStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.killsStats} mountOnEnter unmountOnExit>
-                    <KillStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.deathStats} mountOnEnter unmountOnExit>
-                    <DeathStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.pveStats} mountOnEnter unmountOnExit>
-                    <PveStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.professionStats} mountOnEnter unmountOnExit>
-                    <ProfessionStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.travelStats} mountOnEnter unmountOnExit>
-                    <TravelStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.emoteStats} mountOnEnter unmountOnExit>
-                    <EmoteStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.pvpStats} mountOnEnter unmountOnExit>
-                    <PvpStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.arenaStats} mountOnEnter unmountOnExit>
-                    <ArenaStats handleSection={this.handleSection}/>
-                </Slide>
-                <Slide direction="left" in={this.state.petStats} mountOnEnter unmountOnExit>
-                    <PetStats handleSection={this.handleSection}/>
-                </Slide>
+                {this.state.characterStats && <CharacterStats handleSection={this.handleSection}/>}
+                {this.state.consumableStats && <ConsumableStats handleSection={this.handleSection}/>}
+                {this.state.combatStats && <CombatStats handleSection={this.handleSection}/>}
+                {this.state.killsStats && <KillStats handleSection={this.handleSection}/>}
+                {this.state.deathStats && <DeathStats handleSection={this.handleSection}/>}
+                {this.state.pveStats && <PveStats handleSection={this.handleSection}/>}
+                {this.state.professionStats && <ProfessionStats handleSection={this.handleSection}/>}
+                {this.state.travelStats && <TravelStats handleSection={this.handleSection}/>}
+                {this.state.emoteStats && <EmoteStats handleSection={this.handleSection}/>}
+                {this.state.pvpStats && <PvpStats handleSection={this.handleSection}/>}
+                {this.state.arenaStats && <ArenaStats handleSection={this.handleSection}/>}
+                {this.state.petStats && <PetStats handleSection={this.handleSection}/>}
             </div>
         )
     }
