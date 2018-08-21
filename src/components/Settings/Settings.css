@@ -1,0 +1,54 @@
+h3 {
+    text-align: center;
+}
+
+.settings-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: white;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 40vw;
+    height: 85vh;
+    background-color: #110b29;
+    box-shadow: 10px 10px 15px #000000;
+}
+
+.settings-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid white;
+}
+
+.settings-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.settings-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    background-color: #160e37;
+    color: white;
+    font-weight: 700;
+}
+
+.settings-button:hover {
+    cursor: pointer;
+    background-color: #1a1241;
+}
