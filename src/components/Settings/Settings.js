@@ -1,5 +1,5 @@
 import React,  { Component } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
@@ -47,7 +47,6 @@ class Settings extends Component {
         super();
 
         this.state = {
-            isAdmin: false,
             releaseTitle: '',
             releaseDate: '2019-05-24T10:30',
             releaseLink: ''
@@ -78,7 +77,15 @@ class Settings extends Component {
 
     handleSetMain = (name, avatarSmall, avatarMed, avatarLarge) => {
         this.props.setMain(name, avatarSmall, avatarMed, avatarLarge);
-        console.log('New Main Set', this.props.user);
+        axios.post('/auth/newmain', {
+            id: this.props.user.id,
+            main: name,
+            mainAvatarSmall: avatarSmall,
+            mainAvatarMed: avatarMed,
+            mainAvatarLarge: avatarLarge
+        }).then(res => {
+            console.log(res);
+        })
     }
 
     render(){
@@ -96,9 +103,9 @@ class Settings extends Component {
                         <div className="settings-column">
                             <h3>Set Main Character</h3>
                             <div className="settings-row">
-                                {this.props.user.chars &&
+                                {this.props.user.main &&
                                     this.props.user.chars.map((char, index) => {
-                                        return this.props.user.mainAvatarSmall === char.mainAvatarSmall ?
+                                        return this.props.user.mainAvatarSmall === char.avatarSmall ?
                                             <div key={index} 
                                                 style={{
                                                     background: `url('${char.avatarMed}') no-repeat`, 

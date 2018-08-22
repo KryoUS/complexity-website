@@ -81,7 +81,8 @@ class Nav extends Component {
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
                                             <li><Link className="nav-link" to="/settings">Settings</Link></li>
-                                            <li className="nav-link">Log Out</li>
+                                            {/* Logout not working */}
+                                            <li href="https://localhost:3050/logout" className="nav-link">Log Out</li>
                                         </ul>
                                 </li>
                             </ul>
