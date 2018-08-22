@@ -2,7 +2,18 @@ import React,  { Component } from 'react';
 import axios from 'axios';
 import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Settings.css';
 
@@ -39,8 +50,15 @@ const theme = createMuiTheme({
                 margin: '5px'
             },
         },
-    }
+    },
+    paper: {
+        position: 'absolute',
+    },
 });
+
+const Transition = (props) => {
+    return <Slide direction="up" {...props} />;
+}
 
 class Settings extends Component {
     constructor() {
@@ -49,21 +67,18 @@ class Settings extends Component {
         this.state = {
             releaseTitle: '',
             releaseDate: '2019-05-24T10:30',
-            releaseLink: ''
+            releaseLink: '',
+            dialogOpen: false,
+            dialogTitle: '',
+            dialogMessage: '',
+            newMain: '',
+            newAvatarSmall: '',
+            newAvatarMed: '',
+            newAvatarLarge: '',
+            snackBarOpen: false,
+            snackBarMessage: ''
         }
     }
-
-    // componentDidMount = () => {
-    //     axios.get('/auth').then(res => {
-    //         console.log('Auth User Object', res.data);
-    //     }).catch(error => {
-    //         console.log('Not Authed', error);
-    //     })
-    // }
-
-    // newMain = () => {
-    //     
-    // }
 
     handleChange = name => event => {
         this.setState({[name]: event.target.value});
@@ -73,24 +88,52 @@ class Settings extends Component {
         section === 'releases' &&
         //Below is the milliseconds from the date TextField
         console.log(new Date(this.state.releaseDate).getTime())
+        this.setState({ snackBarMessage: 'New Release Added!', snackBarOpen: true })
     }
 
-    handleSetMain = (name, avatarSmall, avatarMed, avatarLarge) => {
-        this.props.setMain(name, avatarSmall, avatarMed, avatarLarge);
+    handleSetMain = () => {
+        this.props.setMain(this.state.newMain, this.state.newAvatarSmall, this.state.newAvatarMed, this.state.newAvatarLarge);
+        this.handleClose();
         axios.post('/auth/newmain', {
             id: this.props.user.id,
-            main: name,
-            mainAvatarSmall: avatarSmall,
-            mainAvatarMed: avatarMed,
-            mainAvatarLarge: avatarLarge
+            main: this.state.newMain,
+            mainAvatarSmall: this.state.newAvatarSmall,
+            mainAvatarMed: this.state.newAvatarMed,
+            mainAvatarLarge: this.state.newAvatarLarge
         }).then(res => {
-            console.log(res);
+            
         })
+    }
+
+    handleClickOpen = (name, avatarSmall, avatarMed, avatarLarge) => {
+        this.setState({ 
+            dialogOpen: true,
+            dialogTitle: 'Set a new main character?',
+            dialogMessage: `Do you really want to set your new main to ${name}?`, 
+            newMain: name, 
+            newAvatarSmall: avatarSmall, 
+            newAvatarMed: avatarMed, 
+            newAvatarLarge: avatarLarge 
+        });
+    };
+
+    handleClose = () => {
+        this.setState({ dialogOpen: false });
+    };
+
+    snackBarClose = () => {
+        this.setState({ snackBarOpen: false });
     }
 
     render(){
 
         console.log('Settings Props', this.props)
+
+        const mainNameStyle = {
+            width: '100%', 
+            background: 'linear-gradient(to right, transparent, rgb(0, 0, 0), transparent)', 
+            textAlign: 'center'
+        }
 
         return(
             <div className ="settings-div" style={{
@@ -99,41 +142,33 @@ class Settings extends Component {
                 maxHeight: '100vw'
                 }}>
                 <div className="settings-container">
-                    <div className="settings-column">
-                        <div className="settings-column">
-                            <h3>Set Main Character</h3>
-                            <div className="settings-row">
-                                {this.props.user.main &&
-                                    this.props.user.chars.map((char, index) => {
-                                        return this.props.user.mainAvatarSmall === char.avatarSmall ?
-                                            <div key={index} 
-                                                style={{
-                                                    background: `url('${char.avatarMed}') no-repeat`, 
-                                                    width: '230px', 
-                                                    height: '116px'
-                                                }} 
-                                                className="settings-medavatar settings-selected"
-                                                onClick={() => {this.handleSetMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
-                                            />
-                                        :
-                                            <div key={index} 
-                                                style={{
-                                                    background: `url('${char.avatarMed}') no-repeat`, 
-                                                    width: '230px', 
-                                                    height: '116px'
-                                                }} 
-                                                className="settings-medavatar"
-                                                onClick={() => {this.handleSetMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
-                                            />
-                                    })
-                                }
-                            </div>
+                    <div className="settings-column-avatars">
+                        <h3>Set Main Character</h3>
+                        <div className="settings-row-avatars">
+                            {this.props.user.main &&
+                                this.props.user.chars.map((char, index) => {
+                                    return <div key={index} 
+                                            style={{
+                                                margin: '5px',
+                                                background: `url('${char.avatarMed}') no-repeat`, 
+                                                width: '230px', 
+                                                height: '116px',
+                                                boxShadow: '10px 10px 15px #000000'
+                                            }} 
+                                            className={`settings-medavatar ${this.props.user.mainAvatarSmall === char.avatarSmall && 'settings-selected'}`}
+                                            onClick={() => {this.handleClickOpen(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
+                                        >
+                                            <div style={mainNameStyle}>{char.name}</div>
+                                        </div>
+                                })
+                            }
                         </div>
                     </div>
                     {this.props.user.isAdmin &&
                     <MuiThemeProvider theme={theme}>
+                        <h3>Admin Tools</h3>
                         <div className="settings-column">
-                            <h3>Add a Release Date</h3>
+                            <div data-tip='Add a new Release Date countdown timer to the Home page.'>Add a New Release</div>
                             <div className="settings-row">
                                 <TextField
                                     id="releaseTitle"
@@ -161,9 +196,56 @@ class Settings extends Component {
                             </div>
                             <div id="releases" className="settings-button" onClick={() => this.handleSubmit('releases')}>Submit</div>
                         </div>
+                        <ReactTooltip />
                     </MuiThemeProvider>
                     }
                 </div>
+                <Dialog
+                    open={this.state.dialogOpen}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={this.handleClose}
+                >
+                <DialogTitle id="alert-dialog-slide-title">
+                    {this.state.dialogTitle}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        {this.state.dialogMessage}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        No
+                    </Button>
+                    <Button onClick={this.handleSetMain} color="primary">
+                        Yes
+                    </Button>
+                </DialogActions>
+                </Dialog>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.snackBarOpen}
+                    autoHideDuration={3000}
+                    onClose={this.snackBarClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{this.state.snackBarMessage}</span>}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            onClick={this.snackBarClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </div>
         )
     }
