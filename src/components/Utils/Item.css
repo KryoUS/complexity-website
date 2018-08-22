@@ -1,4 +1,7 @@
 .item-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     text-decoration: none;
     max-width: 500px;
     z-index: 1;
@@ -15,6 +18,7 @@
 
 .item-container {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     max-width: 500px;
@@ -23,7 +27,7 @@
     border: 2px solid rgba( 0,0,0,0.4 );
 }
 
-.item-name {
+.item-name, .item-level {
     text-align: center;
     color: white;
     display: flex;
