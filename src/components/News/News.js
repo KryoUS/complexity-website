@@ -44,7 +44,7 @@ class News extends Component {
                         <div className="news-countdown">
                             {this.state.releases ?
                                 this.state.releases.map(release => (
-                                    <a className="news-flex-column" key={release.id} a href={release.link} target="_blank">
+                                    <a className="news-flex-column" key={release.id} href={release.link} target="_blank">
                                         <div className="news-countdown-timer">{release.title}</div>
                                         <div className="news-countdown-timer">
                                             <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>

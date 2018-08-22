@@ -10,8 +10,7 @@ class Nav extends Component {
         super();
 
         this.state = {
-            user: {},
-            loggedIn: false
+
         }
     }
 
@@ -20,9 +19,10 @@ class Nav extends Component {
             console.log('Auth User Object', res.data);
             if (res.status === 200) {
                 const user = res.data;
-                this.setState({user: res.data});
+                // this.setState({user: user});
                 this.props.setUser({user});
-                this.setState({loggedIn: true});
+                // this.setState({loggedIn: true});
+                console.log('Nav Props: ', this.props)
             } else {
                 console.log(`Something's not quite right...`)
             }
@@ -33,7 +33,7 @@ class Nav extends Component {
 
     render(){
         let avatarStyle = {
-            backgroundImage: `url('${this.state.user.mainAvatarSmall}')`, 
+            backgroundImage: `url('${this.props.user.mainAvatarSmall}')`, 
             width: '54px', 
             height: '54px'
         }
@@ -72,12 +72,12 @@ class Nav extends Component {
                         <li><Link to="/" className="nav-no-menu" >Youtube</Link></li> */}
                     </ul>
                     
-                    {this.state.loggedIn ?
+                    {this.props.user.main ?
                         <div className="login-container">
-                            <div className="avatar" style={avatarStyle} alt={this.state.user.main} />
+                            <div className="avatar" style={avatarStyle} alt={this.props.user.main} />
                             <ul className="nav-routes">
                                 <li className="nav-menu">
-                                    <div className="char-name">{this.state.user.main}</div>
+                                    <div className="char-name">{this.props.user.main}</div>
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
                                             <li><Link className="nav-link" to="/settings">Settings</Link></li>
@@ -97,4 +97,10 @@ class Nav extends Component {
     }
 }
 
-export default connect( state => state, {setUser} )( Nav );
+const mapStateToProps = ( state ) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect( mapStateToProps, {setUser} )( Nav );

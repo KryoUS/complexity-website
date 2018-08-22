@@ -1,5 +1,5 @@
 import React,  { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
@@ -54,41 +54,76 @@ class Settings extends Component {
         }
     }
 
-    componentDidMount = () => {
-        axios.get('/auth').then(res => {
-            console.log('Auth User Object', res.data);
-        }).catch(error => {
-            console.log('Not Authed', error);
-        })
-    }
+    // componentDidMount = () => {
+    //     axios.get('/auth').then(res => {
+    //         console.log('Auth User Object', res.data);
+    //     }).catch(error => {
+    //         console.log('Not Authed', error);
+    //     })
+    // }
 
     // newMain = () => {
-    //     this.props.setMain(name, avatarLarge, avatarMed, avatarSmall);
+    //     
     // }
 
     handleChange = name => event => {
         this.setState({[name]: event.target.value});
     };
 
-    handleClick = (section) => {
+    handleSubmit = (section) => {
         section === 'releases' &&
         //Below is the milliseconds from the date TextField
         console.log(new Date(this.state.releaseDate).getTime())
     }
 
+    handleSetMain = (name, avatarSmall, avatarMed, avatarLarge) => {
+        this.props.setMain(name, avatarSmall, avatarMed, avatarLarge);
+        console.log('New Main Set', this.props.user);
+    }
+
     render(){
 
-        console.log('Props', this.props)
+        console.log('Settings Props', this.props)
 
         return(
-            <div className ="settings-div" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') top center/cover no-repeat`, maxWidth: '100vw', maxHeight: '100vw'}}>
+            <div className ="settings-div" style={{
+                background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') top center/cover no-repeat`, 
+                maxWidth: '100vw', 
+                maxHeight: '100vw'
+                }}>
                 <div className="settings-container">
                     <div className="settings-column">
-                        <div className="settings-row">
-                            Main Characters
+                        <div className="settings-column">
+                            <h3>Set Main Character</h3>
+                            <div className="settings-row">
+                                {this.props.user.chars &&
+                                    this.props.user.chars.map((char, index) => {
+                                        return this.props.user.mainAvatarSmall === char.mainAvatarSmall ?
+                                            <div key={index} 
+                                                style={{
+                                                    background: `url('${char.avatarMed}') no-repeat`, 
+                                                    width: '230px', 
+                                                    height: '116px'
+                                                }} 
+                                                className="settings-medavatar settings-selected"
+                                                onClick={() => {this.handleSetMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
+                                            />
+                                        :
+                                            <div key={index} 
+                                                style={{
+                                                    background: `url('${char.avatarMed}') no-repeat`, 
+                                                    width: '230px', 
+                                                    height: '116px'
+                                                }} 
+                                                className="settings-medavatar"
+                                                onClick={() => {this.handleSetMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
+                                            />
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
-                    {/* {this.state.isAdmin && */}
+                    {this.props.user.isAdmin &&
                     <MuiThemeProvider theme={theme}>
                         <div className="settings-column">
                             <h3>Add a Release Date</h3>
@@ -117,10 +152,10 @@ class Settings extends Component {
                                     }}
                                 />
                             </div>
-                            <div id="releases" className="settings-button" onClick={() => this.handleClick('releases')}>Submit</div>
+                            <div id="releases" className="settings-button" onClick={() => this.handleSubmit('releases')}>Submit</div>
                         </div>
                     </MuiThemeProvider>
-                    {/* } */}
+                    }
                 </div>
             </div>
         )
@@ -129,10 +164,7 @@ class Settings extends Component {
 
 const mapStateToProps = ( state ) => {
     return {
-        main: state.main,
-        mainAvatarLarge: state.mainAvatarLarge,
-        mainAvatarMed: state.mainAvatarMed,
-        mainAvatarSmall: state.mainAvatarSmall,
+        user: state.user
     }
 }
 

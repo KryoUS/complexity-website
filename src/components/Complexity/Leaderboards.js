@@ -55,7 +55,7 @@ class Leaderboards extends Component {
     render(){
 
         return(
-            <div style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/stats.jpg') top center no-repeat`, maxWidth: '100vw;', maxHeight: '100vw;'}}>
+            <div style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/stats.jpg') top center no-repeat`, maxWidth: '100vw', maxHeight: '100vw'}}>
                 <Slide direction="right" in={this.state.mainSlide} mountOnEnter unmountOnExit>
                 <div className="leaderboards-div">
                     <div className="stat-card" onClick={() => this.handleSection('character')} style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533948801/wow/sections/character_stats.jpg")'}}>

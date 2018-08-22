@@ -70,6 +70,7 @@ app.get('/auth', (req, res) => {
     if (req.session.passport) {
         let userObj = {
             id: req.session.passport.user.id,
+            isAdmin: req.session.passport.user.isAdmin,
             chars: req.session.passport.user.chars,
             main: req.session.passport.user.main,
             mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
@@ -123,6 +124,7 @@ app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: 
                                     mainavatarmed: userCharArray[0].avatarMed,
                                     mainavatarlarge: userCharArray[0].avatarLarge
                                 }).then(updateRes => {
+                                    req.session.passport.user.isAdmin = updateRes[0].is_admin;
                                     req.session.passport.user.main = updateRes[0].main;
                                     req.session.passport.user.mainAvatarSmall = updateRes[0].mainavatarsmall;
                                     req.session.passport.user.mainAvatarMed = updateRes[0].mainavatarmed;
@@ -146,6 +148,7 @@ app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: 
                 });
 
             } else {
+                req.session.passport.user.isAdmin = findRes.is_admin;
                 req.session.passport.user.main = findRes.main;
                 req.session.passport.user.mainAvatarSmall = findRes.mainavatarsmall;
                 req.session.passport.user.mainAvatarMed = findRes.mainavatarmed;

@@ -32,7 +32,9 @@ h3 {
 .settings-row {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding: 15px;
+    overflow: scroll;
 }
 
 .settings-button {
@@ -51,4 +53,17 @@ h3 {
 .settings-button:hover {
     cursor: pointer;
     background-color: #1a1241;
+}
+
+.settings-medavatar {
+    border: 2px solid transparent;
+}
+
+.settings-medavatar:hover {
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.settings-selected {
+    border: 2px solid #00d99e;
 }
