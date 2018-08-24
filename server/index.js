@@ -2,7 +2,7 @@
 //Once a token is received on req.user.token, use https://us.api.battle.net/wow/user/characters?access_token= to get character information.
 
 //Environment Variables
-require('dotenv').config();
+require('dotenv').config({path: path.join(__dirname, '.env')});
 
 //Libraries
 const https = require('https'); //Only for testing locally?
@@ -17,6 +17,9 @@ const bnetStrategy = require(`${__dirname}/strategy.js`);
 const axios = require('axios');
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
+const news = require('./controllers/news_controller');
+const raiders = require('./controllers/raider_controller');
+const character = require('./controllers/character_controller');
 const userFunctions = require('./controllers/user_controller');
 
 //Local testing SSL
@@ -65,6 +68,10 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
+/*
+    API ENDPOINTS
+*/
+
 //Battle.net Passport Auth Endpoints
 app.get('/login', passport.authenticate('bnet'));
 app.get('/auth', userFunctions.auth);
@@ -79,55 +86,17 @@ app.get('/logout', (req, res) => {
 //Releases Endpoints
 app.get('/api/releases', releaseController.get);
 
-app.get('/api/news', (req, res) => {
-    const db = app.get('db');
-    db.query('select * from news order by news_datetime desc limit 20').then(response => {
-        res.status(200).send(response);
-    }).catch(error => {
-        console.log(error)
-        res.sendStatus(503);
-    })
-});
+//News Endpoints
+app.get('/api/news', news.get);
+app.get('/api/guildnews', news.getGuildNews);
 
-app.get('/api/guildnews', (req, res) => {
-    let newsFeed = {};
+//Raider Endpoints
+app.get('/api/raiders', raiders.get);
 
-    axios.get(`https://us.api.battle.net/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&apikey=${process.env.APIKEY}`).then(newsRes => {
-        
-        newsFeed.lastModified = newsRes.data.lastModified;
-        newsFeed.news = newsRes.data.news;
-        res.status(200).send(newsFeed);
+//Character Endpoints
+app.put('/characters/:name&:realm', character.feedAndItems);
 
-    }).catch(error => {
-        console.log('WoW API Error');
-        console.log(error);
-    })
-})
-
-app.get('/api/raiders', (req, res) => {
-    const db = app.get('db');
-
-    db.query('select character_name, rank, realm, avatar_med, avatar_large, spec_icon, spec_desc from characters where raider = 1').then(response => {
-        res.status(200).send(response);
-    }).catch(error => {
-        console.log('Raider DB Error');
-        console.log(error);
-        res.status(500).send('Raider DB Call Error');
-    })
-})
-
-app.put('/characters/:name&:realm', (req, res) => {
-    const { name, realm } = req.params;
-
-    axios.get(`https://us.api.battle.net/wow/character/${realm}/${name}?fields=feed%2C+items&locale=en_US&apikey=${process.env.APIKEY}`).then(response => {
-        res.status(200).send(response.data);
-    }).catch(error => {
-        console.log('WoW Character Items API Error');
-        console.log(error);
-        res.status(500).send('WoW Character API Error');
-    });
-})
-
+//Guild Members Endpoint
 app.get('/api/members', (req, res) => {
     const db = app.get('db');
 
@@ -171,6 +140,11 @@ app.get('/api/stats/emotes', stats.emotes);
 app.get('/api/stats/pvp', stats.pvp);
 app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
+
+//Catch all routes that don't match anything and send to Build/index.js for Production
+app.get('/*', express.static(
+    path.join(__dirname, '..', 'build')
+))
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
