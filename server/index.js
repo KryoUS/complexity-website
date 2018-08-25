@@ -1,6 +1,3 @@
-// IMPORTANT! This test is using a Test Application register and will need to be changed for live once a Domain is set.
-//Once a token is received on req.user.token, use https://us.api.battle.net/wow/user/characters?access_token= to get character information.
-
 //Environment Variables
 const path = require('path');
 require('dotenv').config({path: path.join(__dirname, '.env')});
@@ -16,7 +13,6 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
-const axios = require('axios');
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
 const news = require('./controllers/news_controller');
@@ -72,28 +68,24 @@ passport.deserializeUser(function(user, done) {
 
 /*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
-app.get('/login', passport.authenticate('bnet'));
+app.get('/auth/login', passport.authenticate('bnet'));
 app.get('/auth', userFunctions.auth);
 app.post('/auth/newmain', userFunctions.setMain);
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
 app.get('/auth/logout', userFunctions.logout);
-
 //Releases Endpoints
 app.get('/api/releases', releaseController.get);
-
+app.get('/api/allreleases', releaseController.getAll);
+app.post('/api/releases', releaseController.post);
 //News Endpoints
 app.get('/api/news', news.get);
 app.get('/api/guildnews', news.getGuildNews);
-
 //Raider Endpoints
 app.get('/api/raiders', raiders.get);
-
 //Character Endpoints
 app.put('/characters/:name&:realm', character.feedAndItems);
-
 //Guild Members Endpoint
 app.get('/api/members', stats.members);
-
 //Stat Endpoints
 app.get('/api/stats/character', stats.characters);
 app.get('/api/stats/consumables', stats.consumables);

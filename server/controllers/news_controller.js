@@ -3,6 +3,7 @@ const app = require('../app');
 module.exports = {
     get: (req, res) => {
         const db = app.get('db');
+        
         db.query('select * from news order by news_datetime desc limit 20').then(response => {
             res.status(200).send(response);
         }).catch(error => {

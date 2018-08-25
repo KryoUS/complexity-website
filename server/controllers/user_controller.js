@@ -83,6 +83,7 @@ module.exports = {
                                         req.session.passport.user.mainAvatarMed = updateRes[0].mainavatarmed;
                                         req.session.passport.user.mainAvatarLarge = updateRes[0].mainavatarlarge;
                                         req.session.passport.user.chars = userCharArray;
+                                        //ISSUE
                                         return res.redirect('https://localhost:3000');
                                     })
                                 }

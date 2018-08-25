@@ -28,6 +28,14 @@ class Nav extends Component {
         })
     }
 
+    login = () => {
+        axios.get('/auth/login').then(response => {
+
+        }).catch(loginError => {
+            console.log('Unable to login! NEEDSERROR')
+        })
+    }
+
     logout = () => {
         axios.get('/auth/logout').then(response => {
             this.props.userLogout();
@@ -94,7 +102,9 @@ class Nav extends Component {
                         </div>
                     :
                         <div className="login-container">
-                            <a href="https://localhost:3050/login" className="login">Login</a>
+                            {/* ISSUE */}
+                            <a href="https://localhost:3050/auth/login" className="login">Login</a>
+                            {/* <div className="login" onClick={() => this.login()}>Login</div> */}
                         </div>
                     }
                 </div>
