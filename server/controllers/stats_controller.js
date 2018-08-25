@@ -1,4 +1,5 @@
 const app = require('../app');
+const axios = require('axios');
 
 module.exports = {
     characters: (req, res, next) => {
@@ -143,5 +144,35 @@ module.exports = {
             console.log(error);
             res.status(500).send('DB pets Stats Error');
         })
-    }
+    },
+
+    members: (req, res) => {
+        const db = app.get('db');
+    
+        db.query('select character_name, rank, level, race, spec_name, class, realm from characters order by rank, character_name').then(response => {
+            axios.get(`https://us.api.battle.net/wow/data/character/races?locale=en_US&apikey=${process.env.APIKEY}`).then(races => {
+                axios.get(`https://us.api.battle.net/wow/data/character/classes?locale=en_US&apikey=${process.env.APIKEY}`).then(classes => {
+                    response.map((char, index) => {
+                        let raceIndex = races.data.races.map((e) => {return e.id}).indexOf(char.race);
+                        let classIndex = classes.data.classes.map((e) => {return e.id}).indexOf(char.class);
+                        response[index].race = races.data.races[raceIndex].name;
+                        response[index].class = classes.data.classes[classIndex].name;
+                    });
+                    res.status(200).send(response);
+                }).catch(classError => {
+                    console.log('API Class Call Error');
+                    console.log(classError);
+                    res.status(500).send('API Class Call Error');
+                })
+            }).catch(raceError => {
+                console.log('API Race Call Error');
+                console.log(raceError);
+                res.status(500).send('API Race Call Error');
+            })
+        }).catch(error => {
+            console.log('Member DB Call Error')
+            console.log(error);
+            res.status(500).send('Member DB Call Error');
+        })
+    },
 }

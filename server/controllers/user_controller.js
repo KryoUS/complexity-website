@@ -142,6 +142,11 @@ module.exports = {
         } else {
             console.log('Blizzard OAuth or Session Error!')
         }
-        //Maybe return a server error?
+    },
+
+    logout: (req, res) => {
+        console.log('Logout hit');
+        req.logOut();
+        return res.redirect('/');
     },
 }

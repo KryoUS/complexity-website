@@ -2,6 +2,7 @@
 //Once a token is received on req.user.token, use https://us.api.battle.net/wow/user/characters?access_token= to get character information.
 
 //Environment Variables
+const path = require('path');
 require('dotenv').config({path: path.join(__dirname, '.env')});
 
 //Libraries
@@ -12,6 +13,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const massive = require('massive');
+const express = require('express');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const axios = require('axios');
@@ -56,7 +58,7 @@ massive({
     ssl: true
 }).then( db => {
     app.set('db', db);
-})
+});
 
 //Auth Serialize
 passport.serializeUser(function(user, done) {
@@ -68,20 +70,13 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-/*
-    API ENDPOINTS
-*/
-
+/*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
 app.get('/login', passport.authenticate('bnet'));
 app.get('/auth', userFunctions.auth);
 app.post('/auth/newmain', userFunctions.setMain);
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
-app.get('/logout', (req, res) => {
-    console.log('Logout hit');
-    req.logOut();
-    return res.redirect('/');
-});
+app.get('/logout', userFunctions.logout);
 
 //Releases Endpoints
 app.get('/api/releases', releaseController.get);
@@ -97,35 +92,7 @@ app.get('/api/raiders', raiders.get);
 app.put('/characters/:name&:realm', character.feedAndItems);
 
 //Guild Members Endpoint
-app.get('/api/members', (req, res) => {
-    const db = app.get('db');
-
-    db.query('select character_name, rank, level, race, spec_name, class, realm from characters order by rank, character_name').then(response => {
-        axios.get(`https://us.api.battle.net/wow/data/character/races?locale=en_US&apikey=${process.env.APIKEY}`).then(races => {
-            axios.get(`https://us.api.battle.net/wow/data/character/classes?locale=en_US&apikey=${process.env.APIKEY}`).then(classes => {
-                response.map((char, index) => {
-                    let raceIndex = races.data.races.map((e) => {return e.id}).indexOf(char.race);
-                    let classIndex = classes.data.classes.map((e) => {return e.id}).indexOf(char.class);
-                    response[index].race = races.data.races[raceIndex].name;
-                    response[index].class = classes.data.classes[classIndex].name;
-                });
-                res.status(200).send(response);
-            }).catch(classError => {
-                console.log('API Class Call Error');
-                console.log(classError);
-                res.status(500).send('API Class Call Error');
-            })
-        }).catch(raceError => {
-            console.log('API Race Call Error');
-            console.log(raceError);
-            res.status(500).send('API Race Call Error');
-        })
-    }).catch(error => {
-        console.log('Member DB Call Error')
-        console.log(error);
-        res.status(500).send('Member DB Call Error');
-    })
-})
+app.get('/api/members', stats.members);
 
 //Stat Endpoints
 app.get('/api/stats/character', stats.characters);
@@ -144,7 +111,7 @@ app.get('/api/stats/pets', stats.pets);
 //Catch all routes that don't match anything and send to Build/index.js for Production
 app.get('/*', express.static(
     path.join(__dirname, '..', 'build')
-))
+));
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
