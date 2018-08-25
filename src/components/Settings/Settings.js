@@ -137,9 +137,7 @@ class Settings extends Component {
 
         return(
             <div className ="settings-div" style={{
-                background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') top center/cover no-repeat`, 
-                maxWidth: '100vw', 
-                maxHeight: '100vw'
+                background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') fixed top center/cover no-repeat`
                 }}>
                 <div className="settings-container">
                     <div className="settings-column-avatars">
@@ -229,7 +227,7 @@ class Settings extends Component {
                         horizontal: 'left',
                     }}
                     open={this.state.snackBarOpen}
-                    autoHideDuration={3000}
+                    autoHideDuration={5000}
                     onClose={this.snackBarClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',

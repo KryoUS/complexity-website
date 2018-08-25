@@ -3,8 +3,9 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
     color: white;
+    padding-top: 15px;
+    overflow: scroll;
 }
 
 .settings-container {
@@ -13,10 +14,8 @@
     align-items: center;
     margin-top: 60px;
     width: 40vw;
-    height: 85vh;
     background-color: #110b29;
     box-shadow: 10px 10px 15px #000000;
-    overflow: scroll;
 }
 
 .settings-column, .settings-column-avatars {
@@ -27,27 +26,12 @@
     border-bottom: 1px solid white;
 }
 
-.settings-column {
-    min-height: 150px;
-}
-
-.settings-column-avatars {
-    min-height: 230px;
-}
-
 .settings-row, .settings-row-avatars {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     width: 100%;
-}
-
-.settings-row {
-    min-height: 70px;
-}
-
-.settings-row-avatars {
-    overflow: scroll;
+    margin: 15px; 
 }
 
 .settings-button {
@@ -56,7 +40,7 @@
     align-items: center;
     text-align: center;
     width: 100px;
-    min-height: 40px;
+    height: 40px;
     margin: 5px;
     background-color: #160e37;
     color: white;
