@@ -4,6 +4,7 @@ const initialState = {
 
 const SET_USER = 'SET_USER';
 const SET_MAIN = 'SET_MAIN';
+const USER_LOGOUT = 'USER_LOGOUT';
 
 function reducer(state = initialState, action){
     switch (action.type) {
@@ -12,12 +13,9 @@ function reducer(state = initialState, action){
 
         case SET_MAIN:
             return Object.assign({}, state, { user: {...state.user, ...action.payload} })
-            // return Object.assign( {}, state, { 
-            //     [state.user.main]: action.main, 
-            //     [state.user.mainAvatarSmall]: action.mainAvatarSmall, 
-            //     [state.user.mainAvatarMed]: action.mainAvatarMed, 
-            //     [state.user.mainAvatarLarge]: action.mainAvatarLarge
-            // } )
+
+        case USER_LOGOUT:
+            return initialState;
 
         default:
             return state
@@ -40,6 +38,12 @@ export function setMain( main, mainAvatarSmall, mainAvatarMed, mainAvatarLarge )
             mainAvatarLarge: mainAvatarLarge,
         },
         type: SET_MAIN
+    }
+}
+
+export function userLogout() {
+    return {
+        type: USER_LOGOUT
     }
 }
 

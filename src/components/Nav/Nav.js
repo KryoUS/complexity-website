@@ -2,7 +2,7 @@ import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { setUser } from '../../ducks/reducer';
+import { setUser, userLogout } from '../../ducks/reducer';
 import './Nav.css';
 
 class Nav extends Component {
@@ -19,15 +19,20 @@ class Nav extends Component {
             console.log('Auth User Object', res.data);
             if (res.status === 200) {
                 const user = res.data;
-                // this.setState({user: user});
                 this.props.setUser({user});
-                // this.setState({loggedIn: true});
-                console.log('Nav Props: ', this.props)
             } else {
                 console.log(`Something's not quite right...`)
             }
         }).catch(error => {
             
+        })
+    }
+
+    logout = () => {
+        axios.get('/auth/logout').then(response => {
+            this.props.userLogout();
+        }).catch(logoutError => {
+            console.log('Logout failed!');
         })
     }
 
@@ -72,7 +77,7 @@ class Nav extends Component {
                         <li><Link to="/" className="nav-no-menu" >Youtube</Link></li> */}
                     </ul>
                     
-                    {this.props.user.main ?
+                    {this.props.user.id ?
                         <div className="login-container">
                             <div className="avatar" style={avatarStyle} alt={this.props.user.main} />
                             <ul className="nav-routes">
@@ -81,8 +86,7 @@ class Nav extends Component {
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
                                             <li><Link className="nav-link" to="/settings">Settings</Link></li>
-                                            {/* Logout not working */}
-                                            <li href="https://localhost:3050/logout" className="nav-link">Log Out</li>
+                                            <li onClick={() => {this.logout()}} className="nav-link">Log Out</li>
                                         </ul>
                                 </li>
                             </ul>
@@ -104,4 +108,4 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-export default connect( mapStateToProps, {setUser} )( Nav );
+export default connect( mapStateToProps, {setUser, userLogout} )( Nav );

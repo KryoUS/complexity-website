@@ -76,7 +76,7 @@ app.get('/login', passport.authenticate('bnet'));
 app.get('/auth', userFunctions.auth);
 app.post('/auth/newmain', userFunctions.setMain);
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
-app.get('/logout', userFunctions.logout);
+app.get('/auth/logout', userFunctions.logout);
 
 //Releases Endpoints
 app.get('/api/releases', releaseController.get);
