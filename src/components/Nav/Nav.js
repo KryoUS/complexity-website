@@ -82,6 +82,7 @@ class Nav extends Component {
                             <div className="avatar" style={avatarStyle} alt={this.props.user.main} />
                             <ul className="nav-routes">
                                 <li className="nav-menu">
+                                    <div style={{fontSize: '12px'}}>Welcome back,</div>
                                     <div className="char-name">{this.props.user.main}</div>
                                         <ul className="nav-menu-content">
                                             <li className="nav-link">My Characters</li>
