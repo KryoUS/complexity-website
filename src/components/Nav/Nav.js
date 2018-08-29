@@ -55,7 +55,7 @@ class Nav extends Component {
             <div className="nav-div">
                 <div className="nav-flex-container">
                     <div className="logo-container">
-                        <Link to="/"><img className="logo" src="/images/logov3.png" alt="Complexity Logo"/></Link>
+                        <Link to="/"><img className="logo" src="https://res.cloudinary.com/complexityguild/image/upload/v1535585345/wow/logos/logov3.png" alt="Complexity Logo"/></Link>
                     </div>
                     <ul className="nav-routes">
                         <li><Link to="/" className="nav-no-menu" >Home</Link></li>

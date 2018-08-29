@@ -3,7 +3,7 @@ import axios from 'axios';
 import './About.css';
 
 const headerStyle = {
-    backgroundImage: `url('/images/about/about_header.jpg')`, 
+    backgroundImage: `url('https://res.cloudinary.com/complexityguild/image/upload/v1535585303/wow/backgrounds/about_header.jpg')`, 
     width: '100%', 
     height: '500px', 
     backgroundPosition: 'center',

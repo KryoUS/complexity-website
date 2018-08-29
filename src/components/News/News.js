@@ -4,7 +4,7 @@ import axios from 'axios';
 import './News.css';
 
 let headerStyle = {
-    backgroundImage: `url('/images/news/news_header.jpg')`,
+    backgroundImage: `url('https://res.cloudinary.com/complexityguild/image/upload/v1535585277/wow/backgrounds/news_header.jpg')`,
     width: '100%', 
     height: '500px', 
     backgroundPosition: 'center'
@@ -75,7 +75,7 @@ class News extends Component {
                                 <div className="news-desc-container">
                                     <div className="news-desc-text">{news.description}</div>
                                     <a className="news-button" href={news.link} target="_blank">Read More</a>
-                                    {news.source === "wowhead" && <img src="/images/news/wowhead_news.png" alt="Wowhead" />}
+                                    {news.source === "wowhead" && <img src="https://res.cloudinary.com/complexityguild/image/upload/v1535585319/wow/logos/wowhead_news.png" alt="Wowhead" />}
                                 </div>
                             </div>
                         </div>
