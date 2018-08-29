@@ -5,19 +5,19 @@ import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import Button from '@material-ui/core/Button';
+import AddRelease from './Release/AddRelease';
+import RemoveRelease from './Release/RemoveRelease';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
-import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Settings.css';
-import ReleasesTable from './ReleasesTable';
 
 const theme = createMuiTheme({
     palette: {
@@ -63,23 +63,15 @@ class Settings extends Component {
         super();
 
         this.state = {
-            releaseTitle: '',
-            releaseLink: '',
-            releaseDate: '2019-05-24T10:30',
-            dialogOpen: false,
-            dialogFullscreen: false,
-            dialogTitle: '',
-            dialogMessage: '',
-            dialogTextFields: [],
-            dialogButtonOne: '',
-            dialogButtonTwo: '',
+            newMainDialog: false,
             newMain: '',
             newAvatarSmall: '',
             newAvatarMed: '',
             newAvatarLarge: '',
+            releaseAddDialog: false,
+            releaseRemoveDialog: false,
             snackBarOpen: false,
             snackBarMessage: '',
-            tableData: []
         }
     }
 
@@ -87,34 +79,26 @@ class Settings extends Component {
         this.setState({[name]: event.target.value});
     };
 
+    snackBarMessageSet = (message) => {
+        this.setState({ snackBarMessage: message, snackBarOpen: true });
+    }
+
     snackBarClose = () => {
         this.setState({ snackBarOpen: false });
     }
 
     dialogClose = () => {
         this.setState({ 
-            releaseTitle: '',
-            releaseLink: '',
-            releaseDate: '2019-05-24T10:30',
-            tableData: [],
-            dialogOpen: false,
-            dialogTitle: '',
-            dialogMessage: '',
-            dialogTextFields: [],
-            dialogButtonOne: '',
-            dialogButtonTwo: '',
-            dialogFullscreen: false
+            releaseAddDialog: false,
+            releaseRemoveDialog: false,
+            newMainDialog: false,
         });
     };
 
     //Doesn't set the main, just sets state for prompts in preperation for user acceptence
     selectNewMain = (name, avatarSmall, avatarMed, avatarLarge) => {
         this.setState({ 
-            dialogOpen: true,
-            dialogTitle: 'Set a new main character?',
-            dialogMessage: `Do you really want to set your new main to ${name}?`, 
-            dialogButtonOne: 'Cancel',
-            dialogButtonTwo: 'Yes',
+            newMainDialog: true,
             newMain: name, 
             newAvatarSmall: avatarSmall, 
             newAvatarMed: avatarMed, 
@@ -132,69 +116,15 @@ class Settings extends Component {
             mainAvatarLarge: this.state.newAvatarLarge
         }).then(res => {
             this.dialogClose();
+            this.snackBarMessageSet('New main set!');
         }).catch(newMainError => {
             console.log('Unable to set a new main. NEEDSERROR');
         })
     }
 
-    dialogAccept = (type) => {
-        type === 'Set a new main character?' && this.setNewMain();
-        type === 'Add a new Release Date Countdown' && this.addRelease();
-    }
-
     handleRelease = (type) => {
-        let tempArray = [];
-
-        if (type === 'addRelease') {
-            tempArray.push({id: 'releaseTitle', label: 'Title', value: this.state.releaseTitle, required: true});
-            tempArray.push({id: 'releaseLink', label: 'Link', value: this.state.releaseLink, required: false});
-            tempArray.push({
-                id: 'releaseDate', 
-                label: 'Release Date', 
-                required: true, 
-                type: "datetime-local", 
-                defaultValue: this.state.releaseDate, 
-                InputLabelProps: {shrink: true},
-            });
-            this.setState({ 
-                dialogOpen: true,
-                dialogTitle: 'Add a new Release Date Countdown',
-                dialogMessage: `This shows on the Home page as a Countdown timer from now until the release date.`,
-                dialogTextFields: tempArray,
-                dialogButtonOne: 'Cancel',
-                dialogButtonTwo: 'Add'
-            });
-        }
-
-        type === 'deleteRelease' && this.getAllReleases();
-    }
-
-    addRelease = () => {
-        axios.post('/api/releases', {
-            releaseTitle: this.state.releaseTitle,
-            releaseDate: new Date(this.state.releaseDate).getTime(),
-            releaseLink: this.state.releaseLink
-        }).then(res => {
-            this.dialogClose();
-            this.setState({ snackBarMessage: 'New Release Added!', snackBarOpen: true })
-        }).catch(addReleaseError => {
-            console.log('Adding a New Release Failed! NEEDSERROR');
-        })
-    }
-
-    getAllReleases = () => {
-        this.setState({ 
-            dialogTitle: 'Release Entry Removal',
-            dialogMessage: `Select which Release Date entries you'd like to remove. WARNING: This cannot be undone.`,
-            dialogButtonOne: 'Cancel',
-            dialogButtonTwo: 'Remove',
-            dialogFullscreen: true
-        });
-        axios.get('/api/allreleases').then(res => {
-            this.setState({ tableData: res.data, dialogOpen: true })
-        }).catch(allReleaseError => {
-            console.log('Getting all Releases DB Error NEEDSERROR');
-        })
+        type === 'addRelease' && this.setState({ releaseAddDialog: true });
+        type === 'deleteRelease' && this.setState({ releaseRemoveDialog: true });
     }
 
     render(){
@@ -236,63 +166,57 @@ class Settings extends Component {
                         </div>
                     </div>
                     {this.props.user.isAdmin &&
-                    <MuiThemeProvider theme={theme}>
-                        <h3>Admin Tools</h3>
-                        <div className="settings-column">
-                            <div className="settings-row">
-                                <Button onClick={() => this.handleRelease('addRelease')} color="primary">
-                                    Add a Release
-                                </Button>
-                                <Button onClick={() => this.handleRelease('deleteRelease')} color="primary">
-                                    Remove a Release
-                                </Button>
+                        <MuiThemeProvider theme={theme}>
+                            <h3>Admin Tools</h3>
+                            <div className="settings-column">
+                                <div className="settings-row">
+                                    <Button 
+                                        onClick={() => this.handleRelease('addRelease')} 
+                                        color="primary" 
+                                        data-tip='Add a new Release Date countdown timer to the Home page.'
+                                        >
+                                        Add a Release
+                                    </Button>
+                                    <Button 
+                                        onClick={() => this.handleRelease('deleteRelease')} 
+                                        color="primary"
+                                        data-tip='Remove a new Release Date countdown timer from the Home page.'
+                                        >
+                                        Remove a Release
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
-                        <ReactTooltip />
-                    </MuiThemeProvider>
+                        </MuiThemeProvider>
                     }
                 </div>
+                {/* Set New Main */}
                 <Dialog
-                    open={this.state.dialogOpen}
+                    open={this.state.newMainDialog}
                     TransitionComponent={Transition}
                     keepMounted
                     onClose={this.dialogClose}
-                    fullScreen={this.state.dialogFullscreen}
+                    fullScreen={false}
                 >
                     <DialogTitle id="alert-dialog-slide-title">
-                        {this.state.dialogTitle}
+                        Set a new main Character?
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-slide-description">
-                            {this.state.dialogMessage}
+                            {`Do you really want to set ${this.state.newMain} as your main character?`}
                         </DialogContentText>
-                        {this.state.dialogTextFields &&
-                            this.state.dialogTextFields.map(textField => {
-                                return <TextField
-                                    key={textField.id}
-                                    id={textField.id}
-                                    label={textField.label}
-                                    defaultValue={textField.value || textField.defaultValue}
-                                    onChange={this.handleChange(textField.id)}
-                                    required={textField.required}
-                                    type={textField.type ? textField.type : null}
-                                    InputLabelProps={textField.InputLabelProps ? textField.InputLabelProps : null}
-                                />
-                            })
-                        }
-                        {this.state.tableData.length >= 1 && 
-                            <ReleasesTable tableData={this.state.tableData}/>
-                        }
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.dialogClose} color="primary">
-                            {this.state.dialogButtonOne}
+                            Cancel
                         </Button>
-                        <Button onClick={() => this.dialogAccept(this.state.dialogTitle)} color="primary">
-                            {this.state.dialogButtonTwo}
+                        <Button onClick={() => this.setNewMain()} color="primary">
+                            Yes
                         </Button>
                     </DialogActions>
                 </Dialog>
+                <AddRelease releaseAddDialog={this.state.releaseAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                <RemoveRelease releaseRemoveDialog={this.state.releaseRemoveDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                {/* Snackbar Alert */}
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
@@ -316,6 +240,7 @@ class Settings extends Component {
                         </IconButton>,
                     ]}
                 />
+                <ReactTooltip />
             </div>
         )
     }

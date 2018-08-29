@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StatTable from '../Utils/StatTable';
+import StatTable from '../../Utils/StatTable';
 
 class ReleasesTable extends Component {
     constructor() {
@@ -8,12 +8,13 @@ class ReleasesTable extends Component {
         this.state = {
             tableData: [],
             sortMethod: 'asc',
-            selectedHeader: 'id'
+            selectedHeader: 'id',
+            checkedRows: []
         }
     }
 
     componentDidMount = () => {
-        this.setState({ tableData: this.props.tableData })
+        this.setState({ tableData: this.props.tableData });
     }
 
     sortBy = (orderBy) => {
@@ -59,11 +60,21 @@ class ReleasesTable extends Component {
 
     }
 
+    //Need to only have checked items in the array
+    checkedRows = (checked) => {
+        let checkedArray = [...this.state.checkedRows];
+
+        checkedArray.push(checked);
+        this.setState({ checkedRows: checkedArray });
+        console.log(this.state.checkedRows);
+    }
+
     render(){
 
         return(
                 <StatTable 
                     headerRow={[
+                        {displayName: 'Remove?', name: 'checkbox', tooltip: ''},
                         {displayName: 'id', name: 'id', tooltip: 'Unique identifier for the release database entry.'},
                         {displayName: 'Title', name: 'title', tooltip: `The title that is displayed on the Home page, just above the countdown timer.`},
                         {displayName: 'Release Date', name: 'date', tooltip: `The date and time, in milliseconds, that the countdown timer counts down to.`},
@@ -73,6 +84,8 @@ class ReleasesTable extends Component {
                     sortBy={this.sortBy}
                     selectedHeader={this.state.selectedHeader}
                     rowWidth='300px'
+                    checkboxes={true}
+                    checkedRows={this.checkedRows}
                 />
         )
     }

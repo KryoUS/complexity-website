@@ -37,6 +37,16 @@ class StatTable extends Component {
                     <div className="table-body">
                         {tableData.map((row, i) => {
                             return <div className="table-data-row" key={i}>
+                                {this.props.checkboxes && 
+                                    <div className="table-data">
+                                        <input 
+                                            type="checkbox" 
+                                            style={{width: this.props.rowWidth ? this.props.rowWidth : '115px' }} 
+                                            value={i} 
+                                            onChange={() => this.props.checkedRows(row.id)}
+                                        />
+                                    </div>
+                                }
                                 {Object.values(row).map((value, index) => {
                                     return <div className="table-data" style={{width: this.props.rowWidth ? this.props.rowWidth : '115px' }} key={i + index}>{value}</div>
                                 })}

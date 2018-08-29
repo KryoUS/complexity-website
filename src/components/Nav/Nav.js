@@ -16,7 +16,7 @@ class Nav extends Component {
 
     componentDidMount = () => {
         axios.get('/auth').then(res => {
-            console.log('Auth User Object', res.data);
+            // console.log('Auth User Object', res.data);
             if (res.status === 200) {
                 const user = res.data;
                 this.props.setUser({user});

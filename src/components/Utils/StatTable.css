@@ -1,3 +1,7 @@
+input {
+	margin: 0px;
+}
+
 .table-div {
 	display: flex;
 	flex-direction: column;
