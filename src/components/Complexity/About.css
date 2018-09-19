@@ -1,37 +1,49 @@
 .about-div {
+    width: 100vw;
+    height: 100vh;
+    min-height: 580px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 60px;
     color: white;
     overflow: hidden;
 }
 
-.about-header {
-    margin-top: -120px;
+.guildinfo-container {
+    min-width: 200px;
+    padding: 8px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    background: #000000de;
+    border: 2px solid #000000;
 }
 
-.header-gradient {
-    width: 100vw;
-    height: 500px;
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.about-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60vw;
+}
+
+.evenspaced-row {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 100%;
 }
 
 .about-text {
     max-width: 60vw;
+    padding: 25px;
     font-size: 20px;
-}
-
-.guild-news-container {
-    margin-top: 120px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.about-footer {
-    background: linear-gradient(transparent, #160e37);
-    width: 100vw;
-    height: 25vh;
-    z-index: 1;
+    background-color: #160e37;
+    box-shadow: 10px 10px 10px #000000;
 }

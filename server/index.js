@@ -25,15 +25,20 @@ const userFunctions = require('./controllers/user_controller');
 
 //Cron Controllers
 const blizzardCrons = require('./cronjobs/blizzardapi');
+const wowProgressCrons = require('./cronjobs/wow_progress_api');
+const raiderIOCrons = require('./cronjobs/raider_io_api');
 
 /*      CRON JOBS       */
 //Set Info on Server Initialization for Cron Jobs
 blizzardCrons.setServerStatus();
+wowProgressCrons.setWowProgressGuild();
+raiderIOCrons.setWowRankingsGuild();
 //Define Cron Jobs
 const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardCrons.setServerStatus(), null, false, 'America/Denver');
-//Start Cron Job Timers
-thunderlordStatusCron.start();
-
+const complexityRankingsCron = new CronJob('00 30 0-23 * * 0-6', () => {
+    wowProgressCrons.setWowProgressGuild();
+    raiderIOCrons.setWowRankingsGuild();
+}, null, false, 'America/Denver');
 
 //Local testing SSL
 const httpsOptions = {
@@ -117,6 +122,11 @@ app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
 //WoW Realm Status Endpoint
 app.get('/api/wow/server/status', blizzardCrons.getServerStatus);
+//WoWProgress Ranking Endpoint
+app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
+//RaiderIO Ranking Endpoint
+app.get('/api/raiderio/guildranking', raiderIOCrons.getWowRankingsGuild);
+
 
 //Catch all routes that don't match anything and send to Build/index.js for Production
 app.get('/*', express.static(
@@ -125,6 +135,10 @@ app.get('/*', express.static(
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
+
+//Start Cron Job Timers
+thunderlordStatusCron.start();
+complexityRankingsCron.start();
 
 //Start server
 let port = process.env.PORT || 3050;

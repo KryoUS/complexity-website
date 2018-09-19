@@ -129,8 +129,6 @@ class Settings extends Component {
 
     render(){
 
-        // console.log('Settings Props', this.props)
-
         const mainNameStyle = {
             width: '100%', 
             background: 'linear-gradient(to right, transparent, rgb(0, 0, 0), transparent)', 

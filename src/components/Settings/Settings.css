@@ -8,6 +8,11 @@
     overflow: scroll;
 }
 
+.settings-div::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
 .settings-container {
     display: flex;
     flex-direction: column;
@@ -34,24 +39,6 @@
     margin: 15px; 
 }
 
-.settings-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 100px;
-    height: 40px;
-    margin: 5px;
-    background-color: #160e37;
-    color: white;
-    font-weight: 700;
-}
-
-.settings-button:hover {
-    cursor: pointer;
-    background-color: #3a2991;
-}
-
 .settings-medavatar {
     display: flex;
     flex-direction: column;
@@ -70,7 +57,3 @@
 .settings-selected {
     border: 1px solid #00d99e;
 }
-
-/* .MuiDialog-paperWidthSm-62 {
-    max-width: 100vw !important;
-} */
