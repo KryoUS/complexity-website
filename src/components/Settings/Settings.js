@@ -169,6 +169,7 @@ class Settings extends Component {
                         <MuiThemeProvider theme={theme}>
                             <h3>Admin Tools</h3>
                             <div className="settings-column">
+                                <p>Release Countdown Dates</p>
                                 <div className="settings-row">
                                     <Button 
                                         onClick={() => this.handleRelease('addRelease')} 

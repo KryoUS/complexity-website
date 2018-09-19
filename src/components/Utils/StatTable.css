@@ -12,12 +12,13 @@ input {
 }
 
 .table-body {
+	margin-left: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	max-width: 100vw;
 	height: 100%;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .table-header-row, .table-data-row {
@@ -62,4 +63,20 @@ input {
 
 .selected {
 	color: #00d99e;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2b1f6b; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #707070; 
 }
