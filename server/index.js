@@ -126,9 +126,6 @@ app.get('/*', express.static(
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
 
-//Cron Jobs
-
-
 //Start server
 let port = process.env.PORT || 3050;
 server.listen( port, () => {

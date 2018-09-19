@@ -127,7 +127,7 @@ class Leaderboards extends Component {
                     <div className="stat-card" onClick={() => this.handleSection('pets')} style={{backgroundImage: 'url("https://res.cloudinary.com/complexityguild/image/upload/v1533951027/wow/sections/pets.jpg")'}}>
                         <div className="stat-text-container">
                             <div className="stats-title">Pets</div>
-                            <div>Some are small and cuddly, others flat out get the job done. Who is obsessed, with pets!?</div>
+                            <div>Some are small and cuddly, others are not so much. Who is obsessed, with pets!?</div>
                         </div>
                     </div>                
                 </div>
