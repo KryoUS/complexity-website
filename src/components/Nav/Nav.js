@@ -10,7 +10,7 @@ class Nav extends Component {
         super();
 
         this.state = {
-
+            realmInfo: {}
         }
     }
 
@@ -25,6 +25,11 @@ class Nav extends Component {
             }
         }).catch(error => {
             
+        });
+        axios.get('/api/wow/server/status').then(res => {
+            this.setState({ realmInfo: res.data })
+        }).catch(wowServerStatusError => {
+            console.log(wowServerStatusError);
         })
     }
 
@@ -56,6 +61,20 @@ class Nav extends Component {
                 <div className="nav-flex-container">
                     <div className="logo-container">
                         <Link to="/"><img className="logo" src="https://res.cloudinary.com/complexityguild/image/upload/v1535585345/wow/logos/logov3.png" alt="Complexity Logo"/></Link>
+                        <div className="realm-status-container">
+                            <div style={{display: 'flex'}}>Realm:
+                                {this.state.realmInfo.status ? 
+                                    <img style={{width: '16px', height: '16px'}} alt="Thunderlord Online" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336976/site/server_status.png"></img> : 
+                                    <img style={{width: '16px', height: '16px'}} alt="Thunderlord Offline" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336981/site/server_status_false.png"></img>
+                                }
+                            </div>
+                            <div style={{display: 'flex'}}>Queue:
+                                {this.state.realmInfo.queue ? 
+                                    <img style={{width: '16px', height: '16px'}} alt="Thunderlord has a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336983/site/server_status_queue.png"></img> : 
+                                    <img style={{width: '16px', height: '16px'}} alt="Thunderlord does not have a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336981/site/server_status.png"></img>
+                                }
+                            </div>
+                        </div>
                     </div>
                     <ul className="nav-routes">
                         <li><Link to="/" className="nav-no-menu" >Home</Link></li>

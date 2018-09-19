@@ -13,12 +13,27 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
+const CronJob = require('cron').CronJob;
+
+//Controllers
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
 const news = require('./controllers/news_controller');
 const raiders = require('./controllers/raider_controller');
 const character = require('./controllers/character_controller');
 const userFunctions = require('./controllers/user_controller');
+
+//Cron Controllers
+const blizzardCrons = require('./cronjobs/blizzardapi');
+
+/*      CRON JOBS       */
+//Set Info on Server Initialization for Cron Jobs
+blizzardCrons.setServerStatus();
+//Define Cron Jobs
+const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardCrons.setServerStatus(), null, false, 'America/Denver');
+//Start Cron Job Timers
+thunderlordStatusCron.start();
+
 
 //Local testing SSL
 const httpsOptions = {
@@ -100,6 +115,8 @@ app.get('/api/stats/emotes', stats.emotes);
 app.get('/api/stats/pvp', stats.pvp);
 app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
+//WoW Realm Status Endpoint
+app.get('/api/wow/server/status', blizzardCrons.getServerStatus);
 
 //Catch all routes that don't match anything and send to Build/index.js for Production
 app.get('/*', express.static(
@@ -108,6 +125,9 @@ app.get('/*', express.static(
 
 //Local testing SSL
 const server = https.createServer( httpsOptions, app );
+
+//Cron Jobs
+
 
 //Start server
 let port = process.env.PORT || 3050;
