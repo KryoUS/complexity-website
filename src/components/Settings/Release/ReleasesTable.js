@@ -8,8 +8,7 @@ class ReleasesTable extends Component {
         this.state = {
             tableData: [],
             sortMethod: 'asc',
-            selectedHeader: 'id',
-            checkedRows: []
+            selectedHeader: 'id'
         }
     }
 
@@ -60,15 +59,6 @@ class ReleasesTable extends Component {
 
     }
 
-    //Need to only have checked items in the array
-    checkedRows = (checked) => {
-        let checkedArray = [...this.state.checkedRows];
-
-        checkedArray.push(checked);
-        this.setState({ checkedRows: checkedArray });
-        console.log(this.state.checkedRows);
-    }
-
     render(){
 
         return(
@@ -77,7 +67,7 @@ class ReleasesTable extends Component {
                         {displayName: 'Remove?', name: 'checkbox', tooltip: ''},
                         {displayName: 'id', name: 'id', tooltip: 'Unique identifier for the release database entry.'},
                         {displayName: 'Title', name: 'title', tooltip: `The title that is displayed on the Home page, just above the countdown timer.`},
-                        {displayName: 'Release Date', name: 'date', tooltip: `The date and time, in milliseconds, that the countdown timer counts down to.`},
+                        {displayName: 'Release Date', name: 'release_date', tooltip: `The date and time, in milliseconds, that the countdown timer counts down to.`},
                         {displayName: 'Link', name: 'link', tooltip: `The link the user is taken to when the countdown timer is clicked.`},
                     ]}
                     tableData={this.state.tableData}
@@ -85,7 +75,7 @@ class ReleasesTable extends Component {
                     selectedHeader={this.state.selectedHeader}
                     rowWidth='300px'
                     checkboxes={true}
-                    checkedRows={this.checkedRows}
+                    checkedRows={this.props.checkedRows}
                 />
         )
     }

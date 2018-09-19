@@ -73,18 +73,19 @@ app.get('/auth', userFunctions.auth);
 app.post('/auth/newmain', userFunctions.setMain);
 app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
 app.get('/auth/logout', userFunctions.logout);
-//Releases Endpoints
+//Releases Endpoints from DB
 app.get('/api/releases', releaseController.get);
 app.get('/api/allreleases', releaseController.getAll);
 app.post('/api/releases', releaseController.post);
-//News Endpoints
+app.delete('/api/deleterelease/:id', releaseController.delete);
+//News Endpoints from DB
 app.get('/api/news', news.get);
 app.get('/api/guildnews', news.getGuildNews);
-//Raider Endpoints
+//Raider Endpoints from DB
 app.get('/api/raiders', raiders.get);
-//Character Endpoints
+//Character Endpoints from WoW API
 app.put('/characters/:name&:realm', character.feedAndItems);
-//Guild Members Endpoint
+//Guild Members Endpoint from DB
 app.get('/api/members', stats.members);
 //Stat Endpoints
 app.get('/api/stats/character', stats.characters);

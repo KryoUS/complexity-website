@@ -19,9 +19,8 @@ module.exports = {
 
     getAll: (req, res) => {
         const db = app.get('db');
-        const now = new Date().getTime();
     
-        db.query(`select * from releases where release_date > ${now} order by release_date`).then(response => {
+        db.query(`select * from releases order by release_date`).then(response => {
             res.status(200).send(response);
         }).catch(error => {
             console.log('Releases Query All Error');
@@ -40,5 +39,16 @@ module.exports = {
             console.log(postError);
             res.sendStatus(500);
         })
+    },
+
+    delete: (req, res) => {
+        const db = app.get('db');
+
+        db.query(`delete from releases where id = ${req.params.id}`).then(response => {
+            res.sendStatus(200);
+        }).catch(deleteError => {
+            console.log('Delete Releases Error: ', deleteError);
+            res.sendStatus(500);
+        });
     },
 }

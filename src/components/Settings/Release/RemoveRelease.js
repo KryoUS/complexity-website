@@ -19,6 +19,7 @@ class RemoveRelease extends Component {
 
         this.state = {
             tableData: [],
+            checkedRows: []
         }
     }
 
@@ -32,6 +33,25 @@ class RemoveRelease extends Component {
         }).catch(allReleaseError => {
             console.log('Getting all Releases DB Error NEEDSERROR');
         });
+    }
+
+    checkedRows = (checked) => {
+        let checkedArray = [...this.state.checkedRows];
+        let checkedIndex = checkedArray.indexOf(checked);
+        checkedIndex >= 0 ? checkedArray.splice(checkedIndex, 1) : checkedArray.push(checked);
+        this.setState({ checkedRows: checkedArray });
+    }
+
+    removeRelease = () => {
+        this.state.checkedRows.length >= 1 && this.state.checkedRows.map(id => {
+            return axios.delete(`/api/deleterelease/${id}`).then(res => {
+                this.props.snackBarMessageSet(`Release successfully removed!`);
+            }).catch(error => {
+                console.log('Release Delete Error NEEDSERROR', error);
+            });
+        });
+        this.props.dialogClose();
+        this.setState({ checkedRows: [] });
     }
 
     render(){
@@ -52,14 +72,14 @@ class RemoveRelease extends Component {
                         Select all Release Dates you'd like to remove from the Home page.
                     </DialogContentText>
                     {this.state.tableData.length >= 1 && 
-                        <ReleasesTable tableData={this.state.tableData}/>
+                        <ReleasesTable tableData={this.state.tableData} checkedRows={this.checkedRows}/>
                     }
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={this.props.dialogClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={() => this.addRelease()} color="primary">
+                    <Button onClick={() => this.removeRelease()} color="primary">
                         Remove Selected
                     </Button>
                 </DialogActions>

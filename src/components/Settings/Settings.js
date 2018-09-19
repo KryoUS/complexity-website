@@ -215,7 +215,13 @@ class Settings extends Component {
                     </DialogActions>
                 </Dialog>
                 <AddRelease releaseAddDialog={this.state.releaseAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
-                <RemoveRelease releaseRemoveDialog={this.state.releaseRemoveDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                {this.state.releaseRemoveDialog && 
+                    <RemoveRelease 
+                        releaseRemoveDialog={this.state.releaseRemoveDialog} 
+                        dialogClose={this.dialogClose} 
+                        snackBarMessageSet={this.snackBarMessageSet} 
+                    />
+                }
                 {/* Snackbar Alert */}
                 <Snackbar
                     anchorOrigin={{
