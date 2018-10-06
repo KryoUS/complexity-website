@@ -11,6 +11,10 @@ module.exports = {
             mainavatarmed: req.body.mainAvatarMed,
             mainavatarlarge: req.body.mainAvatarLarge
         }).then(response => {
+            req.session.passport.user.main = req.body.main;
+            req.session.passport.user.mainAvatarSmall = req.body.mainAvatarSmall;
+            req.session.passport.user.mainAvatarMed = req.body.mainAvatarMed;
+            req.session.passport.user.mainAvatarLarge = req.body.mainAvatarLarge;
             res.status(200).send(response);
         }).catch(error => {
             console.log('DB User New Main Error');
@@ -22,16 +26,23 @@ module.exports = {
     auth: (req, res) => {
         console.log('Auth Hit');
         if (req.session.passport) {
-            let userObj = {
-                id: req.session.passport.user.id,
-                isAdmin: req.session.passport.user.isAdmin,
-                chars: req.session.passport.user.chars,
-                main: req.session.passport.user.main,
-                mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
-                mainAvatarMed: req.session.passport.user.mainAvatarMed,
-                mainAvatarLarge: req.session.passport.user.mainAvatarLarge,
-            };
-            res.status(200).send(userObj);
+            axios.get(`https://us.api.battle.net/data/wow/token/?namespace=dynamic-us&locale=en_US&access_token=${req.session.passport.user.token}`).then(tokenRes => {
+
+                let userObj = {
+                    id: req.session.passport.user.id,
+                    isAdmin: req.session.passport.user.isAdmin,
+                    chars: req.session.passport.user.chars,
+                    main: req.session.passport.user.main,
+                    mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
+                    mainAvatarMed: req.session.passport.user.mainAvatarMed,
+                    mainAvatarLarge: req.session.passport.user.mainAvatarLarge,
+                    tokenPrice: tokenRes.data.price,
+                };
+                res.status(200).send(userObj);
+            }).catch(tokenError => {
+                res.status(500).send('Token Price fetch failed.');
+                console.log(tokenError);
+            })
         } else {
             res.sendStatus(401);
         }
@@ -54,7 +65,6 @@ module.exports = {
                         
                         //Get User Character data
                         axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
-                            console.log('User Character API Hit from Massive Insert');
                             let userCharArray = [];
     
                             charRes.data.characters.forEach((charObj, i) => {

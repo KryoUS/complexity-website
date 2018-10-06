@@ -19,6 +19,7 @@ class Nav extends Component {
             // console.log('Auth User Object', res.data);
             if (res.status === 200) {
                 const user = res.data;
+                user.tokenPrice = user.tokenPrice.toString().slice(0,-4);
                 this.props.setUser({user});
             } else {
                 console.log(`Something's not quite right...`)
@@ -109,13 +110,20 @@ class Nav extends Component {
                             <div className="avatar" style={avatarStyle} alt={this.props.user.main} />
                             <ul className="nav-routes">
                                 <li className="nav-menu">
-                                    <div style={{fontSize: '12px'}}>Welcome back,</div>
                                     <div className="char-name">{this.props.user.main}</div>
-                                        <ul className="nav-menu-content">
-                                            <li className="nav-link">My Characters</li>
-                                            <li><Link className="nav-link" to="/settings">Settings</Link></li>
-                                            <li onClick={() => {this.logout()}} className="nav-link">Log Out</li>
-                                        </ul>
+                                    <div style={{fontSize: '12px', color: 'white', textAlign: 'center'}}><img style={{width: '12px', height: '12px'}} alt='Current WoW Token Price' src="https://res.cloudinary.com/complexityguild/image/upload/v1538802480/site/iconarmory.png" /> Token: {this.props.user.tokenPrice}g</div>
+                                </li>
+                            </ul>
+                            <ul className="nav-routes">
+                                <li className="settings-menu">
+                                    <Link to="/settings">
+                                        <img className="settings-menu" style={{width: '32px', height: '32px'}} alt="Settings" src="https://res.cloudinary.com/complexityguild/image/upload/v1538799546/site/cogwheel.png" />
+                                    </Link>
+                                    <ul className="settings-menu-content">
+                                        <li className="nav-link">My Characters</li>
+                                        <li><Link className="nav-link" to="/settings">Settings</Link></li>
+                                        <li onClick={() => {this.logout()}} className="nav-link">Log Out</li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
