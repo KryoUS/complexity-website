@@ -42,94 +42,94 @@ class About extends Component {
                         <div className="guildinfo-container" style={{width: '600px'}}>
                             <div style={{fontSize: '20px', textAlign: 'center'}}>Raid Progress</div>
                             <div>
-                                <div>Uldir {this.state.raiderIO.raid_progression.uldir.summary}</div>
+                                <div style={{fontSize: '18px'}}>Uldir {this.state.raiderIO.raid_progression.uldir.summary}</div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Normal: {this.state.raiderIO.raid_progression.uldir.normal_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings.uldir.normal.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.normal.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.normal.realm}</div>
+                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression.uldir.normal_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.normal.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.normal.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.normal.realm}</div>
                                 </div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Heroic: {this.state.raiderIO.raid_progression.uldir.heroic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings.uldir.heroic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.heroic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.heroic.realm}</div>
+                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression.uldir.heroic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.heroic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.heroic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.heroic.realm}</div>
                                 </div>
                                 { this.state.raiderIO.raid_progression.uldir.mythic_bosses_killed > 0 &&
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Mythic: {this.state.raiderIO.raid_progression.uldir.mythic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings.uldir.mythic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.mythic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.mythic.realm}</div>
+                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression.uldir.mythic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.mythic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.mythic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.mythic.realm}</div>
                                 </div>
                                 }
                             </div>
                             <div style={{marginTop: '10px'}}>
-                                <div>Antorus the Burning Throne {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].summary}</div>
+                                <div style={{fontSize: '18px'}}>Antorus the Burning Throne {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].summary}</div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Normal: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.realm}</div>
+                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.realm}</div>
                                 </div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Heroic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.realm}</div>
+                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.realm}</div>
                                 </div>
                                 { this.state.raiderIO.raid_progression["antorus-the-burning-throne"].mythic_bosses_killed > 0 &&
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Mythic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.realm}</div>
+                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.realm}</div>
                                 </div>
                                 }
                             </div>
                             <div style={{marginTop: '10px'}}>
-                                <div>Tomb of Sargeras {this.state.raiderIO.raid_progression["tomb-of-sargeras"].summary}</div>
+                                <div style={{fontSize: '18px'}}>Tomb of Sargeras {this.state.raiderIO.raid_progression["tomb-of-sargeras"].summary}</div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Normal: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.realm}</div>
+                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.realm}</div>
                                 </div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Heroic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.realm}</div>
+                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.realm}</div>
                                 </div>
                                 { this.state.raiderIO.raid_progression["tomb-of-sargeras"].mythic_bosses_killed > 0 &&
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Mythic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.realm}</div>
+                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.realm}</div>
                                 </div>
                                 }
                             </div>
                             <div style={{marginTop: '10px'}}>
-                                <div>The Nighthold {this.state.raiderIO.raid_progression["the-nighthold"].summary}</div>
+                                <div style={{fontSize: '18px'}}>The Nighthold {this.state.raiderIO.raid_progression["the-nighthold"].summary}</div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Normal: {this.state.raiderIO.raid_progression["the-nighthold"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.realm}</div>
+                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["the-nighthold"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.realm}</div>
                                 </div>
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Heroic: {this.state.raiderIO.raid_progression["the-nighthold"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.realm}</div>
+                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["the-nighthold"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.realm}</div>
                                 </div>
                                 { this.state.raiderIO.raid_progression["the-nighthold"].mythic_bosses_killed > 0 &&
                                 <div className="evenspaced-row">
-                                    <div style={{width: '100px'}}>Mythic: {this.state.raiderIO.raid_progression["the-nighthold"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '100px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.world}</div>
-                                    <div style={{width: '100px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.region}</div>
-                                    <div style={{width: '100px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.realm}</div>
+                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["the-nighthold"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
+                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.world}</div>
+                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.region}</div>
+                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.realm}</div>
                                 </div>
                                 }
                             </div>

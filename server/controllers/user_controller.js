@@ -25,7 +25,7 @@ module.exports = {
 
     auth: (req, res) => {
         console.log('Auth Hit');
-        if (req.session.passport) {
+        if (req.isAuthenticated()) {
             axios.get(`https://us.api.battle.net/data/wow/token/?namespace=dynamic-us&locale=en_US&access_token=${req.session.passport.user.token}`).then(tokenRes => {
 
                 let userObj = {

@@ -33,12 +33,14 @@ const raiderIOCrons = require('./cronjobs/raider_io_api');
 blizzardCrons.setServerStatus();
 wowProgressCrons.setWowProgressGuild();
 raiderIOCrons.setWowRankingsGuild();
+raiderIOCrons.setWowMythicAffixes();
 //Define Cron Jobs
 const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardCrons.setServerStatus(), null, false, 'America/Denver');
 const complexityRankingsCron = new CronJob('00 30 0-23 * * 0-6', () => {
     wowProgressCrons.setWowProgressGuild();
     raiderIOCrons.setWowRankingsGuild();
 }, null, false, 'America/Denver');
+const usMythicAffixes = new CronJob('00 10 0-23 * * 0-6', () => raiderIOCrons.setWowMythicAffixes(), null, false, 'America/Denver');
 
 //Local testing SSL
 const httpsOptions = {
@@ -126,6 +128,8 @@ app.get('/api/wow/server/status', blizzardCrons.getServerStatus);
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
 //RaiderIO Ranking Endpoint
 app.get('/api/raiderio/guildranking', raiderIOCrons.getWowRankingsGuild);
+//RaiderIO Mythic Affixes Endpoint
+app.get('/api/raiderio/mythicaffixes', raiderIOCrons.getWowMythicAffixes);
 
 
 //Catch all routes that don't match anything and send to Build/index.js for Production
@@ -139,6 +143,7 @@ const server = https.createServer( httpsOptions, app );
 //Start Cron Job Timers
 thunderlordStatusCron.start();
 complexityRankingsCron.start();
+usMythicAffixes.start();
 
 //Start server
 let port = process.env.PORT || 3050;

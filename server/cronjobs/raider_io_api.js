@@ -1,5 +1,6 @@
 const axios = require('axios');
 let raiderIOObj = {};
+let raiderIOAffixes = {};
 
 module.exports = {
     setWowRankingsGuild: (req, res) => {
@@ -12,5 +13,17 @@ module.exports = {
 
     getWowRankingsGuild: (req, res) => {
         res.send(raiderIOObj).status(200);
+    },
+
+    setWowMythicAffixes: (req, res) => {
+        axios.get('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en').then(response => {
+            raiderIOAffixes = response.data;
+        }).catch(raiderIOAffixError => {
+            console.log('Raider IO Affix Get Error', raiderIOAffixError);
+        });
+    },
+
+    getWowMythicAffixes: (req, res) => {
+        res.send(raiderIOAffixes).status(200);
     },
 }
