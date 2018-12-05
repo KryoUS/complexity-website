@@ -16,6 +16,7 @@ const bnetStrategy = require(`${__dirname}/strategy.js`);
 const CronJob = require('cron').CronJob;
 
 //Controllers
+const blizzardApiToken = require('./controllers/blizzard_api_controller');
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
 const news = require('./controllers/news_controller');
@@ -28,9 +29,11 @@ const blizzardCrons = require('./cronjobs/blizzardapi');
 const wowProgressCrons = require('./cronjobs/wow_progress_api');
 const raiderIOCrons = require('./cronjobs/raider_io_api');
 
+//Set process.env.BLIZZ_API_TOKEN
+blizzardApiToken.setBlizzardToken();
+
 /*      CRON JOBS       */
 //Set Info on Server Initialization for Cron Jobs
-blizzardCrons.setServerStatus();
 wowProgressCrons.setWowProgressGuild();
 raiderIOCrons.setWowRankingsGuild();
 raiderIOCrons.setWowMythicAffixes();

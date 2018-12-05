@@ -16,7 +16,7 @@ module.exports = {
     getGuildNews: (req, res) => {
         let newsFeed = {};
     
-        axios.get(`https://us.api.battle.net/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&apikey=${process.env.APIKEY}`).then(newsRes => {
+        axios.get(`https://us.api.blizzard.com/wow/guild/Thunderlord/Complexity?fields=news&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(newsRes => {
             
             newsFeed.lastModified = newsRes.data.lastModified;
             newsFeed.news = newsRes.data.news;
