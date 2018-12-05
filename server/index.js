@@ -109,7 +109,7 @@ app.get('/api/raiders', raiders.get);
 app.put('/characters/:name&:realm', character.feedAndItems);
 //Guild Members Endpoint from DB
 app.get('/api/members', stats.members);
-//Stat Endpoints
+//Stat Endpoints from DB
 app.get('/api/stats/character', stats.characters);
 app.get('/api/stats/consumables', stats.consumables);
 app.get('/api/stats/combat', stats.combat);
@@ -122,13 +122,13 @@ app.get('/api/stats/emotes', stats.emotes);
 app.get('/api/stats/pvp', stats.pvp);
 app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
-//WoW Realm Status Endpoint
+//Realm Status Endpoint from WoW API
 app.get('/api/wow/server/status', blizzardCrons.getServerStatus);
-//WoWProgress Ranking Endpoint
+//Ranking Endpoint from WoWProgress API
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
-//RaiderIO Ranking Endpoint
+//Ranking Endpoint from RaiderIO API
 app.get('/api/raiderio/guildranking', raiderIOCrons.getWowRankingsGuild);
-//RaiderIO Mythic Affixes Endpoint
+//Mythic Affixes Endpoint from RaiderIO API
 app.get('/api/raiderio/mythicaffixes', raiderIOCrons.getWowMythicAffixes);
 
 
