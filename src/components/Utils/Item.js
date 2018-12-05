@@ -68,7 +68,7 @@ export default class Item extends Component {
         //let upgd = 0; //Upgrade level, seemingly not used?
 
         return (
-                <a className="item-link" href={link} data-wowhead={wowhead} target="_blank">
+                <a className="item-link" href={link} data-wowhead={wowhead} target="_blank" rel="noopener noreferrer">
                     <div className="item-container">
                         <div className="item-name" style={{color: qualityColor(item.quality)}}>{item.name}</div>
                         <div className="item-level">Item Level {item.itemLevel} {item.name === 'Heart of Azeroth' && `(Azerite Level ${item.azeriteItem.azeriteLevel})`}</div>

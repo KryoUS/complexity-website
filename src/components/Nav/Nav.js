@@ -149,7 +149,7 @@ class Nav extends Component {
                         {this.state.usMythicAffixes.affix_details && 
                             <div className="affixes">Mythic+ Affixes: 
                                 {this.state.usMythicAffixes.affix_details.map(affix => {
-                                    return <a href={affix.wowhead_url} data-wowhead={`affix=${affix.id}`} target="_blank">{affix.name}</a>
+                                    return <a href={affix.wowhead_url} data-wowhead={`affix=${affix.id}`} target="_blank"  rel="noopener noreferrer">{affix.name}</a>
                                 })}
                             </div>
                         }
@@ -157,7 +157,7 @@ class Nav extends Component {
                     <div style={{fontSize: '10px', color: '#585858'}}>World of Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries. All other trademarks are the property of their respective owners.</div>
                     <div style={{width: '330px', fontSize: '12px', color: 'white', textAlign: 'center'}}>
                         {this.props.user.id && 
-                            <a href="https://us.shop.battle.net/en-us/product/world-of-warcraft-token" data-wowhead="item=122284" target="_blank" rel="noopener noreferrer">
+                            <a href="https://us.shop.battle.net/en-us/product/world-of-warcraft-token" data-wowhead="item=122284" target="_blank"  rel="noopener noreferrer">
                                 <img style={{width: '12px', height: '12px'}} alt='Current WoW Token Price' src="https://res.cloudinary.com/complexityguild/image/upload/v1538802480/site/iconarmory.png" />
                                 Token: {this.props.user.tokenPrice}g
                             </a>

@@ -44,7 +44,7 @@ class News extends Component {
                         <div className="news-countdown">
                             {this.state.releases ?
                                 this.state.releases.map(release => (
-                                    <a className="news-flex-column" key={release.id} href={release.link} target="_blank">
+                                    <a className="news-flex-column" key={release.id} href={release.link} target="_blank"  rel="noopener noreferrer">
                                         <div className="news-countdown-timer">{release.title}</div>
                                         <div className="news-countdown-timer">
                                             <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
@@ -74,7 +74,7 @@ class News extends Component {
                                 </div>
                                 <div className="news-desc-container">
                                     <div className="news-desc-text">{news.description}</div>
-                                    <a className="news-button" href={news.link} target="_blank">Read More</a>
+                                    <a className="news-button" href={news.link} target="_blank"  rel="noopener noreferrer">Read More</a>
                                     {news.source === "wowhead" && <img src="https://res.cloudinary.com/complexityguild/image/upload/v1535585319/wow/logos/wowhead_news.png" alt="Wowhead" />}
                                 </div>
                             </div>
