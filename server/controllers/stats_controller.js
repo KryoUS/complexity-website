@@ -150,6 +150,7 @@ module.exports = {
         const db = app.get('db');
     
         db.query('select character_name, rank, level, average_ilvl, average_equipped_ilvl, azerite_lvl, race, spec_name, class, realm from characters where rank <= 5 order by rank, character_name').then(response => {
+            //These calls need to be done on the server and be available as a variable, not done at the member call.
             axios.get(`https://us.api.blizzard.com/wow/data/character/races?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(races => {
                 axios.get(`https://us.api.blizzard.com/wow/data/character/classes?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(classes => {
                     response.map((char, index) => {

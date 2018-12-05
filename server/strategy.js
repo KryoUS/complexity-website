@@ -1,10 +1,10 @@
 //Bnet Strategy from (https://github.com/Blizzard/passport-bnet)
 const BnetStrategy = require('passport-bnet');
-const { CLIENT_ID, CLIENT_SECRET } = process.env;
+const { BLIZZ_API_CLIENT_ID, BLIZZ_API_CLIENT_SECRET } = process.env;
 
 module.exports = new BnetStrategy({
-    clientID: CLIENT_ID,
-    clientSecret: CLIENT_SECRET,
+    clientID: BLIZZ_API_CLIENT_ID,
+    clientSecret: BLIZZ_API_CLIENT_SECRET,
     scope: "wow.profile sc2.profile",
     callbackURL: "https://localhost:3050/auth/bnet/callback"
 },

@@ -26,7 +26,7 @@ module.exports = {
     auth: (req, res) => {
         console.log('Auth Hit');
         if (req.isAuthenticated()) {
-            axios.get(`https://us.api.battle.net/data/wow/token/?namespace=dynamic-us&locale=en_US&access_token=${req.session.passport.user.token}`).then(tokenRes => {
+            axios.get(`https://us.api.blizzard.com/data/wow/token/?namespace=dynamic-us&locale=en_US&access_token=${req.session.passport.user.token}`).then(tokenRes => {
 
                 let userObj = {
                     id: req.session.passport.user.id,
@@ -64,7 +64,7 @@ module.exports = {
                     db.users.insert({id: req.session.passport.user.id}).then(insertRes => {
                         
                         //Get User Character data
-                        axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
+                        axios.get(`https://us.api.blizzard.com/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
                             let userCharArray = [];
     
                             charRes.data.characters.forEach((charObj, i) => {
@@ -119,7 +119,7 @@ module.exports = {
                     req.session.passport.user.mainAvatarLarge = findRes.mainavatarlarge;
                     
                     //Get User Character data
-                    axios.get(`https://us.api.battle.net/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
+                    axios.get(`https://us.api.blizzard.com/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
                         console.log('User Character API Hit (no Massive Insert)');
                         let userCharArray = [];
     
