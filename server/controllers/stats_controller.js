@@ -158,6 +158,12 @@ module.exports = {
                         let classIndex = classes.data.classes.map((e) => {return e.id}).indexOf(char.class);
                         response[index].race = races.data.races[raceIndex].name;
                         response[index].class = classes.data.classes[classIndex].name;
+                        if (response[index].rank === 0) {response[index].rank = 'Guild Master'};
+                        if (response[index].rank === 1) {response[index].rank = 'Co-Guild Master'};
+                        if (response[index].rank === 2) {response[index].rank = 'Raid Officer'};
+                        if (response[index].rank === 3) {response[index].rank = 'Raider'};
+                        if (response[index].rank === 4) {response[index].rank = 'Raider Alt'};
+                        if (response[index].rank === 5) {response[index].rank = 'Member'};
                     });
                     res.status(200).send(response);
                 }).catch(classError => {

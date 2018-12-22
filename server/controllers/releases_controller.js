@@ -32,23 +32,27 @@ module.exports = {
     post: (req, res) => {
         const db = app.get('db');
 
-        db.releases.insert({title: req.body.releaseTitle, release_date: req.body.releaseDate, link: req.body.releaseLink}).then(response => {
-            res.sendStatus(200);
-        }).catch(postError => {
-            console.log('Release Post DB Error');
-            console.log(postError);
-            res.sendStatus(500);
-        })
+        if (req.isAuthenticated()) {
+            db.releases.insert({title: req.body.releaseTitle, release_date: req.body.releaseDate, link: req.body.releaseLink}).then(response => {
+                res.sendStatus(200);
+            }).catch(postError => {
+                console.log('Release Post DB Error');
+                console.log(postError);
+                res.sendStatus(500);
+            })
+        }
     },
 
     delete: (req, res) => {
         const db = app.get('db');
 
-        db.query(`delete from releases where id = ${req.params.id}`).then(response => {
-            res.sendStatus(200);
-        }).catch(deleteError => {
-            console.log('Delete Releases Error: ', deleteError);
-            res.sendStatus(500);
-        });
+        if (req.isAuthenticated()) {
+            db.query(`delete from releases where id = ${req.params.id}`).then(response => {
+                res.sendStatus(200);
+            }).catch(deleteError => {
+                console.log('Delete Releases Error: ', deleteError);
+                res.sendStatus(500);
+            });
+        }
     },
 }
