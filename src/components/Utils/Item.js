@@ -57,14 +57,14 @@ export default class Item extends Component {
             }
         }
 
-        item.bonusLists && bonusArray(`&amp;bonus=${item.bonusLists[0]}`, item.bonusLists);
-        item.azeriteEmpoweredItem.azeritePowers && azeriteArray(`&amp;azerite-powers=${selectedClass}`, item.azeriteEmpoweredItem.azeritePowers);
-        item.itemLevel && addWowheadData(`&amp;ilvl=${item.itemLevel}`);
-        item.tooltipParams.enchant && addWowheadData(`&amp;ench=${item.tooltipParams.enchant}`);
-        item.tooltipParams.gem0 && addWowheadData(`&amp;gems=${item.tooltipParams.gem0}`);
+        item.bonusLists && bonusArray(`&bonus=${item.bonusLists[0]}`, item.bonusLists);
+        item.azeriteEmpoweredItem.azeritePowers && azeriteArray(`&azerite-powers=${selectedClass}`, item.azeriteEmpoweredItem.azeritePowers);
+        item.itemLevel && addWowheadData(`&ilvl=${item.itemLevel}`);
+        item.tooltipParams.enchant && addWowheadData(`&ench=${item.tooltipParams.enchant}`);
+        item.tooltipParams.gem0 && addWowheadData(`&gems=${item.tooltipParams.gem0}`);
         item.tooltipParams.gem1 && addWowheadData(`:${item.tooltipParams.gem1}`);
         item.tooltipParams.gem2 && addWowheadData(`:${item.tooltipParams.gem2}`);
-        item.tooltipParams.set && bonusArray(`&amp;pcs=${item.tooltipParams.set[0]}`, item.tooltipParams.set);
+        item.tooltipParams.set && bonusArray(`&pcs=${item.tooltipParams.set[0]}`, item.tooltipParams.set);
         //let upgd = 0; //Upgrade level, seemingly not used?
 
         return (
