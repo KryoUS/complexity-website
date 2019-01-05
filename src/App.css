@@ -17,6 +17,10 @@ body::-webkit-scrollbar {
   display:none;
 }
 
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .fade1s {
   animation: fade 1s;
   -o-animation: fade 1s;
@@ -36,4 +40,70 @@ body::-webkit-scrollbar {
   -o-animation: fade 3s;
   -moz-animation: fade 3s;
   -webkit-animation: fade 3s;
+}
+
+/* Loading Animation */
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #301f77;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scroll Up from Bottom Animation */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+/* Scroll Right from Left Animation */
+.animate-left {
+  position: relative;
+  -webkit-animation-name: animateleft;
+  -webkit-animation-duration: 1s;
+  animation-name: animateleft;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animateleft {
+  from { left:-100px; opacity:0 } 
+  to { left:0px; opacity:1 }
+}
+
+@keyframes animateleft { 
+  from{ left:-100px; opacity:0 } 
+  to{ left:0; opacity:1 }
 }

@@ -1,0 +1,33 @@
+.armorycharimage {
+	margin: 5px;
+    height: 100px;
+    width: 500px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    transition: border 0.75s;
+    box-shadow: 5px 5px 8px #000000
+}
+
+.charname {
+	color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px #000000;
+    margin-left: 10px;
+}
+
+.selected-char {
+    text-align: center;
+    margin-top: 450px;
+    text-shadow: 2px 2px 3px #000000;
+}
+
+.armorycharimage:hover {
+	border: 1px solid #472ead;
+    cursor: pointer;
+}
+
+.image-mask {
+    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+}

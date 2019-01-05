@@ -134,6 +134,13 @@ li {
     -moz-animation: pulse 6s infinite;
 }
 
+.pulse {
+    animation: pulse 6s infinite;
+    -o-animation: pulse 6s infinite;
+    -webkit-animation: pulse 6s infinite;
+    -moz-animation: pulse 6s infinite;
+}
+
 .login:hover, login:focus {
     cursor: pointer;
     border-bottom: 2px solid #00d99e;
