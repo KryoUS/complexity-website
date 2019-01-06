@@ -58,7 +58,7 @@
 
 .news-card {
     overflow: hidden;
-    animation: fade 3s;
+    /* animation: fade 3s; */
 }
 
 .news-card-layer {

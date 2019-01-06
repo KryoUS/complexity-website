@@ -11,7 +11,8 @@ class Nav extends Component {
 
         this.state = {
             realmInfo: {},
-            usMythicAffixes: {}
+            usMythicAffixes: {},
+            tokenPrice: 0
         }
     }
 
@@ -39,6 +40,12 @@ class Nav extends Component {
             this.setState({ usMythicAffixes: res.data })
         }).catch(raiderIOMythicAffixesError => {
             console.log(raiderIOMythicAffixesError);
+        });
+
+        axios.get('/api/wow/token/price').then(res => {
+            this.setState({ tokenPrice: res.data.price.toString().slice(0,-4)})
+        }).catch(error => {
+            console.log('WoW Token Price Error: ', error);
         });
     }
 
@@ -156,10 +163,10 @@ class Nav extends Component {
                     </div>
                     <div style={{fontSize: '10px', color: '#585858'}}>World of Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries. All other trademarks are the property of their respective owners.</div>
                     <div style={{width: '330px', fontSize: '12px', color: 'white', textAlign: 'center'}}>
-                        {this.props.user.id && 
+                        {this.state.tokenPrice > 0 && 
                             <a href="https://us.shop.battle.net/en-us/product/world-of-warcraft-token" data-wowhead="item=122284" target="_blank"  rel="noopener noreferrer">
                                 <img style={{width: '12px', height: '12px'}} alt='Current WoW Token Price' src="https://res.cloudinary.com/complexityguild/image/upload/v1538802480/site/iconarmory.png" />
-                                Token: {this.props.user.tokenPrice}g
+                                Token: {this.state.tokenPrice}g
                             </a>
                         }
                     </div>

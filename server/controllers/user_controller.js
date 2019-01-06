@@ -26,23 +26,16 @@ module.exports = {
     auth: (req, res) => {
         console.log('Auth Hit');
         if (req.isAuthenticated()) {
-            axios.get(`https://us.api.blizzard.com/data/wow/token/?namespace=dynamic-us&locale=en_US&access_token=${req.session.passport.user.token}`).then(tokenRes => {
-
-                let userObj = {
-                    id: req.session.passport.user.id,
-                    isAdmin: req.session.passport.user.isAdmin,
-                    chars: req.session.passport.user.chars,
-                    main: req.session.passport.user.main,
-                    mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
-                    mainAvatarMed: req.session.passport.user.mainAvatarMed,
-                    mainAvatarLarge: req.session.passport.user.mainAvatarLarge,
-                    tokenPrice: tokenRes.data.price,
-                };
-                res.status(200).send(userObj);
-            }).catch(tokenError => {
-                res.status(500).send('Token Price fetch failed.');
-                console.log(tokenError);
-            })
+            let userObj = {
+                id: req.session.passport.user.id,
+                isAdmin: req.session.passport.user.isAdmin,
+                chars: req.session.passport.user.chars,
+                main: req.session.passport.user.main,
+                mainAvatarSmall: req.session.passport.user.mainAvatarSmall,
+                mainAvatarMed: req.session.passport.user.mainAvatarMed,
+                mainAvatarLarge: req.session.passport.user.mainAvatarLarge
+            };
+            res.status(200).send(userObj);
         } else {
             res.sendStatus(401);
         }

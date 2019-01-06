@@ -8,8 +8,7 @@ class Raiders extends Component {
         super();
 
         this.state = {
-            raiders: [],
-            loadChars: 'loader'
+            raiders: []
         }
     }
 
@@ -23,7 +22,7 @@ class Raiders extends Component {
                 if (x > y) {return 1;}
                 return 0;
             })
-            this.setState({raiders: res.data, loadChars: ''});
+            this.setState({raiders: res.data});
         }).catch(error => {
             console.log('Raider API Error');
             console.log(error);
@@ -35,8 +34,7 @@ class Raiders extends Component {
 
         return(
             <div className="raiders-div">
-                <div className={this.state.loadChars} />
-                {this.state.raiders.length > 0 && <CharacterList charsArray={this.state.raiders} />}
+                <CharacterList charsArray={this.state.raiders} />
             </div>
         )
     }

@@ -80,12 +80,12 @@ body::-webkit-scrollbar {
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 } 
+  from { bottom:-500px; opacity:0 } 
   to { bottom:0px; opacity:1 }
 }
 
 @keyframes animatebottom { 
-  from{ bottom:-100px; opacity:0 } 
+  from{ bottom:-500px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
 
@@ -99,11 +99,11 @@ body::-webkit-scrollbar {
 }
 
 @-webkit-keyframes animateleft {
-  from { left:-100px; opacity:0 } 
+  from { left:-500px; opacity:0 } 
   to { left:0px; opacity:1 }
 }
 
 @keyframes animateleft { 
-  from{ left:-100px; opacity:0 } 
+  from{ left:-500px; opacity:0 } 
   to{ left:0; opacity:1 }
 }

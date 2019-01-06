@@ -16,21 +16,19 @@ const bnetStrategy = require(`${__dirname}/strategy.js`);
 const CronJob = require('cron').CronJob;
 
 //Controllers
-const blizzardApiToken = require('./controllers/blizzard_api_controller');
+const blizzardApi = require('./controllers/blizzard_api_controller');
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
 const news = require('./controllers/news_controller');
 const raiders = require('./controllers/raider_controller');
-const character = require('./controllers/character_controller');
 const userFunctions = require('./controllers/user_controller');
 
 //Cron Controllers
-const blizzardCrons = require('./cronjobs/blizzardapi');
 const wowProgressCrons = require('./cronjobs/wow_progress_api');
 const raiderIOCrons = require('./cronjobs/raider_io_api');
 
 //Set process.env.BLIZZ_API_TOKEN
-blizzardApiToken.setBlizzardToken();
+blizzardApi.setBlizzardToken();
 
 /*      CRON JOBS       */
 //Set Info on Server Initialization for Cron Jobs
@@ -38,7 +36,7 @@ wowProgressCrons.setWowProgressGuild();
 raiderIOCrons.setWowRankingsGuild();
 raiderIOCrons.setWowMythicAffixes();
 //Define Cron Jobs
-const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardCrons.setServerStatus(), null, false, 'America/Denver');
+const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardApi.setServerStatus(), null, false, 'America/Denver');
 const complexityRankingsCron = new CronJob('00 30 0-23 * * 0-6', () => {
     wowProgressCrons.setWowProgressGuild();
     raiderIOCrons.setWowRankingsGuild();
@@ -108,8 +106,6 @@ app.get('/api/news', news.get);
 app.get('/api/guildnews', news.getGuildNews);
 //Raider Endpoints from DB
 app.get('/api/raiders', raiders.get);
-//Character Endpoints from WoW API
-app.put('/characters/:name&:realm', character.feedAndItems);
 //Guild Members Endpoint from DB
 app.get('/api/members', stats.members);
 //Stat Endpoints from DB
@@ -126,7 +122,9 @@ app.get('/api/stats/pvp', stats.pvp);
 app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
 //Realm Status Endpoint from WoW API
-app.get('/api/wow/server/status', blizzardCrons.getServerStatus);
+app.get('/api/wow/server/status', blizzardApi.getServerStatus);
+//US Token Price from WoW API
+app.get('/api/wow/token/price', blizzardApi.getTokenPrice);
 //Ranking Endpoint from WoWProgress API
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

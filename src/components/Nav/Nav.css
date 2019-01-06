@@ -4,8 +4,7 @@
     z-index: 2;
     width: 100vw;
     height: 60px;
-    background-color: #160e37;
-    border-bottom: 1px solid white;
+    background-color: #160e379a;
 }
 
 .nav-footer {
@@ -17,8 +16,8 @@
     z-index: 2;
     width: 100vw;
     height: 30px;
-    background-color: #160e37;
-    border-top: 1px solid white;
+    background-color: #160e379a;
+    /* border-top: 1px solid white; */
 }
 
 .nav-flex-container {
@@ -141,6 +140,13 @@ li {
     -moz-animation: pulse 6s infinite;
 }
 
+.pulse-color {
+    animation: pulse-color 6s infinite;
+    -o-animation: pulse-color 6s infinite;
+    -webkit-animation: pulse-color 6s infinite;
+    -moz-animation: pulse-color 6s infinite;
+}
+
 .login:hover, login:focus {
     cursor: pointer;
     border-bottom: 2px solid #00d99e;
@@ -183,6 +189,11 @@ li {
     50% { border-bottom: 2px solid transparent }
 }
 
+@keyframes pulse-color {
+    0%, 100% { color: white }
+    50% { color: transparent }
+}
+
 @-o-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
@@ -191,6 +202,11 @@ li {
 @-o-keyframes pulse {
     0%, 100% { border-bottom: 2px solid #00d99e }
     50% { border-bottom: 2px solid transparent }
+}
+
+@-o-keyframes pulse-color {
+    0%, 100% { color: white }
+    50% { color: transparent }
 }
 
 @-moz-keyframes fadeIn {
@@ -203,6 +219,11 @@ li {
     50% { border-bottom: 2px solid transparent }
 }
 
+@-moz-keyframes pulse-color {
+    0%, 100% { color: white }
+    50% { color: transparent }
+}
+
 @-webkit-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
@@ -211,4 +232,9 @@ li {
 @-webkit-keyframes pulse {
     0%, 100% { border-bottom: 2px solid #00d99e }
     50% { border-bottom: 2px solid transparent }
+}
+
+@-webkit-keyframes pulse-color {
+    0%, 100% { color: white }
+    50% { color: transparent }
 }

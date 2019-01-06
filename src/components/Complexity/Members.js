@@ -100,6 +100,7 @@ class Members extends Component {
 
         return(
             <div className="stats-div" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/members.jpg') top center no-repeat`}}>
+                {this.state.loadTable === false && <div className="loader"/>}
                 <Slide direction="up" in={this.state.loadTable} mountOnEnter unmountOnExit>
                 <div>
                     <div style={{color: 'white'}}>
