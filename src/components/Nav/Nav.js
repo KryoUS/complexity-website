@@ -156,7 +156,7 @@ class Nav extends Component {
                         {this.state.usMythicAffixes.affix_details && 
                             <div className="affixes">Mythic+ Affixes: 
                                 {this.state.usMythicAffixes.affix_details.map(affix => {
-                                    return <a href={affix.wowhead_url} data-wowhead={`affix=${affix.id}`} target="_blank"  rel="noopener noreferrer">{affix.name}</a>
+                                    return <a key={affix.name} href={affix.wowhead_url} data-wowhead={`affix=${affix.id}`} target="_blank"  rel="noopener noreferrer">{affix.name}</a>
                                 })}
                             </div>
                         }

@@ -121,10 +121,10 @@ app.get('/api/stats/emotes', stats.emotes);
 app.get('/api/stats/pvp', stats.pvp);
 app.get('/api/stats/arena', stats.arena);
 app.get('/api/stats/pets', stats.pets);
-//Realm Status Endpoint from WoW API
+//WoW API Endpoints
 app.get('/api/wow/server/status', blizzardApi.getServerStatus);
-//US Token Price from WoW API
 app.get('/api/wow/token/price', blizzardApi.getTokenPrice);
+app.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
 //Ranking Endpoint from WoWProgress API
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

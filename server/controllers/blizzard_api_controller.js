@@ -2,18 +2,49 @@ const axios = require('axios');
 
 //Realm Status
 let realmObj = {};
+//Master Achievement List
+let achievementsArr = [];
+//Master Classes List
+let classesArr = [];
 //Master Mount List
 let mountsArr = [];
 //Master Pet List
 let petsArr = [];
+//Master Pet Types List
+let petTypesArr = [];
 //Master Race List
 let racesArr = [];
-//Master Classes List
-let classesArr = [];
-//Pet Types List
-let petTypesArr = [];
 //US WoW Token Price
 let tokenPrice = {price: 0};
+
+const findAchievement = (data, id) => {
+    for (let i in data) {
+        if (i == 'id' && data[i] == id && data['title']) return data
+        if (typeof data[i] == 'object' && findAchievement(data[i], id)) return findAchievement(data[i], id);
+    }
+    return false
+};
+
+const achievementInfo = (arr, id) => {
+    let achievementObject = {};
+    let loop = true;
+
+    arr.achievements.map((obj, index) => {
+        if (loop == true) {
+            let category = '';
+            let test = '';
+            if (obj.name) category = obj.name;
+            achievementArray = findAchievement(obj, id);
+            if (achievementArray != false) {
+                achievementArray.category = category;
+                achievementObject = achievementArray;
+                loop = false;
+                return achievementObject
+            }
+        }
+    });
+    return achievementObject
+}
 
 module.exports = {
     setBlizzardToken: () => {
@@ -31,11 +62,93 @@ module.exports = {
             module.exports.setPetTypes();
             module.exports.setRaces();
             module.exports.setTokenPrice();
+            module.exports.setAchievements();
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });
     },
 
+    //Set Master Achivements Array
+    setAchievements: () => {
+        axios.get(`https://us.api.blizzard.com/wow/data/character/achievements?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Achievement List Set!');
+            achievementsArr = JSON.parse(JSON.stringify(response.data));
+        }).catch(error => {
+            console.log('Get Classes Error: ', error);
+        });
+    },
+
+    //Set Master Class List Array
+    setClasses: () => {
+        axios.get(`https://us.api.blizzard.com/wow/data/character/classes?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Classes List Set!');
+            classesArr = JSON.parse(JSON.stringify(response.data.classes));
+        }).catch(error => {
+            console.log('Get Classes Error: ', error);
+        });
+    },
+
+    getClasses: (req, res) => {
+        res.status(200).send(classesArr);
+    },
+
+    //Set Master Mount List Array
+    setMounts: () => {
+        axios.get(`https://us.api.blizzard.com/wow/mount/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Mount List Set!');
+            mountsArr = JSON.parse(JSON.stringify(response.data.mounts));
+        }).catch(error => {
+            console.log('Set Master Mounts List Error: ', error);
+        });
+    },
+
+    getMounts: (req, res) => {
+        res.status(200).send(mountsArr);
+    },
+
+    //Set Master Pet List Array
+    setPets: () => {
+        axios.get(`https://us.api.blizzard.com/wow/pet/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Pet List Set!');
+            petsArr = JSON.parse(JSON.stringify(response.data.pets));
+        }).catch(error => {
+            console.log('Set Master Pets List Error: ', error);
+        });
+    },
+
+    getPets: (req, res) => {
+        res.status(200).send(petsArr);
+    },
+
+    //Set Master Pet Type List Array
+    setPetTypes: () => {
+        axios.get(`https://us.api.blizzard.com/wow/data/pet/types?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Pet Types List Set!');
+            petTypesArr = JSON.parse(JSON.stringify(response.data.petTypes));
+        }).catch(error => {
+            console.log('Get Pet Types Error: ', error);
+        });
+    },
+
+    getPetTypes: (req, res) => {
+        res.status(200).send(petTypesArr);
+    },
+
+    //Set Master Race List Array
+    setRaces: () => {
+        axios.get(`https://us.api.blizzard.com/wow/data/character/races?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('Master Races List Set!');
+            racesArr = JSON.parse(JSON.stringify(response.data.races));
+        }).catch(error => {
+            console.log('Get Races Error: ', error);
+        });
+    },
+
+    getRaces: (req, res) => {
+        res.status(200).send(racesArr);
+    },
+
+    //Set Server Status Object
     setServerStatus: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/realm/status?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             console.log('Server Status Set!');
@@ -51,11 +164,39 @@ module.exports = {
         res.status(200).send(realmObj);
     },
 
+    //Set Token Price Object
+    setTokenPrice: () => {
+        axios.get(`https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log('US Token Price Set!');
+            tokenPrice.price = response.data.price;
+        }).catch(error => {
+            console.log('Get Token Price Error: ', error);
+        });
+    },
+
+    getTokenPrice: (req, res) => {
+        res.send(tokenPrice).status(200);
+    },
+
+    //Character Endpoints
     getCharacterAchievements: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=achievements&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            res.status(200).send(response.data);
+
+            let responseArr = [];
+            response.data.achievements.achievementsCompleted.map((id, index) => {
+                let achievementObject = achievementInfo(achievementsArr, id);
+                achievementObject.completedTimestamp = response.data.achievements.achievementsCompletedTimestamp[index];
+                achievementObject.criteria = response.data.achievements.criteria[index];
+                achievementObject.criteriaQuantity = response.data.achievements.criteriaQuantity[index];
+                achievementObject.criteriaTimestamp = response.data.achievements.criteriaTimestamp[index];
+                achievementObject.criteriaCreated = response.data.achievements.criteriaCreated[index];
+                responseArr.push(achievementObject);
+            });
+
+            res.status(200).send(responseArr);
+
         }).catch(error => {
-            console.log('Get Character Achivements Error: ', error);
+            console.log('Get Character Achievements Error: ', error);
         });
     },
 
@@ -171,6 +312,7 @@ module.exports = {
         });
     },
 
+    //Guild Endpoints
     getGuildMembers: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/guild/${req.params.realm}/${req.params.guild}?fields=members&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             res.status(200).send(response.data);
@@ -187,45 +329,7 @@ module.exports = {
         });
     },
 
-    setMounts: () => {
-        axios.get(`https://us.api.blizzard.com/wow/mount/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Mount List Set!');
-            mountsArr = JSON.parse(JSON.stringify(response.data.mounts));
-        }).catch(error => {
-            console.log('Set Master Mounts List Error: ', error);
-        });
-    },
-
-    getMounts: (req, res) => {
-        res.status(200).send(mountsArr);
-    },
-
-    setPets: () => {
-        axios.get(`https://us.api.blizzard.com/wow/pet/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Pet List Set!');
-            petsArr = JSON.parse(JSON.stringify(response.data.pets));
-        }).catch(error => {
-            console.log('Set Master Pets List Error: ', error);
-        });
-    },
-
-    getPets: (req, res) => {
-        res.status(200).send(petsArr);
-    },
-
-    setPetTypes: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/pet/types?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Pet Types List Set!');
-            petTypesArr = JSON.parse(JSON.stringify(response.data.petTypes));
-        }).catch(error => {
-            console.log('Get Pet Types Error: ', error);
-        });
-    },
-
-    getPetTypes: (req, res) => {
-        res.status(200).send(petTypesArr);
-    },
-
+    //Pet Endpoints
     getPetsAbilities: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/pet/ability/${req.params.abilityID}?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             res.status(200).send(response.data);
@@ -250,51 +354,13 @@ module.exports = {
         });
     },
 
+    //Quest Endpoint
     getQuest: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/quest/${req.params.questID}?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Quest by ID Error: ', error);
         });
-    },
-
-    setRaces: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/character/races?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Races List Set!');
-            racesArr = JSON.parse(JSON.stringify(response.data.races));
-        }).catch(error => {
-            console.log('Get Races Error: ', error);
-        });
-    },
-
-    getRaces: (req, res) => {
-        res.status(200).send(racesArr);
-    },
-
-    setClasses: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/character/classes?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Classes List Set!');
-            classesArr = JSON.parse(JSON.stringify(response.data.classes));
-        }).catch(error => {
-            console.log('Get Classes Error: ', error);
-        });
-    },
-
-    getClasses: (req, res) => {
-        res.status(200).send(classesArr);
-    },
-
-    setTokenPrice: () => {
-        axios.get(`https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('US Token Price Set!');
-            tokenPrice.price = response.data.price;
-        }).catch(error => {
-            console.log('Get Token Price Error: ', error);
-        });
-    },
-
-    getTokenPrice: (req, res) => {
-        res.send(tokenPrice).status(200);
     },
 
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './CharacterList.css';
 
 const buttonArray = [
@@ -157,6 +158,11 @@ export default class CharacterList extends Component {
     }
 
     selectedButton = (button) => {
+        axios.put(`/api/wow/character/${this.state.selectedCharName}&${this.state.selectedCharRealm}/achievements/`).then(res => {
+            console.log(res.data);
+        }).catch(error => {
+            console.log('WoW Character Achievements API Error: ', error);
+        });
         this.setState({selectedButton: button});
     }
 
