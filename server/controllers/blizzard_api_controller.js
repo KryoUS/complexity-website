@@ -29,10 +29,9 @@ const achievementInfo = (arr, id) => {
     let achievementObject = {};
     let loop = true;
 
-    arr.achievements.map((obj, index) => {
+    arr.achievements.map((obj) => {
         if (loop == true) {
             let category = '';
-            let test = '';
             if (obj.name) category = obj.name;
             achievementArray = findAchievement(obj, id);
             if (achievementArray != false) {
@@ -193,7 +192,13 @@ module.exports = {
                 responseArr.push(achievementObject);
             });
 
-            res.status(200).send(responseArr);
+            let achievements = responseArr.reduce((r, a) => {
+                r[a.category] = r[a.category] || [];
+                r[a.category].push(a);
+                return r;
+            }, Object.create(null));
+
+            res.status(200).send(achievements);
 
         }).catch(error => {
             console.log('Get Character Achievements Error: ', error);

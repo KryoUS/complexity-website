@@ -1,0 +1,37 @@
+.achievement-container {
+    height: 750px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.achievement-category-container {
+    margin: 5px;
+}
+
+.achievement-category {
+    padding: 5px;
+    background-color: #141517;
+    font-size: 25px;
+    border: 1px solid #000000;
+    box-shadow: 5px 5px 8px #000000;
+}
+
+.achievement-category:hover {
+    cursor: pointer;
+}
+
+.achievement-content {
+    display: flex;
+    padding: 2px;
+    color: #C9C9C9;
+}
+
+.achievement-content:nth-child(odd) {
+    background-color: #202125;
+}
+
+.achievement-content:nth-child(even) {
+    background-color: #1B1C1E;
+}

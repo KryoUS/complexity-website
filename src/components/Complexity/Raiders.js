@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import CharacterList from '../Utils/CharacterList';
+import CharacterList from '../Utils/CharacterList/CharacterList';
 import './Raiders.css';
 
 class Raiders extends Component {

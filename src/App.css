@@ -107,3 +107,22 @@ body::-webkit-scrollbar {
   from{ left:-500px; opacity:0 } 
   to{ left:0; opacity:1 }
 }
+
+/* Scroll Left from Right Animation */
+.animate-right {
+  position: relative;
+  -webkit-animation-name: animateright;
+  -webkit-animation-duration: 1s;
+  animation-name: animateright;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animateright {
+  from { right:-500px; opacity:0 } 
+  to { right:0px; opacity:1 }
+}
+
+@keyframes animateright { 
+  from{ right:-500px; opacity:0 } 
+  to{ right:0; opacity:1 }
+}
