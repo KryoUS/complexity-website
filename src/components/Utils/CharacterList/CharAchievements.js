@@ -55,12 +55,12 @@ class CharAchievements extends Component {
                     <div className="achievement-category-container animate-right">
                         {this.state.charAchievements.map((obj, index) => {
                             let category = Object.keys(obj)[0];
-                            return <Collapsible key={category} trigger={<div className="achievement-category">{category}</div>}>
+                            return <Collapsible key={category} trigger={<div className="achievement-category">{category}</div>} lazyRender={true}>
                                 {obj[category].map(achieveObj => {
                                     const wowheadAchievement = `who=${this.props.selectedCharName}&when=${achieveObj.completedTimestamp}`;
                                     const link = `https://www.wowhead.com/achievement=${achieveObj.id}`;
-                                    return <div className="achievement-content-container" style={{justifyContent: 'space-between', width: '100%'}}>
-                                        <a key={achieveObj.id} className="achievement-content" data-wowhead={wowheadAchievement} href={link} target="_blank" rel="noopener noreferrer">
+                                    return <div key={achieveObj.id} className="achievement-content-container" style={{justifyContent: 'space-between', width: '100%'}}>
+                                        <a className="achievement-content" data-wowhead={wowheadAchievement} href={link} target="_blank" rel="noopener noreferrer">
                                             {achieveObj.icon ? 
                                                 <div style={{
                                                     background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${achieveObj.icon}.png)`,
