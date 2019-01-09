@@ -14,15 +14,36 @@ class CharAchievements extends Component {
 
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/achievements/`).then(res => {
-            
-            let achievements = [];
-            for (let x in res.data) {
-                achievements.push({[x]: res.data[x]});
-            }
-            this.setState({charAchievements: achievements})
+            this.setState({charAchievements: res.data})
         }).catch(error => {
             console.log('WoW Character Achievements API Error: ', error);
         });
+    }
+
+    qualityColor = (quality) => {
+        switch (quality) {
+
+            case 1:
+                return '#ffffff'
+            
+            case 2:
+                return '#02ff4e'
+
+            case 3:
+                return '#0281ff'
+
+            case 4:
+                return '#c600ff'
+            
+            case 5:
+                return '#ff8002'
+
+            case 6:
+                return '#e5cc80'
+    
+            default:
+                return null
+        }
     }
 
     render () {
@@ -36,27 +57,51 @@ class CharAchievements extends Component {
                             let category = Object.keys(obj)[0];
                             return <Collapsible key={category} trigger={<div className="achievement-category">{category}</div>}>
                                 {obj[category].map(achieveObj => {
-                                    const wowhead = `who=${this.props.selectedCharName}&when=${achieveObj.completedTimestamp}`;
+                                    const wowheadAchievement = `who=${this.props.selectedCharName}&when=${achieveObj.completedTimestamp}`;
                                     const link = `https://www.wowhead.com/achievement=${achieveObj.id}`;
-                                    return <a key={achieveObj.id} className="achievement-content" data-wowhead={wowhead} href={link} target="_blank" rel="noopener noreferrer">
-                                        {achieveObj.icon ? 
-                                            <div style={{
-                                                marginLeft: '5px',
-                                                background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${achieveObj.icon}.png)`,
-                                                width: '20px',
-                                                height: '20px',
-                                                backgroundSize: '20px'
-                                            }}/>
-                                        :
-                                            <div style={{
-                                                marginLeft: '5px',
-                                                background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
-                                                width: '20px',
-                                                height: '20px',
-                                                backgroundSize: '20px'
-                                            }}/>
-                                        } <div>{achieveObj.title}</div>
-                                    </a>
+                                    return <div className="achievement-content-container" style={{justifyContent: 'space-between', width: '100%'}}>
+                                        <a key={achieveObj.id} className="achievement-content" data-wowhead={wowheadAchievement} href={link} target="_blank" rel="noopener noreferrer">
+                                            {achieveObj.icon ? 
+                                                <div style={{
+                                                    background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${achieveObj.icon}.png)`,
+                                                    width: '15px',
+                                                    height: '15px',
+                                                    backgroundSize: '15px'
+                                                }}/>
+                                            :
+                                                <div style={{
+                                                    background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
+                                                    width: '15px',
+                                                    height: '15px',
+                                                    backgroundSize: '15px'
+                                                }}/>
+                                            } <div>{achieveObj.title}</div>
+                                        </a>
+                                        {achieveObj.rewardItems.length > 0 &&
+                                            <div className="flex-row" style={{width: '50%'}}>
+                                                <div className="flex-row">
+                                                    <div>Reward: </div>
+                                                    <a key={achieveObj.rewardItems[0].id} className="achievement-content" data-wowhead={`item=${achieveObj.rewardItems[0].id}`} href={`https://www.wowhead.com/item=${achieveObj.rewardItems[0].id}`} target="_blank" rel="noopener noreferrer">
+                                                        {achieveObj.rewardItems[0].icon ? 
+                                                            <div style={{
+                                                                background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${achieveObj.rewardItems[0].icon}.png)`,
+                                                                width: '15px',
+                                                                height: '15px',
+                                                                backgroundSize: '15px'
+                                                            }}/>
+                                                        :
+                                                            <div style={{
+                                                                background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
+                                                                width: '15px',
+                                                                height: '15px',
+                                                                backgroundSize: '15px'
+                                                            }}/>
+                                                        } <div style={{color: `${this.qualityColor(achieveObj.rewardItems[0].quality)}`}}> {achieveObj.rewardItems[0].name}</div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
                                 })}
                             </Collapsible>
                         })}

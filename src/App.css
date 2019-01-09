@@ -42,6 +42,14 @@ body::-webkit-scrollbar {
   -webkit-animation: fade 3s;
 }
 
+.flex-row {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
 /* Loading Animation */
 .loader {
   position: absolute;

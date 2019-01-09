@@ -198,7 +198,16 @@ module.exports = {
                 return r;
             }, Object.create(null));
 
-            res.status(200).send(achievements);
+            const achievementArray = (object) => {
+                let achievementSort = [];
+                for (let x in object) {
+                    achievementSort.push({[x]: object[x]});
+                }
+                return achievementSort;
+            }
+            
+
+            res.status(200).send(achievementArray(achievements));
 
         }).catch(error => {
             console.log('Get Character Achievements Error: ', error);

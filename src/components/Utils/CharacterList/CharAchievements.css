@@ -22,16 +22,17 @@
     cursor: pointer;
 }
 
-.achievement-content {
+.achievement-content,.achievement-content-container {
     display: flex;
     padding: 2px;
     color: #C9C9C9;
+    font-size: 0.70rem;
 }
 
-.achievement-content:nth-child(odd) {
+.achievement-content-container:nth-child(odd) {
     background-color: #202125;
 }
 
-.achievement-content:nth-child(even) {
+.achievement-content-container:nth-child(even) {
     background-color: #1B1C1E;
 }

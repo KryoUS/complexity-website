@@ -4,7 +4,6 @@ import CharAchievements from './CharAchievements';
 
 const buttonArray = [
     'Achievements', 
-    'Feed', 
     'Hunter Pets', 
     'Items', 
     'Mounts', 
@@ -174,7 +173,7 @@ export default class CharacterList extends Component {
 
     render () {
         return (
-            <div>
+            <div style={{width: '100vw'}}>
                 <div className="image-mask" style={{
                     background: `url(${this.state.selectedCharBackground}) no-repeat center fixed`,
                     maxWidth: '1600px',
@@ -182,16 +181,15 @@ export default class CharacterList extends Component {
                     position: 'absolute',
                     left: 0,
                     right: 0,
-                    margin: 'auto',
-                    zIndex: '-1'
-                }}/>
-                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    margin: 'auto'
+                }} />
+                <div style={{display: 'flex', justifyContent: 'space-between', height: '85%', zIndex: 2}}>
                     {this.props.charsArray.length <= 0 ? 
                         <div style={{width: '33vw'}} />
                     :
                         <div className="animate-left hidden-scrollbar" style={{
                             marginTop: '60px',
-                            height: '750px',
+                            height: '80vh',
                             width: '33vw',
                             overflow: 'scroll',
                             overflowX: 'hidden',
@@ -238,7 +236,7 @@ export default class CharacterList extends Component {
                                         <div>Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
                                         <div className="progress-bar">
                                             <div className="progress-internal" style={{width: `${this.azeritePercentage(this.state.selectedCharAzeriteXp, this.state.selectedCharAzeriteXpRemaining)}%`}} >
-                                            {this.state.selectedCharAzeriteXp}/{this.state.selectedCharAzeriteXp + this.state.selectedCharAzeriteXpRemaining} ({this.azeritePercentage(this.state.selectedCharAzeriteXp, this.state.selectedCharAzeriteXpRemaining)}%)
+                                                <div className="progress-text">{this.state.selectedCharAzeriteXp}/{this.state.selectedCharAzeriteXp + this.state.selectedCharAzeriteXpRemaining} ({this.azeritePercentage(this.state.selectedCharAzeriteXp, this.state.selectedCharAzeriteXpRemaining)}%)</div>
                                             </div>
                                         </div>
                                     </div>
