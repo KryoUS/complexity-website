@@ -1,9 +1,5 @@
 .achievement-container {
-    height: 750px;
-    display: flex;
     flex-direction: column;
-    overflow: auto;
-    overflow-x: hidden;
 }
 
 .achievement-category-container {

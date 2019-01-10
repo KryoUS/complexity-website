@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './CharacterList.css';
 import CharAchievements from './CharAchievements';
+import CharMounts from './CharMounts';
 
 const buttonArray = [
     'Achievements', 
@@ -37,8 +38,20 @@ export default class CharacterList extends Component {
             selectedCharAzeriteLevel: 0,
             selectedCharAzeriteXp: 0,
             selectedCharAzeriteXpRemaining: 0,
-            selectedButton: ''
+            selectedButton: '',
+            loadedMounts: 30
         }
+    }
+
+    componentDidMount = () => {
+        this.refs.iScroll.addEventListener("scroll", () => {
+            if (
+                this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >=
+                this.refs.iScroll.scrollHeight
+            ) {
+                this.setState({loadedMounts: this.state.loadedMounts + 20});
+            };
+        });
     }
 
     raceBackgroundTop = (x) => {
@@ -249,8 +262,16 @@ export default class CharacterList extends Component {
                         :
                             <div className='selected-char pulse-color' style={{fontSize: 60, marginTop: '40vh', width: '33vw'}}>Select a Character...</div>
                     }
-                    <div style={{width: '33vw', marginTop: '60px'}}>
+                    <div style={{
+                            marginTop: '60px',
+                            height: '80vh',
+                            width: '33vw',
+                            overflow: 'scroll',
+                            overflowX: 'hidden',
+                            overflowY: 'scroll'
+                        }} ref="iScroll">
                         {this.state.selectedButton === 'Achievements' && <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
+                        {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} loadedMounts={this.state.loadedMounts} />}
                     </div>
                 </div>
                 {this.state.selectedCharName && 

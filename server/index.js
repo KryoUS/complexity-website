@@ -125,6 +125,7 @@ app.get('/api/stats/pets', stats.pets);
 app.get('/api/wow/server/status', blizzardApi.getServerStatus);
 app.get('/api/wow/token/price', blizzardApi.getTokenPrice);
 app.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
+app.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
 //Ranking Endpoint from WoWProgress API
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

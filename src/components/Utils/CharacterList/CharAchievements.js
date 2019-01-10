@@ -48,7 +48,7 @@ class CharAchievements extends Component {
 
     render () {
         return (
-            <div className="achievement-container">
+            <div className="selected-category-container achievement-container">
                 {this.state.charAchievements.length <= 0 ? 
                     <div className="loader" style={{left: '85vw'}}/> 
                 : 

@@ -45,6 +45,27 @@ const achievementInfo = (arr, id) => {
     return achievementObject
 }
 
+const qualityColor = (quality) => {
+    switch (quality) {
+        case 1:
+            return '#ffffff'
+        case 2:
+            return '#02ff4e'
+        case 3:
+            return '#0281ff'
+        case 4:
+            return '#c600ff'
+        case 5:
+            return '#ff8002'
+        case 6:
+            return '#e5cc80'
+        case 7:
+            return '#0cf'
+        default:
+            return null
+    }
+}
+
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -239,8 +260,27 @@ module.exports = {
     },
 
     getCharacterMounts: (req, res) => {
+        let masterMounts = {};
+        masterMounts.mounts = JSON.parse(JSON.stringify(mountsArr));
+        
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=mounts&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            res.status(200).send(response.data);
+            
+            masterMounts.numCollected = response.data.mounts.numCollected;
+            masterMounts.numNotCollected = response.data.mounts.numNotCollected;
+
+            response.data.mounts.collected.map(obj => {
+                masterMounts.mounts.map((masterObj, masterIndex) => {
+                    masterMounts.mounts[masterIndex].qualityColor = qualityColor(masterMounts.mounts[masterIndex].qualityId);
+                    if (masterObj.itemId === obj.itemId && masterObj.creatureId === obj.creatureId) {
+                        return masterMounts.mounts[masterIndex].collected = true;
+                    };
+                    if (!masterMounts.mounts[masterIndex].collected) {
+                        return masterMounts.mounts[masterIndex].collected = false;
+                    };
+                });
+            });
+
+            res.status(200).send(masterMounts);
         }).catch(error => {
             console.log('Get Character Mounts Error: ', error);
         });
