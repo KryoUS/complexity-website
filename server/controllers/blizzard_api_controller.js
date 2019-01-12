@@ -116,7 +116,13 @@ module.exports = {
     setMounts: () => {
         axios.get(`https://us.api.blizzard.com/wow/mount/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             console.log('Master Mount List Set!');
-            mountsArr = JSON.parse(JSON.stringify(response.data.mounts));
+            mountsArr = JSON.parse(JSON.stringify(response.data.mounts.filter(obj => obj.itemId > 0).sort((a, b) => {
+                let x = a.name.toLowerCase();
+                let y = b.name.toLowerCase();
+                if (x < y) {return -1;}
+                if (x > y) {return 1;}
+                return 0;
+            })));
         }).catch(error => {
             console.log('Set Master Mounts List Error: ', error);
         });

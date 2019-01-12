@@ -1,8 +1,7 @@
 .mount {
-    margin: 5px;
     padding: 5px;
-    width: 120px;
-    box-shadow: 5px 5px 8px #000000
+    margin: 2px 0px;
+    box-shadow: 5px 5px 8px #000000;
 }
 
 .mount-collected {
@@ -11,7 +10,7 @@
 }
 
 .mount-not-collected {
-    opacity: 0.25;
+    opacity: 0.50;
     border: solid 1px transparent;
     background-color: #18181875;
 }
@@ -23,6 +22,7 @@
 }
 
 .mount-name {
-    font-size: .75rem;
+    font-size: 1.05rem;
     text-align: center;
+    margin-left: 5px;
 }
