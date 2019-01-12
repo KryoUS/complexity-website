@@ -129,7 +129,7 @@ body::-webkit-scrollbar {
 
 .input {
   width: 100%;
-  margin: 5px 0px;
+  margin: 5px;
   padding: 5px;
   background-color: #17171A;
   border: transparent;
@@ -139,6 +139,7 @@ body::-webkit-scrollbar {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
+  box-shadow: 5px 5px 8px #000000;
 }
 
 /* Loading Animation */

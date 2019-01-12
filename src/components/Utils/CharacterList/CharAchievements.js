@@ -48,7 +48,7 @@ class CharAchievements extends Component {
 
     render () {
         return (
-            <div className="selected-category-container achievement-container">
+            <div className="selected-category-container char-info-overflow">
                 {this.state.charAchievements.length <= 0 ? 
                     <div className="loader" style={{left: '85vw'}}/> 
                 : 

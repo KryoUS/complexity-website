@@ -13,7 +13,8 @@ class CharMounts extends Component {
                 numCollected: 0,
                 numNotCollected: 0
             },
-            filteredMounts: []
+            filteredMounts: [],
+            loadedMounts: 30
         }
     }
 
@@ -26,6 +27,16 @@ class CharMounts extends Component {
                     numNotCollected: res.data.numNotCollected
                 }
             });
+
+            this.refs.iScroll.addEventListener("scroll", () => {
+                if (
+                    this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >=
+                    this.refs.iScroll.scrollHeight
+                ) {
+                    this.setState({loadedMounts: this.state.loadedMounts + 20});
+                };
+            });
+
             console.log(this.state.character.mounts)
         }).catch(error => {
             console.log('WoW Character Achievements API Error: ', error);
@@ -59,63 +70,63 @@ class CharMounts extends Component {
 
     render () {
         return (
-            <div className="selected-category-container">
+            <div>
                 {this.state.character.mounts.length === 0 && <div className="loader" style={{left: '85vw'}} />}
                 {this.state.character.mounts.length > 0 && 
-                    <div className="animate-right" style={{width: '90%'}}>
+                    <div className="animate-right" style={{width: '95%'}}>
+                        <input type="text" className="input" id="mount-input" placeholder="Search for a mount..." onChange={this.searchData} />
+                        <div className="char-info-overflow" style={{height: '70vh', width: '100%'}} ref="iScroll">
+                        {this.state.filteredMounts.length > 0 ?
+                            this.state.filteredMounts.map((obj, index) => {
+                                let collected = 'mount-not-collected';
+                                if (obj.collected === true) {collected = 'mount-collected'};
+                                return index <= this.state.loadedMounts &&
+                                    <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
+                                        <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
+                                            <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
+                                            <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
+                                        </a>
+                                        <div className="flex-row flex-between">
+                                            <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`}/>
+                                            <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_water_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`}/>
+                                            <div className={`icon25 ${this.opacitySet(obj.isFlying)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`}/>
+                                        </div>
+                                    </div>
+                            })
+                        :
+                            this.state.character.mounts.map((obj, index) => {
+                                let collected = 'mount-not-collected';
+                                if (obj.collected === true) {collected = 'mount-collected'};
+                                return index <= this.state.loadedMounts &&
+                                    <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
+                                        <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
+                                            <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
+                                            <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
+                                        </a>
+                                        <div className="flex-row flex-between">
+                                            <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`}/>
+                                            <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_water_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`}/>
+                                            <div className={`icon25 ${this.opacitySet(obj.isFlying)}`} 
+                                                style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px'}} 
+                                                data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`}/>
+                                        </div>
+                                    </div>
+                            })
+                        }
+                        </div>
                         <div className="flex-row flex-evenly">
                             <div className="mount-text">Mounts Collected: {this.state.character.numCollected}</div>
                             <div className="mount-text">Mounts Not Collected: {this.state.character.numNotCollected}</div>
-                        </div>
-                        <input type="text" className="input" id="mount-input" placeholder="Search for a mount..." onChange={this.searchData} />
-                        <div className="flex-column">
-                            {this.state.filteredMounts.length > 0 ?
-                                this.state.filteredMounts.map((obj, index) => {
-                                    let collected = 'mount-not-collected';
-                                    if (obj.collected === true) {collected = 'mount-collected'};
-                                    return index <= this.props.loadedMounts &&
-                                        <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
-                                            <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
-                                                <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
-                                                <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
-                                            </a>
-                                            <div className="flex-row flex-between">
-                                                <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`}/>
-                                                <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_water_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`}/>
-                                                <div className={`icon25 ${this.opacitySet(obj.isFlying)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`}/>
-                                            </div>
-                                        </div>
-                                })
-                            :
-                                this.state.character.mounts.map((obj, index) => {
-                                    let collected = 'mount-not-collected';
-                                    if (obj.collected === true) {collected = 'mount-collected'};
-                                    return index <= this.props.loadedMounts &&
-                                        <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
-                                            <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
-                                                <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
-                                                <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
-                                            </a>
-                                            <div className="flex-row flex-between">
-                                                <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`}/>
-                                                <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_water_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`}/>
-                                                <div className={`icon25 ${this.opacitySet(obj.isFlying)}`} 
-                                                    style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px'}} 
-                                                    data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`}/>
-                                            </div>
-                                        </div>
-                                })
-                            }
                         </div>
                         <ReactTooltip />
                     </div>

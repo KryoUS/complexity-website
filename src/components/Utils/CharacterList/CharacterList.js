@@ -38,20 +38,8 @@ export default class CharacterList extends Component {
             selectedCharAzeriteLevel: 0,
             selectedCharAzeriteXp: 0,
             selectedCharAzeriteXpRemaining: 0,
-            selectedButton: '',
-            loadedMounts: 30
+            selectedButton: ''
         }
-    }
-
-    componentDidMount = () => {
-        this.refs.iScroll.addEventListener("scroll", () => {
-            if (
-                this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >=
-                this.refs.iScroll.scrollHeight
-            ) {
-                this.setState({loadedMounts: this.state.loadedMounts + 20});
-            };
-        });
     }
 
     raceBackgroundTop = (x) => {
@@ -200,14 +188,7 @@ export default class CharacterList extends Component {
                     {this.props.charsArray.length <= 0 ? 
                         <div style={{width: '33vw'}} />
                     :
-                        <div className="animate-left hidden-scrollbar" style={{
-                            marginTop: '60px',
-                            height: '80vh',
-                            width: '33vw',
-                            overflow: 'scroll',
-                            overflowX: 'hidden',
-                            overflowY: 'scroll'
-                        }}>
+                        <div className="animate-left hidden-scrollbar char-info-overflow" style={{marginTop: '60px'}}>
                             {this.props.charsArray.length > 0 && this.props.charsArray.map(char => {
                                 return <div key={`${char.character_name}${char.class}`} 
                                             style={{
@@ -262,14 +243,7 @@ export default class CharacterList extends Component {
                         :
                             <div className='selected-char pulse-color' style={{fontSize: 60, marginTop: '40vh', width: '33vw'}}>Select a Character...</div>
                     }
-                    <div style={{
-                            marginTop: '60px',
-                            height: '80vh',
-                            width: '33vw',
-                            overflow: 'scroll',
-                            overflowX: 'hidden',
-                            overflowY: 'scroll'
-                        }} ref="iScroll">
+                    <div style={{marginTop: '60px', height: '80vh', width: '33vw'}}>
                         {this.state.selectedButton === 'Achievements' && <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} loadedMounts={this.state.loadedMounts} />}
                     </div>
