@@ -1,8 +1,9 @@
 import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { setUser, userLogout } from '../../ducks/reducer';
+import axios from 'axios';
+import DiscordWidget from './DiscordWidget';
 import './Nav.css';
 
 class Nav extends Component {
@@ -12,16 +13,15 @@ class Nav extends Component {
         this.state = {
             realmInfo: {},
             usMythicAffixes: {},
-            tokenPrice: 0
+            tokenPrice: 0,
+            discordWidgetShow: false
         }
     }
 
     componentDidMount = () => {
         axios.get('/auth').then(res => {
-            // console.log('Auth User Object', res.data);
             if (res.status === 200) {
                 const user = res.data;
-                user.tokenPrice = user.tokenPrice.toString().slice(0,-4);
                 this.props.setUser({user});
             } else {
                 console.log(`Something's not quite right...`)
@@ -65,12 +65,11 @@ class Nav extends Component {
         })
     }
 
+    handleMouseOver = () => {
+        this.setState({discordWidgetShow: !this.state.discordWidgetShow})
+    }
+
     render(){
-        let avatarStyle = {
-            backgroundImage: `url('${this.props.user.mainAvatarSmall}')`, 
-            width: '54px', 
-            height: '54px'
-        }
 
         return(
             <div>
@@ -123,29 +122,28 @@ class Nav extends Component {
                         
                         {this.props.user.id ?
                             <div className="login-container">
-                                <div className="avatar" style={avatarStyle} alt={this.props.user.main} />
-                                <ul className="nav-routes">
-                                    <li className="nav-menu">
-                                        <div className="char-name">{this.props.user.main}</div>
-                                    </li>
-                                </ul>
-                                <ul className="nav-routes">
-                                    <li className="settings-menu">
-                                        <Link to="/settings">
-                                            <img className="settings-menu" style={{width: '32px', height: '32px'}} alt="Settings" src="https://res.cloudinary.com/complexityguild/image/upload/v1538799546/site/cogwheel.png" />
-                                        </Link>
-                                        <ul className="settings-menu-content">
-                                            <li className="nav-link">My Characters</li>
-                                            <li><Link className="nav-link" to="/settings">Settings</Link></li>
-                                            <li onClick={() => {this.logout()}} className="nav-link">Log Out</li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <div className="avatar" style={{backgroundImage: `url('${this.props.user.mainAvatarSmall}')`}} alt={this.props.user.main}>
+                                    <ul className="nav-routes">
+                                        <li className="settings-menu">
+                                            <ul className="settings-menu-content">
+                                                <li><Link className="nav-link" to="/">My Characters</Link></li>
+                                                <li><Link className="nav-link" to="/settings">Settings</Link></li>
+                                                <li><Link onClick={() => {this.logout()}} className="nav-link" to="/">Log Out</Link></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="discord-widget" onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOver}>
+                                    {this.state.discordWidgetShow && <DiscordWidget />}
+                                </div>
                             </div>
                         :
                             <div className="login-container">
                                 {/* ISSUE */}
-                                <a href="https://localhost:3050/auth/login" className="login">Login</a>
+                                <a href="https://localhost:3050/auth/login" className="login"></a>
+                                <div className="discord-widget" onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOver}>
+                                    {this.state.discordWidgetShow && <DiscordWidget />}
+                                </div>
                                 {/* <div className="login" onClick={() => this.login()}>Login</div> */}
                             </div>
                         }

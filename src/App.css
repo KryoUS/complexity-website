@@ -226,3 +226,22 @@ body::-webkit-scrollbar {
   from{ right:-500px; opacity:0 } 
   to{ right:0; opacity:1 }
 }
+
+/* Scroll Down from Top Animation */
+.animate-top {
+  position: relative;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 1s;
+  animation-name: animatetop;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatetop {
+  from { top:-500px; opacity:0 } 
+  to { top:0px; opacity:1 }
+}
+
+@keyframes animatetop { 
+  from{ top:-500px; opacity:0 } 
+  to{ top:0; opacity:1 }
+}

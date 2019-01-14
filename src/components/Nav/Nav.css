@@ -22,17 +22,21 @@
 
 .nav-flex-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
 .logo-container, .login-container {
+    margin: 5px;
     width: 330px;
     height: 60px;
     display: flex;
-    justify-content: center;
     align-items: center;
     animation: fadeIn 1s linear;
+}
+
+.login-container {
+    justify-content: flex-end;
 }
 
 .logo {
@@ -69,11 +73,11 @@
     text-shadow: 2px 2px 3px #000000;
 }
 
-.settings-menu:hover, .settings-menu:focus {
+.avatar:hover, .avatar:focus {
     cursor: pointer;
 }
 
-.settings-menu:hover .settings-menu-content, .settings-menu:focus .settings-menu-content {
+.avatar:hover .settings-menu-content, .avatar:focus .settings-menu-content {
     display: flex;
 }
 
@@ -85,6 +89,7 @@
     position: absolute;
     min-width: 130px;
     left: 50%;
+    top: 40px;
     transform: translateX(-50%);
     padding: 5px;
     background-color: #160e37;
@@ -123,11 +128,15 @@ li {
 }
 
 .login {
+    width: 40px;
+    height: 40px;
     text-decoration: none;
     font-size: 20px;
     letter-spacing: 0;
     color: white;
     border-bottom: 2px solid transparent;
+    background: url('https://res.cloudinary.com/complexityguild/image/upload/v1547439371/site/icons/login_white_small.png') no-repeat center;
+    background-size: 40px;
     animation: pulse 6s infinite;
     -o-animation: pulse 6s infinite;
     -webkit-animation: pulse 6s infinite;
@@ -157,18 +166,26 @@ li {
     -moz-animation: none;
 }
 
-.avatar {
-    margin-right: 10px;
-    height: 60px;
-    width: 60px;
-    background-size: contain;
-    transition: border 1s;
+.discord-widget {
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    background: url('https://res.cloudinary.com/complexityguild/image/upload/v1547437427/site/icons/discord_small.png') no-repeat center;
+    background-size: 40px;
 }
 
-.char-name {
-    color: white;
-    font-size: 20px;
-    letter-spacing: 0;
+.widget-body {
+    font-size: .75rem !important;
+}
+
+.avatar {
+    /* margin-right: 10px; */
+    background-size: contain;
+    transition: border 1s;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 .affixes {
