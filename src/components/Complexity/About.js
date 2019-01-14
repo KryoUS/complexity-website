@@ -30,14 +30,17 @@ class About extends Component {
         return(
             <div className="about-div fade1s" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534801397/wow/backgrounds/about.jpg') top center no-repeat`}}>
                 <div className="about-info">
-                    <div className="guildinfo-container">
-                        <div style={{fontSize: '20px', textAlign: 'center'}}>Guild Scores</div>
-                        <div>Score: {this.state.wowProgress.score}</div>
-                        <div><a href="https://www.wowprogress.com/pve/world">World Rank:</a> {this.state.wowProgress.world_rank}</div>
-                        <div><a href="https://www.wowprogress.com/pve/us">Region Rank:</a> {this.state.wowProgress.area_rank}</div>
-                        <div><a href="https://www.wowprogress.com/pve/us/thunderlord">Realm Rank:</a> {this.state.wowProgress.realm_rank}</div>
-                        <div style={{textAlign: 'right', fontSize: '10px', marginTop: 'auto'}}>Provided by <a href="https://www.wowprogress.com/">WoWProgress.com</a></div>
-                    </div>
+                    {this.state.raiderIOLoaded === false && <div className="loader" />}
+                    {this.state.raiderIOLoaded === true && 
+                        <div className="guildinfo-container">
+                            <div style={{fontSize: '20px', textAlign: 'center'}}>Guild Scores</div>
+                            <div>Score: {this.state.wowProgress.score}</div>
+                            <div><a href="https://www.wowprogress.com/pve/world">World Rank:</a> {this.state.wowProgress.world_rank}</div>
+                            <div><a href="https://www.wowprogress.com/pve/us">Region Rank:</a> {this.state.wowProgress.area_rank}</div>
+                            <div><a href="https://www.wowprogress.com/pve/us/thunderlord">Realm Rank:</a> {this.state.wowProgress.realm_rank}</div>
+                            <div style={{textAlign: 'right', fontSize: '10px', marginTop: 'auto'}}>Provided by <a href="https://www.wowprogress.com/">WoWProgress.com</a></div>
+                        </div>
+                    }
                     {this.state.raiderIOLoaded && 
                         <div className="guildinfo-container" style={{width: '600px'}}>
                             <div style={{fontSize: '20px', textAlign: 'center'}}>Raid Progress</div>

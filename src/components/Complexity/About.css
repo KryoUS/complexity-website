@@ -32,6 +32,7 @@ a {
     flex-direction: row;
     justify-content: space-around;
     width: 60vw;
+    height: 450px;
 }
 
 .evenspaced-row {

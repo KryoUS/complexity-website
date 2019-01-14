@@ -4,7 +4,7 @@
     z-index: 2;
     width: 100vw;
     height: 60px;
-    background-color: #160e3783;
+    background-color: #160e37c0;
 }
 
 .nav-footer {
@@ -167,7 +167,7 @@ li {
 }
 
 .discord-widget {
-    margin-left: 10px;
+    margin: 0px 10px;
     width: 40px;
     height: 40px;
     background: url('https://res.cloudinary.com/complexityguild/image/upload/v1547437427/site/icons/discord_small.png') no-repeat center;

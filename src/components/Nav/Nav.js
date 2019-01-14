@@ -78,15 +78,19 @@ class Nav extends Component {
                         <div className="logo-container">
                             <Link to="/"><img className="logo" src="https://res.cloudinary.com/complexityguild/image/upload/v1535585345/wow/logos/logov3.png" alt="Complexity Logo"/></Link>
                             <div className="realm-status-container">
-                                <div style={{display: 'flex'}}>Realm:
+                                <div style={{display: 'flex', width: '70px', justifyContent: 'space-evenly'}}>
+                                    <div>Realm:</div>
                                     {this.state.realmInfo.status ? 
-                                        <img style={{width: '16px', height: '16px'}} alt="Thunderlord Online" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336976/site/server_status.png"></img> : 
+                                        <img style={{width: '16px', height: '16px'}} alt="Thunderlord Online" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336976/site/server_status.png"></img> 
+                                    : 
                                         <img style={{width: '16px', height: '16px'}} alt="Thunderlord Offline" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336981/site/server_status_false.png"></img>
                                     }
                                 </div>
-                                <div style={{display: 'flex'}}>Queue:
+                                <div style={{display: 'flex', width: '70px', justifyContent: 'space-evenly'}}>
+                                    <div>Queue:</div>
                                     {this.state.realmInfo.queue ? 
-                                        <img style={{width: '16px', height: '16px'}} alt="Thunderlord has a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336983/site/server_status_queue.png"></img> : 
+                                        <img style={{width: '16px', height: '16px'}} alt="Thunderlord has a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336983/site/server_status_queue.png"></img> 
+                                    : 
                                         <img style={{width: '16px', height: '16px'}} alt="Thunderlord does not have a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336981/site/server_status.png"></img>
                                     }
                                 </div>
@@ -98,26 +102,6 @@ class Nav extends Component {
                             <li><Link className="nav-no-menu" to="/raiders">Raid Roster</Link></li>
                             <li><Link className="nav-no-menu" to="/members">Members</Link></li>
                             <li><Link className="nav-no-menu" to="/leaderboards">Leaderboards</Link></li>
-                            {/* NOT MVP AND WILL BE ADDED LATER IN TIME
-                            <li className="nav-menu">
-                                Complexity
-                                <ul className="nav-menu-content">
-                                    <Link className="nav-link" to="/about"><li>About</li></Link>
-                                    <Link className="nav-link" to="/raiders"><li>Raid Roster</li></Link>
-                                    <Link className="nav-link" to="/members"><li>Members</li></Link>
-                                    <Link className="nav-link" to="/leaderboards"><li>Leaderboards</li></Link>
-                                </ul>
-                            </li>
-                            <li className="nav-menu">
-                                Blizzcon
-                                <ul className="nav-menu-content">
-                                    <li className="nav-link">Blizzcon Info</li>
-                                    <li className="nav-link">Blizzcon 2017</li>
-                                    <li className="nav-link">Blizzcon 2015</li>
-                                </ul>
-                            </li>
-                            <li><Link to="/" className="nav-no-menu" >Twitch</Link></li>
-                            <li><Link to="/" className="nav-no-menu" >Youtube</Link></li> */}
                         </ul>
                         
                         {this.props.user.id ?
@@ -140,7 +124,7 @@ class Nav extends Component {
                         :
                             <div className="login-container">
                                 {/* ISSUE */}
-                                <a href="https://localhost:3050/auth/login" className="login"></a>
+                                <a href="https://localhost:3050/auth/login" className="login"> </a>
                                 <div className="discord-widget" onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOver}>
                                     {this.state.discordWidgetShow && <DiscordWidget />}
                                 </div>
