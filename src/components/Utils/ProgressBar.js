@@ -8,11 +8,11 @@ export default class ProgressBar extends Component {
     }
 
     render() {
-        let {current, remaining} = this.props;
+        let {current, remaining, height, bgColor, fontSize} = this.props;
         return (
-            <div className="progress-bar">
-                <div className="progress-internal" style={{width: `${this.percentage(current, remaining)}%`}} >
-                    <div className="progress-text">{current}/{current + remaining} ({this.percentage(current, remaining)}%)</div>
+            <div className="progress-bar" style={{height: height}}>
+                <div className="progress-internal" style={{width: `${this.percentage(current, remaining)}%`, backgroundColor: bgColor}} >
+                    <div className="progress-text" style={{fontSize}}>{current}/{current + remaining} ({this.percentage(current, remaining)}%)</div>
                 </div>
             </div>
         )

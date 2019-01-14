@@ -2,15 +2,12 @@
 	background-color: #141517;
     border-radius:4px;
     position: relative;
-    height: 30px;
 }
 
 .progress-internal {
 	padding: 5px;
-    background-color: #ffc400;
     border-radius:4px;
-    font-size: 18px;
-    height: 20px;
+    height: 70%;
 }
 
 .progress-text {

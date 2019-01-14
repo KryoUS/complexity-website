@@ -225,7 +225,13 @@ export default class CharacterList extends Component {
                                 {this.state.selectedCharAzeriteLevel > 0 &&
                                     <div>
                                         <div>Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
-                                        <ProgressBar current={this.state.selectedCharAzeriteXp} remaining={this.state.selectedCharAzeriteXpRemaining} />
+                                        <ProgressBar 
+                                            current={this.state.selectedCharAzeriteXp} 
+                                            remaining={this.state.selectedCharAzeriteXpRemaining} 
+                                            height={'30px'}
+                                            bgColor={'#ffc400'}
+                                            fontSize={'18px'}
+                                        />
                                     </div>
                                 }
                             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
+import ProgressBar from '../ProgressBar';
 import './CharMounts.css';
 
 class CharMounts extends Component {
@@ -124,10 +125,14 @@ class CharMounts extends Component {
                             })
                         }
                         </div>
-                        <div className="flex-row flex-evenly">
-                            <div className="mount-text">Mounts Collected: {this.state.character.numCollected}</div>
-                            <div className="mount-text">Mounts Not Collected: {this.state.character.numNotCollected}</div>
-                        </div>
+                        <div style={{textAlign: 'center'}}>Mounts Collected</div>
+                        <ProgressBar 
+                            current={this.state.character.numCollected} 
+                            remaining={this.state.character.numNotCollected}
+                            height={'20px'}
+                            bgColor={'#ffc400'}
+                            fontSize={'14px'}
+                        />
                         <ReactTooltip />
                     </div>
                 }
