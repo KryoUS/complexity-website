@@ -33,7 +33,7 @@ class Raiders extends Component {
     render(){
 
         return(
-            <div className="raiders-div">
+            <div className="raiders-div fade1s">
                 <CharacterList charsArray={this.state.raiders} />
             </div>
         )

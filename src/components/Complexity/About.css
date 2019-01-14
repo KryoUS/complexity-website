@@ -16,8 +16,9 @@
     margin: 8px;
     display: flex;
     flex-direction: column;
-    background: #000000de;
-    border: 2px solid #000000;
+    border: solid 1px #000000;
+    background-color: #181818;
+    box-shadow: 5px 5px 8px #000000;
 }
 
 a {
@@ -44,6 +45,7 @@ a {
     max-width: 60vw;
     padding: 25px;
     font-size: 20px;
-    background-color: #160e37;
-    box-shadow: 10px 10px 10px #000000;
+    border: solid 1px #000000;
+    background-color: #181818;
+    box-shadow: 5px 5px 8px #000000;
 }

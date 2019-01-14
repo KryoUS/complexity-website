@@ -28,7 +28,7 @@ class About extends Component {
 
     render(){
         return(
-            <div className="about-div" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534801397/wow/backgrounds/about.jpg') top center no-repeat`}}>
+            <div className="about-div fade1s" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534801397/wow/backgrounds/about.jpg') top center no-repeat`}}>
                 <div className="about-info">
                     <div className="guildinfo-container">
                         <div style={{fontSize: '20px', textAlign: 'center'}}>Guild Scores</div>

@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 93vh;
+    height: 100vh;
     width: 100vw;
-    margin-top: 60px;
 }
 
 .stat-button-container {
@@ -14,6 +13,7 @@
     align-content: center;
     width: 100vw;
     height: 40px;
+    margin-top: 60px;
 }
 
 .stat-back-button {

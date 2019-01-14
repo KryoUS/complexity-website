@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    border-bottom: 1px solid #100B07;
 }
 
 .news-countdown {

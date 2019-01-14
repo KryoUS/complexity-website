@@ -38,7 +38,7 @@ class News extends Component {
 
     render(){
         return(
-            <div className="news-div">
+            <div className="news-div fade1s">
                 <div className="news-header" style={headerStyle}>
                     {   this.state.releases.length &&
                         <div className="news-countdown">

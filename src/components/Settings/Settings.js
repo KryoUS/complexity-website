@@ -136,7 +136,7 @@ class Settings extends Component {
         }
 
         return(
-            <div className ="settings-div" style={{
+            <div className ="settings-div fade1s" style={{
                 background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') fixed top center/cover no-repeat`
                 }}>
                 {!this.props.user.id && <Redirect to='/'/>}
