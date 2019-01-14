@@ -103,26 +103,3 @@
     justify-content: center;
     width: 33vw;
 }
-
-.progress-bar {
-	background-color: #141517;
-    border-radius:4px;
-    position: relative;
-    height: 30px;
-}
-
-.progress-internal {
-	padding: 5px;
-    background-color: #ffc400;
-    border-radius:4px;
-    font-size: 18px;
-    height: 20px;
-}
-
-.progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-shadow: 2px 2px 1px #000000;
-}

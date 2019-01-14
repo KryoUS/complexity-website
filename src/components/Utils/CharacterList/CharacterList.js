@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CharacterList.css';
 import CharAchievements from './CharAchievements';
 import CharMounts from './CharMounts';
+import ProgressBar from '../ProgressBar';
 
 const buttonArray = [
     'Achievements', 
@@ -168,10 +169,6 @@ export default class CharacterList extends Component {
         this.setState({selectedButton: button});
     }
 
-    azeritePercentage = (xp, remaining) => {
-        return Math.round(((xp/(xp+remaining)) * 100) * 100) / 100
-    }
-
     render () {
         return (
             <div style={{width: '100vw'}}>
@@ -228,11 +225,7 @@ export default class CharacterList extends Component {
                                 {this.state.selectedCharAzeriteLevel > 0 &&
                                     <div>
                                         <div>Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
-                                        <div className="progress-bar">
-                                            <div className="progress-internal" style={{width: `${this.azeritePercentage(this.state.selectedCharAzeriteXp, this.state.selectedCharAzeriteXpRemaining)}%`}} >
-                                                <div className="progress-text">{this.state.selectedCharAzeriteXp}/{this.state.selectedCharAzeriteXp + this.state.selectedCharAzeriteXpRemaining} ({this.azeritePercentage(this.state.selectedCharAzeriteXp, this.state.selectedCharAzeriteXpRemaining)}%)</div>
-                                            </div>
-                                        </div>
+                                        <ProgressBar current={this.state.selectedCharAzeriteXp} remaining={this.state.selectedCharAzeriteXpRemaining} />
                                     </div>
                                 }
                             </div>
