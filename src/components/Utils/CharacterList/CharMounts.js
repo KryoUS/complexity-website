@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 import ProgressBar from '../ProgressBar';
-import './CharMounts.css';
 
 class CharMounts extends Component {
     constructor() {
@@ -75,17 +74,17 @@ class CharMounts extends Component {
                 {this.state.character.mounts.length === 0 && <div className="loader" style={{left: '85vw'}} />}
                 {this.state.character.mounts.length > 0 && 
                     <div className="animate-right" style={{width: '95%'}}>
-                        <input type="text" className="input" id="mount-input" placeholder="Search for a mount..." onChange={this.searchData} />
+                        <input type="text" className="input" placeholder="Search for a mount..." onChange={this.searchData} />
                         <div className="char-info-overflow" style={{height: '70vh', width: '100%'}} ref="iScroll">
                         {this.state.filteredMounts.length > 0 ?
                             this.state.filteredMounts.map((obj, index) => {
-                                let collected = 'mount-not-collected';
-                                if (obj.collected === true) {collected = 'mount-collected'};
+                                let collected = 'not-collected';
+                                if (obj.collected === true) {collected = 'collected'};
                                 return index <= this.state.loadedMounts &&
-                                    <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
+                                    <div className={`flex-row flex-between row-container ${collected && collected}`} key={obj.itemId} >
                                         <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
                                             <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
-                                            <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
+                                            <div className="row-name" style={{color: obj.qualityColor}}>{obj.name}</div>
                                         </a>
                                         <div className="flex-row flex-between">
                                             <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 
@@ -102,13 +101,13 @@ class CharMounts extends Component {
                             })
                         :
                             this.state.character.mounts.map((obj, index) => {
-                                let collected = 'mount-not-collected';
-                                if (obj.collected === true) {collected = 'mount-collected'};
+                                let collected = 'not-collected';
+                                if (obj.collected === true) {collected = 'collected'};
                                 return index <= this.state.loadedMounts &&
-                                    <div className={`flex-row flex-between mount ${collected && collected}`} key={obj.itemId} >
+                                    <div className={`flex-row flex-between row-container ${collected && collected}`} key={obj.itemId} >
                                         <a className="flex-row" style={{alignItems: 'center'}} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
                                             <div className ="icon25" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px'}} />
-                                            <div className="mount-name" style={{color: obj.qualityColor}}>{obj.name}</div>
+                                            <div className="row-name" style={{color: obj.qualityColor}}>{obj.name}</div>
                                         </a>
                                         <div className="flex-row flex-between">
                                             <div className={`icon25 ${this.opacitySet(obj.isGround)}`} 

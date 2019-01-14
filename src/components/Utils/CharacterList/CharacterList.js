@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CharacterList.css';
 import CharAchievements from './CharAchievements';
 import CharMounts from './CharMounts';
+import CharHunterPets from './CharHunterPets';
 import ProgressBar from '../ProgressBar';
 
 const buttonArray = [
@@ -244,7 +245,8 @@ export default class CharacterList extends Component {
                     }
                     <div style={{marginTop: '60px', height: '80vh', width: '33vw'}}>
                         {this.state.selectedButton === 'Achievements' && <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} loadedMounts={this.state.loadedMounts} />}
+                        {this.state.selectedButton === 'Hunter Pets' && <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm}  />}
+                        {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                     </div>
                 </div>
                 {this.state.selectedCharName && 

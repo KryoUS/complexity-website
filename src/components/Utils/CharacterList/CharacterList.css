@@ -103,3 +103,29 @@
     justify-content: center;
     width: 33vw;
 }
+
+.row-container {
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 5px 5px 8px #000000;
+}
+
+.collected {
+    border: solid 1px #000000;
+    background-color: #181818;
+}
+
+.not-collected {
+    opacity: 0.50;
+    border: solid 1px transparent;
+    background-color: #181818;
+}
+
+.row-name {
+    font-size: 1.05rem;
+    margin-left: 5px;
+}
+
+.tooltip {
+    max-width: 300px;
+}

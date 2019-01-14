@@ -251,7 +251,7 @@ module.exports = {
 
     getCharacterHunterPets: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=hunterPets&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            res.status(200).send(response.data);
+            res.status(200).send(response.data.hunterPets);
         }).catch(error => {
             console.log('Get Character Hunter Pets Error: ', error);
         });
