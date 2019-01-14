@@ -129,7 +129,7 @@ class CharMounts extends Component {
                             current={this.state.character.numCollected} 
                             remaining={this.state.character.numNotCollected}
                             height={'20px'}
-                            bgColor={'#ffc400'}
+                            bgColor={'#edba03'}
                             fontSize={'14px'}
                         />
                         <ReactTooltip />

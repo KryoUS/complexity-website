@@ -230,7 +230,7 @@ export default class CharacterList extends Component {
                                             current={this.state.selectedCharAzeriteXp} 
                                             remaining={this.state.selectedCharAzeriteXpRemaining} 
                                             height={'30px'}
-                                            bgColor={'#ffc400'}
+                                            bgColor={'#edba03'}
                                             fontSize={'18px'}
                                         />
                                     </div>
