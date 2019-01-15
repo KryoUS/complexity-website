@@ -63,6 +63,10 @@ body::-webkit-scrollbar {
   justify-content: space-between;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .icon15 {
   width: 15px;
   height: 15px;
