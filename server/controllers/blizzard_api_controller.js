@@ -66,6 +66,12 @@ const qualityColor = (quality) => {
     }
 }
 
+const className = (classNum) => {
+    classesArr.map(obj => {
+        if (obj.id === classNum) {return obj.name};
+    });
+};
+
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -259,6 +265,26 @@ module.exports = {
 
     getCharacterItems: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=items&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            
+            response.data.className = className(response.data.class);
+            response.data.items.head.qualityColor = qualityColor(response.data.items.head.quality);
+            response.data.items.neck.qualityColor = qualityColor(response.data.items.neck.quality);
+            response.data.items.shoulder.qualityColor = qualityColor(response.data.items.shoulder.quality);
+            response.data.items.back.qualityColor = qualityColor(response.data.items.back.quality);
+            response.data.items.chest.qualityColor = qualityColor(response.data.items.chest.quality);
+            response.data.items.wrist.qualityColor = qualityColor(response.data.items.wrist.quality);
+            response.data.items.hands.qualityColor = qualityColor(response.data.items.hands.quality);
+            response.data.items.waist.qualityColor = qualityColor(response.data.items.waist.quality);
+            response.data.items.legs.qualityColor = qualityColor(response.data.items.legs.quality);
+            response.data.items.feet.qualityColor = qualityColor(response.data.items.feet.quality);
+            response.data.items.finger1.qualityColor = qualityColor(response.data.items.finger1.quality);
+            response.data.items.finger2.qualityColor = qualityColor(response.data.items.finger2.quality);
+            response.data.items.trinket1.qualityColor = qualityColor(response.data.items.trinket1.quality);
+            response.data.items.trinket2.qualityColor = qualityColor(response.data.items.trinket2.quality);
+            response.data.items.mainHand.qualityColor = qualityColor(response.data.items.mainHand.quality);
+            if (response.data.items.offHand) {response.data.items.offHand.qualityColor = qualityColor(response.data.items.offHand.quality)};
+
+
             res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Items Error: ', error);

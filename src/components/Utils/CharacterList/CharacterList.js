@@ -5,6 +5,7 @@ import CharMounts from './CharMounts';
 import CharHunterPets from './CharHunterPets';
 import ProgressBar from '../ProgressBar';
 import CharStats from './CharStats';
+import CharItems from './CharItems';
 
 const buttonArray = [
     'Achievements', 
@@ -249,6 +250,7 @@ export default class CharacterList extends Component {
                         {this.state.selectedButton === 'Hunter Pets' && <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm}  />}
                         {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Stats' && <CharStats selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
+                        {this.state.selectedButton === 'Items' && <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                     </div>
                 </div>
                 {this.state.selectedCharName && 

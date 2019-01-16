@@ -128,6 +128,7 @@ app.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getChar
 app.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
 app.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
 app.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
+app.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
 //Ranking Endpoint from WoWProgress API
 app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API
