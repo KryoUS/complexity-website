@@ -22,31 +22,28 @@ class InfoModal extends React.Component {
     render() {
         return (
             <div>
-            {/* <Button variant="outlined" color="primary" onClick={this.props.modalOpen}>
-                Slide in alert dialog testing
-            </Button> */}
-            <Dialog
-                open={this.props.modalOpen}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={this.modalClose}
-                aria-labelledby="alert-dialog-slide-title"
-                aria-describedby="alert-dialog-slide-description"
-            >
-                <DialogTitle id="alert-dialog-slide-title">
-                {this.props.modalTitle}
-                </DialogTitle>
-                <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
-                    {this.props.modalMessage}
-                </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                <Button onClick={this.modalClose} color="primary">
-                    {this.props.modalButton}
-                </Button>
-                </DialogActions>
-            </Dialog>
+                <Dialog
+                    open={this.props.modalOpen}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={this.modalClose}
+                    aria-labelledby="alert-dialog-slide-title"
+                    aria-describedby="alert-dialog-slide-description"
+                >
+                    <DialogTitle id="alert-dialog-slide-title">
+                    {this.props.modalTitle}
+                    </DialogTitle>
+                    <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        {this.props.modalMessage}
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.modalClose} color="primary">
+                        {this.props.modalButton}
+                    </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }
