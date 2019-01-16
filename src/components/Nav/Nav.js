@@ -1,9 +1,10 @@
 import React,  { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser, userLogout } from '../../ducks/reducer';
+import { setUser, userLogout, infoModal } from '../../ducks/reducer';
 import axios from 'axios';
 import DiscordWidget from './DiscordWidget';
+import InfoModal from './InfoModal';
 import './Nav.css';
 
 class Nav extends Component {
@@ -24,7 +25,7 @@ class Nav extends Component {
                 const user = res.data;
                 this.props.setUser({user});
             } else {
-                console.log(`Something's not quite right...`)
+                this.props.infoModal(true, 'Oops!', "User Authorization Error! Don't panic, We've informed the monkeys. Please try again in a moment.", 'OK');
             }
         }).catch(error => {
             //Do not place an error message in this catch, otherwise none logged in users will see it.
@@ -33,19 +34,19 @@ class Nav extends Component {
         axios.get('/api/wow/server/status').then(res => {
             this.setState({ realmInfo: res.data })
         }).catch(wowServerStatusError => {
-            console.log(wowServerStatusError);
+            this.props.infoModal(true, 'Oops!', "We attempted to get WoW's server status but it never responded. It's probably ok, we think. Please try again in a moment.", 'OK');
         });
         
         axios.get('/api/raiderio/mythicaffixes').then(res => {
             this.setState({ usMythicAffixes: res.data })
         }).catch(raiderIOMythicAffixesError => {
-            console.log(raiderIOMythicAffixesError);
+            this.props.infoModal(true, 'Oops!', "We tried to get the Mythic+ affixes for the week but couldn't. Please exercise extreme caution when entering dungeons for now.", 'OK');
         });
 
         axios.get('/api/wow/token/price').then(res => {
             this.setState({ tokenPrice: res.data.price.toString().slice(0,-4)})
         }).catch(error => {
-            console.log('WoW Token Price Error: ', error);
+            this.props.infoModal(true, 'Oops!', "We asked for the WoW Token Price but never heard back, stupid Goblins. Please try again in a moment.", 'OK');
         });
     }
 
@@ -53,7 +54,7 @@ class Nav extends Component {
         axios.get('/auth/login').then(response => {
 
         }).catch(loginError => {
-            console.log('Unable to login! NEEDSERROR')
+            this.props.infoModal(true, 'Oops!', "We couldn't log you in at this time, are a time traveler by chance? Hmm, please try again in a moment.", 'OK');
         })
     }
 
@@ -61,7 +62,7 @@ class Nav extends Component {
         axios.get('/auth/logout').then(response => {
             this.props.userLogout();
         }).catch(logoutError => {
-            console.log('Logout failed!');
+            this.props.infoModal(true, 'Oops!', "There's no way this failed but here we are... Please try again in a moment.", 'OK');
         })
     }
 
@@ -132,6 +133,7 @@ class Nav extends Component {
                             </div>
                         }
                     </div>
+                    <InfoModal />
                 </div>
                 <div className="nav-footer">
                     <div>
@@ -160,8 +162,12 @@ class Nav extends Component {
 
 const mapStateToProps = ( state ) => {
     return {
-        user: state.user
+        user: state.user,
+        modalOpen: state.modalOpen,
+        modalTitle: state.modalTitle,
+        modalMessage: state.modalMessage,
+        modalButton: state.modalButton
     }
 }
 
-export default connect( mapStateToProps, {setUser, userLogout} )( Nav );
+export default connect( mapStateToProps, {setUser, userLogout, infoModal} )( Nav );
