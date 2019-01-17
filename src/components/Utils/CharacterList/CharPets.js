@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 import ProgressBar from '../ProgressBar';
+import './CharPets.css';
 
 class CharPets extends Component {
     constructor() {
@@ -110,36 +111,53 @@ class CharPets extends Component {
         return array.map((obj, index) => {
             return index <= this.state.loadedPets &&
                 <div className={`flex-row flex-between row-container collected`} key={obj.battlePetGuid} onClick={() => this.petModal(obj)}>
-                    <div data-tip={obj.slot < 4 ? `Equipped Slot Number ${obj.slot}` : `This pet is not currently equipped.`}>
-                        <div className="flex-row" style={{width: '260px', alignItems: 'center'}} data-wowhead={`npc=${obj.creatureId}`}>
-                            <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533519767/wow/icons/${obj.icon.replace(/&|-/g, '_')}.png) 20px`, backgroundSize: '20px'}} />
-                            <div className="row-name" style={{color: obj.qualityColor, fontSize: '.95rem'}}>{obj.name} {obj.name !== obj.creatureName && obj.creatureName}</div>
+                    <a className="flex-row" style={{width: '280px', alignItems: 'center'}} data-wowhead={`npc=${obj.creatureId}`} href={`https://www.wowhead.com/npc=${obj.creatureId}`} target="_blank" rel="noopener noreferrer">
+                        <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533519767/wow/icons/${obj.icon.replace(/&|-/g, '_')}.png) 40px`, backgroundSize: '40px'}} />
+                        <div className="row-name" style={{color: obj.qualityColor, fontSize: '.95rem'}}>{obj.name} {obj.name !== obj.creatureName && obj.creatureName}</div>
+                    </a>
+                    <div className="flex-column flex-between pet-stat-container">
+                        <div className="flex-row flex-between pet-stat-row">
+                            <div className="pet-stats">{obj.slot < 4 ? `Slot ${obj.slot}` : 'Unequipped'}</div>
+                            <div className="flex-row  pet-stats" data-tip='Pet Family'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px'}} />
+                                <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer">
+                                    <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px'}} />
+                                </a>
+                            </div>
+                            <div className="flex-row pet-stats" data-tip='Strong Against'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/strong.png`, backgroundSize: '20px'}} />
+                                {obj.strongAgainst.map(strong => {
+                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(strong)}`} target="_blank" rel="noopener noreferrer">
+                                        <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${strong === 'dragonkin' ? 'dragon' : `${strong}`}.png) 20px`, backgroundSize: '20px'}} />
+                                    </a>
+                                })}
+                            </div>
+                            <div className="flex-row pet-stats" data-tip='Weak Against'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/weak.png`, backgroundSize: '20px'}} />
+                                {obj.weakAgainst.map(weak => {
+                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(weak)}`} target="_blank" rel="noopener noreferrer">
+                                        <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${weak === 'dragonkin' ? 'dragon' : `${weak}`}.png) 20px`, backgroundSize: '20px'}} />
+                                    </a>
+                                })}
+                            </div>
+                            <div className={`icon20 ${obj.isFavorite === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/${obj.isFavorite === true ? 'favorite' : 'notfavorite' }.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.isFavorite === true ? 'This pet is a favorite.' : 'This pet is not a favorite.'}`}/>
                         </div>
-                    </div>
-                    <div className="flex-row flex-between" style={{width: '300px', fontSize: '.80rem'}}>
-                        <div className="flex-row flex-center" data-tip='Pet Family'>
-                            <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px'}} />
-                            <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer">
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px'}} />
-                            </a>
+                        <div className="flex-row flex-between pet-stat-row">
+                            <div className="pet-stats">Level {obj.stats.level}</div>
+                            <div className="flex-row pet-stats" data-tip='Pet Health Points'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '20px'}} />
+                                <div style={{width: '36px'}}>{obj.stats.health}</div>
+                            </div>
+                            <div className="flex-row pet-stats" data-tip='Pet Power'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '20px'}} />
+                                <div style={{width: '28px'}}>{obj.stats.power}</div>
+                            </div>
+                            <div className="flex-row pet-stats" data-tip='Pet Speed'>
+                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '20px'}} />
+                                <div style={{width: '28px'}}>{obj.stats.speed}</div>
+                            </div>
+                            <div className={`icon20 ${obj.canBattle === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/battle.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.canBattle === false ? 'This pet is unable to do battle.' : 'This pet is able to do battle.'}`}/>
                         </div>
-                        <div style={{width: '62px'}}>Level {obj.stats.level}</div>
-                        <div className="flex-row flex-center" data-tip='Pet Health Points'>
-                            <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '20px'}} />
-                            <div style={{width: '36px'}}>{obj.stats.health}</div>
-                        </div>
-                        <div className="flex-row flex-center" data-tip='Pet Power'>
-                            <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '20px'}} />
-                            <div style={{width: '28px'}}>{obj.stats.power}</div>
-                        </div>
-                        <div className="flex-row flex-center" data-tip='Pet Speed'>
-                            <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '20px'}} />
-                            <div style={{width: '28px'}}>{obj.stats.speed}</div>
-                        </div>
-                    </div>
-                    <div className="flex-row flex-between">
-                        <div className={`icon20 ${obj.isFavorite === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/${obj.isFavorite === true ? 'favorite' : 'notfavorite' }.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.isFavorite === true ? 'This pet is a favorite.' : 'This pet is not a favorite.'}`}/>
-                        <div className={`icon20 ${obj.canBattle === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/battle.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.canBattle === false ? 'This pet is unable to do battle.' : 'This pet is able to do battle.'}`}/>
                     </div>
                 </div>
         });
