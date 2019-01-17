@@ -320,7 +320,36 @@ module.exports = {
 
     getCharacterPets: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=pets&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            res.status(200).send(response.data);
+            axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=petSlots&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(slotResponse => {
+                
+                response.data.pets.collected.map((petsObj, petsIndex) => {
+                    response.data.pets.collected[petsIndex].qualityColor = qualityColor(petsObj.qualityId);
+                    response.data.pets.collected[petsIndex].slot = 4;
+                    response.data.pets.collected[petsIndex].abilities = [];
+
+                    slotResponse.data.petSlots.map(slotsObj => {
+                        if (petsObj.battlePetGuid === slotsObj.battlePetGuid) {
+                            response.data.pets.collected[petsIndex].slot = slotsObj.slot;
+                            response.data.pets.collected[petsIndex].abilities = slotsObj.abilities;
+                        };
+                    });
+
+                    petsArr.map(masterPetsObj => {
+                        if (masterPetsObj.creatureId === petsObj.creatureId) {
+                            response.data.pets.collected[petsIndex].family = masterPetsObj.family;
+                            response.data.pets.collected[petsIndex].typeId = masterPetsObj.typeId;
+                            response.data.pets.collected[petsIndex].strongAgainst = masterPetsObj.strongAgainst;
+                            response.data.pets.collected[petsIndex].weakAgainst = masterPetsObj.weakAgainst;
+                        }
+                    });
+                });
+                
+                res.status(200).send(response.data);
+            }).catch(error => {
+                console.log('Get Character Pet Slots Error: ', error);
+            });
+                    
+            // res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Pets Error: ', error);
         });
