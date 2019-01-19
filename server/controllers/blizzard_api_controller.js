@@ -454,7 +454,7 @@ module.exports = {
     },
 
     getPetsSpecies: (req, res) => {
-        axios.get(`https://us.api.blizzard.com/wow/pet/species/${req.params.speciesID}?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+        axios.get(`https://us.api.blizzard.com/wow/pet/species/${req.params.speciesId}?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Pets Species Error: ', error);

@@ -6,7 +6,7 @@ import CharHunterPets from './CharHunterPets';
 import ProgressBar from '../ProgressBar';
 import CharStats from './CharStats';
 import CharItems from './CharItems';
-import CharPets from './CharPets';
+import CharPets from './CharPets/CharPets';
 
 const buttonArray = [
     'Achievements', 

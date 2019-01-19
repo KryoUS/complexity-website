@@ -1,0 +1,55 @@
+.pet-container {
+    border: solid 1px #000000;
+    background-color: #181818;
+    transition: border 0.75s;
+}
+
+.pet-container:hover {
+    border: 1px solid #472ead;
+    cursor: pointer;
+}
+
+.pet-stats {
+    width: 78px;
+}
+
+.pet-stat-container {
+    width: 326px;
+    font-size: .80rem;
+}
+
+.pet-stat-row {
+    margin: 2px;
+}
+
+.pet-stat-modal-row {
+    font-size: 1.25rem;
+    margin: 10px;
+}
+
+.pet-modal-description {
+    margin: 5px;
+    width: 100%;
+    font-size: 1rem;
+    color: #5C5C5C;
+    line-height: 1.25em;
+}
+
+.pet-modal-subtitle {
+    width: 100%;
+    text-align: center;
+}
+
+.pet-modal-ability-name {
+    font-size: .80rem;
+}
+
+.MuiPaper-root-16  {
+    background-color: #181818 !important;
+    color: white !important;
+}
+
+.MuiTypography-title-50 {
+    color: white !important;
+    font-size: 1.75rem !important;
+}

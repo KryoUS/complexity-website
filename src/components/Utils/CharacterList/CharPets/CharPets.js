@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { infoModal } from '../../../../ducks/reducer';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
-import ProgressBar from '../ProgressBar';
+import ProgressBar from '../../ProgressBar';
+import CharPetsModal from './CharPetsModal';
 import './CharPets.css';
 
 class CharPets extends Component {
@@ -15,9 +18,12 @@ class CharPets extends Component {
                 numNotCollected: 0
             },
             filteredPets: [],
-            loadedPets: 30
-        }
-    }
+            loadedPets: 30,
+            petModalIsOpen: false,
+            petModalObj: {},
+            petSpeciesInfoLoading: true,
+        };
+    };
 
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/pets/`).then(res => {
@@ -36,7 +42,7 @@ class CharPets extends Component {
                     }), 
                     numCollected: res.data.pets.numCollected, 
                     numNotCollected: res.data.pets.numNotCollected
-                }
+                },
             });
 
             this.refs.iScroll.addEventListener("scroll", () => {
@@ -48,18 +54,13 @@ class CharPets extends Component {
                 };
             });
 
-            console.log(res.data)
         }).catch(error => {
             console.log('WoW Character Pets API Error: ', error);
         });
-    }
+    };
 
     componentDidUpdate = () => {
         ReactTooltip.rebuild();
-    }
-
-    opacitySet = (x) => {
-        if (x === false) {return 'opacity25'}
     };
 
     searchData = (e) => {
@@ -101,33 +102,54 @@ class CharPets extends Component {
             default:
                 return null
         }
-    }
+    };
 
-    petModal = (obj) => {
-        console.log(obj)
-    }
+    petModalClose = () => {
+        this.setState({ petModalIsOpen: false, petSpeciesInfoLoading: true });
+    };
+
+    petModalOpen = (obj) => {
+
+        if (obj.canBattle === false) {
+            this.setState({ petModalObj: obj, petModalIsOpen: true, petSpeciesInfoLoading: false });
+        } else {
+            this.setState({ petModalObj: obj, petModalIsOpen: true });
+
+            axios.get(`/api/wow/pet/species/${obj.stats.speciesId}`).then(res => {
+                obj.stats.speciesInfo = res.data;
+                this.setState({ petModalObj: obj, petSpeciesInfoLoading: false });
+                console.log('Pet Species Info: ', obj)
+            }).catch(error => {
+                console.log('WoW Pet Species API Error', error);
+            });
+        }
+    };
+
+    skipHref = (e) => {
+        e.preventDefault();
+    };
 
     buildPets = (array) => {
         return array.map((obj, index) => {
             return index <= this.state.loadedPets &&
-                <div className={`flex-row flex-between row-container collected`} key={obj.battlePetGuid} onClick={() => this.petModal(obj)}>
-                    <a className="flex-row" style={{width: '280px', alignItems: 'center'}} data-wowhead={`npc=${obj.creatureId}`} href={`https://www.wowhead.com/npc=${obj.creatureId}`} target="_blank" rel="noopener noreferrer">
+                <div className={`flex-row flex-between row-container pet-container`} key={obj.battlePetGuid + obj.creatureId} onClick={() => this.petModalOpen(obj)} >
+                    <a className="flex-row" style={{width: '280px', alignItems: 'center'}} data-wowhead={`npc=${obj.creatureId}`} href={`https://www.wowhead.com/npc=${obj.creatureId}`} onClick={(e) => this.skipHref(e)} target="_blank" rel="noopener noreferrer">
                         <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533519767/wow/icons/${obj.icon.replace(/&|-/g, '_')}.png) 40px`, backgroundSize: '40px'}} />
-                        <div className="row-name" style={{color: obj.qualityColor, fontSize: '.95rem'}}>{obj.name} {obj.name !== obj.creatureName && obj.creatureName}</div>
+                        <div className="row-name" style={{color: obj.qualityColor, fontSize: '.95rem'}}>{obj.name} {obj.name !== obj.creatureName && `the ${obj.creatureName}`}</div>
                     </a>
                     <div className="flex-column flex-between pet-stat-container">
                         <div className="flex-row flex-between pet-stat-row">
                             <div className="pet-stats">{obj.slot < 4 ? `Slot ${obj.slot}` : 'Unequipped'}</div>
                             <div className="flex-row  pet-stats" data-tip='Pet Family'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px'}} />
-                                <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer">
+                                <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
                                     <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px'}} />
                                 </a>
                             </div>
                             <div className="flex-row pet-stats" data-tip='Strong Against'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/strong.png`, backgroundSize: '20px'}} />
                                 {obj.strongAgainst.map(strong => {
-                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(strong)}`} target="_blank" rel="noopener noreferrer">
+                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(strong)}`} key={strong} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
                                         <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${strong === 'dragonkin' ? 'dragon' : `${strong}`}.png) 20px`, backgroundSize: '20px'}} />
                                     </a>
                                 })}
@@ -135,7 +157,7 @@ class CharPets extends Component {
                             <div className="flex-row pet-stats" data-tip='Weak Against'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/weak.png`, backgroundSize: '20px'}} />
                                 {obj.weakAgainst.map(weak => {
-                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(weak)}`} target="_blank" rel="noopener noreferrer">
+                                    return <a href={`https://www.wowhead.com/${this.familyWowhead(weak)}`} key={weak} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
                                         <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${weak === 'dragonkin' ? 'dragon' : `${weak}`}.png) 20px`, backgroundSize: '20px'}} />
                                     </a>
                                 })}
@@ -186,6 +208,7 @@ class CharPets extends Component {
                             fontSize={'14px'}
                         />
                         <ReactTooltip place='left'/>
+                        <CharPetsModal pet={this.state.petModalObj} petModalIsOpen={this.state.petModalIsOpen} petModalClose={this.petModalClose} loading={this.state.petSpeciesInfoLoading} familyWowhead={this.familyWowhead} />
                     </div>
                 }
             </div>
@@ -193,4 +216,13 @@ class CharPets extends Component {
     }
 }
 
-export default CharPets
+const mapStateToProps = ( state ) => {
+    return {
+        modalOpen: state.modalOpen,
+        modalTitle: state.modalTitle,
+        modalMessage: state.modalMessage,
+        modalButton: state.modalButton
+    }
+}
+
+export default connect( mapStateToProps, {infoModal} )( CharPets );
