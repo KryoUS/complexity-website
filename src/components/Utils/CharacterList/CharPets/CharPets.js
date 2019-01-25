@@ -242,16 +242,16 @@ class CharPets extends Component {
     };
 
     petBreedTooltip = (breed) => {
-        if (breed === 4 || breed === 14) {return 'P/P the pet has a boost to power. (+2)'}
-        else if (breed === 5 || breed === 15) {return 'S/S the pet has a boost to speed. (+2)'}
-        else if (breed === 6 || breed === 16) {return 'H/H the pet has a boost to health. (+2)'}
-        else if (breed === 7 || breed === 17) {return 'H/P the pet has a boost to health and power. (+0.9)'}
-        else if (breed === 8 || breed === 18) {return 'P/S the pet has a boost to power and speed. (+0.9)'}
-        else if (breed === 9 || breed === 19) {return 'H/S the pet has a boost to health and speed. (+0.9)'}
-        else if (breed === 10 || breed === 20) {return 'P/B the pet has a boost to all stats with a little more to power. (+0.4 & +0.9)'}
-        else if (breed === 11 || breed === 21) {return 'S/B the pet has a boost to all stats with a little more to speed. (+0.4 & +0.9)'}
-        else if (breed === 12 || breed === 22) {return 'H/B the pet has a boost to all stats with a little more to health. (+0.4 & +0.9)'}
-        else if (breed === 3 || breed === 13) {return 'B/B the pet has a slight boost to all stats evenly. (+0.5)'}
+        if (breed === 4 || breed === 14) {return 'P/P the pet has a boost to base power. (+2)'}
+        else if (breed === 5 || breed === 15) {return 'S/S the pet has a boost to base speed. (+2)'}
+        else if (breed === 6 || breed === 16) {return 'H/H the pet has a boost to base health. (+2)'}
+        else if (breed === 7 || breed === 17) {return 'H/P the pet has a boost to base health and power. (+0.9)'}
+        else if (breed === 8 || breed === 18) {return 'P/S the pet has a boost to base power and speed. (+0.9)'}
+        else if (breed === 9 || breed === 19) {return 'H/S the pet has a boost to base health and speed. (+0.9)'}
+        else if (breed === 10 || breed === 20) {return 'P/B the pet has a boost to all base stats with a little more to power. (+0.4 & +0.9)'}
+        else if (breed === 11 || breed === 21) {return 'S/B the pet has a boost to all base stats with a little more to speed. (+0.4 & +0.9)'}
+        else if (breed === 12 || breed === 22) {return 'H/B the pet has a boost to all base stats with a little more to health. (+0.4 & +0.9)'}
+        else if (breed === 3 || breed === 13) {return 'B/B the pet has a slight boost to all base stats evenly. (+0.5)'}
         else {return 'This breed is unknown.'}
     };
 
