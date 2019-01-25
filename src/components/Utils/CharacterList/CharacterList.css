@@ -40,7 +40,7 @@
 .selected-char {
     text-align: center;
     text-shadow: 2px 2px 3px #000000;
-    font-size: 30;
+    font-size: 1.75rem;
     margin-top: 60px;
     width: 33vw;
 }
