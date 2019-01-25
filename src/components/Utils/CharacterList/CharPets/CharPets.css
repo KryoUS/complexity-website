@@ -61,7 +61,7 @@
 .quality-select__menu, 
 .quality-select__menu-list, 
 .quality-select__option {
-    background-color: #181818 !important;
+    background-color: #080808 !important;
     z-index: 3 !important;
 }
 
@@ -101,7 +101,7 @@
 .breed-select__menu, 
 .breed-select__menu-list, 
 .breed-select__option {
-    background-color: #181818 !important;
+    background-color: #080808 !important;
     z-index: 3 !important;
 }
 
