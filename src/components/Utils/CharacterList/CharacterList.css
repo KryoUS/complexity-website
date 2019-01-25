@@ -16,6 +16,13 @@
     margin-left: 10px;
 }
 
+.char-info-container {
+    display: flex;
+    justify-content: space-between;
+    height: 85%;
+    z-index: 2;
+}
+
 .char-info-overflow {
     height: 80vh;
     width: 33vw;
@@ -24,9 +31,25 @@
     overflow-Y: scroll;
 }
 
+.char-info {
+    margin-top: 60px;
+    height: 80vh;
+    width: 33vw;
+}
+
 .selected-char {
     text-align: center;
     text-shadow: 2px 2px 3px #000000;
+    font-size: 30;
+    margin-top: 60px;
+    width: 33vw;
+}
+
+.selected-char-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 98%;
 }
 
 .armorycharimage:hover {
@@ -42,6 +65,12 @@
 
 .selected-category-container {
     width: 95%;
+}
+
+.pulse-select {
+    font-size: 2rem;
+    margin-top: 40vh;
+    width: 33vw;
 }
 
 .button-border {
@@ -91,13 +120,6 @@
     box-shadow: 5px 5px 8px #00000083;
 }
 
-.selected-char-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 98%;
-}
-
 .progress-bar-container {
     display: flex;
     justify-content: center;
@@ -128,4 +150,32 @@
 
 .tooltip {
     max-width: 300px;
+}
+
+@media (max-width: 600px) {
+    .char-info-container {
+        flex-direction: column;
+        /* height: 100vh; */
+    }
+
+    .char-info-overflow {
+        height: 33vh;
+        width: 100vw;
+    }
+
+    .selected-char {
+        margin-top: 0;
+        width: 100vw;
+    }
+
+    .pulse-select {
+        margin-top: 0;
+        width: 100vw;
+    }
+
+    .char-info {
+        margin-top: 0;
+        /* height: 80; */
+        width: 100vw;
+    }
 }

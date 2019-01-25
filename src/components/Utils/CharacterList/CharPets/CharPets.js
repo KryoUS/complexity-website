@@ -22,6 +22,16 @@ class CharPets extends Component {
             petModalIsOpen: false,
             petModalObj: {},
             petSpeciesInfoLoading: true,
+            petCalcSliderValue: 0,
+            petCalcQualityValue: {
+                label: 'Poor',
+                value: 1,
+                color: '#5C5C5C'
+            },
+            petCalcBreedValue: {
+                label: '4/14 (P/P)',
+                value: 4,
+            }
         };
     };
 
@@ -37,8 +47,6 @@ class CharPets extends Component {
                         return 0;
                       }).sort((x, y) => {
                         return y.isFavorite - x.isFavorite
-                    }).sort((x, y) => {
-                        return x.slot - y.slot
                     }), 
                     numCollected: res.data.pets.numCollected, 
                     numNotCollected: res.data.pets.numNotCollected
@@ -61,6 +69,71 @@ class CharPets extends Component {
 
     componentDidUpdate = () => {
         ReactTooltip.rebuild();
+    };
+
+    setDefaultQualityLabel = (x) => {
+        switch (x) {
+            case 0:
+                return 'Poor'
+            case 1:
+                return 'Common'
+            case 2:
+                return 'Uncommon'
+            case 3:
+                return 'Rare'
+            case 4:
+                return 'Epic'
+            case 5:
+                return 'Legendary'
+            default:
+                return null
+        }
+    };
+
+    setDefaultQualityColor = (x) => {
+        switch (x) {
+            case 0:
+                return '#5C5C5C'
+            case 1:
+                return 'white'
+            case 2:
+                return '#02ff4e'
+            case 3:
+                return '#0281ff'
+            case 4:
+                return '#c600ff'
+            case 5:
+                return '#ff8002'
+            default:
+                return null
+        }
+    };
+
+    setDefaultBreedLabel = (x) => {
+        switch (x) {
+            case 4 || 14:
+                return '4/14 (P/P)'
+            case 5 || 15:
+                return '5/15 (S/S)'
+            case 6 || 16:
+                return '6/16 (H/H'
+            case 7 || 17:
+                return '7/17 (H/P)'
+            case 8 || 18:
+                return '8/18 (P/S)'
+            case 9 || 19:
+                return '9/19 (H/S)'
+            case 10 || 20:
+                return '10/20 (P/B)'
+            case 11 || 21:
+                return '11/21 (S/B)'
+            case 12 || 22:
+                return '12/22 (H/B)'
+            case 3 || 13:
+                return '3/13 (B/B)'
+            default:
+                return null
+        }
     };
 
     searchData = (e) => {
@@ -117,7 +190,20 @@ class CharPets extends Component {
 
             axios.get(`/api/wow/pet/species/${obj.stats.speciesId}`).then(res => {
                 obj.stats.speciesInfo = res.data;
-                this.setState({ petModalObj: obj, petSpeciesInfoLoading: false });
+                this.setState({ 
+                    petModalObj: obj, 
+                    petSpeciesInfoLoading: false, 
+                    petCalcQualityValue: {
+                        label: this.setDefaultQualityLabel(obj.stats.petQualityId),
+                        value: 1 + (obj.stats.petQualityId / 10),
+                        color: this.setDefaultQualityColor(obj.stats.petQualityId),
+                    }, 
+                    petCalcSliderValue: obj.stats.level,
+                    petCalcBreedValue: {
+                        label: this.setDefaultBreedLabel(obj.stats.breedId),
+                        value: obj.stats.breedId,
+                    },
+                });
                 console.log('Pet Species Info: ', obj)
             }).catch(error => {
                 console.log('WoW Pet Species API Error', error);
@@ -127,6 +213,46 @@ class CharPets extends Component {
 
     skipHref = (e) => {
         e.preventDefault();
+    };
+
+    handleSliderChange = (event, value) => {
+        this.setState({ petCalcSliderValue: value });
+    };
+
+    handleQualityChange = (selectedOption) => {
+        this.setState({ petCalcQualityValue: selectedOption });
+    };
+
+    handleBreedChange = (selectedOption) => {
+        this.setState({ petCalcBreedValue: selectedOption });
+    };
+
+    petBreedInfo = (breed) => {
+        if (breed === 4 || breed === 14) {return `Breed: ${breed}(P/P)`}
+        else if (breed === 5 || breed === 15) {return `Breed: ${breed}(S/S)`}
+        else if (breed === 6 || breed === 16) {return `Breed: ${breed}(H/H)`}
+        else if (breed === 7 || breed === 17) {return `Breed: ${breed}(H/P)`}
+        else if (breed === 8 || breed === 18) {return `Breed: ${breed}(P/S)`}
+        else if (breed === 9 || breed === 19) {return `Breed: ${breed}(H/S)`}
+        else if (breed === 10 || breed === 20) {return `Breed: ${breed}(P/B)`}
+        else if (breed === 11 || breed === 21) {return `Breed: ${breed}(S/B)`}
+        else if (breed === 12 || breed === 22) {return `Breed: ${breed}(H/B)`}
+        else if (breed === 3 || breed === 13) {return `Breed: ${breed}(B/B)`}
+        else {return `Breed: Unknown`}
+    };
+
+    petBreedTooltip = (breed) => {
+        if (breed === 4 || breed === 14) {return 'P/P the pet has a boost to power. (+2)'}
+        else if (breed === 5 || breed === 15) {return 'S/S the pet has a boost to speed. (+2)'}
+        else if (breed === 6 || breed === 16) {return 'H/H the pet has a boost to health. (+2)'}
+        else if (breed === 7 || breed === 17) {return 'H/P the pet has a boost to health and power. (+0.9)'}
+        else if (breed === 8 || breed === 18) {return 'P/S the pet has a boost to power and speed. (+0.9)'}
+        else if (breed === 9 || breed === 19) {return 'H/S the pet has a boost to health and speed. (+0.9)'}
+        else if (breed === 10 || breed === 20) {return 'P/B the pet has a boost to all stats with a little more to power. (+0.4 & +0.9)'}
+        else if (breed === 11 || breed === 21) {return 'S/B the pet has a boost to all stats with a little more to speed. (+0.4 & +0.9)'}
+        else if (breed === 12 || breed === 22) {return 'H/B the pet has a boost to all stats with a little more to health. (+0.4 & +0.9)'}
+        else if (breed === 3 || breed === 13) {return 'B/B the pet has a slight boost to all stats evenly. (+0.5)'}
+        else {return 'This breed is unknown.'}
     };
 
     buildPets = (array) => {
@@ -139,14 +265,14 @@ class CharPets extends Component {
                     </a>
                     <div className="flex-column flex-between pet-stat-container">
                         <div className="flex-row flex-between pet-stat-row">
-                            <div className="pet-stats">{obj.slot < 4 ? `Slot ${obj.slot}` : 'Unequipped'}</div>
-                            <div className="flex-row  pet-stats" data-tip='Pet Family'>
+                            <div className="pet-stats" data-tip={this.petBreedTooltip(obj.stats.breedId)}>{this.petBreedInfo(obj.stats.breedId)}</div>
+                            <div className="flex-row" data-tip='Pet Family'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px'}} />
                                 <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
                                     <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px'}} />
                                 </a>
                             </div>
-                            <div className="flex-row pet-stats" data-tip='Strong Against'>
+                            <div className="flex-row" data-tip='Strong Against'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/strong.png`, backgroundSize: '20px'}} />
                                 {obj.strongAgainst.map(strong => {
                                     return <a href={`https://www.wowhead.com/${this.familyWowhead(strong)}`} key={strong} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
@@ -154,7 +280,7 @@ class CharPets extends Component {
                                     </a>
                                 })}
                             </div>
-                            <div className="flex-row pet-stats" data-tip='Weak Against'>
+                            <div className="flex-row" data-tip='Weak Against'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/weak.png`, backgroundSize: '20px'}} />
                                 {obj.weakAgainst.map(weak => {
                                     return <a href={`https://www.wowhead.com/${this.familyWowhead(weak)}`} key={weak} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
@@ -166,15 +292,15 @@ class CharPets extends Component {
                         </div>
                         <div className="flex-row flex-between pet-stat-row">
                             <div className="pet-stats">Level {obj.stats.level}</div>
-                            <div className="flex-row pet-stats" data-tip='Pet Health Points'>
+                            <div className="flex-row" data-tip='Pet Health Points'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '20px'}} />
                                 <div style={{width: '36px'}}>{obj.stats.health}</div>
                             </div>
-                            <div className="flex-row pet-stats" data-tip='Pet Power'>
+                            <div className="flex-row" data-tip='Pet Power'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '20px'}} />
                                 <div style={{width: '28px'}}>{obj.stats.power}</div>
                             </div>
-                            <div className="flex-row pet-stats" data-tip='Pet Speed'>
+                            <div className="flex-row" data-tip='Pet Speed'>
                                 <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '20px'}} />
                                 <div style={{width: '28px'}}>{obj.stats.speed}</div>
                             </div>
@@ -207,8 +333,22 @@ class CharPets extends Component {
                             bgColor={'#edba03'}
                             fontSize={'14px'}
                         />
-                        <ReactTooltip place='left'/>
-                        <CharPetsModal pet={this.state.petModalObj} petModalIsOpen={this.state.petModalIsOpen} petModalClose={this.petModalClose} loading={this.state.petSpeciesInfoLoading} familyWowhead={this.familyWowhead} />
+                        <ReactTooltip place='left' type='light'/>
+                        <CharPetsModal
+                            pet={this.state.petModalObj} 
+                            petModalIsOpen={this.state.petModalIsOpen} 
+                            petModalClose={this.petModalClose} 
+                            loading={this.state.petSpeciesInfoLoading} 
+                            familyWowhead={this.familyWowhead}
+                            petCalcSliderValue={this.state.petCalcSliderValue}
+                            handleSliderChange={this.handleSliderChange}
+                            petCalcQualityValue={this.state.petCalcQualityValue}
+                            handleQualityChange={this.handleQualityChange}
+                            petCalcBreedValue={this.state.petCalcBreedValue}
+                            handleBreedChange={this.handleBreedChange}
+                            petBreedInfo={this.petBreedInfo}
+                            petBreedTooltip={this.petBreedTooltip}
+                        />
                     </div>
                 }
             </div>

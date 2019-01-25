@@ -10,7 +10,7 @@
 }
 
 .pet-stats {
-    width: 78px;
+    width: 96px;
 }
 
 .pet-stat-container {
@@ -52,4 +52,60 @@
 .MuiTypography-title-50 {
     color: white !important;
     font-size: 1.75rem !important;
+}
+
+.quality-select-container, 
+.quality-select__control, 
+.quality-select__value-container, 
+.quality-select__indicators, 
+.quality-select__menu, 
+.quality-select__menu-list, 
+.quality-select__option {
+    background-color: #181818 !important;
+    z-index: 3 !important;
+}
+
+.quality-select__option:nth-child(1) {
+    color: #5C5C5C !important;
+}
+
+.quality-select__option:nth-child(2) {
+    color: white !important;
+}
+
+.quality-select__option:nth-child(3) {
+    color: #02ff4e !important;
+}
+
+.quality-select__option:nth-child(4) {
+    color: #0281ff !important;
+}
+
+.quality-select__option:nth-child(5) {
+    color: #c600ff !important;
+}
+
+.quality-select__option:nth-child(6) {
+    color: #ff8002 !important;
+}
+
+.quality-select__option:hover {
+    background-color: #3a3a3a !important;
+    cursor: pointer !important;
+}
+
+.breed-select-container, 
+.breed-select__control, 
+.breed-select__value-container, 
+.breed-select__indicators, 
+.breed-select__menu, 
+.breed-select__menu-list, 
+.breed-select__option {
+    background-color: #181818 !important;
+    z-index: 3 !important;
+}
+
+.breed-select__option:hover {
+    background-color: #3a3a3a !important;
+    cursor: pointer !important;
 }

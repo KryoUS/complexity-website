@@ -185,7 +185,7 @@ export default class CharacterList extends Component {
                     right: 0,
                     margin: 'auto'
                 }} />
-                <div style={{display: 'flex', justifyContent: 'space-between', height: '85%', zIndex: 2}}>
+                <div className="char-info-container">
                     {this.props.charsArray.length <= 0 ? 
                         <div style={{width: '33vw'}} />
                     :
@@ -220,7 +220,7 @@ export default class CharacterList extends Component {
                         </div>
                     }
                     {this.state.selectedCharName ? 
-                        <div className='selected-char' style={{fontSize: 30, marginTop: '60px', width: '33vw'}}>
+                        <div className='selected-char'>
                             <div className="selected-char-info">
                                 <div>
                                     <div style={{fontSize: 50}}>{this.state.selectedCharName}</div>
@@ -244,9 +244,9 @@ export default class CharacterList extends Component {
                         this.props.charsArray.length <= 0 ? 
                             <div className="loader" />
                         :
-                            <div className='selected-char pulse-color' style={{fontSize: 60, marginTop: '40vh', width: '33vw'}}>Select a Character...</div>
+                            <div className='selected-char pulse-color pulse-select'>Select a Character...</div>
                     }
-                    <div style={{marginTop: '60px', height: '80vh', width: '33vw'}}>
+                    <div className="char-info">
                         {this.state.selectedButton === 'Achievements' && <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Hunter Pets' && <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm}  />}
                         {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}

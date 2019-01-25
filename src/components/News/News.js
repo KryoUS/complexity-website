@@ -61,7 +61,7 @@ class News extends Component {
                     ?
                     this.state.news.map(news => (
                         <div className="news-card animate-bottom" key={news.id} style={{
-                            background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('${news.image.replace('http:', 'https:')}')`,
+                            background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('${news.image ? news.image.replace('http:', 'https:') : 'https://res.cloudinary.com/complexityguild/image/upload/v1535585277/wow/backgrounds/news_header.jpg'}')`,
                             width: '20%', 
                             minWidth: '384px',
                             height: '700px', 

@@ -338,6 +338,7 @@ module.exports = {
                         if (masterPetsObj.creatureId === petsObj.creatureId) {
                             response.data.pets.collected[petsIndex].family = masterPetsObj.family;
                             response.data.pets.collected[petsIndex].typeId = masterPetsObj.typeId;
+                            response.data.pets.collected[petsIndex].baseStats = masterPetsObj.stats;
                             response.data.pets.collected[petsIndex].strongAgainst = masterPetsObj.strongAgainst;
                             response.data.pets.collected[petsIndex].weakAgainst = masterPetsObj.weakAgainst;
                         }
