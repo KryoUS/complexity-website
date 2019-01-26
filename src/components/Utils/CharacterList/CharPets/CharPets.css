@@ -1,6 +1,24 @@
+.pet-sort-button {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+    background-color: #17171A;
+    /* border: solid 1px #000000; */
+    box-shadow: 5px 5px 8px #000000;
+    color: white;
+    width: 80px;
+    transition: background-color 0.75s, color 0.75s;
+}
+
+.pet-sort-button:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #17171A;
+}
+
 .pet-container {
     border: solid 1px #000000;
-    background-color: #181818;
+    background-color: #17171A;
     transition: border 0.75s;
 }
 
@@ -45,7 +63,7 @@
 }
 
 .MuiPaper-root-16  {
-    background-color: #181818 !important;
+    background-color: #17171A !important;
     color: white !important;
 }
 
@@ -62,6 +80,7 @@
 .quality-select__menu-list, 
 .quality-select__option {
     background-color: #080808 !important;
+    border-color: black !important;
     z-index: 3 !important;
 }
 
@@ -102,6 +121,7 @@
 .breed-select__menu-list, 
 .breed-select__option {
     background-color: #080808 !important;
+    border-color: black !important;
     z-index: 3 !important;
 }
 

@@ -70,84 +70,30 @@ class CharPetsModal extends React.Component {
     };
 
     breedHealth = (breed) => {
-        switch (breed) {
-            case 4 || 14:
-                return 0
-            case 5 || 15:
-                return 0
-            case 6 || 16:
-                return 20
-            case 7 || 17:
-                return 9
-            case 8 || 18:
-                return 0
-            case 9 || 19:
-                return 9
-            case 10 || 20:
-                return 4
-            case 11 || 21:
-                return 4
-            case 12 || 22:
-                return 9
-            case 3 || 13:
-                return 5
-            default:
-                return 0
-        }
+        if (breed === 4 || breed === 14 || breed === 5 || breed === 15 || breed === 8 || breed === 18) {return 0}
+        else if (breed === 6 || breed === 16) {return 20}
+        else if (breed === 7 || breed === 17 || breed === 9 || breed === 19 || breed === 12 || breed === 22) {return 9}
+        else if (breed === 10 | breed === 20 || breed === 11 || breed === 21) {return 4}
+        else if (breed === 3 || breed === 13) {return 5}
+        else {return 0}
     }
 
     breedPower = (breed) => {
-        switch (breed) {
-            case 4 || 14:
-                return 20
-            case 5 || 15:
-                return 0
-            case 6 || 16:
-                return 0
-            case 7 || 17:
-                return 9
-            case 8 || 18:
-                return 9
-            case 9 || 19:
-                return 0
-            case 10 || 20:
-                return 9
-            case 11 || 21:
-                return 4
-            case 12 || 22:
-                return 4
-            case 3 || 13:
-                return 5
-            default:
-                return 0
-        }
+        if (breed === 4 || breed === 14) {return 20}
+        else if (breed === 5 || breed === 15 || breed === 6 || breed === 16 || breed === 9 || breed === 19) {return 0}
+        else if (breed === 7 || breed === 17 || breed === 8 || breed === 18 || breed === 10 | breed === 20) {return 9}
+        else if (breed === 11 | breed === 21 || breed === 12 | breed === 22) {return 4}
+        else if (breed === 3 || breed === 13) {return 5}
+        else {return 0}
     }
 
     breedSpeed = (breed) => {
-        switch (breed) {
-            case 4 || 14:
-                return 0
-            case 5 || 15:
-                return 20
-            case 6 || 16:
-                return 0
-            case 7 || 17:
-                return 0
-            case 8 || 18:
-                return 9
-            case 9 || 19:
-                return 9
-            case 10 || 20:
-                return 4
-            case 11 || 21:
-                return 9
-            case 12 || 22:
-                return 4
-            case 3 || 13:
-                return 5
-            default:
-                return 0
-        }
+        if (breed === 4 || breed === 14 || breed === 6 || breed === 16 || breed === 7 || breed === 17) {return 0}
+        else if (breed === 5 || breed === 15) {return 20}
+        else if (breed === 8 || breed === 18 || breed === 9 || breed === 19 || breed === 11 | breed === 21) {return 9}
+        else if (breed === 10 | breed === 20 || breed === 12 | breed === 22) {return 4}
+        else if (breed === 3 || breed === 13) {return 5}
+        else {return 0}
     }
 
     //Get base values from current pet's stats.
@@ -175,6 +121,16 @@ class CharPetsModal extends React.Component {
     petCalcSpeed = () => {
         return Math.round((this.baseSpeed() + (this.breedSpeed(this.props.petCalcBreedValue.value) / 10)) * this.props.petCalcSliderValue * this.props.petCalcQualityValue.value);
     };
+
+    droppedPetQualityOptions = () => {
+        if (this.props.pet.stats.petQualityId === 0 ) {return [{ value: 1, label: 'Poor', color: '#5C5C5C' }]}
+        else if (this.props.pet.stats.petQualityId === 1 ) {return [{ value: 1.1, label: 'Common', color: 'white' }]}
+        else if (this.props.pet.stats.petQualityId === 2 ) {return [{ value: 1.2, label: 'Uncommon', color: '#02ff4e' }]}
+        else if (this.props.pet.stats.petQualityId === 3 ) {return [{ value: 1.3, label: 'Rare', color: '#0281ff' }]}
+        else if (this.props.pet.stats.petQualityId === 4 ) {return [{ value: 1.4, label: 'Epic', color: '#c600ff' }]}
+        else if (this.props.pet.stats.petQualityId === 5 ) {return [{ value: 1.5, label: 'Legendary', color: '#ff8002' }]}
+        else {return {value: 0, label: 'Unknown', color: '#ffffff'} }
+    }
 
     render() {
 
@@ -263,13 +219,12 @@ class CharPetsModal extends React.Component {
                                                         className="quality-select-container"
                                                         classNamePrefix="quality-select"
                                                         value={this.props.petCalcQualityValue}
-                                                        options={qualityOptions} 
+                                                        options={this.props.pet.stats.speciesInfo.source.includes('Drop') ? this.droppedPetQualityOptions() : qualityOptions} 
                                                         onChange={this.props.handleQualityChange}
                                                         menuPlacement="top"
                                                         styles={{
                                                             singleValue: (provided, state) => {
                                                                 const color = state.data.color;
-                                                                console.log(state)
                                                                 return { ...provided, color };
                                                             }
                                                         }}

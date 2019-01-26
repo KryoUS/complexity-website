@@ -5,7 +5,33 @@ import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 import ProgressBar from '../../ProgressBar';
 import CharPetsModal from './CharPetsModal';
+import Select from 'react-select';
 import './CharPets.css';
+
+const sortOptions = [
+    { value: 1, label: 'Name (A to Z)' },
+    { value: 2, label: 'Name (Z to A)' },
+    { value: 3, label: 'is Favorite' },
+    { value: 4, label: 'is not Favorite' },
+    { value: 5, label: 'Breed (Asc)' },
+    { value: 6, label: 'Breed (Desc)' },
+    { value: 7, label: 'Health (Asc)' },
+    { value: 8, label: 'Health (Desc)' },
+    { value: 9, label: 'Power (Asc)' },
+    { value: 10, label: 'Power (Desc)' },
+    { value: 11, label: 'Speed (Asc)' },
+    { value: 12, label: 'Speed (Desc)' },
+    { value: 13, label: 'Level (Asc)' },
+    { value: 14, label: 'Level (Desc)' },
+    { value: 15, label: 'Can Battle' },
+    { value: 16, label: 'Cannot Battle' },
+    { value: 17, label: 'Family (A to Z)' },
+    { value: 18, label: 'Family (Z to A)' },
+    { value: 19, label: 'Strong Against (A to Z)' },
+    { value: 20, label: 'Strong Against (Z to A)' },
+    { value: 21, label: 'Weak Against (A to Z)' },
+    { value: 22, label: 'Weak Against (Z to A)' },
+]
 
 class CharPets extends Component {
     constructor() {
@@ -23,6 +49,10 @@ class CharPets extends Component {
             petModalObj: {},
             petSpeciesInfoLoading: true,
             petCalcSliderValue: 0,
+            petSortValue: {
+                label: 'Sort by',
+                value: 0,
+            },
             petCalcQualityValue: {
                 label: 'Poor',
                 value: 1,
@@ -48,9 +78,9 @@ class CharPets extends Component {
                       }).sort((x, y) => {
                         return y.isFavorite - x.isFavorite
                     }), 
-                    numCollected: res.data.pets.numCollected, 
-                    numNotCollected: res.data.pets.numNotCollected
                 },
+                numCollected: res.data.pets.numCollected, 
+                numNotCollected: res.data.pets.numNotCollected
             });
 
             this.refs.iScroll.addEventListener("scroll", () => {
@@ -110,30 +140,17 @@ class CharPets extends Component {
     };
 
     setDefaultBreedLabel = (x) => {
-        switch (x) {
-            case 4 || 14:
-                return '4/14 (P/P)'
-            case 5 || 15:
-                return '5/15 (S/S)'
-            case 6 || 16:
-                return '6/16 (H/H'
-            case 7 || 17:
-                return '7/17 (H/P)'
-            case 8 || 18:
-                return '8/18 (P/S)'
-            case 9 || 19:
-                return '9/19 (H/S)'
-            case 10 || 20:
-                return '10/20 (P/B)'
-            case 11 || 21:
-                return '11/21 (S/B)'
-            case 12 || 22:
-                return '12/22 (H/B)'
-            case 3 || 13:
-                return '3/13 (B/B)'
-            default:
-                return null
-        }
+            if ( x === 4 || x ===14) {return '4/14 (P/P)'}
+            else if ( x === 5 || x ===15) {return '5/15 (S/S)'}
+            else if ( x === 6 || x ===16) {return '6/16 (H/H'}
+            else if ( x === 7 || x ===17) {return '7/17 (H/P)'}
+            else if ( x === 8 || x ===18) {return '8/18 (P/S)'}
+            else if ( x === 9 || x ===19) {return '9/19 (H/S)'}
+            else if ( x === 10 || x === 20) {return '10/20 (P/B)'}
+            else if ( x === 11 || x === 21) {return '11/21 (S/B)'}
+            else if ( x === 12 || x === 22) {return '12/22 (H/B)'}
+            else if ( x === 3 || x ===13) {return '3/13 (B/B)'}
+            else {return 'Unknown'}
     };
 
     searchData = (e) => {
@@ -204,7 +221,6 @@ class CharPets extends Component {
                         value: obj.stats.breedId,
                     },
                 });
-                console.log('Pet Species Info: ', obj)
             }).catch(error => {
                 console.log('WoW Pet Species API Error', error);
             });
@@ -311,13 +327,353 @@ class CharPets extends Component {
         });
     };
 
+    sortPetsBy = (x) => {
+        if (x.value === 1) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var x = a.name.toLowerCase();
+                        var y = b.name.toLowerCase();
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 2) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var y = a.name.toLowerCase();
+                        var x = b.name.toLowerCase();
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 3) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((x, y) => {
+                        return y.isFavorite - x.isFavorite
+                    }), 
+                },
+            });
+        } else if (x.value === 4) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((x, y) => {
+                        return x.isFavorite - y.isFavorite
+                    }), 
+                },
+            });
+        } else if (x.value === 5) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        let aBreed = a.stats.breedId;
+                        let bBreed = b.stats.breedId;
+                        if (aBreed > 12) {aBreed = aBreed - 10;}
+                        if (bBreed > 12) {bBreed = bBreed - 10;}
+                        return aBreed - bBreed;
+                    })
+                }
+            })
+        } else if (x.value === 6) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        let aBreed = a.stats.breedId;
+                        let bBreed = b.stats.breedId;
+                        if (aBreed > 12) {aBreed = aBreed - 10;}
+                        if (bBreed > 12) {bBreed = bBreed - 10;}
+                        return bBreed - aBreed;
+                    })
+                }
+            })
+        } else if (x.value === 7) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return a.stats.health - b.stats.health;
+                    }), 
+                },
+            });
+        } else if (x.value === 8) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return b.stats.health - a.stats.health;
+                    }), 
+                },
+            });
+        } else if (x.value === 9) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return a.stats.power - b.stats.power;
+                    }), 
+                },
+            });
+        } else if (x.value === 10) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return b.stats.power - a.stats.power;
+                    }), 
+                },
+            });
+        } else if (x.value === 11) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return a.stats.speed - b.stats.speed;
+                    }), 
+                },
+            });
+        } else if (x.value === 12) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return b.stats.speed - a.stats.speed;
+                    }), 
+                },
+            });
+        } else if (x.value === 13) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return a.stats.level - b.stats.level;
+                    }), 
+                },
+            });
+        } else if (x.value === 14) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        return b.stats.level - a.stats.level;
+                    }), 
+                },
+            });
+        } else if (x.value === 15) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((x, y) => {
+                        return y.canBattle - x.canBattle
+                    }), 
+                },
+            });
+        } else if (x.value === 16) {
+            this.setState({
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                },
+                character: {
+                    pets: this.state.character.pets.sort((x, y) => {
+                        return x.canBattle - y.canBattle
+                    }), 
+                },
+            });
+        } else if (x.value === 17) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var x = a.family.toLowerCase();
+                        var y = b.family.toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 18) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var y = a.family.toLowerCase();
+                        var x = b.family.toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 19) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var x = a.strongAgainst[0].toLowerCase();
+                        var y = b.strongAgainst[0].toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 20) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var y = a.strongAgainst[0].toLowerCase();
+                        var x = b.strongAgainst[0].toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 21) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var x = a.weakAgainst[0].toLowerCase();
+                        var y = b.weakAgainst[0].toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else if (x.value === 22) { 
+            this.setState( { 
+                petSortValue: { 
+                    label: x.label, 
+                    value: x.value
+                }, 
+                character: {
+                    pets: this.state.character.pets.sort((a, b) => {
+                        var y = a.weakAgainst[0].toLowerCase();
+                        var x = b.weakAgainst[0].toLowerCase();
+                        if (x === 'water') {x = 'aquatic'}
+                        if (y === 'water') {y = 'aquatic'}
+                        if (x < y) {return -1;}
+                        if (x > y) {return 1;}
+                        return 0;
+                    }),
+                },
+            } ) 
+        } else {
+            //Error here?
+        }
+    };
+
     render () {
         return (
             <div>
                 {this.state.character.pets.length === 0 && <div className="loader" style={{left: '85vw'}} />}
                 {this.state.character.pets.length > 0 && 
                     <div className="animate-right" style={{width: '100%'}}>
-                        <input type="text" className="input" placeholder="Search for a pet by name..." onChange={this.searchData} />
+                        <div className="flex-row flex-between" style={{alignItems: 'center'}}>
+                            <input type="text" className="input" placeholder="Search for a pet by name..." onChange={this.searchData}/>
+                            <div style={{width: '300px'}}>
+                                <Select 
+                                    className="breed-select-container"
+                                    classNamePrefix="breed-select"
+                                    value={this.state.petSortValue}
+                                    options={sortOptions} 
+                                    onChange={(x) => this.sortPetsBy(x)}
+                                    menuPlacement="top"
+                                    styles={{
+                                        singleValue: (provided, state) => {
+                                            const color = 'white';
+                                            return { ...provided, color };
+                                        }
+                                    }}
+                                />
+                            </div>
+                        </div>
                         <div className="char-info-overflow" style={{height: '70vh', width: '100%'}} ref="iScroll">
                         {this.state.filteredPets.length > 0 ?
                             this.buildPets(this.state.filteredPets)
@@ -327,8 +683,8 @@ class CharPets extends Component {
                         </div>
                         <div style={{textAlign: 'center'}}>Pets Collected</div>
                         <ProgressBar 
-                            current={this.state.character.numCollected} 
-                            remaining={this.state.character.numNotCollected}
+                            current={this.state.numCollected} 
+                            remaining={this.state.numNotCollected}
                             height={'18px'}
                             bgColor={'#edba03'}
                             fontSize={'14px'}
