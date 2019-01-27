@@ -62,14 +62,16 @@
     font-size: .80rem;
 }
 
-.MuiPaper-root-16  {
-    background-color: #17171A !important;
-    color: white !important;
+.pet-modal-button {
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    background-color: #25262A;
+    align-items: center;
 }
 
-.MuiTypography-title-50 {
-    color: white !important;
-    font-size: 1.75rem !important;
+.pet-modal-button:hover {
+    cursor: pointer;
 }
 
 .quality-select-container, 

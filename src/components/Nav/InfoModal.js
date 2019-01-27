@@ -23,6 +23,7 @@ class InfoModal extends React.Component {
         return (
             <div>
                 <Dialog
+                    id="site-error-modal"
                     open={this.props.modalOpen}
                     TransitionComponent={Transition}
                     keepMounted
@@ -31,7 +32,7 @@ class InfoModal extends React.Component {
                     aria-describedby="alert-dialog-slide-description"
                 >
                     <DialogTitle id="alert-dialog-slide-title">
-                    {this.props.modalTitle}
+                        {this.props.modalTitle}
                     </DialogTitle>
                     <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">

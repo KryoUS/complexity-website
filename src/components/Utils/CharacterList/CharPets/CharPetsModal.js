@@ -14,13 +14,13 @@ function Transition(props) {
 }
 
 const qualityOptions = [
-    { value: 1, label: 'Poor', color: '#5C5C5C' },
-    { value: 1.1, label: 'Common', color: 'white' },
-    { value: 1.2, label: 'Uncommon', color: '#02ff4e' },
-    { value: 1.3, label: 'Rare', color: '#0281ff' },
+    { value: 0, label: 'Poor', color: '#5C5C5C' },
+    { value: 1, label: 'Common', color: 'white' },
+    { value: 2, label: 'Uncommon', color: '#02ff4e' },
+    { value: 3, label: 'Rare', color: '#0281ff' },
     // At present, Epic and Legendary pets do not exist for players
-    // { value: 1.4, label: 'Epic', color: '#c600ff' },
-    // { value: 1.5, label: 'Legendary', color: '#ff8002' },
+    // { value: 4, label: 'Epic', color: '#c600ff' },
+    // { value: 5, label: 'Legendary', color: '#ff8002' },
 ]
 
 const breedOptions = [
@@ -69,66 +69,13 @@ class CharPetsModal extends React.Component {
         });
     };
 
-    breedHealth = (breed) => {
-        if (breed === 4 || breed === 14 || breed === 5 || breed === 15 || breed === 8 || breed === 18) {return 0}
-        else if (breed === 6 || breed === 16) {return 20}
-        else if (breed === 7 || breed === 17 || breed === 9 || breed === 19 || breed === 12 || breed === 22) {return 9}
-        else if (breed === 10 | breed === 20 || breed === 11 || breed === 21) {return 4}
-        else if (breed === 3 || breed === 13) {return 5}
-        else {return 0}
-    }
-
-    breedPower = (breed) => {
-        if (breed === 4 || breed === 14) {return 20}
-        else if (breed === 5 || breed === 15 || breed === 6 || breed === 16 || breed === 9 || breed === 19) {return 0}
-        else if (breed === 7 || breed === 17 || breed === 8 || breed === 18 || breed === 10 | breed === 20) {return 9}
-        else if (breed === 11 | breed === 21 || breed === 12 | breed === 22) {return 4}
-        else if (breed === 3 || breed === 13) {return 5}
-        else {return 0}
-    }
-
-    breedSpeed = (breed) => {
-        if (breed === 4 || breed === 14 || breed === 6 || breed === 16 || breed === 7 || breed === 17) {return 0}
-        else if (breed === 5 || breed === 15) {return 20}
-        else if (breed === 8 || breed === 18 || breed === 9 || breed === 19 || breed === 11 | breed === 21) {return 9}
-        else if (breed === 10 | breed === 20 || breed === 12 | breed === 22) {return 4}
-        else if (breed === 3 || breed === 13) {return 5}
-        else {return 0}
-    }
-
-    //Get base values from current pet's stats.
-    baseHealth = () => {
-        return Math.round((((( (this.props.pet.stats.health-100) / ((this.props.pet.stats.petQualityId/10)+1) )/25)/5) - (this.breedHealth(this.props.pet.stats.breedId) / 10)) * 1000) / 1000;
-    };
-
-    basePower = () => {
-        return Math.round((((this.props.pet.stats.power / ((this.props.pet.stats.petQualityId / 10) + 1)) / this.props.pet.stats.level) - (this.breedPower(this.props.pet.stats.breedId) / 10)) * 1000) / 1000;
-    };
-
-    baseSpeed = () => {
-        return Math.round((((this.props.pet.stats.speed / ((this.props.pet.stats.petQualityId / 10) + 1)) / this.props.pet.stats.level) - (this.breedSpeed(this.props.pet.stats.breedId) / 10)) * 1000) / 1000;
-    };
-
-    //Calculated values from the base value
-    petCalcHealth = () => {
-        return Math.round(((this.baseHealth() + (this.breedHealth(this.props.petCalcBreedValue.value) / 10)) * 5 * this.props.petCalcSliderValue * this.props.petCalcQualityValue.value) + 100);
-    };
-
-    petCalcPower = () => {
-        return Math.round((this.basePower() + (this.breedPower(this.props.petCalcBreedValue.value) / 10)) * this.props.petCalcSliderValue * this.props.petCalcQualityValue.value);
-    };
-
-    petCalcSpeed = () => {
-        return Math.round((this.baseSpeed() + (this.breedSpeed(this.props.petCalcBreedValue.value) / 10)) * this.props.petCalcSliderValue * this.props.petCalcQualityValue.value);
-    };
-
     droppedPetQualityOptions = () => {
-        if (this.props.pet.stats.petQualityId === 0 ) {return [{ value: 1, label: 'Poor', color: '#5C5C5C' }]}
-        else if (this.props.pet.stats.petQualityId === 1 ) {return [{ value: 1.1, label: 'Common', color: 'white' }]}
-        else if (this.props.pet.stats.petQualityId === 2 ) {return [{ value: 1.2, label: 'Uncommon', color: '#02ff4e' }]}
-        else if (this.props.pet.stats.petQualityId === 3 ) {return [{ value: 1.3, label: 'Rare', color: '#0281ff' }]}
-        else if (this.props.pet.stats.petQualityId === 4 ) {return [{ value: 1.4, label: 'Epic', color: '#c600ff' }]}
-        else if (this.props.pet.stats.petQualityId === 5 ) {return [{ value: 1.5, label: 'Legendary', color: '#ff8002' }]}
+        if (this.props.pet.stats.petQualityId === 0 ) {return [{ value: 0, label: 'Poor', color: '#5C5C5C' }]}
+        else if (this.props.pet.stats.petQualityId === 1 ) {return [{ value: 1, label: 'Common', color: 'white' }]}
+        else if (this.props.pet.stats.petQualityId === 2 ) {return [{ value: 2, label: 'Uncommon', color: '#02ff4e' }]}
+        else if (this.props.pet.stats.petQualityId === 3 ) {return [{ value: 3, label: 'Rare', color: '#0281ff' }]}
+        else if (this.props.pet.stats.petQualityId === 4 ) {return [{ value: 4, label: 'Epic', color: '#c600ff' }]}
+        else if (this.props.pet.stats.petQualityId === 5 ) {return [{ value: 5, label: 'Legendary', color: '#ff8002' }]}
         else {return {value: 0, label: 'Unknown', color: '#ffffff'} }
     }
 
@@ -212,8 +159,8 @@ class CharPetsModal extends React.Component {
                                                 </div>
                                             </div>
                                             <div className="pet-stat-modal-row pet-modal-subtitle">Battle Pet Calculator</div>
-                                            <div className="flex-row flex-between">
-                                                <div className="pet-stat-modal-row">Level: {this.props.petCalcSliderValue}</div>
+                                            <div className="flex-row flex-between" style={{alignItems: 'center'}}>
+                                                <div className="pet-stat-modal-row" style={{width: '82px'}}>Level: {this.props.petCalcSliderValue}</div>
                                                 <div style={{width: '150px'}}>
                                                     <Select 
                                                         className="quality-select-container"
@@ -230,20 +177,43 @@ class CharPetsModal extends React.Component {
                                                         }}
                                                     />
                                                 </div>
-                                                <div style={{width: '150px'}}>
-                                                    <Select 
-                                                        className="breed-select-container"
-                                                        classNamePrefix="breed-select"
-                                                        value={this.props.petCalcBreedValue}
-                                                        options={breedOptions} 
-                                                        onChange={this.props.handleBreedChange}
-                                                        menuPlacement="top"
-                                                        styles={{
-                                                            singleValue: (provided, state) => {
-                                                                const color = 'white';
-                                                                return { ...provided, color };
-                                                            }
-                                                        }}
+                                                <div className="flex-row flex-between" style={{width: '180px', alignItems: 'center'}}>
+                                                    <div style={{width: '150px'}} >
+                                                        <Select 
+                                                            className="breed-select-container"
+                                                            classNamePrefix="breed-select"
+                                                            value={this.props.petCalcBreedValue}
+                                                            options={breedOptions} 
+                                                            onChange={this.props.handleBreedChange}
+                                                            menuPlacement="top"
+                                                            styles={{
+                                                                singleValue: (provided, state) => {
+                                                                    const color = 'white';
+                                                                    return { ...provided, color };
+                                                                }
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div 
+                                                        className ="icon25" 
+                                                        style={{
+                                                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1548543257/site/icons/pets/questionmark.png)`, 
+                                                            backgroundSize: '25px'
+                                                        }} 
+                                                        data-multiline={true}
+                                                        data-tip='
+                                                            Please note that not all breeds are a possible option for pets.<br/><br/>
+                                                            P/P the pet has a boost to base power. (+2)<br/>
+                                                            S/S the pet has a boost to base speed. (+2)<br/>
+                                                            H/H the pet has a boost to base health. (+2)<br/>
+                                                            H/P the pet has a boost to base health and power. (+0.9)<br/>
+                                                            P/S the pet has a boost to base power and speed. (+0.9)<br/>
+                                                            H/S the pet has a boost to base health and speed. (+0.9)<br/>
+                                                            P/B the pet has a boost to all base stats with a little more to power. (+0.4 & +0.9)<br/>
+                                                            S/B the pet has a boost to all base stats with a little more to speed. (+0.4 & +0.9)<br/>
+                                                            H/B the pet has a boost to all base stats with a little more to health. (+0.4 & +0.9)<br/>
+                                                            B/B the pet has a slight boost to all base stats evenly. (+0.5)
+                                                        '
                                                     />
                                                 </div>
                                             </div>
@@ -259,16 +229,19 @@ class CharPetsModal extends React.Component {
                                             <div className="flex-row flex-between pet-stat-modal-row">
                                                 <div className="flex-row pet-stats" data-tip='Pet Health Points'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '40px'}} />
-                                                    <div style={{width: '36px'}}>{this.petCalcHealth()}</div>
+                                                    <div className="fade1s" style={{width: '36px'}}>{!this.props.petCalcLoading && this.props.petCalcHealth}</div>
                                                 </div>
                                                 <div className="flex-row pet-stats" data-tip='Pet Power'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '40px'}} />
-                                                    <div style={{width: '28px'}}>{this.petCalcPower()}</div>
+                                                    <div className="fade1s" style={{width: '28px'}}>{!this.props.petCalcLoading && this.props.petCalcPower}</div>
                                                 </div>
                                                 <div className="flex-row pet-stats" data-tip='Pet Speed'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '40px'}} />
-                                                    <div style={{width: '28px'}}>{this.petCalcSpeed()}</div>
+                                                    <div className="fade1s" style={{width: '28px'}}>{!this.props.petCalcLoading && this.props.petCalcSpeed}</div>
                                                 </div>
+                                            </div>
+                                            <div className="flex-row flex-center" style={{position: 'relative'}} >
+                                                <div className="flex-row flex-center pet-modal-button" onClick={this.props.getPetCalcInfo} >Calculate</div>
                                             </div>
                                         </div>
                                     :

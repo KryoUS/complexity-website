@@ -463,7 +463,7 @@ module.exports = {
     },
 
     getPetsStats: (req, res) => {
-        axios.get(`https://us.api.blizzard.com/wow/pet/stats/${req.params.speciesID}?level=${req.params.level}&breedId=${req.params.breedID}&qualityId=${req.params.qualityID}&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+        axios.get(`https://us.api.blizzard.com/wow/pet/stats/${req.params.speciesId}?level=${req.params.level}&breedId=${req.params.breedId}&qualityId=${req.params.qualityId}&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Pets Stats Error: ', error);

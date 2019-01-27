@@ -49,6 +49,10 @@ class CharPets extends Component {
             petModalObj: {},
             petSpeciesInfoLoading: true,
             petCalcSliderValue: 0,
+            petCalcHealth: 0,
+            petCalcPower: 0,
+            petCalcSpeed: 0,
+            petCalcLoading: false,
             petSortValue: {
                 label: 'Sort by',
                 value: 0,
@@ -212,15 +216,19 @@ class CharPets extends Component {
                     petSpeciesInfoLoading: false, 
                     petCalcQualityValue: {
                         label: this.setDefaultQualityLabel(obj.stats.petQualityId),
-                        value: 1 + (obj.stats.petQualityId / 10),
+                        value: obj.stats.petQualityId,
                         color: this.setDefaultQualityColor(obj.stats.petQualityId),
                     }, 
                     petCalcSliderValue: obj.stats.level,
+                    petCalcHealth: obj.stats.health,
+                    petCalcPower: obj.stats.power,
+                    petCalcSpeed: obj.stats.speed,
                     petCalcBreedValue: {
                         label: this.setDefaultBreedLabel(obj.stats.breedId),
                         value: obj.stats.breedId,
                     },
                 });
+                console.log('petModalObj', this.state.petModalObj);
             }).catch(error => {
                 console.log('WoW Pet Species API Error', error);
             });
@@ -241,6 +249,21 @@ class CharPets extends Component {
 
     handleBreedChange = (selectedOption) => {
         this.setState({ petCalcBreedValue: selectedOption });
+    };
+
+    getPetCalcInfo = () => {
+        if (this.state.petCalcBreedValue.value === this.state.petModalObj.stats.breedId 
+            && this.state.petCalcSliderValue === this.state.petModalObj.stats.level 
+            && this.state.petCalcQualityValue.value === this.state.petModalObj.stats.petQualityId) {
+                this.props.infoModal(true, 'Oops!', "The Battle Pet Calculator values match the pet's values. Change a value and try again.", 'OK');
+        } else {
+            this.setState({ petCalcLoading: true })
+            axios.get(`/api/wow/pet/stats/${this.state.petModalObj.stats.speciesId}&${this.state.petCalcSliderValue}&${this.state.petCalcBreedValue.value}&${this.state.petCalcQualityValue.value}`).then(res => {
+                this.setState({ petCalcHealth: res.data.health, petCalcPower: res.data.power, petCalcSpeed: res.data.speed, petCalcLoading: false });
+            }).catch(error => {
+                console.log(error);
+            });
+        }
     };
 
     petBreedInfo = (breed) => {
@@ -704,6 +727,11 @@ class CharPets extends Component {
                             handleBreedChange={this.handleBreedChange}
                             petBreedInfo={this.petBreedInfo}
                             petBreedTooltip={this.petBreedTooltip}
+                            getPetCalcInfo={this.getPetCalcInfo}
+                            petCalcHealth={this.state.petCalcHealth}
+                            petCalcPower={this.state.petCalcPower}
+                            petCalcSpeed={this.state.petCalcSpeed}
+                            petCalcLoading={this.state.petCalcLoading}
                         />
                     </div>
                 }

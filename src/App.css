@@ -146,14 +146,31 @@ body::-webkit-scrollbar {
   box-shadow: 5px 5px 8px #000000;
 }
 
+.MuiPaper-root-16  {
+  background-color: #17171A !important;
+  color: white !important;
+}
+
+.MuiTypography-title-50 {
+  color: white !important;
+  font-size: 1.75rem !important;
+}
+
+.MuiTypography-subheading-51 {
+  color: white !important;
+  font-size: 1rem !important;
+}
+
+#site-error-modal {
+  z-index: 1400 !important;
+}
+
 /* Loading Animation */
 .loader {
   position: absolute;
   left: 50%;
   top: 50%;
   z-index: 1;
-  width: 150px;
-  height: 150px;
   margin: -75px 0 0 -75px;
   border: 16px solid #f3f3f3;
   border-radius: 50%;
