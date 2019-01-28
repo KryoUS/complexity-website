@@ -259,15 +259,23 @@ export default class CharacterList extends Component {
                     <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
                         {buttonArray.map(button => {
                             return this.state.selectedButton === button ?
-                                <div className='button-selected animate-bottom' key={button}>{button}</div>
+                                <div className='button-border animate-bottom' id='button-selected' key={button}>
+                                    <div className='button-text'>{button}</div>
+                                </div>
                             :
                                 button === 'Hunter Pets' ? 
                                     this.state.selectedCharClass === 'Hunter' ? 
-                                        <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>{button}</div>
+                                        <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
+                                            <div className='button-text'>{button}</div>
+                                        </div>
                                     :
-                                        <div className='button-non-hunter animate-bottom' key={button} >{button}</div>
+                                        <div className='button-border animate-bottom' id='non-hunter' key={button} >
+                                            <div className='button-text'>{button}</div>
+                                        </div>
                                 :
-                                    <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>{button}</div>
+                                    <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
+                                        <div className='button-text'>{button}</div>
+                                    </div>
                         })}
                     </div>
                 }

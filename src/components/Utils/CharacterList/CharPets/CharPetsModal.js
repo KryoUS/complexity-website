@@ -227,21 +227,23 @@ class CharPetsModal extends React.Component {
                                                 />
                                             </div>
                                             <div className="flex-row flex-between pet-stat-modal-row">
-                                                <div className="flex-row pet-stats" data-tip='Pet Health Points'>
+                                                <div className="flex-row pet-stats" data-tip='Pet Health Points' data-place='right'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '40px'}} />
-                                                    <div className="fade1s" style={{width: '36px'}}>{!this.props.petCalcLoading && this.props.petCalcHealth}</div>
+                                                    <div className ="pet-stats-value">{this.props.petCalcLoading ? '' : this.props.petCalcPower}</div>
                                                 </div>
                                                 <div className="flex-row pet-stats" data-tip='Pet Power'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '40px'}} />
-                                                    <div className="fade1s" style={{width: '28px'}}>{!this.props.petCalcLoading && this.props.petCalcPower}</div>
+                                                    <div className ="pet-stats-value">{this.props.petCalcLoading ? '' : this.props.petCalcPower}</div>
                                                 </div>
                                                 <div className="flex-row pet-stats" data-tip='Pet Speed'>
                                                     <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '40px'}} />
-                                                    <div className="fade1s" style={{width: '28px'}}>{!this.props.petCalcLoading && this.props.petCalcSpeed}</div>
+                                                    <div className ="pet-stats-value">{this.props.petCalcLoading ? '' : this.props.petCalcSpeed}</div>
                                                 </div>
                                             </div>
-                                            <div className="flex-row flex-center" style={{position: 'relative'}} >
-                                                <div className="flex-row flex-center pet-modal-button" onClick={this.props.getPetCalcInfo} >Calculate</div>
+                                            <div className="flex-row flex-center">
+                                                <div className='button-border' onClick={this.props.getPetCalcInfo}>
+                                                    <div className='button-text'>Calculate</div>
+                                                </div>
                                             </div>
                                         </div>
                                     :

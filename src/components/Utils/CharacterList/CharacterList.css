@@ -73,51 +73,10 @@
     width: 33vw;
 }
 
-.button-border {
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    background-color: #160e37;
-    border: 1px solid white;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 5px 8px #000000;
-}
-
-.button-border:hover {
-    background-color: white;
-    color: #160e37;
-    cursor: pointer;
-}
-
-.button-selected {
-    background-color: white;
-    color: #160e37;
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    border: 1px solid white;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 5px 8px #000000;
-}
-
-.button-non-hunter {
-    margin: 5px;
-    width: 150px;
-    height: 40px;
-    background-color: #160e3781;
-    border: 1px solid #ffffff81;
-    color: #ffffff81;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 5px 8px #00000083;
+#non-hunter {
+    opacity: 0.25;
+    border-color: transparent;
+    cursor: not-allowed;
 }
 
 .progress-bar-container {
@@ -134,13 +93,13 @@
 
 .collected {
     border: solid 1px #000000;
-    background-color: #181818;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgba(17, 11, 41, 0));
 }
 
 .not-collected {
     opacity: 0.50;
     border: solid 1px transparent;
-    background-color: #181818;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgba(17, 11, 41, 0));
 }
 
 .row-name {

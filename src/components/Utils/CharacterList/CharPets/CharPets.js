@@ -680,10 +680,10 @@ class CharPets extends Component {
                     <div className="animate-right" style={{width: '100%'}}>
                         <div className="flex-row flex-between" style={{alignItems: 'center'}}>
                             <input type="text" className="input" placeholder="Search for a pet by name..." onChange={this.searchData}/>
-                            <div style={{width: '300px'}}>
+                            <div style={{width: '340px'}}>
                                 <Select 
-                                    className="breed-select-container"
-                                    classNamePrefix="breed-select"
+                                    className="sort-select-container"
+                                    classNamePrefix="sort-select"
                                     value={this.state.petSortValue}
                                     options={sortOptions} 
                                     onChange={(x) => this.sortPetsBy(x)}

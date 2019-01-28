@@ -18,7 +18,7 @@
 
 .pet-container {
     border: solid 1px #000000;
-    background-color: #17171A;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgba(17, 11, 41, 0));
     transition: border 0.75s;
 }
 
@@ -29,6 +29,10 @@
 
 .pet-stats {
     width: 96px;
+}
+
+.pet-stats-value {
+    width: 36px;
 }
 
 .pet-stat-container {
@@ -129,5 +133,23 @@
 
 .breed-select__option:hover {
     background-color: #3a3a3a !important;
+    cursor: pointer !important;
+}
+
+.sort-select-container, 
+.sort-select__control, 
+.sort-select__value-container, 
+.sort-select__indicators, 
+.sort-select__menu, 
+.sort-select__menu-list, 
+.sort-select__option {
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77)) !important;
+    border: solid 1px #000000 !important;
+    z-index: 3 !important;
+    transition: border-color 0.5s ease 0s !important;
+}
+
+.sort-select__option:hover {
+    border-color: rgb(146, 91, 234) !important;
     cursor: pointer !important;
 }
