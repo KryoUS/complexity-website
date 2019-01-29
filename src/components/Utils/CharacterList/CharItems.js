@@ -82,7 +82,7 @@ class CharItems extends Component {
                     <div className="loader" style={{left: '85vw'}} />
                 :
                     <div className="animate-right" style={{width: '95%'}}>
-                        <div className="char-info-overflow" style={{height: '80vh', width: '100%'}}>
+                        <div className="char-info-overflow" style={{height: '80vh', width: '100%', overflow: 'hidden'}}>
                             {this.state.items.head && this.buildItems(this.state.items.head)}
                             {this.state.items.neck && this.buildItems(this.state.items.neck)}
                             {this.state.items.shoulder && this.buildItems(this.state.items.shoulder)}

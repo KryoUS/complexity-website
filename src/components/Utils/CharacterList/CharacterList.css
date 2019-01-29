@@ -1,3 +1,20 @@
+.char-background {
+    max-width: 1660px;
+    height: 100vh;
+    background-position: center -140px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.char-info-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 60px;
+}
+
 .armorycharimage {
 	margin: 5px;
     height: 100px;
@@ -16,33 +33,27 @@
     margin-left: 10px;
 }
 
-.char-info-container {
-    display: flex;
-    justify-content: space-between;
-    height: 85%;
-    z-index: 2;
-}
-
 .char-info-overflow {
     height: 80vh;
     width: 33vw;
     overflow: scroll;
     overflow-X: hidden;
     overflow-Y: scroll;
+    z-index: 1;
 }
 
 .char-info {
-    margin-top: 60px;
-    height: 80vh;
+    height: 100%;
     width: 33vw;
+    z-index: 1;
 }
 
 .selected-char {
     text-align: center;
     text-shadow: 2px 2px 3px #000000;
     font-size: 1.75rem;
-    margin-top: 60px;
     width: 33vw;
+    z-index: 1;
 }
 
 .selected-char-info {
@@ -57,12 +68,6 @@
     cursor: pointer;
 }
 
-.image-mask {
-    z-index: -1;
-    mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
-}
-
 .selected-category-container {
     width: 95%;
 }
@@ -71,6 +76,10 @@
     font-size: 2rem;
     margin-top: 40vh;
     width: 33vw;
+}
+
+.char-button-container {
+    z-index: 1;
 }
 
 #non-hunter {
@@ -112,29 +121,35 @@
 }
 
 @media (max-width: 600px) {
+
+    .char-div {
+        height: auto;
+    }
+
     .char-info-container {
         flex-direction: column;
-        /* height: 100vh; */
+        width: 100vw;
+        height: auto;
     }
 
     .char-info-overflow {
-        height: 33vh;
+        height: 20vh;
         width: 100vw;
     }
 
     .selected-char {
-        margin-top: 0;
         width: 100vw;
     }
 
     .pulse-select {
-        margin-top: 0;
         width: 100vw;
     }
 
     .char-info {
-        margin-top: 0;
-        /* height: 80; */
+        width: 100vw;
+    }
+
+    .char-button-container {
         width: 100vw;
     }
 }

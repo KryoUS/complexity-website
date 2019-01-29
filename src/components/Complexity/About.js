@@ -34,10 +34,26 @@ class About extends Component {
                     {this.state.raiderIOLoaded === true && 
                         <div className="guildinfo-container">
                             <div style={{fontSize: '20px', textAlign: 'center'}}>Guild Scores</div>
-                            <div>Score: {this.state.wowProgress.score}</div>
-                            <div><a href="https://www.wowprogress.com/pve/world">World Rank:</a> {this.state.wowProgress.world_rank}</div>
-                            <div><a href="https://www.wowprogress.com/pve/us">Region Rank:</a> {this.state.wowProgress.area_rank}</div>
-                            <div><a href="https://www.wowprogress.com/pve/us/thunderlord">Realm Rank:</a> {this.state.wowProgress.realm_rank}</div>
+                            <a href="https://www.wowprogress.com/guild/us/thunderlord/Complexity" target="_blank"  rel="noopener noreferrer">
+                                <div className="button-border" id="about-scores">
+                                    <div className="button-text">Score: {this.state.wowProgress.score}</div>
+                                </div>
+                            </a>
+                            <a href="https://www.wowprogress.com/pve/world" target="_blank"  rel="noopener noreferrer">
+                                <div className="button-border" id="about-scores">
+                                    <div className="button-text">World Rank: {this.state.wowProgress.world_rank}</div>
+                                </div>
+                            </a>
+                            <a href="https://www.wowprogress.com/pve/us" target="_blank"  rel="noopener noreferrer">
+                                <div className="button-border" id="about-scores">
+                                    <div className="button-text">Region Rank: {this.state.wowProgress.area_rank}</div>
+                                </div> 
+                            </a>
+                            <a href="https://www.wowprogress.com/pve/us/thunderlord" target="_blank"  rel="noopener noreferrer">
+                                <div className="button-border" id="about-scores">
+                                    <div className="button-text">Realm Rank: {this.state.wowProgress.realm_rank}</div>
+                                </div>
+                            </a>
                             <div style={{textAlign: 'right', fontSize: '10px', marginTop: 'auto'}}>Provided by <a href="https://www.wowprogress.com/">WoWProgress.com</a></div>
                         </div>
                     }

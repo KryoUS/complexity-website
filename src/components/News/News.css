@@ -1,8 +1,19 @@
+.news-background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(https://res.cloudinary.com/complexityguild/image/upload/v1548721775/wow/backgrounds/news-main.jpg);
+    background-position: center -140px;
+    background-attachment: fixed;
+    position: relative;
+}
+
 .news-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
 }
 
 .news-container {
@@ -19,7 +30,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    border-bottom: 1px solid #100B07;
+    width: 100vw;
+    height: 500px;
 }
 
 .news-countdown {
@@ -29,7 +41,7 @@
     align-items: center;
     width: 100vw;
     height: 70px;
-    background-color: #160e37d7;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
     animation: fade 4s;
     -o-animation: fade 4s;
     -moz-animation: fade 4s;
@@ -58,34 +70,35 @@
 
 .news-card {
     overflow: hidden;
-    /* animation: fade 3s; */
 }
 
 .news-card-layer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     height: 700px;
     width: 100%;
-    position: relative;
+    padding: 10px;
+    background-image: transparent;
+    transition: background-image 1s ease 0s;
 }
 
 .news-card-layer:hover, .news-card-layer:focus {
-    background: linear-gradient(#000000b3, #000000b3);
+    background-image: linear-gradient(#000000b3, #000000b3);
 }
 
-.news-title-container {
-    position: absolute;
-    top: 20px;
-    background-color: #160e37;
+#news-title {
     width: 80%;
-    color: white;
-    -webkit-clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
-    clip-path: polygon(0 0, 100% 0%, 70% 100%, 0% 100%);
+    height: auto;
+    opacity: 1;
+    padding: 10px;
+    cursor: auto;
+    border-color: transparent;
 }
 
-.news-title-text {
-    margin: 10px 75px 10px 20px;
+#news-text {
+    margin: 20px;
 }
 
 .news-desc-container {
@@ -95,10 +108,11 @@
     align-items: center;
     margin: auto;
     padding: 20px;
-    width: 80%;
-    background-color: #160e37;
+    width: 70%;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
+    border: 1px solid rgb(146, 91, 234);
     opacity: 0;
-    transition: opacity 2s;
+    transition: opacity 1s ease 0s;
 }
 
 .news-card-layer:hover .news-desc-container, .news-card-layer:focus .news-desc-container{
@@ -109,27 +123,9 @@
     color: white;
 }
 
-.news-button {
-    text-decoration: none;
-    font-size: 20px;
-    letter-spacing: 0;
-    color: white;
-    border-bottom: 2px solid transparent;
-}
-
-.news-button {
-    margin-top: 25px;
-    text-decoration: none;
-    font-size: 20px;
-    letter-spacing: 0;
-    color: white;
-    border-bottom: 2px solid transparent;
-    transition: border 1s;
-}
-
-.news-button:hover, .news-button:focus, .news-flex-column:hover, .news-flex-column:focus {
+.news-flex-column:hover, .news-flex-column:focus {
     cursor: pointer;
-    border-bottom: 2px solid #00d99e;
+    border-bottom: 2px solid rgb(146, 91, 234);
 }
 
 @keyframes fade {

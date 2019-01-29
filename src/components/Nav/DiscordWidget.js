@@ -9,7 +9,7 @@ export default class DiscordWidget extends Component {
                 allowtransparency="true" 
                 frameBorder="0" 
                 title="Complexity Discord" 
-                className="animate-right"
+                className="fade1s"
                 style={{position: 'absolute', right: '5px', top: '50px'}}
             />
         )

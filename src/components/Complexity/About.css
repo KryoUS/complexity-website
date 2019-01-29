@@ -16,9 +16,19 @@
     margin: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-shadow: rgb(0, 0, 0) 0px 1px 9px;
     border: solid 1px #000000;
     background-color: #181818;
     box-shadow: 5px 5px 8px #000000;
+}
+
+#about-scores {
+    margin: 2px;
+    opacity: 1;
+    width: 200px;
+    height: 35px;
+    background-image: none;
 }
 
 a {
@@ -47,6 +57,6 @@ a {
     padding: 25px;
     font-size: 20px;
     border: solid 1px #000000;
-    background-color: #181818;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
     box-shadow: 5px 5px 8px #000000;
 }

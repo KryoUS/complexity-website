@@ -697,21 +697,23 @@ class CharPets extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="char-info-overflow" style={{height: '70vh', width: '100%'}} ref="iScroll">
+                        <div className="char-info-overflow" style={{height: '68vh', width: '100%'}} ref="iScroll">
                         {this.state.filteredPets.length > 0 ?
                             this.buildPets(this.state.filteredPets)
                         :
                             this.buildPets(this.state.character.pets)
                         }
                         </div>
-                        <div style={{textAlign: 'center'}}>Pets Collected</div>
-                        <ProgressBar 
-                            current={this.state.numCollected} 
-                            remaining={this.state.numNotCollected}
-                            height={'18px'}
-                            bgColor={'#edba03'}
-                            fontSize={'14px'}
-                        />
+                        <div className="flex-column flex-center" style={{width: '90%', margin: 'auto'}}>
+                            <div style={{textAlign: 'center'}}>Pets Collected</div>
+                            <ProgressBar 
+                                current={this.state.numCollected} 
+                                remaining={this.state.numNotCollected}
+                                height={'18px'}
+                                bgColor={'#edba03'}
+                                fontSize={'14px'}
+                            />
+                        </div>
                         <ReactTooltip place='left' type='light'/>
                         <CharPetsModal
                             pet={this.state.petModalObj} 

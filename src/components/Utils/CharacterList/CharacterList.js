@@ -175,21 +175,13 @@ export default class CharacterList extends Component {
 
     render () {
         return (
-            <div style={{width: '100vw'}}>
-                <div className="image-mask" style={{
-                    background: `url(${this.state.selectedCharBackground}) no-repeat center fixed`,
-                    maxWidth: '1600px',
-                    height: '100vh',
-                    position: 'absolute',
-                    left: 0,
-                    right: 0,
-                    margin: 'auto'
-                }} />
+            <div>
+                <div className="char-background image-mask" style={{backgroundImage: `url(${this.state.selectedCharBackground})`}}/>
                 <div className="char-info-container">
                     {this.props.charsArray.length <= 0 ? 
                         <div style={{width: '33vw'}} />
                     :
-                        <div className="animate-left hidden-scrollbar char-info-overflow" style={{marginTop: '60px'}}>
+                        <div className="animate-left hidden-scrollbar char-info-overflow">
                             {this.props.charsArray.length > 0 && this.props.charsArray.map(char => {
                                 return <div key={`${char.character_name}${char.class}`} 
                                             style={{
@@ -254,31 +246,31 @@ export default class CharacterList extends Component {
                         {this.state.selectedButton === 'Items' && <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Pets' && <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                     </div>
-                </div>
-                {this.state.selectedCharName && 
-                    <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap'}}>
-                        {buttonArray.map(button => {
-                            return this.state.selectedButton === button ?
-                                <div className='button-border animate-bottom' id='button-selected' key={button}>
-                                    <div className='button-text'>{button}</div>
-                                </div>
-                            :
-                                button === 'Hunter Pets' ? 
-                                    this.state.selectedCharClass === 'Hunter' ? 
+                    {this.state.selectedCharName && 
+                        <div className="flex-row flex-center flex-wrap char-button-container">
+                            {buttonArray.map(button => {
+                                return this.state.selectedButton === button ?
+                                    <div className='button-border animate-bottom' id='button-selected' key={button}>
+                                        <div className='button-text'>{button}</div>
+                                    </div>
+                                :
+                                    button === 'Hunter Pets' ? 
+                                        this.state.selectedCharClass === 'Hunter' ? 
+                                            <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                        :
+                                            <div className='button-border animate-bottom' id='non-hunter' key={button} >
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                    :
                                         <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
                                             <div className='button-text'>{button}</div>
                                         </div>
-                                    :
-                                        <div className='button-border animate-bottom' id='non-hunter' key={button} >
-                                            <div className='button-text'>{button}</div>
-                                        </div>
-                                :
-                                    <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
-                                        <div className='button-text'>{button}</div>
-                                    </div>
-                        })}
-                    </div>
-                }
+                            })}
+                        </div>
+                    }
+                </div>
             </div>
         )
     }

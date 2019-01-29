@@ -97,26 +97,57 @@ class Nav extends Component {
                                 </div>
                             </div>
                         </div>
-                        <ul className="nav-routes">
+                        {/* <ul className="nav-routes">
                             <li><Link to="/" className="nav-no-menu" >Home</Link></li>
                             <li><Link className="nav-no-menu" to="/about">About</Link></li>
                             <li><Link className="nav-no-menu" to="/raiders">Raid Roster</Link></li>
                             <li><Link className="nav-no-menu" to="/members">Members</Link></li>
                             <li><Link className="nav-no-menu" to="/leaderboards">Leaderboards</Link></li>
-                        </ul>
+                        </ul> */}
+                        <div className="flex-row flex-between">
+                            <Link to="/">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Home</div>
+                                </div>
+                            </Link>
+                            <Link to="/about">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>About</div>
+                                </div>
+                            </Link>
+                            <Link to="/raiders">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Raid Roster</div>
+                                </div>
+                            </Link>
+                            <Link to="/members">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Members</div>
+                                </div>
+                            </Link>
+                            <Link to="/leaderboards">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Leaderboards</div>
+                                </div>
+                            </Link>
+                        </div>
                         
                         {this.props.user.id ?
                             <div className="login-container">
                                 <div className="avatar" style={{backgroundImage: `url('${this.props.user.mainAvatarSmall}')`}} alt={this.props.user.main}>
-                                    <ul className="nav-routes">
-                                        <li className="settings-menu">
-                                            <ul className="settings-menu-content">
-                                                <li><Link className="nav-link" to="/">My Characters</Link></li>
-                                                <li><Link className="nav-link" to="/settings">Settings</Link></li>
-                                                <li><Link onClick={() => {this.logout()}} className="nav-link" to="/">Log Out</Link></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                        <div className="settings-menu">
+                                            <div className="settings-menu-content">
+                                                <Link className="button-border" id='nav-button' to="/">
+                                                    <div className='button-text'>My Characters</div>
+                                                </Link>
+                                                <Link className="button-border" id='nav-button' to="/settings">
+                                                    <div className='button-text'>Settings</div>
+                                                </Link>
+                                                <Link onClick={() => {this.logout()}} className="button-border" id='nav-button' to="/">
+                                                    <div className='button-text'>Log Out</div>
+                                                </Link>
+                                            </div>
+                                        </div>
                                 </div>
                                 <div className="discord-widget" onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOver}>
                                     {this.state.discordWidgetShow && <DiscordWidget />}

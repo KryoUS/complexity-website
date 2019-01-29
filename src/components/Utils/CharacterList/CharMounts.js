@@ -75,7 +75,7 @@ class CharMounts extends Component {
                 {this.state.character.mounts.length > 0 && 
                     <div className="animate-right" style={{width: '95%'}}>
                         <input type="text" className="input" placeholder="Search for a mount..." onChange={this.searchData} />
-                        <div className="char-info-overflow" style={{height: '70vh', width: '100%'}} ref="iScroll">
+                        <div className="char-info-overflow" style={{height: '68vh', width: '100%'}} ref="iScroll">
                         {this.state.filteredMounts.length > 0 ?
                             this.state.filteredMounts.map((obj, index) => {
                                 let collected = 'not-collected';
@@ -124,14 +124,16 @@ class CharMounts extends Component {
                             })
                         }
                         </div>
-                        <div style={{textAlign: 'center'}}>Mounts Collected</div>
-                        <ProgressBar 
-                            current={this.state.character.numCollected} 
-                            remaining={this.state.character.numNotCollected}
-                            height={'20px'}
-                            bgColor={'#edba03'}
-                            fontSize={'14px'}
-                        />
+                        <div className="flex-column flex-center" style={{width: '90%', margin: 'auto'}}>
+                            <div style={{textAlign: 'center'}}>Mounts Collected</div>
+                            <ProgressBar 
+                                current={this.state.character.numCollected} 
+                                remaining={this.state.character.numNotCollected}
+                                height={'20px'}
+                                bgColor={'#edba03'}
+                                fontSize={'14px'}
+                            />
+                        </div>
                         <ReactTooltip />
                     </div>
                 }
