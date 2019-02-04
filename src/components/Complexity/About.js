@@ -33,7 +33,7 @@ class About extends Component {
                     {this.state.raiderIOLoaded === false && <div className="loader" />}
                     {this.state.raiderIOLoaded === true && 
                         <div className="guildinfo-container">
-                            <div style={{fontSize: '20px', textAlign: 'center'}}>Guild Scores</div>
+                            <div className= "guildinfo-titles">Guild Scores</div>
                             <a href="https://www.wowprogress.com/guild/us/thunderlord/Complexity" target="_blank"  rel="noopener noreferrer">
                                 <div className="button-border" id="about-scores">
                                     <div className="button-text">Score: {this.state.wowProgress.score}</div>
@@ -59,7 +59,7 @@ class About extends Component {
                     }
                     {this.state.raiderIOLoaded && 
                         <div className="guildinfo-container" style={{width: '600px'}}>
-                            <div style={{fontSize: '20px', textAlign: 'center'}}>Raid Progress</div>
+                            <div className= "guildinfo-titles">Raid Progress</div>
                             <div>
                                 <div style={{fontSize: '18px'}}>Uldir {this.state.raiderIO.raid_progression.uldir.summary}</div>
                                 <div className="evenspaced-row">

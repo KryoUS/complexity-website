@@ -19,7 +19,7 @@
     align-items: center;
     margin-top: 60px;
     width: 40vw;
-    background-color: #110b29;
+    background: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));;
     box-shadow: 10px 10px 15px #000000;
 }
 
@@ -51,9 +51,9 @@
 
 .settings-medavatar:hover {
     cursor: pointer;
-    border: 1px solid white;
+    border: 1px solid rgb(146, 91, 234);
 }
 
 .settings-selected {
-    border: 1px solid #00d99e;
+    border: 1px solid white;
 }

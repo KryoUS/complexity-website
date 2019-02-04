@@ -16,43 +16,7 @@ import Slide from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import './Settings.css';
-
-const theme = createMuiTheme({
-    palette: {
-      primary: { main: "rgb(0, 217, 158)"},
-      text: { primary: "#ffffff" }
-    },
-    overrides: {
-        MuiInput: {
-            input: {
-                color: '#ffffff'
-            },
-            underline: {
-                '&:hover:not($disabled):not($error):not($focused):before': {
-                    borderBottom: '1px solid rgb(0, 217, 158)',
-                },
-                '&:not($disabled):not($error):not($focused):before': {
-                    borderBottom: '1px solid #ffffff',
-                },
-            },
-        },
-        MuiFormLabel: {
-            root: {
-                color: '#ffffff'
-            }
-        },
-        MuiFormControl: {
-            root: {
-                margin: '5px'
-            },
-        },
-    },
-    paper: {
-        position: 'absolute',
-    },
-});
 
 const Transition = (props) => {
     return <Slide direction="up" {...props} />;
@@ -164,28 +128,24 @@ class Settings extends Component {
                         </div>
                     </div>
                     {this.props.user.isAdmin &&
-                        <MuiThemeProvider theme={theme}>
+                        <div className="settings-column">
                             <h3>Admin Tools</h3>
-                            <div className="settings-column">
-                                <p>Release Countdown Dates</p>
-                                <div className="settings-row">
-                                    <Button 
-                                        onClick={() => this.handleRelease('addRelease')} 
-                                        color="primary" 
-                                        data-tip='Add a new Release Date countdown timer to the Home page.'
-                                        >
-                                        Add a Release
-                                    </Button>
-                                    <Button 
-                                        onClick={() => this.handleRelease('deleteRelease')} 
-                                        color="primary"
-                                        data-tip='Remove a new Release Date countdown timer from the Home page.'
-                                        >
-                                        Remove a Release
-                                    </Button>
+                            <p>Release Countdown Dates</p>
+                            <div className="settings-row">
+                                <div className="button-border"
+                                    onClick={() => this.handleRelease('addRelease')} 
+                                    data-tip='Add a new Release Date countdown timer to the Home page.'
+                                >
+                                    <div className="button-text">Add</div>
+                                </div>
+                                <div className="button-border"
+                                    onClick={() => this.handleRelease('deleteRelease')} 
+                                    data-tip='Remove a new Release Date countdown timer from the Home page.'
+                                >
+                                    <div className="button-text">Remove</div>
                                 </div>
                             </div>
-                        </MuiThemeProvider>
+                        </div>
                     }
                 </div>
                 {/* Set New Main */}

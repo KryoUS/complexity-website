@@ -19,8 +19,14 @@
     align-items: center;
     text-shadow: rgb(0, 0, 0) 0px 1px 9px;
     border: solid 1px #000000;
-    background-color: #181818;
+    background: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
     box-shadow: 5px 5px 8px #000000;
+}
+
+.guildinfo-titles {
+    font-size: 20px;
+    text-align: center;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
 }
 
 #about-scores {
