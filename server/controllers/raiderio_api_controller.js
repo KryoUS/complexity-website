@@ -12,7 +12,7 @@ module.exports = {
     },
 
     getWowRankingsGuild: (req, res) => {
-        res.send(raiderIOObj).status(200);
+            res.send(raiderIOObj).status(200);
     },
 
     setWowMythicAffixes: (req, res) => {
@@ -24,6 +24,6 @@ module.exports = {
     },
 
     getWowMythicAffixes: (req, res) => {
-        res.send(raiderIOAffixes).status(200);
+            res.send(raiderIOAffixes).status(200);
     },
 }

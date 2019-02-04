@@ -13,35 +13,23 @@ const massive = require('massive');
 const express = require('express');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
-const CronJob = require('cron').CronJob;
+const cron = require('./cronjobs/cronjobs');
 
 //Controllers
 const blizzardApi = require('./controllers/blizzard_api_controller');
+const raiderioApi = require('./controllers/raiderio_api_controller');
+const wowprogressApi = require('./controllers/wowprogress_api_controller');
 const releaseController = require('./controllers/releases_controller');
 const stats = require('./controllers/stats_controller');
 const news = require('./controllers/news_controller');
 const raiders = require('./controllers/raider_controller');
 const userFunctions = require('./controllers/user_controller');
 
-//Cron Controllers
-const wowProgressCrons = require('./cronjobs/wow_progress_api');
-const raiderIOCrons = require('./cronjobs/raider_io_api');
-
 //Set process.env.BLIZZ_API_TOKEN
 blizzardApi.setBlizzardToken();
 
-/*      CRON JOBS       */
-//Set Info on Server Initialization for Cron Jobs
-wowProgressCrons.setWowProgressGuild();
-raiderIOCrons.setWowRankingsGuild();
-raiderIOCrons.setWowMythicAffixes();
-//Define Cron Jobs
-const thunderlordStatusCron = new CronJob('00 */5 * * * *', () => blizzardApi.setServerStatus(), null, false, 'America/Denver');
-const complexityRankingsCron = new CronJob('00 30 0-23 * * 0-6', () => {
-    wowProgressCrons.setWowProgressGuild();
-    raiderIOCrons.setWowRankingsGuild();
-}, null, false, 'America/Denver');
-const usMythicAffixes = new CronJob('00 10 0-23 * * 0-6', () => raiderIOCrons.setWowMythicAffixes(), null, false, 'America/Denver');
+//Start Cron Job Timers
+cron.jobs();
 
 //Local testing SSL
 const httpsOptions = {
@@ -74,7 +62,7 @@ massive({
     database: process.env.PGDATABASE,
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,
-    ssl: true
+    ssl: false
 }).then( db => {
     app.set('db', db);
 });
@@ -133,11 +121,11 @@ app.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPet
 app.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
 app.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
 //Ranking Endpoint from WoWProgress API
-app.get('/api/wowprogress/guildranking', wowProgressCrons.getWowProgressGuild);
+app.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API
-app.get('/api/raiderio/guildranking', raiderIOCrons.getWowRankingsGuild);
+app.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
 //Mythic Affixes Endpoint from RaiderIO API
-app.get('/api/raiderio/mythicaffixes', raiderIOCrons.getWowMythicAffixes);
+app.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
 
 
 //Catch all routes that don't match anything and send to Build/index.js for Production
@@ -145,16 +133,8 @@ app.get('/*', express.static(
     path.join(__dirname, '..', 'build')
 ));
 
-//Local testing SSL
-const server = https.createServer( httpsOptions, app );
-
-//Start Cron Job Timers
-thunderlordStatusCron.start();
-complexityRankingsCron.start();
-usMythicAffixes.start();
-
-//Start server
+//Start server with SSL
 let port = process.env.PORT || 3050;
-server.listen( port, () => {
-    console.log( 'Express server listening on port ' + server.address().port );
+https.createServer( httpsOptions, app ).listen(port, () => {
+    console.log( 'Express server listening on port ' + port );
 });
