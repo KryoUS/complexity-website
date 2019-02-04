@@ -1,6 +1,7 @@
 const blizzardApi = require('../controllers/blizzard_api_controller');
 const raiderioApi = require('../controllers/raiderio_api_controller');
 const wowprogressApi = require('../controllers/wowprogress_api_controller');
+const blizztrackApi = require('../controllers/Blizztrack/blizztrack_api_controller');
 
 const CronJob = require('cron').CronJob;
 
@@ -11,6 +12,10 @@ const minutes =  {
 
     every10: () => new CronJob('00 */10 * * * *', () => {
         raiderioApi.setWowMythicAffixes();
+        blizztrackApi.setWoWBluePosts();
+        blizztrackApi.setWoWLatestPosts();
+        blizztrackApi.setWoWPatchNotes();
+        blizztrackApi.setWoWVersion();
     }, null, false, 'America/Denver').start(),
 
     every30: () => new CronJob('00 */30 * * * *', () => {

@@ -11,31 +11,13 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const massive = require('massive');
 const express = require('express');
+const routes = require('./routes');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const cron = require('./cronjobs/cronjobs');
 
-//Controllers
-const blizzardApi = require('./controllers/blizzard_api_controller');
-const raiderioApi = require('./controllers/raiderio_api_controller');
-const wowprogressApi = require('./controllers/wowprogress_api_controller');
-const releaseController = require('./controllers/releases_controller');
-const stats = require('./controllers/stats_controller');
-const news = require('./controllers/news_controller');
-const raiders = require('./controllers/raider_controller');
-const userFunctions = require('./controllers/user_controller');
-
-//Set process.env.BLIZZ_API_TOKEN
-blizzardApi.setBlizzardToken();
-
 //Start Cron Job Timers
 cron.jobs();
-
-//Local testing SSL
-const httpsOptions = {
-    key: fs.readFileSync('./security/cert.key'),
-    cert: fs.readFileSync('./security/cert.pem')
-};
 
 //Body Parser
 app.use( bodyParser.json() );
@@ -77,64 +59,18 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-/*      API ENDPOINTS       */
-//Battle.net Passport Auth Endpoints
-app.get('/auth/login', passport.authenticate('bnet'));
-app.get('/auth', userFunctions.auth);
-app.post('/auth/newmain', userFunctions.setMain);
-app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
-app.get('/auth/logout', userFunctions.logout);
-//Releases Endpoints from DB
-app.get('/api/releases', releaseController.get);
-app.get('/api/allreleases', releaseController.getAll);
-app.post('/api/releases', releaseController.post);
-app.delete('/api/deleterelease/:id', releaseController.delete);
-//News Endpoints from DB
-app.get('/api/news', news.get);
-app.get('/api/guildnews', news.getGuildNews);
-//Raider Endpoints from DB
-app.get('/api/raiders', raiders.get);
-//Guild Members Endpoint from DB
-app.get('/api/members', stats.members);
-//Stat Endpoints from DB
-app.get('/api/stats/character', stats.characters);
-app.get('/api/stats/consumables', stats.consumables);
-app.get('/api/stats/combat', stats.combat);
-app.get('/api/stats/kills', stats.kills);
-app.get('/api/stats/deaths', stats.deaths);
-app.get('/api/stats/pve', stats.pve);
-app.get('/api/stats/professions', stats.professions);
-app.get('/api/stats/travel', stats.travel);
-app.get('/api/stats/emotes', stats.emotes);
-app.get('/api/stats/pvp', stats.pvp);
-app.get('/api/stats/arena', stats.arena);
-app.get('/api/stats/pets', stats.pets);
-//WoW API Endpoints
-app.get('/api/wow/server/status', blizzardApi.getServerStatus);
-app.get('/api/wow/token/price', blizzardApi.getTokenPrice);
-app.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
-app.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
-app.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
-app.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
-app.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
-app.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPets);
-app.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
-app.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
-//Ranking Endpoint from WoWProgress API
-app.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
-//Ranking Endpoint from RaiderIO API
-app.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
-//Mythic Affixes Endpoint from RaiderIO API
-app.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
-
-
+/* API Routes */
+app.use('/', routes);
 //Catch all routes that don't match anything and send to Build/index.js for Production
 app.get('/*', express.static(
     path.join(__dirname, '..', 'build')
 ));
 
-//Start server with SSL
+//Start HTTPS Server
 let port = process.env.PORT || 3050;
-https.createServer( httpsOptions, app ).listen(port, () => {
+https.createServer( {
+    key: fs.readFileSync('./security/cert.key'),
+    cert: fs.readFileSync('./security/cert.pem')
+}, app ).listen(port, () => {
     console.log( 'Express server listening on port ' + port );
 });
