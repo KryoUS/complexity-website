@@ -193,7 +193,7 @@ body::-webkit-scrollbar {
   -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
 }
 
-.MuiPaper-root-16 {
+.MuiPaper-root-16, .MuiPaper-root-23 {
   background-color: #17171A !important;
   color: white !important;
 }

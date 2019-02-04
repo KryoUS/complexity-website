@@ -201,6 +201,7 @@ class CharPetsModal extends React.Component {
                                                             backgroundSize: '25px'
                                                         }} 
                                                         data-multiline={true}
+                                                        data-place='left'
                                                         data-tip='
                                                             Please note that not all breeds are a possible option for pets.<br/><br/>
                                                             P/P the pet has a boost to base power. (+2)<br/>
