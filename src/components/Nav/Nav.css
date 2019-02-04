@@ -16,13 +16,14 @@
     z-index: 2;
     width: 100vw;
     height: 30px;
-    background-color: #160e37d7;
+    background-color: rgba(17, 11, 41, 0.5);
 }
 
 .nav-flex-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(17, 11, 41, 0.5);
 }
 
 .logo-container, .login-container {
