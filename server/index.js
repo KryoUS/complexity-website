@@ -37,18 +37,6 @@ app.use( passport.session() );
 passport.use( bnetStrategy );
 // app.use(express.static(__dirname + '/../build'));
 
-//Massive
-massive({
-    host: process.env.PGHOST,
-    port: process.env.PGPORT,
-    database: process.env.PGDATABASE,
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    ssl: false
-}).then( db => {
-    app.set('db', db);
-});
-
 //Auth Serialize
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -59,12 +47,27 @@ passport.deserializeUser(function(user, done) {
     done(null, user);
 });
 
-/* API Routes */
-app.use('/', routes);
-//Catch all routes that don't match anything and send to Build/index.js for Production
-app.get('/*', express.static(
-    path.join(__dirname, '..', 'build')
-));
+//Massive
+massive({
+    host: process.env.PGHOST,
+    port: process.env.PGPORT,
+    database: process.env.PGDATABASE,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    ssl: false
+}).then(instance => {
+    app.set('db', instance);
+
+    /* API Routes */
+    app.use('/', routes);
+    //Catch all routes that don't match anything and send to Build/index.js for Production
+    app.get('/*', express.static(
+        path.join(__dirname, '..', 'build')
+    ));
+    
+}).catch(error => {
+    console.log('Massive Error: ', error)
+});
 
 //Start HTTPS Server
 let port = process.env.PORT || 3050;

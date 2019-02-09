@@ -81,14 +81,14 @@ module.exports = {
             }
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
-            module.exports.setServerStatus();
-            module.exports.setMounts();
-            module.exports.setPets();
-            module.exports.setClasses();
-            module.exports.setPetTypes();
-            module.exports.setRaces();
-            module.exports.setTokenPrice();
-            module.exports.setAchievements();
+            if (achievementsArr.length === 0) {module.exports.setAchievements();}
+            if (classesArr.length === 0) {module.exports.setClasses();}
+            if (mountsArr.length === 0) {module.exports.setMounts();}
+            if (petsArr.length === 0) {module.exports.setPets();}
+            if (petTypesArr.length === 0) {module.exports.setPetTypes();}
+            if (racesArr.length === 0) {module.exports.setRaces();}
+            if (tokenPrice.price === 0) {module.exports.setTokenPrice();}
+            if (!realmObj.name) {module.exports.setServerStatus();}
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });

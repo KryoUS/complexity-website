@@ -30,7 +30,7 @@ const minutes =  {
 
 //Every x hours
 const hours = {
-    every: () => new CronJob('* 0 */1 * * *', () => {
+    every: () => new CronJob('00 0 */1 * * *', () => {
         blizzardApi.setAchievements();
         blizzardApi.setBlizzardToken();
         blizzardApi.setClasses();

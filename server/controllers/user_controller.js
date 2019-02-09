@@ -1,11 +1,9 @@
-const app = require('../app');
 const axios = require('axios');
 
 module.exports = {
     setMain: (req, res, next) => {
-        const db = app.get('db');
 
-        db.users.update({id: req.body.id}, {
+        req.app.get('db').users.update({id: req.body.id}, {
             main: req.body.main,
             mainavatarsmall: req.body.mainAvatarSmall,
             mainavatarmed: req.body.mainAvatarMed,
@@ -45,16 +43,16 @@ module.exports = {
         console.log('Callback Hit');
     
         if (req.isAuthenticated()) {
-            const db = app.get('db');
+
             const now = new Date();
     
-            db.users.findOne({id: req.session.passport.user.id}).then(findRes => {
+            req.app.get('db').users.findOne({id: req.session.passport.user.id}).then(findRes => {
     
                 //If the Massive response is null, we need to insert the user
                 if (findRes === null) {
     
                     //Perform Massive insert to PostgreSQL
-                    db.users.insert({id: req.session.passport.user.id}).then(insertRes => {
+                    req.app.get('db').users.insert({id: req.session.passport.user.id}).then(insertRes => {
                         
                         //Get User Character data
                         axios.get(`https://us.api.blizzard.com/wow/user/characters?access_token=${req.session.passport.user.token}`).then(charRes => {
@@ -72,7 +70,7 @@ module.exports = {
                                     userCharArray.sort((a, b) => {
                                         return b.lastModified - a.lastModified
                                     });
-                                    db.users.update({
+                                    req.app.get('db').users.update({
                                         id: req.session.passport.user.id
                                     }, {
                                         main: userCharArray[0].name, 

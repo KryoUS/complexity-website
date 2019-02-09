@@ -1,11 +1,8 @@
-const app = require('../app');
-
 module.exports = {
     get: (req, res) => {
-        const db = app.get('db');
         const now = new Date().getTime();
     
-        db.query(`select * from releases where release_date > ${now} order by release_date limit 5`).then(response => {
+        req.app.get('db').query(`select * from releases where release_date > ${now} order by release_date limit 5`).then(response => {
             if (response) {
                 res.status(200).send(response);
             } else {
@@ -18,9 +15,8 @@ module.exports = {
     },
 
     getAll: (req, res) => {
-        const db = app.get('db');
     
-        db.query(`select * from releases order by release_date`).then(response => {
+        req.app.get('db').query(`select * from releases order by release_date`).then(response => {
             res.status(200).send(response);
         }).catch(error => {
             console.log('Releases Query All Error');
@@ -30,10 +26,9 @@ module.exports = {
     },
 
     post: (req, res) => {
-        const db = app.get('db');
 
         if (req.isAuthenticated()) {
-            db.releases.insert({title: req.body.releaseTitle, release_date: req.body.releaseDate, link: req.body.releaseLink}).then(response => {
+            req.app.get('db').releases.insert({title: req.body.releaseTitle, release_date: req.body.releaseDate, link: req.body.releaseLink}).then(response => {
                 res.sendStatus(200);
             }).catch(postError => {
                 console.log('Release Post DB Error');
@@ -44,10 +39,9 @@ module.exports = {
     },
 
     delete: (req, res) => {
-        const db = app.get('db');
 
         if (req.isAuthenticated()) {
-            db.query(`delete from releases where id = ${req.params.id}`).then(response => {
+            req.app.get('db').query(`delete from releases where id = ${req.params.id}`).then(response => {
                 res.sendStatus(200);
             }).catch(deleteError => {
                 console.log('Delete Releases Error: ', deleteError);
