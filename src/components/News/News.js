@@ -1,5 +1,6 @@
 import React,  { Component } from 'react';
 import Timer from '../Timer/Timer';
+import Blizztrack from '../Utils/Blizztrack/Blizztrack';
 import axios from 'axios';
 import './News.css';
 
@@ -35,6 +36,7 @@ class News extends Component {
                 <div className="news-background image-mask" />
                 <div className="news-div fade1s">
                     <div className="news-header">
+                        <Blizztrack />
                         {   this.state.releases.length &&
                             <div className="news-countdown">
                                 {this.state.releases ?
