@@ -8,6 +8,7 @@ const CronJob = require('cron').CronJob;
 const minutes =  {
     every5: () => new CronJob('00 */5 * * * *', () => {
         blizzardApi.setServerStatus();
+        blizzardApi.setTokenPrice();
     }, null, false, 'America/Denver').start(),
 
     every10: () => new CronJob('00 */10 * * * *', () => {
