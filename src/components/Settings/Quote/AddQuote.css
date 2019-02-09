@@ -1,0 +1,21 @@
+.quote-results {
+    height: 400px;
+    overflow: auto;
+}
+
+.quote-name:hover {
+    cursor: pointer;
+    background-color: #25262A;
+}
+
+#quote {
+    color: white;
+}
+
+.MuiFormLabel-root-125 {
+    color: #303F9F !important;
+}
+
+.MuiTypography-root-51 {
+    color: white !important;
+}

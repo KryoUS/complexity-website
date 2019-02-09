@@ -22,7 +22,7 @@ module.exports = {
     },
 
     auth: (req, res) => {
-        console.log('Auth Req: ', req.method, req.originalUrl);
+        
         if (req.isAuthenticated()) {
             let userObj = {
                 id: req.session.passport.user.id,

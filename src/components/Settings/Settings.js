@@ -1,5 +1,4 @@
 import React,  { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
@@ -7,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import Button from '@material-ui/core/Button';
 import AddRelease from './Release/AddRelease';
 import RemoveRelease from './Release/RemoveRelease';
+import AddQuote from './Quote/AddQuote';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -34,6 +34,7 @@ class Settings extends Component {
             newAvatarLarge: '',
             releaseAddDialog: false,
             releaseRemoveDialog: false,
+            quoteAddDialog: false,
             snackBarOpen: false,
             snackBarMessage: '',
         }
@@ -56,6 +57,7 @@ class Settings extends Component {
             releaseAddDialog: false,
             releaseRemoveDialog: false,
             newMainDialog: false,
+            quoteAddDialog: false
         });
     };
 
@@ -91,6 +93,10 @@ class Settings extends Component {
         type === 'deleteRelease' && this.setState({ releaseRemoveDialog: true });
     }
 
+    handleQuote = (type) => {
+        type === 'add' && this.setState({ quoteAddDialog: true })
+    }
+
     render(){
 
         const mainNameStyle = {
@@ -103,7 +109,6 @@ class Settings extends Component {
             <div className ="settings-div fade1s" style={{
                 background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') fixed top center/cover no-repeat`
                 }}>
-                {!this.props.user.id && <Redirect to='/'/>}
                 <div className="settings-container">
                     <div className="settings-column-avatars">
                         <h3>Set Main Character</h3>
@@ -134,17 +139,27 @@ class Settings extends Component {
                             <div className="settings-row">
                                 <div className="button-border"
                                     onClick={() => this.handleRelease('addRelease')} 
-                                    data-tip='Add a new Release Date countdown timer to the Home page.'
+                                    data-tip='Add a new Release Date countdown timer to the News page.'
                                 >
                                     <div className="button-text">Add</div>
                                 </div>
                                 <div className="button-border"
                                     onClick={() => this.handleRelease('deleteRelease')} 
-                                    data-tip='Remove a new Release Date countdown timer from the Home page.'
+                                    data-tip='Remove a new Release Date countdown timer from the News page.'
                                 >
                                     <div className="button-text">Remove</div>
                                 </div>
                             </div>
+                            <p>Complexity Member Quote</p>
+                            <div className="settings-row">
+                                <div className="button-border"
+                                    onClick={() => this.handleQuote('add')} 
+                                    data-tip='Add a quote that shows on the News Page.'
+                                >
+                                    <div className="button-text">Add</div>
+                                </div>
+                            </div>
+                            <ReactTooltip />
                         </div>
                     }
                 </div>
@@ -174,6 +189,7 @@ class Settings extends Component {
                     </DialogActions>
                 </Dialog>
                 <AddRelease releaseAddDialog={this.state.releaseAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                <AddQuote quoteAddDialog={this.state.quoteAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
                 {this.state.releaseRemoveDialog && 
                     <RemoveRelease 
                         releaseRemoveDialog={this.state.releaseRemoveDialog} 
@@ -205,7 +221,6 @@ class Settings extends Component {
                         </IconButton>,
                     ]}
                 />
-                <ReactTooltip />
             </div>
         )
     }

@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config({path: path.join(__dirname, '.env')});
 
 //Libraries
-const https = require('https'); //Only for testing locally?
+const https = require('https');
 const fs = require('fs');
 const app = require('./app');
 const cors = require('cors');
@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const massive = require('massive');
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./routes/routes');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const cron = require('./cronjobs/cronjobs');

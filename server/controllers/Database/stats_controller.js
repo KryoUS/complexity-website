@@ -168,4 +168,14 @@ module.exports = {
             res.status(500).send('Member DB Call Error');
         })
     },
+
+    memberNames: (req, res) => {
+        req.app.get('db').query('select character_name from characters order by character_name').then(response => {
+            res.status(200).send(response);
+        }).catch(error => {
+            console.log('Member Name DB Call Error')
+            console.log(error);
+            res.status(500).send('Member Name DB Call Error');
+        })
+    }
 }

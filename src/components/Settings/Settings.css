@@ -57,3 +57,7 @@
 .settings-selected {
     border: 1px solid white;
 }
+
+.MuiInput-input-140 {
+    color: white !important;
+}
