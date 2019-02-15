@@ -95,6 +95,7 @@ routes.put('/api/wow/character/:character&:realm/items', requireSession, blizzar
 routes.put('/api/wow/character/:character&:realm/pets', requireSession, blizzardApi.getCharacterPets);
 routes.get('/api/wow/pet/species/:speciesId', requireSession, blizzardApi.getPetsSpecies);
 routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', requireSession, blizzardApi.getPetsStats);
+routes.put('/api/wow/character/:character&:realm/professions', requireSession, blizzardApi.getCharacterProfessions);
 //Ranking Endpoint from WoWProgress API
 routes.get('/api/wowprogress/guildranking', requireSession, wowprogressApi.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

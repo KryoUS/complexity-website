@@ -5,9 +5,8 @@
 }
 
 .progress-internal {
-	padding: 5px;
     border-radius:4px;
-    height: 70%;
+    height: 100%;
 }
 
 .progress-text {
