@@ -1,3 +1,8 @@
+.blizztrack-back {
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
 .blizztrack-container {
     background-color: #17171A;
     border-radius: 4px;
@@ -119,8 +124,11 @@ li {
 @media (max-width: 600px) {
 
     .blizztrack-back {
-        flex-direction: column;
-        margin: auto;
+        margin-top: 60px;
+        width: 100vw;
+        height: 400px;
+        overflow: hidden;
+        overflow-y: scroll;
     }
 
     .button-border {
