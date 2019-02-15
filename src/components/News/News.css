@@ -70,16 +70,18 @@
 
 .news-card {
     overflow: hidden;
+    width: 20%;
+    min-width: 384px;
+    height: 425px;
 }
 
 .news-card-layer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 700px;
     width: 100%;
-    padding: 10px;
+    height: 100%;
+    padding: 5px;
     background-image: transparent;
     transition: background-image 1s ease 0s;
 }
@@ -90,7 +92,6 @@
 
 #news-title {
     width: 80%;
-    height: auto;
     opacity: 1;
     padding: 10px;
     cursor: auto;
@@ -98,7 +99,11 @@
 }
 
 #news-text {
-    margin: 20px;
+    margin: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
 }
 
 .news-desc-container {
@@ -107,12 +112,17 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     width: 70%;
     background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
     border: 1px solid rgb(146, 91, 234);
     opacity: 0;
     transition: opacity 1s ease 0s;
+}
+
+.news-desc-title {
+    border-bottom: 1px solid rgb(146, 91, 234);
+    margin-bottom: 10px;
 }
 
 .news-card-layer:hover .news-desc-container, .news-card-layer:focus .news-desc-container{
@@ -121,6 +131,7 @@
 
 .news-desc-text {
     color: white;
+    font-size: .8rem;
 }
 
 .news-flex-column:hover, .news-flex-column:focus {

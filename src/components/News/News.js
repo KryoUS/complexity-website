@@ -59,23 +59,19 @@ class News extends Component {
                         this.state.news.map(news => (
                                 <div className="news-card animate-bottom" key={news.id} style={{
                                     background: `linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('${news.image ? news.image.replace('http:', 'https:') : 'https://res.cloudinary.com/complexityguild/image/upload/v1535585277/wow/backgrounds/news_header.jpg'}')`,
-                                    width: '20%', 
-                                    minWidth: '384px',
-                                    height: '700px', 
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'}}>
-                                    <a href={news.link} target="_blank"  rel="noopener noreferrer">
-                                        <div className="news-card-layer">
-                                            <div className="button-border" id="news-title">
-                                                <div className="button-text" id="news-text">{news.title}</div>
-                                            </div>
-                                            <div className="news-desc-container">
-                                                <div className="news-desc-text">{news.description}</div>
-                                                {news.source === "wowhead" && <img src="https://res.cloudinary.com/complexityguild/image/upload/v1535585319/wow/logos/wowhead_news.png" alt="Wowhead" />}
-                                            </div>
+                                    <div className="news-card-layer">
+                                        <div className="button-border" id="news-title">
+                                            <div className="button-text" id="news-text">{news.title}</div>
                                         </div>
-                                    </a>
+                                        <a className="news-desc-container" href={news.link} target="_blank"  rel="noopener noreferrer">
+                                            <div className="news-desc-title">{news.title}</div>
+                                            <div className="news-desc-text">{news.description}</div>
+                                            {news.source === "wowhead" && <img src="https://res.cloudinary.com/complexityguild/image/upload/v1535585319/wow/logos/wowhead_news.png" alt="Wowhead" width="50" height="42"/>}
+                                        </a>
+                                    </div>
                                 </div>
                         ))
                         :
