@@ -144,7 +144,7 @@
 
 .login:hover, login:focus {
     cursor: pointer;
-    border-bottom: 2px solid #00d99e;
+    border-bottom: 2px solid rgb(146, 91, 234);
     animation: none;
     -o-animation: none;
     -webkit-animation: none;
@@ -164,7 +164,6 @@
 }
 
 .avatar {
-    /* margin-right: 10px; */
     background-size: contain;
     transition: border 1s;
     vertical-align: middle;
@@ -180,6 +179,68 @@
     width: 330px;
     font-size: 12px;
     color: white;
+    position: relative;
+}
+
+.affix-schedule-container {
+    display: none;
+    padding: 10px;
+    width: 300px;
+    align-content: center;
+    background-color: #17171A;
+    color: white;
+    position: absolute;
+    bottom: 18px;
+    z-index: 1;
+}
+
+.affix-schedule {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-between;
+}
+
+.affix-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2px;
+}
+
+#affix-current-week {
+    background-color: rgb(90, 90, 90);
+    color: black;
+}
+
+.affix {
+    width: 60px;
+    text-align: center;
+}
+
+#affix-title {
+    font-size: 1rem;
+    color: white;
+    background-color: #17171A;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+#affix-subtitle {
+    font-size: .8rem;
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+.affix:hover {
+    color: rgb(146, 92, 233);
+}
+
+.affix-row:nth-child(odd) {
+    background-color: #25262A;
+}
+
+.affixes:hover .affix-schedule-container {
+    display: block;
 }
 
 @keyframes fadeIn {
@@ -188,7 +249,7 @@
 }
 
 @keyframes pulse {
-    0%, 100% { border-bottom: 2px solid #00d99e }
+    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
     50% { border-bottom: 2px solid transparent }
 }
 
@@ -203,7 +264,7 @@
 }
 
 @-o-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid #00d99e }
+    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
     50% { border-bottom: 2px solid transparent }
 }
 
@@ -218,7 +279,7 @@
 }
 
 @-moz-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid #00d99e }
+    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
     50% { border-bottom: 2px solid transparent }
 }
 
@@ -233,7 +294,7 @@
 }
 
 @-webkit-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid #00d99e }
+    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
     50% { border-bottom: 2px solid transparent }
 }
 

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setUser, userLogout, infoModal } from '../../ducks/reducer';
 import axios from 'axios';
 import DiscordWidget from './DiscordWidget';
+import MythicPlusAffixes from './MythicPlusAffixes';
 import InfoModal from './InfoModal';
 import './Nav.css';
 
@@ -13,7 +14,6 @@ class Nav extends Component {
 
         this.state = {
             realmInfo: {},
-            usMythicAffixes: {},
             tokenPrice: 0,
             discordWidgetShow: false
         }
@@ -35,12 +35,6 @@ class Nav extends Component {
             this.setState({ realmInfo: res.data })
         }).catch(wowServerStatusError => {
             this.props.infoModal(true, 'Oops!', "We attempted to get WoW's server status but it never responded. It's probably ok, we think. Please try again in a moment.", 'OK');
-        });
-        
-        axios.get('/api/raiderio/mythicaffixes').then(res => {
-            this.setState({ usMythicAffixes: res.data })
-        }).catch(raiderIOMythicAffixesError => {
-            this.props.infoModal(true, 'Oops!', "We tried to get the Mythic+ affixes for the week but couldn't. Please exercise extreme caution when entering dungeons for now.", 'OK');
         });
 
         axios.get('/api/wow/token/price').then(res => {
@@ -167,15 +161,7 @@ class Nav extends Component {
                     <InfoModal />
                 </div>
                 <div className="nav-footer">
-                    <div>
-                        {this.state.usMythicAffixes.affix_details && 
-                            <div className="affixes">Mythic+ Affixes: 
-                                {this.state.usMythicAffixes.affix_details.map(affix => {
-                                    return <a key={affix.name} href={affix.wowhead_url} data-wowhead={`affix=${affix.id}`} target="_blank"  rel="noopener noreferrer">{affix.name}</a>
-                                })}
-                            </div>
-                        }
-                    </div>
+                    <MythicPlusAffixes />
                     <div style={{fontSize: '10px', color: '#585858'}}>World of Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc. in the U.S. and/or other countries. All other trademarks are the property of their respective owners.</div>
                     <div style={{width: '330px', fontSize: '12px', color: 'white', textAlign: 'center'}}>
                         {this.state.tokenPrice > 0 && 
