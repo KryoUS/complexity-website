@@ -31,7 +31,7 @@ body::-webkit-scrollbar {
   margin: 5px;
   width: 145px;
   height: 40px;
-  opacity: 0.66;
+  /* opacity: 0.66; */
   background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
   border-radius: 1px;
   border-width: 1px;
@@ -105,6 +105,10 @@ body::-webkit-scrollbar {
 
 .flex-between {
   justify-content: space-between;
+}
+
+.flex-around {
+  justify-content: space-around;
 }
 
 .flex-wrap {
@@ -195,6 +199,12 @@ body::-webkit-scrollbar {
   z-index: -1;
   mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
   -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+}
+
+.image-mask-topdown {
+  z-index: -1;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(0,0,0,0) 100%);
 }
 
 .MuiPaper-root-16, .MuiPaper-root-23 {

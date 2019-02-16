@@ -12,7 +12,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     position: absolute;
-    top: 60px;
+    top: 70px;
 }
 
 .armorycharimage {
@@ -34,7 +34,7 @@
 }
 
 .char-info-overflow {
-    height: 80vh;
+    height: 79vh;
     width: 33vw;
     overflow: scroll;
     overflow-X: hidden;

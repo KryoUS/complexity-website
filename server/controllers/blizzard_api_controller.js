@@ -4,6 +4,8 @@ const axios = require('axios');
 let realmObj = {};
 //Master Achievement List
 let achievementsArr = [];
+//Mast Boss List
+let bossesArr = [];
 //Master Classes List
 let classesArr = [];
 //Master Mount List
@@ -82,6 +84,7 @@ module.exports = {
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
             if (achievementsArr.length === 0) {module.exports.setAchievements();}
+            if (bossesArr.length === 0) {module.exports.setBosses();}
             if (classesArr.length === 0) {module.exports.setClasses();}
             if (mountsArr.length === 0) {module.exports.setMounts();}
             if (petsArr.length === 0) {module.exports.setPets();}
@@ -101,6 +104,15 @@ module.exports = {
             achievementsArr = JSON.parse(JSON.stringify(response.data));
         }).catch(error => {
             console.log('Get Classes Error: ', error);
+        });
+    },
+
+    //Set Master Boss Array
+    setBosses: () => {
+        axios.get(`https://us.api.blizzard.com/wow/boss/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            bossesArr = JSON.parse(JSON.stringify(response.data.bosses));
+        }).catch(error => {
+            console.log('Get Bosses Error: ', error);
         });
     },
 
@@ -366,6 +378,21 @@ module.exports = {
 
     getCharacterProfessions: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=professions&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            res.status(200).send(response.data);
+        }).catch(error => {
+            console.log('Get Character Professions Error: ', error);
+        });
+    },
+
+    getCharacterProgression: (req, res) => {
+        axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=progression&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            
+            response.data.progression.raids.forEach(obj => {
+                obj.bosses.forEach(bossObj => {
+                    bossObj.bossInfo = bossesArr.find(key => key.id === bossObj.id)
+                })
+            });
+
             res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Professions Error: ', error);

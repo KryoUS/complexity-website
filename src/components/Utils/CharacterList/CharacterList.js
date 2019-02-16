@@ -8,6 +8,7 @@ import CharStats from './CharStats';
 import CharItems from './CharItems';
 import CharPets from './CharPets/CharPets';
 import CharProfessions from './CharProfessions';
+import CharProgression from './CharProgression';
 
 const buttonArray = [
     'Achievements', 
@@ -247,6 +248,7 @@ export default class CharacterList extends Component {
                         {this.state.selectedButton === 'Items' && <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Pets' && <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                         {this.state.selectedButton === 'Professions' && <CharProfessions selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
+                        {this.state.selectedButton === 'Progression' && <CharProgression selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
                     </div>
                     {this.state.selectedCharName && 
                         <div className="flex-row flex-center flex-wrap char-button-container">

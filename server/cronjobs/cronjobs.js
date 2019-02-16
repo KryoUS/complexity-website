@@ -33,6 +33,7 @@ const hours = {
     every: () => new CronJob('00 0 */1 * * *', () => {
         blizzardApi.setAchievements();
         blizzardApi.setBlizzardToken();
+        blizzardApi.setBosses();
         blizzardApi.setClasses();
         blizzardApi.setMounts();
         blizzardApi.setPetTypes();
