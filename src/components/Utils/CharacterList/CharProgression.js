@@ -100,22 +100,30 @@ class CharProgression extends Component {
             open={index === 0 ? true : false}
         >
             <div className="flex-column flex-between prog-sub-category animate-right">
-                <div className="flex-row">
-                    <div className="prog-title" id="prog-raid-type">Looking for Raid</div>
-                    <div className="prog-bar">{this.progressBarBuilder(lfrBossKills, lfrBossCount)}</div>
-                </div>
-                <div className="flex-row">
-                    <div className="prog-title" id="prog-raid-type">Normal</div>
-                    <div className="prog-bar">{this.progressBarBuilder(normalBossKills, normalBossCount)}</div>
-                </div>
-                <div className="flex-row">
-                    <div className="prog-title" id="prog-raid-type">Heroic</div>
-                    <div className="prog-bar">{this.progressBarBuilder(heroicBossKills, heroicBossCount)}</div>
-                </div>
-                <div className="flex-row">
-                    <div className="prog-title" id="prog-raid-type">Mythic</div>
-                    <div className="prog-bar">{this.progressBarBuilder(mythicBossKills, mythicBossCount)}</div>
-                </div>
+                {lfrBossCount > 0 && 
+                    <div className="flex-row">
+                        <div className="prog-title" id="prog-raid-type">Looking for Raid</div>
+                        <div className="prog-bar">{this.progressBarBuilder(lfrBossKills, lfrBossCount)}</div>
+                    </div>
+                }
+                {normalBossCount > 0 && 
+                    <div className="flex-row">
+                        <div className="prog-title" id="prog-raid-type">Normal</div>
+                        <div className="prog-bar">{this.progressBarBuilder(normalBossKills, normalBossCount)}</div>
+                    </div>
+                }
+                {heroicBossCount > 0 && 
+                    <div className="flex-row">
+                        <div className="prog-title" id="prog-raid-type">Heroic</div>
+                        <div className="prog-bar">{this.progressBarBuilder(heroicBossKills, heroicBossCount)}</div>
+                    </div>
+                }
+                {mythicBossCount > 0 && 
+                    <div className="flex-row">
+                        <div className="prog-title" id="prog-raid-type">Mythic</div>
+                        <div className="prog-bar">{this.progressBarBuilder(mythicBossKills, mythicBossCount)}</div>
+                    </div>
+                }
                 <div className="flex-column" style={{width: '90%', marginTop: '10px', alignSelf: 'flex-end'}}>
                     {obj.bosses.map((bossObj, bossIndex) => {
                         console.log(bossObj)
@@ -156,25 +164,25 @@ class CharProgression extends Component {
                                 {bossObj.hasOwnProperty('lfrKills') && bossObj.lfrTimestamp > 0 && 
                                     <div className="flex-row flex-between">
                                         <div>LFR First Kill:</div>
-                                        <div className="flex-row prog-kills">{moment(bossObj.lfrTimestamp).format('MMMM Do YYYY')}</div>
+                                        <div>{moment(bossObj.lfrTimestamp).format('MMMM Do YYYY')}</div>
                                     </div>
                                 }
                                 {bossObj.hasOwnProperty('normalKills') && bossObj.normalTimestamp > 0 &&
                                     <div className="flex-row flex-between">
                                         <div>Normal First Kill:</div>
-                                        <div className="flex-row prog-kills">{moment(bossObj.normalTimestamp).format('MMMM Do YYYY')}</div>
+                                        <div>{moment(bossObj.normalTimestamp).format('MMMM Do YYYY')}</div>
                                     </div>
                                 }
                                 {bossObj.hasOwnProperty('heroicKills') && bossObj.heroicTimestamp > 0 &&
                                     <div className="flex-row flex-between">
                                         <div>Heroic First Kill:</div>
-                                        <div className="flex-row prog-kills">{moment(bossObj.heroicTimestamp).format('MMMM Do YYYY')}</div>
+                                        <div>{moment(bossObj.heroicTimestamp).format('MMMM Do YYYY')}</div>
                                     </div>
                                 }
                                 {bossObj.hasOwnProperty('mythicKills') && bossObj.mythicTimestamp > 0 && 
                                     <div className="flex-row flex-between">
                                         <div>Mythic First Kill:</div>
-                                        <div className="flex-row prog-kills">{moment(bossObj.mythicTimestamp).format('MMMM Do YYYY')}</div>
+                                        <div>{moment(bossObj.mythicTimestamp).format('MMMM Do YYYY')}</div>
                                     </div>
                                 }
                             </div>
