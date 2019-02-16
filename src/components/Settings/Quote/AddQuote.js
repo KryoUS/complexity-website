@@ -108,8 +108,18 @@ class AddQuote extends Component {
                         value={this.state.quote}
                         onChange={this.handleChange('quote')}
                         required={true}
+                        fullWidth={true}
+                        margin='normal'
                     />
-                    <input type="text" className="input" placeholder={this.state.placeholder} onChange={this.searchData} value={this.state.placeholder} onClick={this.clearInput} />
+                    <TextField
+                        id='member'
+                        label='Member Name'
+                        value={this.state.placeholder}
+                        onChange={this.searchData}
+                        required={true}
+                        onClick={this.clearInput}
+                        margin='normal'
+                    />
                     <div className="quote-results">
                         {this.state.filteredMembers.map((name, index) => {
                             return <div key={name + index} name={name} className="quote-name" onClick={() => this.setName(name)}>{name}</div>
