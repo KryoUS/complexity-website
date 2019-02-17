@@ -51,7 +51,7 @@ class CharStats extends Component {
                     <div className="loader" style={{left: '85vw'}} />
                     :
                     <div className="animate-right" style={{width: '95%'}}>
-                        <div className="char-info-overflow" style={{height: '80vh', width: '100%', display: 'flex', flexWrap: 'wrap'}}>
+                        <div className="char-info-overflow" style={{width: '100%', display: 'flex', flexWrap: 'wrap'}}>
                             {this.statBuilder('Health', this.state.charStats.health, null, 'Character health before buffs.', 'health')}
                             {this.statBuilder(this.capitalizeFirst(this.state.charStats.powerType), this.state.charStats.power, null, 'Class resource.', 'power')}
                             {this.statBuilder('Strength', this.state.charStats.str, null, 'Character strength.', 'str')}
