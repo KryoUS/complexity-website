@@ -15,7 +15,6 @@ class CharStats extends Component {
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/stats/`).then(res => {
             this.setState({charStats: res.data.stats, loaded: true});
-            console.log(this.state.charStats);
         }).catch(error => {
             console.log('WoW Character Stat API Error: ', error);
         });

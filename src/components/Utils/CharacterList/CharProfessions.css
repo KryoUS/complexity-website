@@ -17,5 +17,16 @@
 }
 
 .prof-name {
-    text-shadow: black;
+    margin-right: 5px;
+    font-size: .9rem;
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+.prof-name-container {
+    width: 35%;
+}
+
+.prof-bar-container {
+    width: 60%;
 }

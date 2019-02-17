@@ -17,7 +17,6 @@ class CharProgression extends Component {
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/progression/`).then(res => {
             this.setState({raids: res.data.progression.raids.reverse()});
-            console.log('res.data = ', res.data);
         }).catch(error => {
             console.log('WoW Character Progression API Error: ', error);
         });

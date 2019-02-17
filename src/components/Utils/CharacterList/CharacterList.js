@@ -9,6 +9,7 @@ import CharItems from './CharItems';
 import CharPets from './CharPets/CharPets';
 import CharProfessions from './CharProfessions';
 import CharProgression from './CharProgression';
+import CharPVP from './CharPVP';
 
 const buttonArray = [
     'Achievements', 
@@ -19,7 +20,6 @@ const buttonArray = [
     'Professions', 
     'Progression', 
     'PVP', 
-    'Quests', 
     'Reputation', 
     'Statistics', 
     'Stats', 
@@ -34,7 +34,10 @@ export default class CharacterList extends Component {
     constructor() {
         super();
 
+        this.charRef = React.createRef();
+
         this.state = {
+            charInfoSlide: false,
             selectedCharName: '',
             selectedCharRealm: '',
             selectedCharBackground: 'https://res.cloudinary.com/complexityguild/image/upload/v1546758915/wow/backgrounds/raiders.jpg',
@@ -168,11 +171,16 @@ export default class CharacterList extends Component {
             selectedCharAzeriteXp: azeriteXp,
             selectedCharAzeriteXpRemaining: azeriteXpRemaining,
             selectedButton: ''
-        })
+        });
+        setTimeout(() => {this[name].current.scrollIntoView({ block: 'start',  behavior: 'smooth' })}, 500);
     }
 
     selectedButton = (button) => {
-        this.setState({selectedButton: button});
+        this.setState({ charInfoSlide: false, selectedButton: button });
+    }
+
+    charInfoSlider = () => {
+        this.setState({ charInfoSlide: true });
     }
 
     render () {
@@ -180,18 +188,20 @@ export default class CharacterList extends Component {
             <div>
                 <div className="char-background image-mask" style={{backgroundImage: `url(${this.state.selectedCharBackground})`}}/>
                 <div className="char-info-container">
-                    {this.props.charsArray.length <= 0 ? 
-                        <div style={{width: '33vw'}} />
-                    :
-                        <div className="animate-left hidden-scrollbar char-info-overflow">
+                    {this.props.charsArray.length > 0 &&
+                        <div className="animate-bottom hidden-scrollbar char-info-overflow" id={this.state.selectedCharName ? undefined : 'char-info-fullscreen'}>
                             {this.props.charsArray.length > 0 && this.props.charsArray.map(char => {
+                                this[char.character_name] = React.createRef();
                                 return <div key={`${char.character_name}${char.class}`} 
                                             style={{
-                                                background: `url(${char.avatar_large}) no-repeat 10% ${this.raceBackgroundTop(char.race)}%`, 
-                                                backgroundSize: '150%'
+                                                background: `url(${char.avatar_large}) no-repeat 10% ${this.raceBackgroundTop(char.race)}%`,
+                                                backgroundSize: '100%'
                                             }} 
                                             className="armorycharimage"
-                                            onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.class, char.race, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining)}>
+                                            id={this.state.selectedCharName ? undefined : 'armorycharimage-fullscreen'}
+                                            onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.class, char.race, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining)}
+                                            ref={this[char.character_name]}
+                                >
                                     {char.spec_icon ? <div style={{
                                         marginLeft: '5px',
                                         background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${char.spec_icon}.png)`,
@@ -236,19 +246,40 @@ export default class CharacterList extends Component {
                         </div>
                     :
                         this.props.charsArray.length <= 0 ? 
-                            <div className="loader" />
+                            <div style={{width: '100vw', height: '100vh'}}>
+                                <div className="loader" />
+                            </div>
                         :
-                            <div className='selected-char pulse-color pulse-select'>Select a Character...</div>
+                            null
                     }
                     <div className="char-info">
-                        {this.state.selectedButton === 'Achievements' && <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Hunter Pets' && <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm}  />}
-                        {this.state.selectedButton === 'Mounts' && <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Stats' && <CharStats selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Items' && <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Pets' && <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Professions' && <CharProfessions selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
-                        {this.state.selectedButton === 'Progression' && <CharProgression selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} />}
+                        {this.state.selectedButton === 'Achievements' &&
+                            <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Hunter Pets' && 
+                            <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Mounts' && 
+                            <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Stats' && 
+                            <CharStats selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Items' && 
+                            <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Pets' && 
+                            <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Professions' && 
+                            <CharProfessions selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Progression' && 
+                            <CharProgression selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'PVP' && 
+                            <CharPVP selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
                     </div>
                     {this.state.selectedCharName && 
                         <div className="flex-row flex-center flex-wrap char-button-container">

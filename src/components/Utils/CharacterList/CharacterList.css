@@ -11,26 +11,9 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    width: 100vw;
     position: absolute;
     top: 70px;
-}
-
-.armorycharimage {
-	margin: 5px;
-    height: 100px;
-    width: 95%;
-    display: flex;
-    align-items: center;
-    border: 1px solid black;
-    transition: border 0.75s;
-    box-shadow: 5px 5px 8px #000000
-}
-
-.charname {
-	color: white;
-    font-size: 30px;
-    text-shadow: 2px 2px 3px #000000;
-    margin-left: 10px;
 }
 
 .char-info-overflow {
@@ -40,12 +23,56 @@
     overflow-X: hidden;
     overflow-Y: scroll;
     z-index: 1;
+    transition: all 0.5s ease-in-out;
+}
+
+#char-info-fullscreen {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 80vw;
+    height: 100vh;
+}
+
+.armorycharimage {
+	margin: 5px;
+    height: 100px;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 5px 5px 8px #000000;
+}
+
+.armorycharimage:hover {
+	border: 1px solid #472ead;
+    cursor: pointer;
+    height: 200px;
+}
+
+#armorycharimage-fullscreen {
+    height: 200px;
+    width: 100%;
+    margin: 5px auto;
+}
+
+#armorycharimage-fullscreen:hover {
+    height: 300px;
+    margin: 5px auto;
 }
 
 .char-info {
     height: 100%;
     width: 33vw;
     z-index: 1;
+}
+
+.charname {
+	color: white;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px #000000;
+    margin-left: 10px;
 }
 
 .selected-char {
@@ -61,11 +88,6 @@
     flex-direction: column;
     justify-content: space-between;
     height: 98%;
-}
-
-.armorycharimage:hover {
-	border: 1px solid #472ead;
-    cursor: pointer;
 }
 
 .selected-category-container {

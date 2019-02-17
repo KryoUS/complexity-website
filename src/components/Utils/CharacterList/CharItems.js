@@ -15,7 +15,6 @@ class CharItems extends Component {
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/items/`).then(res => {
             this.setState({className: res.data.className, items: res.data.items, loaded: true});
-            console.log(res.data)
         }).catch(error => {
             console.log('WoW Character Items API Error: ', error);
         });

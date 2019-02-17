@@ -1,0 +1,33 @@
+.pvp-card {
+    width: 100%;
+    margin: 5px;
+    padding: 5px;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
+    font-size: 1rem;
+    border: solid 1px rgb(0, 0, 0);
+    border-radius: 10px;
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+.pvp-card-title {
+    width: 100%;
+    font-size: 1.25rem;
+    text-align: center;
+    border-bottom: solid 1px rgb(146, 91, 234);
+}
+
+.pvp-card-bar{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.pvp-card-row {
+    width: 100%;
+}
+
+.pvp-card-column {
+    width: 50%;
+    text-align: center;
+    text-shadow: none;
+}

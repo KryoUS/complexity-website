@@ -36,8 +36,6 @@ class CharMounts extends Component {
                     this.setState({loadedMounts: this.state.loadedMounts + 20});
                 };
             });
-
-            console.log(this.state.character.mounts)
         }).catch(error => {
             console.log('WoW Character Achievements API Error: ', error);
         });
