@@ -1,0 +1,21 @@
+.reputation-row {
+    width: 100%;
+}
+
+.reputation-name {
+    width: 32%;
+    margin: auto;
+    text-align: end;
+    font-size: .85rem;
+}
+
+.reputation-bar {
+    width: 53%;
+    margin: 4px;
+}
+
+.reputation-standing {
+    width: 15%;
+    margin: auto;
+    font-size: .85rem;
+}

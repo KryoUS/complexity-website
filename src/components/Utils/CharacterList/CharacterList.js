@@ -10,6 +10,7 @@ import CharPets from './CharPets/CharPets';
 import CharProfessions from './CharProfessions';
 import CharProgression from './CharProgression';
 import CharPVP from './CharPVP';
+import CharReputation from './CharReputation';
 
 const buttonArray = [
     'Achievements', 
@@ -227,12 +228,14 @@ export default class CharacterList extends Component {
                         <div className='selected-char'>
                             <div className="selected-char-info">
                                 <div>
-                                    <div style={{fontSize: 50}}>{this.state.selectedCharName}</div>
-                                    {this.state.selectedCharLevel} {this.state.selectedCharRace} {this.state.selectedCharSpec} {this.state.selectedCharClass}
+                                    <div className="selected-char-name">{this.state.selectedCharName}</div>
+                                    <div className="selected-char-extrainfo">
+                                        {this.state.selectedCharLevel} {this.state.selectedCharRace} {this.state.selectedCharSpec} {this.state.selectedCharClass}
+                                    </div>
                                 </div>
                                 {this.state.selectedCharAzeriteLevel > 0 &&
                                     <div>
-                                        <div>Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
+                                        <div className="selected-char-extrainfo">Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
                                         <ProgressBar 
                                             current={this.state.selectedCharAzeriteXp} 
                                             remaining={this.state.selectedCharAzeriteXpRemaining} 
@@ -279,6 +282,9 @@ export default class CharacterList extends Component {
                         }
                         {this.state.selectedButton === 'PVP' && 
                             <CharPVP selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Reputation' && 
+                            <CharReputation selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
                     </div>
                     {this.state.selectedCharName && 

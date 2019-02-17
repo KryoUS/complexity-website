@@ -83,6 +83,14 @@
     z-index: 1;
 }
 
+.selected-char-name {
+    font-size: 3rem;
+}
+
+.selected-char-extrainfo {
+    font-size: 2rem;
+}
+
 .selected-char-info {
     display: flex;
     flex-direction: column;
@@ -154,6 +162,12 @@
         height: auto;
     }
 
+    .char-info {
+        height: 25vh;
+        width: 100vw;
+        overflow: hidden;
+    }
+
     .char-info-overflow {
         height: 20vh;
         width: 100vw;
@@ -161,6 +175,22 @@
 
     .selected-char {
         width: 100vw;
+    }
+
+    .selected-char-name {
+        font-size: 2rem;
+    }
+
+    .selected-char-extrainfo {
+        font-size: 1rem;
+    }
+
+    .armorycharimage {
+        height: 75px;
+    }
+
+    .armorycharimage:hover {
+        height: 75px;
     }
 
     .pulse-select {
