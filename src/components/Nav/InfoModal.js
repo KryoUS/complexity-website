@@ -32,14 +32,14 @@ class InfoModal extends React.Component {
                     aria-describedby="alert-dialog-slide-description"
                 >
                     <DialogTitle id="alert-dialog-slide-title">
-                        {this.props.modalTitle}
+                        <div className="modal-title">{this.props.modalTitle}</div>
                     </DialogTitle>
                     <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        {this.props.modalMessage}
+                        <div className="modal-description">{this.props.modalMessage}</div>
                     </DialogContentText>
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions id="alert-dialog-slide-actions">
                     <Button onClick={this.modalClose} color="primary">
                         {this.props.modalButton}
                     </Button>

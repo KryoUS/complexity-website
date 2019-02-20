@@ -65,17 +65,17 @@ class RemoveRelease extends Component {
                 fullScreen={true}
             >
                 <DialogTitle id="alert-dialog-slide-title">
-                    Remove a new Release Date Countdown
+                    <div className="modal-title">Remove a new Release Date Countdown</div>
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent id="alert-dialog-slide-content">
                     <DialogContentText id="alert-dialog-slide-description">
-                        Select all Release Dates you'd like to remove from the Home page.
+                        <div className="modal-description">Select all Release Dates you'd like to remove from the Home page.</div>
                     </DialogContentText>
                     {this.state.tableData.length >= 1 && 
                         <ReleasesTable tableData={this.state.tableData} checkedRows={this.checkedRows}/>
                     }
                 </DialogContent>
-                <DialogActions>
+                <DialogActions id="alert-dialog-slide-actions">
                     <Button onClick={this.props.dialogClose} color="primary">
                         Cancel
                     </Button>

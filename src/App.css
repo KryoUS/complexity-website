@@ -226,6 +226,39 @@ body::-webkit-scrollbar {
   z-index: 1400 !important;
 }
 
+#alert-dialog-slide-title {
+  background-color: #17171A !important;
+  color: white !important;
+}
+
+#alert-dialog-slide-content {
+  background-color: #17171A !important;
+  color: white !important;
+}
+
+#alert-dialog-slide-actions {
+  margin: 0px !important;
+  background-color: #17171A !important;
+  color: white !important;
+}
+
+.modal-title {
+  color: rgb(120, 77, 189);
+  text-shadow: 2px 2px black;
+}
+
+.modal-description {
+  margin: 5px;
+  width: 100%;
+  font-size: 1rem;
+  color: #5C5C5C;
+  line-height: 1.25em;
+}
+
+#modal-textfield {
+  color: white;
+}
+
 /* Class Colors */
 #deathKnight {
   color: #c41e3b;

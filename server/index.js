@@ -35,7 +35,7 @@ app.use(session({
 app.use( passport.initialize() );
 app.use( passport.session() );
 passport.use( bnetStrategy );
-// app.use(express.static(__dirname + '/../build'));
+app.use(express.static(__dirname + '/../build'));
 
 //Auth Serialize
 passport.serializeUser(function(user, done) {

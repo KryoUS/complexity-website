@@ -92,7 +92,7 @@ class CharPetsModal extends React.Component {
                     aria-describedby="alert-dialog-slide-description"
                 >
                     {this.props.loading ? 
-                        <DialogContent style={{width: '500px', height: '320px'}}>
+                        <DialogContent style={{width: '500px', height: '320px'}} id="alert-dialog-slide-content">
                             <div className="loader"></div>
                         </DialogContent>
                     :
@@ -104,7 +104,7 @@ class CharPetsModal extends React.Component {
                                 </a>
                                 {this.props.pet.canBattle && <div className="pet-modal-description">{this.props.pet.stats.speciesInfo.description}</div>}
                             </DialogTitle>
-                            <DialogContent>
+                            <DialogContent id="alert-dialog-slide-content">
                                 <div className={`flex-row flex-between`} >
                                     {this.props.pet.canBattle === true ? 
                                         <div className="flex-column flex-between" style={{width: '800px', alignContent: 'center'}}>
@@ -252,7 +252,7 @@ class CharPetsModal extends React.Component {
                                     }
                                 </div>
                             </DialogContent>
-                            <DialogActions>
+                            <DialogActions id="alert-dialog-slide-actions">
                                 <Button onClick={this.props.petModalClose} color="primary">
                                     Close
                                 </Button>

@@ -222,10 +222,10 @@ class Blizztrack extends Component {
                             <div className="blizztrack-diff">{this.state.patchNotesDate}</div>
                         </div>
                     </DialogTitle>
-                    <DialogContent>
+                    <DialogContent id="alert-dialog-slide-content">
                         <div className="blizztrack-html" dangerouslySetInnerHTML={{ __html: this.state.patchNotesContent }}></div>
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions id="alert-dialog-slide-actions">
                         <a className="blizztrack-modal-logo-container flex-row"
                             href={this.state.patchNotesURL} 
                             target="_blank" 

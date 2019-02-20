@@ -96,14 +96,14 @@ class AddQuote extends Component {
                 fullScreen={false}
             >
                 <DialogTitle id="alert-dialog-slide-title">
-                    Add a new Quote
+                    <div className="modal-title">Add a new Quote</div>
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent id="alert-dialog-slide-content">
                     <DialogContentText id="alert-dialog-slide-description">
-                        This will show on the News page after a random selection.
+                        <div className="modal-description">This will show on the News page after a random selection.</div>
                     </DialogContentText>
                     <TextField
-                        id='quote'
+                        id='modal-textfield'
                         label='Quote'
                         value={this.state.quote}
                         onChange={this.handleChange('quote')}
@@ -112,7 +112,7 @@ class AddQuote extends Component {
                         margin='normal'
                     />
                     <TextField
-                        id='member'
+                        id='modal-textfield'
                         label='Member Name'
                         value={this.state.placeholder}
                         onChange={this.searchData}
@@ -126,7 +126,7 @@ class AddQuote extends Component {
                         })}
                     </div>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions id="alert-dialog-slide-actions">
                     <Button onClick={this.props.dialogClose} color="primary">
                         Cancel
                     </Button>

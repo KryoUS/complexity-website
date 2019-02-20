@@ -172,14 +172,14 @@ class Settings extends Component {
                     fullScreen={false}
                 >
                     <DialogTitle id="alert-dialog-slide-title">
-                        Set a new main Character?
+                        <div className="modal-title">Set a new main Character?</div>
                     </DialogTitle>
-                    <DialogContent>
+                    <DialogContent id="alert-dialog-slide-content">
                         <DialogContentText id="alert-dialog-slide-description">
-                            {`Do you really want to set ${this.state.newMain} as your main character?`}
+                            <div className="modal-description">{`Do you really want to set ${this.state.newMain} as your main character?`}</div>
                         </DialogContentText>
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions id="alert-dialog-slide-actions">
                         <Button onClick={this.dialogClose} color="primary">
                             Cancel
                         </Button>

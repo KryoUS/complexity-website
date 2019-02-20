@@ -57,11 +57,11 @@ class AddRelease extends Component {
                 fullScreen={false}
             >
                 <DialogTitle id="alert-dialog-slide-title">
-                    Add a new Release Date Countdown
+                    <div className="modal-title">Add a new Release Date Countdown</div>
                 </DialogTitle>
-                <DialogContent>
+                <DialogContent id="alert-dialog-slide-content">
                     <DialogContentText id="alert-dialog-slide-description">
-                        This shows on the Home page as a Countdown timer from now until the release date.
+                        <div className="modal-description">This shows on the Home page as a Countdown timer from now until the release date.</div>
                     </DialogContentText>
                     <TextField
                         id='releaseTitle'
@@ -78,6 +78,11 @@ class AddRelease extends Component {
                         required={false}
                     />
                     <TextField
+                        InputProps={{
+                            classes: {
+                                input: {color: 'white'}
+                            }
+                        }}
                         id='releaseDate'
                         label='Release Date'
                         defaultValue='2019-05-24T10:30'
@@ -92,7 +97,7 @@ class AddRelease extends Component {
                         <ReleasesTable tableData={this.state.tableData}/>
                     } */}
                 </DialogContent>
-                <DialogActions>
+                <DialogActions id="alert-dialog-slide-actions">
                     <Button onClick={this.props.dialogClose} color="primary">
                         Cancel
                     </Button>
