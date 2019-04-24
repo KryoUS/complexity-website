@@ -13,6 +13,7 @@ const news = require('../controllers/Database/news_controller');
 const raiders = require('../controllers/Database/raider_controller');
 const userFunctions = require('../controllers/Database/user_controller');
 const quotes = require('../controllers/Database/quotes_controller');
+const logs = require('../controllers/Database/logs_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -55,6 +56,8 @@ routes.get('/auth', requireSession, userFunctions.auth);
 routes.post('/auth/newmain', checkAuth, userFunctions.setMain);
 routes.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
 routes.get('/auth/logout', checkAuth, userFunctions.logout);
+//Logging routes from DB
+routes.get('/logs/discordbot', requireAdmin, logs.getDiscordBot);
 //Releases Endpoints from DB
 routes.get('/api/releases', requireSession, releaseController.get);
 routes.get('/api/allreleases', requireSession, releaseController.getAll);

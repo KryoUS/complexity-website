@@ -11,6 +11,7 @@ body {
   font-family: Oswald,sans-serif;
   width: 100%;
   height: 100%;
+  color: white;
 }
 
 body::-webkit-scrollbar {
@@ -49,6 +50,11 @@ body::-webkit-scrollbar {
   cursor: pointer;
   opacity: 1;
   border-color: rgb(146, 91, 234);
+}
+
+.basic-hover:hover {
+  cursor: pointer;
+  background-color: #25262A;
 }
 
 .button-text {

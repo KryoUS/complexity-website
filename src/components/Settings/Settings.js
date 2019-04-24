@@ -2,6 +2,7 @@ import React,  { Component } from 'react';
 import axios from 'axios';
 import { setMain } from '../../ducks/reducer';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import Button from '@material-ui/core/Button';
 import AddRelease from './Release/AddRelease';
@@ -158,6 +159,14 @@ class Settings extends Component {
                                 >
                                     <div className="button-text">Add</div>
                                 </div>
+                            </div>
+                            <p>DiscordBot Logs</p>
+                            <div className="settings-row">
+                                <Link className="button-border" id='nav-button' to="/logs">
+                                    <div className="button-border" data-tip='Add a quote that shows on the News Page.'>
+                                        <div className="button-text">Add</div>
+                                    </div>
+                                </Link>
                             </div>
                             <ReactTooltip />
                         </div>

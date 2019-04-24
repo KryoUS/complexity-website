@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { connect } from 'react-redux';
 import { infoModal } from '../../ducks/reducer';
+import Prettyjson from '../Utils/PrettyJson';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -30,14 +31,18 @@ class InfoModal extends React.Component {
                     onClose={this.modalClose}
                     aria-labelledby="alert-dialog-slide-title"
                     aria-describedby="alert-dialog-slide-description"
+                    maxWidth='md'
+                    fullWidth={true}
                 >
                     <DialogTitle id="alert-dialog-slide-title">
                         <div className="modal-title">{this.props.modalTitle}</div>
                     </DialogTitle>
                     <DialogContent>
-                    <DialogContentText id="alert-dialog-slide-description">
-                        <div className="modal-description">{this.props.modalMessage}</div>
-                    </DialogContentText>
+                        {typeof this.props.modalMessage === 'object' ?
+                            <Prettyjson jsonData={this.props.modalMessage} />
+                        :
+                            <div className="modal-description">{ this.props.modalMessage }</div>
+                        }
                     </DialogContent>
                     <DialogActions id="alert-dialog-slide-actions">
                     <Button onClick={this.modalClose} color="primary">
