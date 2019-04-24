@@ -1,0 +1,47 @@
+.statistics-category {
+    padding: 5px;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
+    font-size: 1rem;
+    border: solid 1px rgb(0, 0, 0);
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+.statistics-category:hover {
+    cursor: pointer;
+}
+
+.statistics-category-open, .statistics-category:hover {
+    border: solid 1px rgb(146, 91, 234);
+}
+
+.statistics-sub-category {
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+#statistics-sub-category {
+    background-image: linear-gradient(17deg, rgb(31, 20, 73), rgb(66, 54, 114));
+}
+
+#statistics-card {
+    width: 98%;
+    padding: 5px;
+    align-items: center;
+    background-color: #25262A;
+    background-image: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));
+    border-radius: 4px;
+    font-size: .75rem;
+}
+
+#statistics-name {
+
+}
+
+#statistics-date {
+    width: 218px;
+    margin: auto;
+    text-align: end;
+}

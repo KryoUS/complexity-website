@@ -11,6 +11,7 @@ import CharProfessions from './CharProfessions';
 import CharProgression from './CharProgression';
 import CharPVP from './CharPVP';
 import CharReputation from './CharReputation';
+import CharStatistics from './CharStatistics';
 
 const buttonArray = [
     'Achievements', 
@@ -285,6 +286,9 @@ export default class CharacterList extends Component {
                         }
                         {this.state.selectedButton === 'Reputation' && 
                             <CharReputation selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Statistics' && 
+                            <CharStatistics selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
                     </div>
                     {this.state.selectedCharName && 

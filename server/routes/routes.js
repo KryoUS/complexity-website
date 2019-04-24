@@ -99,6 +99,7 @@ routes.put('/api/wow/character/:character&:realm/professions', requireSession, b
 routes.put('/api/wow/character/:character&:realm/progression', requireSession, blizzardApi.getCharacterProgression);
 routes.put('/api/wow/character/:character&:realm/pvp', requireSession, blizzardApi.getCharacterPVP);
 routes.put('/api/wow/character/:character&:realm/reputation', requireSession, blizzardApi.getCharacterReputation);
+routes.put('/api/wow/character/:character&:realm/statistics', requireSession, blizzardApi.getCharacterStatistics);
 //Ranking Endpoint from WoWProgress API
 routes.get('/api/wowprogress/guildranking', requireSession, wowprogressApi.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

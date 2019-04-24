@@ -125,7 +125,6 @@ class CharProgression extends Component {
                 }
                 <div className="flex-column" style={{width: '90%', marginTop: '10px', alignSelf: 'flex-end'}}>
                     {obj.bosses.map((bossObj, bossIndex) => {
-                        console.log(bossObj)
                         return <Collapsible 
                         key={bossObj.id * bossIndex}
                         trigger={
