@@ -16,7 +16,7 @@ class Logs extends Component {
 
     componentDidMount = () => {
         axios.get('/logs/discordbot').then(res => {
-            this.setState({ data: res.data });
+            this.setState({ data: res.data.reverse() });
         }).catch(error => {
             console.log('Discord Bot Log Error: ', error);
         });
