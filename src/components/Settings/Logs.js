@@ -34,7 +34,7 @@ class Logs extends Component {
                     <div className="flex-column flex-center" style={{width: '20%'}}>User Avatar</div>
                     <div className="flex-column flex-center" style={{width: '20%'}}>Username</div>
                     <div className="flex-column flex-center" style={{width: '20%'}}>Message</div>
-                    <div className="flex-column flex-center" style={{width: '20%'}}>Error</div>
+                    <div className="flex-column flex-center" style={{width: '20%'}}>More Info</div>
                 </div>
                 { this.state.data.length > 1 && this.state.data.map((obj, index) => {
                     let avatar = '';
