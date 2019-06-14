@@ -148,48 +148,52 @@ class Blizztrack extends Component {
     render() {
         return (
             <div className="flex-row flex-center blizztrack-back">
-                <div className="flex-column blizztrack-container">
-                    {this.state.wowVersion.name &&
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Retail</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowVersion.regions.map(obj => {
-                                    return this.versionBuilder(obj)
-                                })}
+                {this.state.wowVersion.name &&
+                    <div className="flex-column blizztrack-container">
+                        
+                            <div className="fade2s">
+                                <div className="blizztrack-title">World of Warcraft - Retail</div>
+                                <div className="flex-column blizztrack-overflow">
+                                    {this.state.wowVersion.regions.map(obj => {
+                                        return this.versionBuilder(obj)
+                                    })}
+                                </div>
+                                <div className="blizztrack-bottom" />
                             </div>
-                            <div className="blizztrack-bottom" />
-                        </div>
-                    }
-                </div>
-                <div className="flex-column blizztrack-container">
-                    {this.state.wowPatchNotes.items &&
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowPatchNotes.items.map(obj => {
-                                    return this.patchBuilder(obj)
-                                })}
+                    </div>
+                }
+                {this.state.wowPatchNotes.items &&
+                    <div className="flex-column blizztrack-container">
+                        
+                            <div className="fade2s">
+                                <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
+                                <div className="flex-column blizztrack-overflow">
+                                    {this.state.wowPatchNotes.items.map(obj => {
+                                        return this.patchBuilder(obj)
+                                    })}
+                                </div>
+                                <div className="blizztrack-bottom" />
                             </div>
-                            <div className="blizztrack-bottom" />
-                        </div>
-                    }
-                </div>
-                <div className="flex-column blizztrack-container">
-                    {this.state.wowPatchNotes.items &&
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowBluePosts.map(obj => {
-                                    return this.bluePostsBuilder(obj)
-                                })}
+                        
+                    </div>
+                }
+                {this.state.wowBluePosts.length > 0 &&
+                    <div className="flex-column blizztrack-container">
+                        
+                            <div className="fade2s">
+                                <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
+                                <div className="flex-column blizztrack-overflow">
+                                    {this.state.wowBluePosts.map(obj => {
+                                        return this.bluePostsBuilder(obj)
+                                    })}
+                                </div>
+                                <div className="blizztrack-bottom" />
+                                <ReactTooltip id="blizztrack-posts" />
                             </div>
-                            <div className="blizztrack-bottom" />
-                            <ReactTooltip id="blizztrack-posts" />
-                        </div>
-                    }
-                </div>
-                <div className="flex-column blizztrack-container">
-                    {this.state.wowPatchNotes.items &&
+                    </div>
+                }
+                {this.state.wowLatestPosts.Posts &&
+                    <div className="flex-column blizztrack-container">
                         <div className="fade2s">
                             <div className="blizztrack-title">World of Warcraft - Latest Posts</div>
                             <div className="flex-column blizztrack-overflow">
@@ -203,8 +207,8 @@ class Blizztrack extends Component {
                             </a>
                             <ReactTooltip id="blizztrack-posts" />
                         </div>
-                    }
-                </div>
+                    </div>
+                }
                 <Dialog
                     id="blizztrack-modal"
                     fullScreen={true}
