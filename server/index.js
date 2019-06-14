@@ -4,6 +4,7 @@ require('dotenv').config({path: path.join(__dirname, '.env')});
 
 //Libraries
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const app = require('./app');
 const cors = require('cors');
@@ -69,11 +70,18 @@ massive({
     console.log('Massive Error: ', error)
 });
 
-//Start HTTPS Server
+//Start Server
 let port = process.env.PORT || 3050;
-https.createServer( {
-    key: fs.readFileSync('./security/cert.key'),
-    cert: fs.readFileSync('./security/cert.pem')
-}, app ).listen(port, () => {
-    console.log( 'Express server listening on port ' + port );
-});
+if (process.env.DEV == true) {
+    https.createServer( 
+        {
+            key: fs.readFileSync('./security/cert.key'),
+            cert: fs.readFileSync('./security/cert.pem')
+        }, app ).listen(port, () => {
+        console.log( 'Express server listening on port ' + port );
+    });
+} else {
+    http.createServer(app).listen(port, () => {
+        console.log( 'Express server listening on port ' + port );
+    });
+};
