@@ -37,7 +37,7 @@ class News extends Component {
                 <div className="news-div fade1s">
                     <div className="news-header">
                         <Blizztrack />
-                        {   this.state.releases.length &&
+                        {   this.state.releases.length ?
                             <div className="news-countdown">
                                 {this.state.releases ?
                                     this.state.releases.map(release => (
@@ -51,6 +51,7 @@ class News extends Component {
                                     : null
                                 }
                             </div>
+                            : null
                         }
                     </div>
                     <div className="news-container">
