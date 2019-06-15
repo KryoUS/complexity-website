@@ -80,7 +80,7 @@ module.exports = {
     },
 
     setWoWBluePosts: (req, res) => {
-        axios.get(`https://blizztrack.com/api/forums/world_of_Warcraft/latest_post/blue`).then(response => {
+        axios.get(`https://blizztrack.com/api/forums/world_of_warcraft/latest_post/blue`).then(response => {
             response.data.forEach(obj => {
                 obj.category = forumCategory[`${obj.category_id}`];
             });

@@ -128,20 +128,6 @@
     -moz-animation: pulse 6s infinite;
 }
 
-.pulse {
-    animation: pulse 6s infinite;
-    -o-animation: pulse 6s infinite;
-    -webkit-animation: pulse 6s infinite;
-    -moz-animation: pulse 6s infinite;
-}
-
-.pulse-color {
-    animation: pulse-color 6s infinite;
-    -o-animation: pulse-color 6s infinite;
-    -webkit-animation: pulse-color 6s infinite;
-    -moz-animation: pulse-color 6s infinite;
-}
-
 .login:hover, login:focus {
     cursor: pointer;
     border-bottom: 2px solid rgb(146, 91, 234);
@@ -248,29 +234,9 @@
     100% { opacity:1 }
 }
 
-@keyframes pulse {
-    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
-    50% { border-bottom: 2px solid transparent }
-}
-
-@keyframes pulse-color {
-    0%, 100% { color: white }
-    50% { color: transparent }
-}
-
 @-o-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
-}
-
-@-o-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
-    50% { border-bottom: 2px solid transparent }
-}
-
-@-o-keyframes pulse-color {
-    0%, 100% { color: white }
-    50% { color: transparent }
 }
 
 @-moz-keyframes fadeIn {
@@ -278,27 +244,7 @@
     100% { opacity:1 }
 }
 
-@-moz-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
-    50% { border-bottom: 2px solid transparent }
-}
-
-@-moz-keyframes pulse-color {
-    0%, 100% { color: white }
-    50% { color: transparent }
-}
-
 @-webkit-keyframes fadeIn {
     0% { opacity:0 }
     100% { opacity:1 }
-}
-
-@-webkit-keyframes pulse {
-    0%, 100% { border-bottom: 2px solid rgb(146, 91, 234) }
-    50% { border-bottom: 2px solid transparent }
-}
-
-@-webkit-keyframes pulse-color {
-    0%, 100% { color: white }
-    50% { color: transparent }
 }
