@@ -24,19 +24,11 @@ const checkAuth = (req, res, next) => {
 }
 
 const requireAdmin = (req, res, next) => {
-    if (req.session.passport.user.isAdmin) {
+    if (req.isAuthenticated() && req.session.passport.user.isAdmin) {
         next();
     } else {
         res.redirect('/');
     }    
-}
-
-const requireSession = (req, res, next) => {
-    if (req.session.cookie) {
-        next();
-    } else {
-        res.sendStatus(401);
-    }
 }
 
 // API Initialization Variables
@@ -52,67 +44,68 @@ wowprogressApi.setWowProgressGuild();
 /*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
 routes.get('/auth/login', passport.authenticate('bnet'));
-routes.get('/auth', requireSession, userFunctions.auth);
+routes.get('/auth', userFunctions.auth);
 routes.post('/auth/newmain', checkAuth, userFunctions.setMain);
 routes.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
 routes.get('/auth/logout', checkAuth, userFunctions.logout);
 //Logging routes from DB
 routes.get('/logs/discordbot', requireAdmin, logs.getDiscordBot);
+routes.get('/logs/serviceslog', requireAdmin, logs.getServicesLog);
 //Releases Endpoints from DB
-routes.get('/api/releases', requireSession, releaseController.get);
-routes.get('/api/allreleases', requireSession, releaseController.getAll);
+routes.get('/api/releases', releaseController.get);
+routes.get('/api/allreleases', releaseController.getAll);
 routes.post('/api/releases', requireAdmin, releaseController.post);
 routes.delete('/api/deleterelease/:id', requireAdmin, releaseController.delete);
 //News Endpoints from DB
-routes.get('/api/news', requireSession, news.get);
-routes.get('/api/guildnews', requireSession, news.getGuildNews);
+routes.get('/api/news', news.get);
+routes.get('/api/guildnews', news.getGuildNews);
 //Raider Endpoints from DB
-routes.get('/api/raiders', requireSession, raiders.get);
+routes.get('/api/raiders', raiders.get);
 //Guild Members Endpoint from DB
-routes.get('/api/members', requireSession, stats.members);
-routes.get('/api/members/names', requireSession, stats.memberNames);
+routes.get('/api/members', stats.members);
+routes.get('/api/members/names', stats.memberNames);
 //Stat Endpoints from DB
-routes.get('/api/stats/character', requireSession, stats.characters);
-routes.get('/api/stats/consumables', requireSession, stats.consumables);
-routes.get('/api/stats/combat', requireSession, stats.combat);
-routes.get('/api/stats/kills', requireSession, stats.kills);
-routes.get('/api/stats/deaths', requireSession, stats.deaths);
-routes.get('/api/stats/pve', requireSession, stats.pve);
-routes.get('/api/stats/professions', requireSession, stats.professions);
-routes.get('/api/stats/travel', requireSession, stats.travel);
-routes.get('/api/stats/emotes', requireSession, stats.emotes);
-routes.get('/api/stats/pvp', requireSession, stats.pvp);
-routes.get('/api/stats/arena', requireSession, stats.arena);
-routes.get('/api/stats/pets', requireSession, stats.pets);
+routes.get('/api/stats/character', stats.characters);
+routes.get('/api/stats/consumables', stats.consumables);
+routes.get('/api/stats/combat', stats.combat);
+routes.get('/api/stats/kills', stats.kills);
+routes.get('/api/stats/deaths', stats.deaths);
+routes.get('/api/stats/pve', stats.pve);
+routes.get('/api/stats/professions', stats.professions);
+routes.get('/api/stats/travel', stats.travel);
+routes.get('/api/stats/emotes', stats.emotes);
+routes.get('/api/stats/pvp', stats.pvp);
+routes.get('/api/stats/arena', stats.arena);
+routes.get('/api/stats/pets', stats.pets);
 //Quotes Endpoint from DB
-routes.get('/api/complexity/quotes', requireSession, quotes.get);
+routes.get('/api/complexity/quotes', quotes.get);
 routes.post('/api/complexity/quotes', requireAdmin, quotes.post);
 //WoW API Endpoints
-routes.get('/api/wow/server/status', requireSession, blizzardApi.getServerStatus);
-routes.get('/api/wow/token/price', requireSession, blizzardApi.getTokenPrice);
-routes.put('/api/wow/character/:character&:realm/achievements', requireSession, blizzardApi.getCharacterAchievements);
-routes.put('/api/wow/character/:character&:realm/mounts', requireSession, blizzardApi.getCharacterMounts);
-routes.put('/api/wow/character/:character&:realm/hunterPets', requireSession, blizzardApi.getCharacterHunterPets);
-routes.put('/api/wow/character/:character&:realm/stats', requireSession, blizzardApi.getCharacterStats);
-routes.put('/api/wow/character/:character&:realm/items', requireSession, blizzardApi.getCharacterItems);
-routes.put('/api/wow/character/:character&:realm/pets', requireSession, blizzardApi.getCharacterPets);
-routes.get('/api/wow/pet/species/:speciesId', requireSession, blizzardApi.getPetsSpecies);
-routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', requireSession, blizzardApi.getPetsStats);
-routes.put('/api/wow/character/:character&:realm/professions', requireSession, blizzardApi.getCharacterProfessions);
-routes.put('/api/wow/character/:character&:realm/progression', requireSession, blizzardApi.getCharacterProgression);
-routes.put('/api/wow/character/:character&:realm/pvp', requireSession, blizzardApi.getCharacterPVP);
-routes.put('/api/wow/character/:character&:realm/reputation', requireSession, blizzardApi.getCharacterReputation);
-routes.put('/api/wow/character/:character&:realm/statistics', requireSession, blizzardApi.getCharacterStatistics);
+routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
+routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
+routes.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
+routes.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
+routes.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
+routes.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
+routes.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
+routes.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPets);
+routes.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
+routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
+routes.put('/api/wow/character/:character&:realm/professions', blizzardApi.getCharacterProfessions);
+routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCharacterProgression);
+routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
+routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
+routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
 //Ranking Endpoint from WoWProgress API
-routes.get('/api/wowprogress/guildranking', requireSession, wowprogressApi.getWowProgressGuild);
+routes.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API
-routes.get('/api/raiderio/guildranking', requireSession, raiderioApi.getWowRankingsGuild);
+routes.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
 //Mythic Affixes Endpoint from RaiderIO API
-routes.get('/api/raiderio/mythicaffixes', requireSession, raiderioApi.getWowMythicAffixes);
+routes.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
 //Blizztrack API Endpoints
-routes.get('/api/blizztrack/wow/blueposts', requireSession, blizztrackApi.getWoWBluePosts);
-routes.get('/api/blizztrack/wow/latestposts', requireSession, blizztrackApi.getWoWLatestPosts);
-routes.get('/api/blizztrack/wow/patchnotes', requireSession, blizztrackApi.getWoWPatchNotes);
-routes.get('/api/blizztrack/wow/version', requireSession, blizztrackApi.getWoWVersion);
+routes.get('/api/blizztrack/wow/blueposts', blizztrackApi.getWoWBluePosts);
+routes.get('/api/blizztrack/wow/latestposts', blizztrackApi.getWoWLatestPosts);
+routes.get('/api/blizztrack/wow/patchnotes', blizztrackApi.getWoWPatchNotes);
+routes.get('/api/blizztrack/wow/version', blizztrackApi.getWoWVersion);
 
 module.exports = routes;

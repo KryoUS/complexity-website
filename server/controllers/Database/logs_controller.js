@@ -9,4 +9,15 @@ module.exports = {
             res.status(500).send('DiscordBotLog Error');
         })
     },
+
+    getServicesLog: (req, res) => {
+    
+        req.app.get('db').query('select * from serviceslog').then(response => {
+            res.status(200).send(response);
+        }).catch(error => {
+            console.log('ServicesLog Error');
+            console.log(error);
+            res.status(500).send('ServicesLog Error');
+        })
+    },
 }
