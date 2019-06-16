@@ -1,11 +1,13 @@
-const axios = require('axios');
+const getRandomArbitrary = (min, max) => {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
 module.exports = {
     get: (req, res) => {
-        let randomQuoteId = Math.random() * (max - min) + min;
-        
-        req.app.get('db').quotes.findOne({ id: randomQuoteId }).then(response => {
-            res.status(200).send(response);
+
+        req.app.get('db').quotes.find().then(response => {
+            let random = getRandomArbitrary(0, response.length - 1);
+            res.status(200).send(response[random]);
         }).catch(error => {
             console.log(error)
             res.sendStatus(503);

@@ -30,7 +30,7 @@
     "recharts": "^1.6.2",
     "redux": "^4.0.1"
   },
-  "proxy": "http://localhost:3050",
+  "proxy": "https://localhost:3050",
   "scripts": {
     "start": "node server/index.js",
     "dev": "set HTTPS=true&&react-scripts start",
