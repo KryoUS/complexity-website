@@ -77,7 +77,7 @@ massive({
     app.use('/', routes);
     //Catch all routes that don't match anything and send to Build/index.js for Production
     app.get('/*', express.static(
-        path.join(__dirname, '..', 'build')
+        path.join(__dirname, '..', 'client', 'build')
     ));
     
 }).catch(error => {
