@@ -71,7 +71,7 @@ massive({
     /* API Routes */
     app.use('/', routes);
     //Catch all routes that don't match anything and send to Build/index.js for Production
-    app.get('/*', test, express.static(
+    app.get('/*', express.static(
         path.join(__dirname, '..', 'client', 'build')
     ));
     
