@@ -13,29 +13,16 @@ const passport = require('passport');
 const massive = require('massive');
 const express = require('express');
 const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
 const routes = require('./routes/routes');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const cron = require('./cronjobs/cronjobs');
-
-const test = (req, res, next) => {
-    console.log(req.ip);
-    next();
-};
 
 //Start Cron Job Timers
 cron.jobs();
 
 //Basic Express Security with Helmet and API Rate Limiting
 app.use(helmet());
-//Trust NGINX https proxy
-app.set('trust proxy', true);
-//Enable rate limiting
-app.use(rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
-}));
 
 //Body Parser
 app.use( bodyParser.json() );
