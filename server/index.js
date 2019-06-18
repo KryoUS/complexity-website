@@ -19,6 +19,11 @@ const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
 const cron = require('./cronjobs/cronjobs');
 
+const test = (req, res, next) => {
+    console.log(req.ip);
+    next();
+};
+
 //Start Cron Job Timers
 cron.jobs();
 
@@ -79,7 +84,7 @@ massive({
     /* API Routes */
     app.use('/', routes);
     //Catch all routes that don't match anything and send to Build/index.js for Production
-    app.get('/*', express.static(
+    app.get('/*', test, express.static(
         path.join(__dirname, '..', 'client', 'build')
     ));
     
