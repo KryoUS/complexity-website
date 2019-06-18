@@ -30,7 +30,7 @@ cron.jobs();
 //Basic Express Security with Helmet and API Rate Limiting
 app.use(helmet());
 //Trust NGINX https proxy
-// app.set('trust proxy', 1);
+app.set('trust proxy', true);
 //Enable rate limiting
 app.use(rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
