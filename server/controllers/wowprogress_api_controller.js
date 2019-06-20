@@ -1,16 +1,12 @@
-const axios = require('axios');
-let wowProgressObj = {};
-
 module.exports = {
-    setWowProgressGuild: (req, res) => {
-        axios.get(`https://www.wowprogress.com/guild/us/thunderlord/Complexity/json_rank`).then(response => {
-            wowProgressObj = response.data;
-        }).catch(wowProgressError => {
-            console.log('Wow Progress Get Error', wowProgressError);
-        });
-    },
 
     getWowProgressGuild: (req, res) => {
-        res.send(wowProgressObj).status(200);
+        req.app.get('db').wowcache.findOne({id: 16}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoWProgress Guild Score Error');
+            console.log(error);
+            res.status(500).send('DB WoWProgress Guild Score Error');
+        });
     },
 }
