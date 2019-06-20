@@ -2,20 +2,6 @@ const axios = require('axios');
 
 //Realm Status
 let realmObj = {};
-//Master Achievement List
-let achievementsArr = [];
-//Mast Boss List
-let bossesArr = [];
-//Master Classes List
-let classesArr = [];
-//Master Mount List
-let mountsArr = [];
-//Master Pet List
-let petsArr = [];
-//Master Pet Types List
-let petTypesArr = [];
-//Master Race List
-let racesArr = [];
 //US WoW Token Price
 let tokenPrice = {price: 0};
 
@@ -47,6 +33,12 @@ const achievementInfo = (arr, id) => {
     return achievementObject
 }
 
+const className = (classNum, classesArr) => {
+    classesArr.map(obj => {
+        if (obj.id === classNum) {return obj.name};
+    });
+};
+
 const qualityColor = (quality) => {
     switch (quality) {
         case 1:
@@ -68,12 +60,6 @@ const qualityColor = (quality) => {
     }
 }
 
-const className = (classNum) => {
-    classesArr.map(obj => {
-        if (obj.id === classNum) {return obj.name};
-    });
-};
-
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -83,13 +69,6 @@ module.exports = {
             }
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
-            if (achievementsArr.length === 0) {module.exports.setAchievements();}
-            if (bossesArr.length === 0) {module.exports.setBosses();}
-            if (classesArr.length === 0) {module.exports.setClasses();}
-            if (mountsArr.length === 0) {module.exports.setMounts();}
-            if (petsArr.length === 0) {module.exports.setPets();}
-            if (petTypesArr.length === 0) {module.exports.setPetTypes();}
-            if (racesArr.length === 0) {module.exports.setRaces();}
             if (tokenPrice.price === 0) {module.exports.setTokenPrice();}
             if (!realmObj.name) {module.exports.setServerStatus();}
         }).catch(wowTokenFetchError => {
@@ -97,105 +76,59 @@ module.exports = {
         });
     },
 
-    //Set Master Achivements Array
-    setAchievements: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/character/achievements?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Achievement List Set!');
-            achievementsArr = JSON.parse(JSON.stringify(response.data));
-        }).catch(error => {
-            console.log('Get Classes Error: ', error);
-        });
-    },
-
-    //Set Master Boss Array
-    setBosses: () => {
-        axios.get(`https://us.api.blizzard.com/wow/boss/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            bossesArr = JSON.parse(JSON.stringify(response.data.bosses));
-        }).catch(error => {
-            console.log('Get Bosses Error: ', error);
-        });
-    },
-
-    //Set Master Class List Array
-    setClasses: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/character/classes?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Classes List Set!');
-            classesArr = JSON.parse(JSON.stringify(response.data.classes));
-        }).catch(error => {
-            console.log('Get Classes Error: ', error);
-        });
-    },
-
     getClasses: (req, res) => {
-        res.status(200).send(classesArr);
-    },
-
-    //Set Master Mount List Array
-    setMounts: () => {
-        axios.get(`https://us.api.blizzard.com/wow/mount/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Mount List Set!');
-            mountsArr = JSON.parse(JSON.stringify(response.data.mounts.filter(obj => obj.itemId > 0).sort((a, b) => {
-                let x = a.name.toLowerCase();
-                let y = b.name.toLowerCase();
-                if (x < y) {return -1;}
-                if (x > y) {return 1;}
-                return 0;
-            })));
-        }).catch(error => {
-            console.log('Set Master Mounts List Error: ', error);
+        req.app.get('db').wowcache.findOne({id: 4}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoW Get Classes Error');
+            console.log(error);
+            res.status(500).send('DB WoW Get Classes Error');
         });
     },
 
     getMounts: (req, res) => {
-        res.status(200).send(mountsArr);
-    },
-
-    //Set Master Pet List Array
-    setPets: () => {
-        axios.get(`https://us.api.blizzard.com/wow/pet/?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Pet List Set!');
-            petsArr = JSON.parse(JSON.stringify(response.data.pets));
-        }).catch(error => {
-            console.log('Set Master Pets List Error: ', error);
+        req.app.get('db').wowcache.findOne({id: 5}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoW Get Mounts Error');
+            console.log(error);
+            res.status(500).send('DB WoW Get Mounts Error');
         });
     },
 
     getPets: (req, res) => {
-        res.status(200).send(petsArr);
-    },
-
-    //Set Master Pet Type List Array
-    setPetTypes: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/pet/types?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Pet Types List Set!');
-            petTypesArr = JSON.parse(JSON.stringify(response.data.petTypes));
-        }).catch(error => {
-            console.log('Get Pet Types Error: ', error);
+        req.app.get('db').wowcache.findOne({id: 6}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoW Get Pets Error');
+            console.log(error);
+            res.status(500).send('DB WoW Get Pets Error');
         });
     },
 
     getPetTypes: (req, res) => {
-        res.status(200).send(petTypesArr);
-    },
-
-    //Set Master Race List Array
-    setRaces: () => {
-        axios.get(`https://us.api.blizzard.com/wow/data/character/races?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Master Races List Set!');
-            racesArr = JSON.parse(JSON.stringify(response.data.races));
-        }).catch(error => {
-            console.log('Get Races Error: ', error);
+        req.app.get('db').wowcache.findOne({id: 7}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoW Get PetTypes Error');
+            console.log(error);
+            res.status(500).send('DB WoW Get PetTypes Error');
         });
     },
 
     getRaces: (req, res) => {
-        res.status(200).send(racesArr);
+        req.app.get('db').wowcache.findOne({id: 8}).then(response => {
+            res.status(200).send(response.body.data);
+        }).catch(err => {
+            console.log('DB WoW Get Races Error');
+            console.log(error);
+            res.status(500).send('DB WoW Get Races Error');
+        });
     },
 
     //Set Server Status Object
     setServerStatus: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/realm/status?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('Server Status Set!');
             realmObj = response.data.realms.find(obj => {
                 return obj.name === 'Thunderlord';
             });
@@ -225,34 +158,41 @@ module.exports = {
     //Character Endpoints
     getCharacterAchievements: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=achievements&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            req.app.get('db').wowcache.findOne({id: 1}).then(dbResponse => {
+                
+                let responseArr = [];
 
-            let responseArr = [];
-            response.data.achievements.achievementsCompleted.map((id, index) => {
-                let achievementObject = achievementInfo(achievementsArr, id);
-                achievementObject.completedTimestamp = response.data.achievements.achievementsCompletedTimestamp[index];
-                achievementObject.criteria = response.data.achievements.criteria[index];
-                achievementObject.criteriaQuantity = response.data.achievements.criteriaQuantity[index];
-                achievementObject.criteriaTimestamp = response.data.achievements.criteriaTimestamp[index];
-                achievementObject.criteriaCreated = response.data.achievements.criteriaCreated[index];
-                responseArr.push(achievementObject);
+                response.data.achievements.achievementsCompleted.map((id, index) => {
+                    let achievementObject = achievementInfo(dbResponse.body.data, id);
+                    achievementObject.completedTimestamp = response.data.achievements.achievementsCompletedTimestamp[index];
+                    achievementObject.criteria = response.data.achievements.criteria[index];
+                    achievementObject.criteriaQuantity = response.data.achievements.criteriaQuantity[index];
+                    achievementObject.criteriaTimestamp = response.data.achievements.criteriaTimestamp[index];
+                    achievementObject.criteriaCreated = response.data.achievements.criteriaCreated[index];
+                    responseArr.push(achievementObject);
+                });
+
+                let achievements = responseArr.reduce((r, a) => {
+                    r[a.category] = r[a.category] || [];
+                    r[a.category].push(a);
+                    return r;
+                }, Object.create(null));
+
+                const achievementArray = (object) => {
+                    let achievementSort = [];
+                    for (let x in object) {
+                        achievementSort.push({[x]: object[x]});
+                    }
+                    return achievementSort;
+                }                
+
+                res.status(200).send(achievementArray(achievements));
+
+            }).catch(err => {
+                console.log('DB WoW Get Classes Error');
+                console.log(error);
+                res.status(500).send('DB WoW Get Classes Error');
             });
-
-            let achievements = responseArr.reduce((r, a) => {
-                r[a.category] = r[a.category] || [];
-                r[a.category].push(a);
-                return r;
-            }, Object.create(null));
-
-            const achievementArray = (object) => {
-                let achievementSort = [];
-                for (let x in object) {
-                    achievementSort.push({[x]: object[x]});
-                }
-                return achievementSort;
-            }
-            
-
-            res.status(200).send(achievementArray(achievements));
 
         }).catch(error => {
             console.log('Get Character Achievements Error: ', error);
@@ -278,91 +218,122 @@ module.exports = {
     getCharacterItems: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=items&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             
-            response.data.className = className(response.data.class);
-            response.data.items.head.qualityColor = qualityColor(response.data.items.head.quality);
-            response.data.items.neck.qualityColor = qualityColor(response.data.items.neck.quality);
-            response.data.items.shoulder.qualityColor = qualityColor(response.data.items.shoulder.quality);
-            response.data.items.back.qualityColor = qualityColor(response.data.items.back.quality);
-            response.data.items.chest.qualityColor = qualityColor(response.data.items.chest.quality);
-            response.data.items.wrist.qualityColor = qualityColor(response.data.items.wrist.quality);
-            response.data.items.hands.qualityColor = qualityColor(response.data.items.hands.quality);
-            response.data.items.waist.qualityColor = qualityColor(response.data.items.waist.quality);
-            response.data.items.legs.qualityColor = qualityColor(response.data.items.legs.quality);
-            response.data.items.feet.qualityColor = qualityColor(response.data.items.feet.quality);
-            response.data.items.finger1.qualityColor = qualityColor(response.data.items.finger1.quality);
-            response.data.items.finger2.qualityColor = qualityColor(response.data.items.finger2.quality);
-            response.data.items.trinket1.qualityColor = qualityColor(response.data.items.trinket1.quality);
-            response.data.items.trinket2.qualityColor = qualityColor(response.data.items.trinket2.quality);
-            response.data.items.mainHand.qualityColor = qualityColor(response.data.items.mainHand.quality);
-            if (response.data.items.offHand) {response.data.items.offHand.qualityColor = qualityColor(response.data.items.offHand.quality)};
+            req.app.get('db').wowcache.findOne({id: 4}).then(dbResponse => {
+    
+                response.data.className = className(response.data.class, dbResponse.body.data.classes);
+                response.data.items.head.qualityColor = qualityColor(response.data.items.head.quality);
+                response.data.items.neck.qualityColor = qualityColor(response.data.items.neck.quality);
+                response.data.items.shoulder.qualityColor = qualityColor(response.data.items.shoulder.quality);
+                response.data.items.back.qualityColor = qualityColor(response.data.items.back.quality);
+                response.data.items.chest.qualityColor = qualityColor(response.data.items.chest.quality);
+                response.data.items.wrist.qualityColor = qualityColor(response.data.items.wrist.quality);
+                response.data.items.hands.qualityColor = qualityColor(response.data.items.hands.quality);
+                response.data.items.waist.qualityColor = qualityColor(response.data.items.waist.quality);
+                response.data.items.legs.qualityColor = qualityColor(response.data.items.legs.quality);
+                response.data.items.feet.qualityColor = qualityColor(response.data.items.feet.quality);
+                response.data.items.finger1.qualityColor = qualityColor(response.data.items.finger1.quality);
+                response.data.items.finger2.qualityColor = qualityColor(response.data.items.finger2.quality);
+                response.data.items.trinket1.qualityColor = qualityColor(response.data.items.trinket1.quality);
+                response.data.items.trinket2.qualityColor = qualityColor(response.data.items.trinket2.quality);
+                response.data.items.mainHand.qualityColor = qualityColor(response.data.items.mainHand.quality);
+                if (response.data.items.offHand) {response.data.items.offHand.qualityColor = qualityColor(response.data.items.offHand.quality)};
 
+                res.status(200).send(response.data);
+            }).catch(err => {
+                console.log('DB WoW Get Character Items Error');
+                console.log(err);
+                res.status(500).send('DB WoW Get Character Items Error');
+            });
 
-            res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Items Error: ', error);
         });
     },
 
     getCharacterMounts: (req, res) => {
-        let masterMounts = {};
-        masterMounts.mounts = JSON.parse(JSON.stringify(mountsArr));
         
-        axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=mounts&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+        req.app.get('db').wowcache.findOne({id: 5}).then(dbResponse => {
             
-            masterMounts.numCollected = response.data.mounts.numCollected;
-            masterMounts.numNotCollected = response.data.mounts.numNotCollected;
+            let masterMounts = {};
+            masterMounts.mounts = dbResponse.body.data.mounts.filter(obj => obj.itemId > 0).sort((a, b) => {
+                let x = a.name.toLowerCase();
+                let y = b.name.toLowerCase();
 
-            response.data.mounts.collected.map(obj => {
-                masterMounts.mounts.map((masterObj, masterIndex) => {
-                    masterMounts.mounts[masterIndex].qualityColor = qualityColor(masterMounts.mounts[masterIndex].qualityId);
-                    if (masterObj.itemId === obj.itemId && masterObj.creatureId === obj.creatureId) {
-                        return masterMounts.mounts[masterIndex].collected = true;
-                    };
-                    if (!masterMounts.mounts[masterIndex].collected) {
-                        return masterMounts.mounts[masterIndex].collected = false;
-                    };
-                });
+                if (x < y) {return -1};
+                if (x > y) {return 1};
+                return 0;
             });
+            
+            axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=mounts&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+                
+                masterMounts.numCollected = response.data.mounts.numCollected;
+                masterMounts.numNotCollected = response.data.mounts.numNotCollected;
 
-            res.status(200).send(masterMounts);
-        }).catch(error => {
-            console.log('Get Character Mounts Error: ', error);
+                response.data.mounts.collected.map(obj => {
+                    masterMounts.mounts.map((masterObj, masterIndex) => {
+                        masterMounts.mounts[masterIndex].qualityColor = qualityColor(masterMounts.mounts[masterIndex].qualityId);
+                        if (masterObj.itemId === obj.itemId && masterObj.creatureId === obj.creatureId) {
+                            return masterMounts.mounts[masterIndex].collected = true;
+                        };
+                        if (!masterMounts.mounts[masterIndex].collected) {
+                            return masterMounts.mounts[masterIndex].collected = false;
+                        };
+                    });
+                });
+
+                res.status(200).send(masterMounts);
+            }).catch(error => {
+                console.log('Get Character Mounts Error: ', error);
+            });
+        }).catch(err => {
+            console.log('DB WoW Get Mounts Error');
+            console.log(err);
+            res.status(500).send('DB WoW Get Mounts Error');
         });
+
     },
 
     getCharacterPets: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=pets&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=petSlots&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(slotResponse => {
-                
-                response.data.pets.collected.map((petsObj, petsIndex) => {
-                    response.data.pets.collected[petsIndex].qualityColor = qualityColor(petsObj.qualityId);
-                    response.data.pets.collected[petsIndex].slot = 4;
-                    response.data.pets.collected[petsIndex].abilities = [];
+                req.app.get('db').wowcache.findOne({id: 6}).then(dbResponse => {
+                    response.data.pets.collected.map((petsObj, petsIndex) => {
+                        response.data.pets.collected[petsIndex].qualityColor = qualityColor(petsObj.qualityId);
+                        response.data.pets.collected[petsIndex].slot = 4;
+                        response.data.pets.collected[petsIndex].abilities = [];
 
-                    slotResponse.data.petSlots.map(slotsObj => {
-                        if (petsObj.battlePetGuid === slotsObj.battlePetGuid) {
-                            response.data.pets.collected[petsIndex].slot = slotsObj.slot;
-                            response.data.pets.collected[petsIndex].abilities = slotsObj.abilities;
-                        };
-                    });
+                        slotResponse.data.petSlots.map(slotsObj => {
+                            if (petsObj.battlePetGuid === slotsObj.battlePetGuid) {
+                                response.data.pets.collected[petsIndex].slot = slotsObj.slot;
+                                response.data.pets.collected[petsIndex].abilities = slotsObj.abilities;
+                            };
+                        });
 
-                    petsArr.map(masterPetsObj => {
-                        if (masterPetsObj.creatureId === petsObj.creatureId) {
-                            response.data.pets.collected[petsIndex].family = masterPetsObj.family;
-                            response.data.pets.collected[petsIndex].typeId = masterPetsObj.typeId;
-                            response.data.pets.collected[petsIndex].baseStats = masterPetsObj.stats;
-                            response.data.pets.collected[petsIndex].strongAgainst = masterPetsObj.strongAgainst;
-                            response.data.pets.collected[petsIndex].weakAgainst = masterPetsObj.weakAgainst;
+                        dbResponse.body.data.pets.map(masterPetsObj => {
+                            if (masterPetsObj.creatureId === petsObj.creatureId) {
+                                response.data.pets.collected[petsIndex].family = masterPetsObj.family;
+                                response.data.pets.collected[petsIndex].typeId = masterPetsObj.typeId;
+                                response.data.pets.collected[petsIndex].baseStats = masterPetsObj.stats;
+                                response.data.pets.collected[petsIndex].strongAgainst = masterPetsObj.strongAgainst;
+                                response.data.pets.collected[petsIndex].weakAgainst = masterPetsObj.weakAgainst;
+                            }
+                        });
+
+                        if (response.data.pets.collected.length - 1 === petsIndex) {
+                            res.status(200).send(response.data);
                         }
                     });
+                    
+                }).catch(err => {
+                    console.log('DB WoW Get Pets Error');
+                    console.log(error);
+                    res.status(500).send('DB WoW Get Pets Error');
                 });
-                
-                res.status(200).send(response.data);
+
             }).catch(error => {
                 console.log('Get Character Pet Slots Error: ', error);
             });
                     
-            // res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Pets Error: ', error);
         });
@@ -387,13 +358,24 @@ module.exports = {
     getCharacterProgression: (req, res) => {
         axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=progression&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             
-            response.data.progression.raids.forEach(obj => {
-                obj.bosses.forEach(bossObj => {
-                    bossObj.bossInfo = bossesArr.find(key => key.id === bossObj.id)
-                })
+            req.app.get('db').wowcache.findOne({id: 3}).then(dbResponse => {
+
+                response.data.progression.raids.forEach((obj, index) => {
+                    obj.bosses.forEach(bossObj => {
+                        bossObj.bossInfo = dbResponse.body.data.bosses.find(key => key.id === bossObj.id);
+                    })
+
+                    if (response.data.progression.raids.length - 1 === index) {
+                        res.status(200).send(response.data);
+                    }
+                });
+                
+            }).catch(err => {
+                console.log('DB WoW Character Progression Error');
+                console.log(err);
+                res.status(500).send('DB WoW Character Progression Error');
             });
 
-            res.status(200).send(response.data);
         }).catch(error => {
             console.log('Get Character Professions Error: ', error);
         });
