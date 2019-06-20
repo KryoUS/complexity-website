@@ -33,13 +33,6 @@ const requireAdmin = (req, res, next) => {
 
 // API Initialization Variables
 blizzardApi.setBlizzardToken();
-blizztrackApi.setWoWBluePosts();
-blizztrackApi.setWoWLatestPosts();
-blizztrackApi.setWoWPatchNotes();
-blizztrackApi.setWoWVersion();
-raiderioApi.setWowMythicAffixes();
-raiderioApi.setWowRankingsGuild();
-wowprogressApi.setWowProgressGuild();
 
 /*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
