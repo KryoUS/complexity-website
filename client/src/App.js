@@ -7,7 +7,7 @@ import ComingSoon from './components/Complexity/ComingSoon';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div style={{width: '100vw', maxHeight: '100vh', overflow: 'hidden'}}>
         <ComingSoon />
         {/* <Nav />
         { router } */}

@@ -469,3 +469,9 @@ body::-webkit-scrollbar {
   from{ top:-500px; opacity:0 } 
   to{ top:0; opacity:1 }
 }
+
+@media (max-width: 1300px) {
+  body {
+    font-size: 0.75rem;
+  }
+}
