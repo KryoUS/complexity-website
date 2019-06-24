@@ -48,7 +48,7 @@ class Logs extends Component {
 
     render () {
         return (
-            <div className="flex-column" style={{marginTop: '80px', marginBottom: '80px', height: '88vh', width: '100vw'}}>
+            <div className="flex-column" style={{height: '100%', width: '100%'}}>
                 <div className="flex-row" style={{width: '95%', alignSelf: 'center'}}>
                     <div 
                         className="basic-hover" style={{
