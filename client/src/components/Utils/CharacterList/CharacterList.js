@@ -188,7 +188,7 @@ export default class CharacterList extends Component {
     render () {
         return (
             <div>
-                <div className="char-background image-mask" style={{backgroundImage: `url(${this.state.selectedCharBackground})`}}/>
+                <div className="char-background image-mask" style={{background: `-webkit-linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(${this.state.selectedCharBackground}) fixed center -140px no-repeat`}}/>
                 <div className="char-info-container">
                     {this.props.charsArray.length > 0 &&
                         <div className="animate-bottom hidden-scrollbar char-info-overflow" id={this.state.selectedCharName ? undefined : 'char-info-fullscreen'}>
