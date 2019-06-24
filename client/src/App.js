@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
 import router from './router';
 import Nav from './components/Nav/Nav';
+import Footer from './components/Nav/Footer';
+import './App.css';
 import ComingSoon from './components/Complexity/ComingSoon';
 
 class App extends Component {
   render() {
     return (
-      <div style={{width: '100vw', maxHeight: '100vh', overflow: 'hidden'}}>
+      <div style={{width: '100vw', height: '100vh', position: 'relative', top: 0, overflow: 'hidden'}}>
         <ComingSoon />
         {/* <Nav />
-        { router } */}
+        {router}
+        <Footer /> */}
       </div>
-    );
+    )
   }
 }
 
