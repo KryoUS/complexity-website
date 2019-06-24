@@ -9,6 +9,7 @@ const wowprogressApi = require('../controllers/wowprogress_api_controller');
 const blizztrackApi = require('../controllers/Blizztrack/blizztrack_api_controller');
 const releaseController = require('../controllers/Database/releases_controller');
 const stats = require('../controllers/Database/stats_controller');
+const members = require('../controllers/Database/members_controller');
 const news = require('../controllers/Database/news_controller');
 const raiders = require('../controllers/Database/raider_controller');
 const userFunctions = require('../controllers/Database/user_controller');
@@ -57,6 +58,7 @@ routes.get('/api/raiders', raiders.get);
 //Guild Members Endpoint from DB
 routes.get('/api/members', stats.members);
 routes.get('/api/members/names', stats.memberNames);
+routes.get('/api/members/all', members.all);
 //Stat Endpoints from DB
 routes.get('/api/stats/character', stats.characters);
 routes.get('/api/stats/consumables', stats.consumables);
