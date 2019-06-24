@@ -25,7 +25,7 @@ class ComingSoon extends Component {
         return(
             <div>
                 <div className="news-background image-mask" />
-                <div className="news-div">
+                <div className="page-div" style={{marginTop: 0, overflow: 'hidden'}}>
                     <div style={{width: '100vw', height: '100vh', backgroundColor: 'rgba(0, 0, 0, 0.75)'}}>
                         <div className='fade2s' style={{height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
                             <img className="logo" src="https://res.cloudinary.com/complexityguild/image/upload/v1535585345/wow/logos/logov3.png" alt="Complexity Logo"/>
