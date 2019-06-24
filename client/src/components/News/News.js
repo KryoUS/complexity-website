@@ -34,7 +34,7 @@ class News extends Component {
         return(
             <div>
                 <div className="news-background image-mask" />
-                <div className="news-div fade1s">
+                <div className="page-div fade1s">
                     <div className="news-header">
                         <Blizztrack />
                         {   this.state.releases.length ?
