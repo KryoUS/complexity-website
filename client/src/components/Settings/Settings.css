@@ -1,26 +1,18 @@
-.settings-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.settings-background {
     width: 100vw;
     height: 100vh;
-    color: white;
-    overflow: scroll;
-}
-
-.settings-div::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
+    background: -moz-linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg) no-repeat center;
+    background: -webkit-linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg) no-repeat center;
+    background: -o-linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg) no-repeat center;
+    background: linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg) no-repeat center;
+    background-size: cover;
 }
 
 .settings-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 60px;
-    width: 40vw;
-    background: linear-gradient(17deg, rgb(17, 11, 41), rgb(44, 36, 77));;
-    box-shadow: 10px 10px 15px #000000;
+    margin: auto;
+    width: 80vw;
 }
 
 .settings-column, .settings-column-avatars {
@@ -28,7 +20,6 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    border-bottom: 1px solid white;
 }
 
 .settings-row, .settings-row-avatars {

@@ -107,129 +107,130 @@ class Settings extends Component {
         }
 
         return(
-            <div className ="settings-div fade1s" style={{
-                background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/settings.jpg') fixed top center/cover no-repeat`
-                }}>
-                <div className="settings-container">
-                    <div className="settings-column-avatars">
-                        <h3>Set Main Character</h3>
-                        <div className="settings-row-avatars">
-                            {this.props.user.main &&
-                                this.props.user.chars.map((char, index) => {
-                                    return <div key={index} 
-                                            style={{
-                                                margin: '5px',
-                                                background: `url('${char.avatarMed}') no-repeat`, 
-                                                width: '230px', 
-                                                height: '116px',
-                                                boxShadow: '10px 10px 15px #000000'
-                                            }} 
-                                            className={`settings-medavatar ${this.props.user.mainAvatarSmall === char.avatarSmall && 'settings-selected'}`}
-                                            onClick={() => {this.selectNewMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
-                                        >
-                                            <div style={mainNameStyle}>{char.name}</div>
-                                        </div>
-                                })
-                            }
+            <div>
+                <div className="settings-background image-mask" />
+                <div className="page-div fade1s">
+                    <div className="settings-container">
+                        <div className="settings-column-avatars">
+                            <h1>Set Main Character</h1>
+                            <div className="settings-row-avatars">
+                                {this.props.user.main &&
+                                    this.props.user.chars.map((char, index) => {
+                                        return <div key={index} 
+                                                style={{
+                                                    margin: '5px',
+                                                    background: `url('${char.avatarMed}') no-repeat`, 
+                                                    width: '230px', 
+                                                    height: '116px',
+                                                    boxShadow: '10px 10px 15px #000000'
+                                                }} 
+                                                className={`settings-medavatar ${this.props.user.mainAvatarSmall === char.avatarSmall && 'settings-selected'}`}
+                                                onClick={() => {this.selectNewMain(char.name, char.avatarSmall, char.avatarMed, char.avatarLarge)}}
+                                            >
+                                                <div style={mainNameStyle}>{char.name}</div>
+                                            </div>
+                                    })
+                                }
+                            </div>
                         </div>
-                    </div>
-                    {this.props.user.isAdmin &&
-                        <div className="settings-column">
-                            <h3>Admin Tools</h3>
-                            <p>Release Countdown Dates</p>
-                            <div className="settings-row">
-                                <div className="button-border"
-                                    onClick={() => this.handleRelease('addRelease')} 
-                                    data-tip='Add a new Release Date countdown timer to the News page.'
-                                >
-                                    <div className="button-text">Add</div>
-                                </div>
-                                <div className="button-border"
-                                    onClick={() => this.handleRelease('deleteRelease')} 
-                                    data-tip='Remove a new Release Date countdown timer from the News page.'
-                                >
-                                    <div className="button-text">Remove</div>
-                                </div>
-                            </div>
-                            <p>Complexity Member Quote</p>
-                            <div className="settings-row">
-                                <div className="button-border"
-                                    onClick={() => this.handleQuote('add')} 
-                                    data-tip='Add a quote that shows on the News Page.'
-                                >
-                                    <div className="button-text">Add</div>
-                                </div>
-                            </div>
-                            <p>DiscordBot Logs</p>
-                            <div className="settings-row">
-                                <Link className="button-border" id='nav-button' to="/logs">
-                                    <div className="button-border" data-tip='Add a quote that shows on the News Page.'>
+                        <div className="gradient-line-white" />
+                        {this.props.user.isAdmin &&
+                            <div className="settings-column">
+                                <h1>Admin Tools</h1>
+                                <p>Release Countdown Dates</p>
+                                <div className="settings-row">
+                                    <div className="button-border"
+                                        onClick={() => this.handleRelease('addRelease')} 
+                                        data-tip='Add a new Release Date countdown timer to the News page.'
+                                    >
                                         <div className="button-text">Add</div>
                                     </div>
-                                </Link>
+                                    <div className="button-border"
+                                        onClick={() => this.handleRelease('deleteRelease')} 
+                                        data-tip='Remove a new Release Date countdown timer from the News page.'
+                                    >
+                                        <div className="button-text">Remove</div>
+                                    </div>
+                                </div>
+                                <p>Complexity Member Quote</p>
+                                <div className="settings-row">
+                                    <div className="button-border"
+                                        onClick={() => this.handleQuote('add')} 
+                                        data-tip='Add a quote that shows on the News Page.'
+                                    >
+                                        <div className="button-text">Add</div>
+                                    </div>
+                                </div>
+                                <p>DiscordBot Logs</p>
+                                <div className="settings-row">
+                                    <Link className="button-border" id='nav-button' to="/logs" data-tip='Add a quote that shows on the News Page.'>
+                                        <div className="button-text">Logs</div>
+                                    </Link>
+                                </div>
+                                <div className="gradient-line-white" />
+                                <ReactTooltip />
                             </div>
-                            <ReactTooltip />
-                        </div>
+                        }
+                    </div>
+                    {/* Set New Main */}
+                    <Dialog
+                        open={this.state.newMainDialog}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={this.dialogClose}
+                        fullScreen={false}
+                    >
+                        <DialogTitle id="alert-dialog-slide-title">
+                            <div className="modal-title">Set a new main Character?</div>
+                        </DialogTitle>
+                        <DialogContent id="alert-dialog-slide-content">
+                            <DialogContentText id="alert-dialog-slide-description">
+                                <div className="modal-description">{`Do you really want to set ${this.state.newMain} as your main character?`}</div>
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions id="alert-dialog-slide-actions">
+                            <Button onClick={this.dialogClose} color="primary">
+                                Cancel
+                            </Button>
+                            <Button onClick={() => this.setNewMain()} color="primary">
+                                Yes
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                    <AddRelease releaseAddDialog={this.state.releaseAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                    <AddQuote quoteAddDialog={this.state.quoteAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
+                    {this.state.releaseRemoveDialog && 
+                        <RemoveRelease 
+                            releaseRemoveDialog={this.state.releaseRemoveDialog} 
+                            dialogClose={this.dialogClose} 
+                            snackBarMessageSet={this.snackBarMessageSet} 
+                        />
                     }
-                </div>
-                {/* Set New Main */}
-                <Dialog
-                    open={this.state.newMainDialog}
-                    TransitionComponent={Transition}
-                    keepMounted
-                    onClose={this.dialogClose}
-                    fullScreen={false}
-                >
-                    <DialogTitle id="alert-dialog-slide-title">
-                        <div className="modal-title">Set a new main Character?</div>
-                    </DialogTitle>
-                    <DialogContent id="alert-dialog-slide-content">
-                        <DialogContentText id="alert-dialog-slide-description">
-                            <div className="modal-description">{`Do you really want to set ${this.state.newMain} as your main character?`}</div>
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions id="alert-dialog-slide-actions">
-                        <Button onClick={this.dialogClose} color="primary">
-                            Cancel
-                        </Button>
-                        <Button onClick={() => this.setNewMain()} color="primary">
-                            Yes
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-                <AddRelease releaseAddDialog={this.state.releaseAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
-                <AddQuote quoteAddDialog={this.state.quoteAddDialog} dialogClose={this.dialogClose} snackBarMessageSet={this.snackBarMessageSet} />
-                {this.state.releaseRemoveDialog && 
-                    <RemoveRelease 
-                        releaseRemoveDialog={this.state.releaseRemoveDialog} 
-                        dialogClose={this.dialogClose} 
-                        snackBarMessageSet={this.snackBarMessageSet} 
+                    {/* Snackbar Alert */}
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        open={this.state.snackBarOpen}
+                        autoHideDuration={5000}
+                        onClose={this.snackBarClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={<span id="message-id">{this.state.snackBarMessage}</span>}
+                        action={[
+                            <IconButton
+                                key="close"
+                                aria-label="Close"
+                                color="inherit"
+                                onClick={this.snackBarClose}
+                            >
+                                <CloseIcon />
+                            </IconButton>,
+                        ]}
                     />
-                }
-                {/* Snackbar Alert */}
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.snackBarOpen}
-                    autoHideDuration={5000}
-                    onClose={this.snackBarClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
-                    }}
-                    message={<span id="message-id">{this.state.snackBarMessage}</span>}
-                    action={[
-                        <IconButton
-                            key="close"
-                            aria-label="Close"
-                            color="inherit"
-                            onClick={this.snackBarClose}
-                        >
-                            <CloseIcon />
-                        </IconButton>,
-                    ]}
-                />
+                </div>
             </div>
         )
     }
