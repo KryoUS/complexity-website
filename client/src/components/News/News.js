@@ -42,8 +42,8 @@ class News extends Component {
                                 {this.state.releases ?
                                     this.state.releases.map(release => (
                                         <a className="news-flex-column" key={release.id} href={release.link} target="_blank"  rel="noopener noreferrer">
-                                            <div className="news-countdown-timer">{release.title}</div>
                                             <div className="news-countdown-timer">
+                                                <div style={{color: 'rgb(146, 91, 234)'}}>{release.title}</div>
                                                 <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
                                             </div>
                                         </a>
@@ -64,8 +64,8 @@ class News extends Component {
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'}}>
                                     <div className="news-card-layer">
-                                        <div className="button-border" id="news-title">
-                                            <div className="button-text" id="news-text">{news.title}</div>
+                                        <div className="news-countdown-timer" id="news-title">
+                                            <div className="" id="news-text">{news.title}</div>
                                         </div>
                                         <a className="news-desc-container" href={news.link} target="_blank"  rel="noopener noreferrer">
                                             <div className="news-desc-title">{news.title}</div>

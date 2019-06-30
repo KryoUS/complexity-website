@@ -12,6 +12,7 @@
     -o-animation: fade 3s;
     -moz-animation: fade 3s;
     -webkit-animation: fade 3s;
+    background: rgba(17, 11, 41, 0.5);
 }
 
 .news-header {
@@ -19,7 +20,7 @@
     flex-direction: column;
     justify-content: flex-end;
     width: 100%;
-    padding: 10px;
+    background: rgba(17, 11, 41, 0.5);
 }
 
 .news-countdown {
@@ -29,7 +30,6 @@
     align-items: center;
     width: 100vw;
     height: 70px;
-    background: rgba(17, 11, 41, 0.5);
     animation: fade 4s;
     -o-animation: fade 4s;
     -moz-animation: fade 4s;
@@ -47,13 +47,18 @@
     justify-content: center;
     align-items: center;
     min-width: 238px;
-    border-bottom: 2px solid transparent;
+    border: 2px solid transparent;
+    border-left: 2px solid rgb(146, 91, 234);
+    border-radius: 10px;
 }
 
 .news-countdown-timer {
     letter-spacing: 0;
     color: white;
-
+    background-color: #17171A;
+    border-radius: 4px;
+    padding: 5px 6px;
+    text-align: center;
 }
 
 .news-card {
@@ -69,7 +74,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    padding: 5px;
     background-image: transparent;
     transition: background-image 1s ease 0s;
 }
@@ -79,11 +83,14 @@
 }
 
 #news-title {
-    width: 80%;
+    width: 100%;
     opacity: 1;
     padding: 10px;
-    cursor: auto;
+    cursor: default;
     border-color: transparent;
+    background: rgba(17, 11, 41, 0.5);
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
 }
 
 #news-text {
@@ -124,7 +131,7 @@
 
 .news-flex-column:hover, .news-flex-column:focus {
     cursor: pointer;
-    border-bottom: 2px solid rgb(146, 91, 234);
+    border: 2px solid rgb(146, 91, 234);
 }
 
 @keyframes fade {
