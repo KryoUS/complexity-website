@@ -19,6 +19,24 @@ a {
   color: white;
 }
 
+h1 {
+  color: rgb(146, 91, 234);
+  text-shadow: 2px 2px black;
+}
+
+h2 {
+  color: rgb(120, 77, 189);
+  text-shadow: 2px 2px black;
+}
+
+h3 {
+  color: rgb(104, 85, 179);
+}
+
+li {
+  color: #00aeff;
+}
+
 .page-div {
   height: 100%;
   width: 100%;

@@ -8,7 +8,7 @@
     border-radius: 4px;
     color: white;
     padding: 10px 12px;
-    margin: 1px;
+    margin: 5px;
     height: 246px;
     width: 350px;
 }
@@ -84,24 +84,6 @@
 
 #blizztrack-provider {
     margin-left: 5px;
-}
-
-h1 {
-    color: rgb(146, 91, 234);
-    text-shadow: 2px 2px black;
-}
-
-h2 {
-    color: rgb(120, 77, 189);
-    text-shadow: 2px 2px black;
-}
-
-h3 {
-    color: rgb(104, 85, 179);
-}
-
-li {
-    color: #00aeff;
 }
 
 #blizztrack-modal-button {
