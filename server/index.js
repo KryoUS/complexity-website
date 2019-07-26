@@ -22,13 +22,13 @@ const cron = require('./cronjobs/cronjobs');
 cron.jobs();
 
 //Basic Express Security with Helmet and API Rate Limiting
-app.use(helmet());
+app.use( helmet() );
 
 //Body Parser
 app.use( bodyParser.json() );
 
 //Cors
-app.use(cors());
+app.use( cors() );
 
 //Express-Session
 app.use(session({
@@ -81,6 +81,7 @@ massive({
 
 //Start Server
 let port = process.env.PORT || 3050;
+//Set to 'false' for Google Assistant testing.
 if (process.env.DEV == 'true') {
     https.createServer( 
         {

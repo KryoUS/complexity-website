@@ -15,6 +15,7 @@ const raiders = require('../controllers/Database/raider_controller');
 const userFunctions = require('../controllers/Database/user_controller');
 const quotes = require('../controllers/Database/quotes_controller');
 const logs = require('../controllers/Database/logs_controller');
+const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -102,5 +103,7 @@ routes.get('/api/blizztrack/wow/blueposts', blizztrackApi.getWoWBluePosts);
 routes.get('/api/blizztrack/wow/latestposts', blizztrackApi.getWoWLatestPosts);
 routes.get('/api/blizztrack/wow/patchnotes', blizztrackApi.getWoWPatchNotes);
 routes.get('/api/blizztrack/wow/version', blizztrackApi.getWoWVersion);
+//Google Assistant Endpoint
+routes.post('/fulfillment', dialogFlow);
 
 module.exports = routes;
