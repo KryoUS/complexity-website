@@ -1,0 +1,478 @@
+[
+    {
+        "value": "2 v 2 arena deaths",
+        "dbValue": "stat_2v2_deaths"
+    },
+    {
+        "value": "2 v 2 arena killing blows",
+        "dbValue": "stat_2v2_kbs"
+    },
+    {
+        "value": "2 v 2 arena kills",
+        "dbValue": "stat_2v2_kills"
+    },
+    {
+        "value": "2 v 2 arena matches",
+        "dbValue": "stat_2v2_matches"
+    },
+    {
+        "value": "2 v 2 arena matches won",
+        "dbValue": "stat_2v2_won"
+    },
+    {
+        "value": "3 v 3 arena deaths",
+        "dbValue": "stat_3v3_deaths"
+    },
+    {
+        "value": "3 v 3 arena killing blows",
+        "dbValue": "stat_3v3_kbs"
+    },
+    {
+        "value": "3 v 3 arena kills",
+        "dbValue": "stat_3v3_kills"
+    },
+    {
+        "value": "3 v 3 arena matches",
+        "dbValue": "stat_3v3_matches"
+    },
+    {
+        "value": "3 v 3 arena matches won",
+        "dbValue": "stat_3v3_won"
+    },
+    {
+        "value": "5 v 5 arena deaths",
+        "dbValue": "stat_5v5_deaths"
+    },
+    {
+        "value": "5 v 5 arena killing blows",
+        "dbValue": "stat_5v5_kbs"
+    },
+    {
+        "value": "5 v 5 arena kills",
+        "dbValue": "stat_5v5_kills"
+    },
+    {
+        "value": "5 v 5 arena matches",
+        "dbValue": "stat_5v5_matches"
+    },
+    {
+        "value": "5 v 5 arena matches won",
+        "dbValue": "stat_5v5_won"
+    },
+    {
+        "value": "abandoned quests",
+        "dbValue": "stat_quest_abandoned"
+    },
+    {
+        "value": "alchemy recipes",
+        "dbValue": "stat_alch_recipes"
+    },
+    {
+        "value": "alterac valley drek'thar deaths",
+        "dbValue": "stat_av_drek_deaths"
+    },
+    {
+        "value": "alterac valley vanndar stormpike deaths",
+        "dbValue": "stat_av_vann_deaths"
+    },
+    {
+        "value": "arena killing blows",
+        "dbValue": "stat_arena_kbs"
+    },
+    {
+        "value": "arena kills",
+        "dbValue": "stat_arena_kills"
+    },
+    {
+        "value": "arenas played",
+        "dbValue": "stat_arenas_played"
+    },
+    {
+        "value": "arenas won",
+        "dbValue": "stat_arenas_won"
+    },
+    {
+        "value": "average item level",
+        "dbValue": "average_ilvl"
+    },
+    {
+        "value": "average item level equipped",
+        "dbValue": "average_equipped_ilvl"
+    },
+    {
+        "value": "azerite experience",
+        "dbValue": "azerite_xp"
+    },
+    {
+        "value": "azerite experience remaining",
+        "dbValue": "azerite_xp_remaining"
+    },
+    {
+        "value": "azerite level",
+        "dbValue": "azerite_lvl"
+    },
+    {
+        "value": "battleground killing blows",
+        "dbValue": "stat_bg_kbs"
+    },
+    {
+        "value": "battleground kills",
+        "dbValue": "stat_bg_kills"
+    },
+    {
+        "value": "battlegrounds played",
+        "dbValue": "stat_bgs_played"
+    },
+    {
+        "value": "battlegrounds won",
+        "dbValue": "stat_bgs_won"
+    },
+    {
+        "value": "blacksmith plans",
+        "dbValue": "stat_blacksmith_plans"
+    },
+    {
+        "value": "burned to death",
+        "dbValue": "stat_fire_or_lava_deaths"
+    },
+    {
+        "value": "cataclysm dungeons completed",
+        "dbValue": "stat_cata_dungeons_completed"
+    },
+    {
+        "value": "cataclysm raids completed",
+        "dbValue": "stat_cata_raids_completed"
+    },
+    {
+        "value": "celestial tours won",
+        "dbValue": "stat_pet_celestial_tour_won"
+    },
+    {
+        "value": "challenge modes completed",
+        "dbValue": "stat_challenge_modes_completed"
+    },
+    {
+        "value": "cheers",
+        "dbValue": "stat_cheers"
+    },
+    {
+        "value": "cooking recipes",
+        "dbValue": "stat_cooking_recipes"
+    },
+    {
+        "value": "creatures killed",
+        "dbValue": "stat_creature_kills"
+    },
+    {
+        "value": "critters killed",
+        "dbValue": "stat_critter_kills"
+    },
+    {
+        "value": "daily quests",
+        "dbValue": "stat_quest_dailies"
+    },
+    {
+        "value": "damage done",
+        "dbValue": "stat_damage_done"
+    },
+    {
+        "value": "damage received",
+        "dbValue": "stat_damage_received"
+    },
+    {
+        "value": "disenchanted",
+        "dbValue": "stat_disenchants"
+    },
+    {
+        "value": "drink",
+        "dbValue": "stat_drinks"
+    },
+    {
+        "value": "drowning deaths",
+        "dbValue": "stat_drowning_deaths"
+    },
+    {
+        "value": "duels lost",
+        "dbValue": "stat_duels_lost"
+    },
+    {
+        "value": "duels won",
+        "dbValue": "stat_duels_won"
+    },
+    {
+        "value": "elixir",
+        "dbValue": "stat_elixirs"
+    },
+    {
+        "value": "enchants",
+        "dbValue": "stat_enchants"
+    },
+    {
+        "value": "engineering schematics",
+        "dbValue": "stat_engi_schematics"
+    },
+    {
+        "value": "epics equipped",
+        "dbValue": "stat_epics"
+    },
+    {
+        "value": "exhaulted reputations",
+        "dbValue": "stat_exhaulted_reps"
+    },
+    {
+        "value": "facepalms",
+        "dbValue": "stat_facepalms"
+    },
+    {
+        "value": "falling deaths",
+        "dbValue": "stat_falling_deaths"
+    },
+    {
+        "value": "fatigue deaths",
+        "dbValue": "stat_fatigue_deaths"
+    },
+    {
+        "value": "fish caught",
+        "dbValue": "stat_fish_caught"
+    },
+    {
+        "value": "flask",
+        "dbValue": "stat_flasks"
+    },
+    {
+        "value": "flight paths",
+        "dbValue": "stat_flight_paths"
+    },
+    {
+        "value": "food",
+        "dbValue": "stat_foods"
+    },
+    {
+        "value": "gem cuts",
+        "dbValue": "stat_jewel_designs"
+    },
+    {
+        "value": "greed rolls",
+        "dbValue": "stat_greed_rolls"
+    },
+    {
+        "value": "healing done",
+        "dbValue": "stat_healing_done"
+    },
+    {
+        "value": "healing received",
+        "dbValue": "stat_healing_received"
+    },
+    {
+        "value": "health potion",
+        "dbValue": "stat_health_pots"
+    },
+    {
+        "value": "healthstone",
+        "dbValue": "stat_healthstones"
+    },
+    {
+        "value": "hearthstones",
+        "dbValue": "stat_hearthstones"
+    },
+    {
+        "value": "heroic dungeon deaths",
+        "dbValue": "stat_heroic_dungeon_deaths"
+    },
+    {
+        "value": "highest 2 v 2 arena rating",
+        "dbValue": "stat_2v2_highest_personal"
+    },
+    {
+        "value": "highest 2 v 2 arena team rating",
+        "dbValue": "stat_2v2_highest_team"
+    },
+    {
+        "value": "highest 3 v 3 arena rating",
+        "dbValue": "stat_3v3_highest_personal"
+    },
+    {
+        "value": "highest 3 v 3 arena team rating",
+        "dbValue": "stat_3v3_highest_team"
+    },
+    {
+        "value": "highest 5 v 5 arena rating",
+        "dbValue": "stat_5v5_highest_personal"
+    },
+    {
+        "value": "highest 5 v 5 arena team rating",
+        "dbValue": "stat_5v5_highest_team"
+    },
+    {
+        "value": "highest endless damage rating",
+        "dbValue": "stat_highest_endless_dmg"
+    },
+    {
+        "value": "highest endless healer rating",
+        "dbValue": "stat_highest_endless_heals"
+    },
+    {
+        "value": "highest endless tank rating",
+        "dbValue": "stat_highest_endless_tank"
+    },
+    {
+        "value": "hogger deaths",
+        "dbValue": "stat_hogger_deaths"
+    },
+    {
+        "value": "honor kills",
+        "dbValue": "stat_honor_kills"
+    },
+    {
+        "value": "horde deaths",
+        "dbValue": "stat_horde_deaths"
+    },
+    {
+        "value": "hugs",
+        "dbValue": "stat_hugs"
+    },
+    {
+        "value": "inscription recipes",
+        "dbValue": "stat_inscriptions"
+    },
+    {
+        "value": "leather patterns",
+        "dbValue": "stat_leather_patterns"
+    },
+    {
+        "value": "legion dungeons completed",
+        "dbValue": "stat_legion_dungeons_completed"
+    },
+    {
+        "value": "legion raids completed",
+        "dbValue": "stat_legion_raids_completed"
+    },
+    {
+        "value": "lols",
+        "dbValue": "stat_lols"
+    },
+    {
+        "value": "mage portals",
+        "dbValue": "stat_mage_portals"
+    },
+    {
+        "value": "mana potion",
+        "dbValue": "stat_mana_pots"
+    },
+    {
+        "value": "mounts",
+        "dbValue": "stat_mounts"
+    },
+    {
+        "value": "need rolls",
+        "dbValue": "stat_need_rolls"
+    },
+    {
+        "value": "normal dungeon deaths",
+        "dbValue": "stat_normal_dungeon_deaths"
+    },
+    {
+        "value": "pandaria dungeons completed",
+        "dbValue": "stat_panda_dungeons_completed"
+    },
+    {
+        "value": "pandaria raids completed",
+        "dbValue": "stat_panda_raids_completed"
+    },
+    {
+        "value": "pet battles won",
+        "dbValue": "stat_pet_battles_won"
+    },
+    {
+        "value": "pets",
+        "dbValue": "stat_pets"
+    },
+    {
+        "value": "professions learned",
+        "dbValue": "stat_prof_learned"
+    },
+    {
+        "value": "professions maxed",
+        "dbValue": "stat_prof_maxed"
+    },
+    {
+        "value": "pvp deaths",
+        "dbValue": "stat_pvp_deaths"
+    },
+    {
+        "value": "pvp pet battles won",
+        "dbValue": "stat_pvp_pet_battles_won"
+    },
+    {
+        "value": "quests completed",
+        "dbValue": "stat_quest_completed"
+    },
+    {
+        "value": "raid deaths",
+        "dbValue": "stat_raid_deaths"
+    },
+    {
+        "value": "raised",
+        "dbValue": "stat_raised"
+    },
+    {
+        "value": "rated battlegrounds played",
+        "dbValue": "stat_rbgs_played"
+    },
+    {
+        "value": "rated battlegrounds won",
+        "dbValue": "stat_rbgs_won"
+    },
+    {
+        "value": "rebirthed",
+        "dbValue": "stat_rebirths"
+    },
+    {
+        "value": "secondary professions maxed",
+        "dbValue": "stat_secondary_prof_maxed"
+    },
+    {
+        "value": "small violins",
+        "dbValue": "stat_small_viollins"
+    },
+    {
+        "value": "smelting recipes",
+        "dbValue": "stat_smelting_recipes"
+    },
+    {
+        "value": "soulstoned",
+        "dbValue": "stat_soulstones"
+    },
+    {
+        "value": "summoned",
+        "dbValue": "stat_summons"
+    },
+    {
+        "value": "tailoring patterns",
+        "dbValue": "stat_tailor_patterns"
+    },
+    {
+        "value": "total deaths",
+        "dbValue": "stat_total_deaths"
+    },
+    {
+        "value": "total kills",
+        "dbValue": "stat_total_kills"
+    },
+    {
+        "value": "warlords of draenor dungeons completed",
+        "dbValue": "stat_wod_dungeons_completed"
+    },
+    {
+        "value": "warlords of draenor raids completed",
+        "dbValue": "stat_wod_raids_completed"
+    },
+    {
+        "value": "waves",
+        "dbValue": "stat_waves"
+    },
+    {
+        "value": "world honor kills",
+        "dbValue": "stat_world_honor_kills"
+    }
+]
