@@ -1,6 +1,26 @@
 const axios = require('axios');
+const app = require('../../app');
 
 module.exports = {
+
+    getMostOrLeast: (orderBy, dbValue) => {
+        return app.get('db').query(`select character_name, avatar_large, ${dbValue} from characters order by ${dbValue} ${orderBy} limit 1;`).then(response => {
+            return response[0]
+        }).catch(error => {
+            console.log(error);
+            return 500
+        })
+    },
+
+    characterCount: () => {
+        return app.get('db').query('select count(*) from characters;').then(response => {
+            return response[0]
+        }).catch(error => {
+            console.log(error);
+            return 500
+        })
+    },
+
     characters: (req, res, next) => {
 
         req.app.get('db').query(`select level, character_name, realm, stat_exhaulted_reps, stat_need_rolls, stat_greed_rolls, stat_mounts, stat_epics from characters order by stat_exhaulted_reps desc;`).then(response => {
