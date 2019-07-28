@@ -1,3 +1,5 @@
+const app = require('../../app');
+
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
 }
@@ -5,12 +7,22 @@ const getRandomArbitrary = (min, max) => {
 module.exports = {
     get: (req, res) => {
 
-        req.app.get('db').quotes.find().then(response => {
+        return app.get('db').quotes.find().then(response => {
             let random = getRandomArbitrary(0, response.length - 1);
-            res.status(200).send(response[random]);
+
+            if (req) {
+                res.status(200).send(response[random]);
+            } else {
+                return response[random];
+            }
         }).catch(error => {
-            console.log(error)
-            res.sendStatus(503);
+            console.log(error);
+
+            if (req) {
+                res.sendStatus(503);
+            } else {
+                return 503;
+            }
         })
     },
 
