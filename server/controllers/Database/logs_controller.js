@@ -1,3 +1,6 @@
+const app = require('../../app');
+const functions = require('./tools/functions');
+
 module.exports = {
     getDiscordBot: (req, res) => {
     
@@ -18,6 +21,19 @@ module.exports = {
             console.log('ServicesLog Error');
             console.log(error);
             res.status(500).send('ServicesLog Error');
+        })
+    },
+
+    addGoogleAssistantLog: (intent, querytext, errorJSON) => {
+        app.get('db').googleassistantlog.insert({ 
+            epoch_datetime: new Date().getTime(),
+            intent: intent, 
+            querytext: querytext, 
+            error: errorJSON ? JSON.stringify(errorJSON, functions.getCircularReplacer()) : '{}'
+        }).then(result => {
+            //Do nothing with results
+        }).catch(error => {
+            console.log(`${new Date()} Massive.js CharacterCronLogging Insert Error = `, error);
         })
     },
 }
