@@ -152,7 +152,11 @@ module.exports = {
     },
 
     getTokenPrice: (req, res) => {
-        res.send(tokenPrice).status(200);
+        if (req) {
+            res.send(tokenPrice).status(200);
+        } else {
+            return tokenPrice
+        }
     },
 
     //Character Endpoints
