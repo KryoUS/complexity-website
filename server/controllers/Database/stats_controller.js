@@ -4,12 +4,32 @@ const app = require('../../app');
 module.exports = {
 
     getMostOrLeast: (orderBy, dbValue) => {
-        return app.get('db').query(`select character_name, avatar_large, ${dbValue} from characters order by ${dbValue} ${orderBy} limit 1;`).then(response => {
-            return response[0]
+        return app.get('db').query(
+            `select character_name
+                , realm
+                , class
+                , level
+                , achievements_pts
+                , spec_name
+                , spec_desc
+                , avatar_large
+                , ${dbValue}
+                , last_updated
+             from characters 
+             order by ${dbValue} ${orderBy} 
+             limit 1;`
+        ).then(response => {
+            return app.get('db').wowcache.findOne({id: 4}).then(dbResponse => {
+                response[0].className = dbResponse.body.data.classes[response[0].class - 1].name;
+                return response[0]
+            }).catch(classError => {
+                console.log(classError)
+                return 500
+            });
         }).catch(error => {
             console.log(error);
             return 500
-        })
+        });
     },
 
     characterCount: () => {
