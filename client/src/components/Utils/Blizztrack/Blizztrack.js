@@ -86,14 +86,10 @@ class Blizztrack extends Component {
             data-for="blizztrack-posts"
             data-tip={`
                 <div class="flex-row flex-between">
-                    <div class="blizztrack-link">${obj.user.username} - ${obj.user.title}</div>
-                    <div>${obj.category}</div>
-                </div>
-                <div class="flex-row flex-between blizztrack-diff">
+                    <div class="blizztrack-link">${obj.author.user} - ${obj.author.title}</div>
                     <div>${moment(obj.created_at).format('MMMM Do YYYY, h:mm:ss a')}</div>
-                    <div>${obj.topic.posts_count} Posts</div>
                 </div>
-                <div class="blizztrack-tooltip">${obj.excerpt}</div>`
+                <div class="blizztrack-tooltip">${obj.excerpt ? obj.excerpt : 'Click for more info...' }</div>`
             } 
             data-html={true}
         >
