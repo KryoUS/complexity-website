@@ -43,6 +43,9 @@ const wowheadAffixData = {
     },
     Reaping: {
         id: 117
+    },
+    Beguiling: {
+        id: 119
     }
 }
 
@@ -79,51 +82,40 @@ class MythicPlusAffixes extends React.Component {
                 {
                     week: 5,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Skittish',                    
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Grievous',                  
                 },
                 {
                     week: 6,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Volcanic',                    
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Explosive',
                 },
                 {
                     week: 7,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
-                    plusSeven: 'Grievous',                    
+                    plusFour: 'Bursting',
+                    plusSeven: 'Volcanic',
                 },
                 {
                     week: 8,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Explosive',                    
+                    plusFour: 'Raging',
+                    plusSeven: 'Volcanic',
                 },
                 {
                     week: 9,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Quaking',                    
+                    plusFour: 'Teeming',
+                    plusSeven: 'Explosive',
                 },
                 {
                     week: 10,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Volcanic',                    
-                },
-                {
-                    week: 11,
-                    baseAffix: 'Fortified',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Explosive',                    
-                },
-                {
-                    week: 12,
-                    baseAffix: 'Tyrannical',
                     plusFour: 'Bolstering',
-                    plusSeven: 'Grievous',                    
+                    plusSeven: 'Grievous',
                 },
+                
             ],
             usMythicAffixes: {},
             seasonalAffix: ''
@@ -132,6 +124,7 @@ class MythicPlusAffixes extends React.Component {
     
     componentDidMount = () => {
         axios.get('/api/raiderio/mythicaffixes').then(res => {
+            console.log(res.data)
             this.setState({ usMythicAffixes: res.data, seasonalAffix: res.data.affix_details[3].name });
         }).catch(raiderIOMythicAffixesError => {
             this.props.infoModal(true, 'Oops!', "We tried to get the Mythic+ affixes for the week but couldn't. Please exercise extreme caution when entering dungeons for now.", 'OK');
