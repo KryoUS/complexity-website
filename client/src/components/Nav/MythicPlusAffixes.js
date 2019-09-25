@@ -124,7 +124,6 @@ class MythicPlusAffixes extends React.Component {
     
     componentDidMount = () => {
         axios.get('/api/raiderio/mythicaffixes').then(res => {
-            console.log(res.data)
             this.setState({ usMythicAffixes: res.data, seasonalAffix: res.data.affix_details[3].name });
         }).catch(raiderIOMythicAffixesError => {
             this.props.infoModal(true, 'Oops!', "We tried to get the Mythic+ affixes for the week but couldn't. Please exercise extreme caution when entering dungeons for now.", 'OK');
