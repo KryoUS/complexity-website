@@ -97,7 +97,7 @@
     margin: 10px;
     white-space: nowrap;
     overflow: hidden;
-    text-align: right;
+    text-align: center;
     text-overflow: ellipsis;
 }
 
