@@ -33,7 +33,7 @@ class About extends Component {
         }).catch(wowProgressError => {
             console.log(wowProgressError);
         });
-        
+
         axios.get('/api/raiderio/guildranking').then(res => {
             this.raidProgressBarGroupBy(res.data);
         }).catch(raiderIOError => {
@@ -61,8 +61,8 @@ class About extends Component {
                 pieChartRaiderClasses: this.groupBy(raiderClasses, 'className'),
                 pieChartRaiderRoles: this.groupBy(raiderRoles, 'spec_role'),
                 pieChartRaiderRaces: this.groupBy(raiderRaces, 'raceName'),
-                
-            });            
+
+            });
         });
     }
 
@@ -78,19 +78,19 @@ class About extends Component {
         let num = 0;
         const sortOrder = ['normal_bosses_killed', 'heroic_bosses_killed', 'mythic_bosses_killed'];
 
-        
+
         for (let x in objectArray.raid_progression) {
             objectArray.raid_progression[x].raid = x;
             progressionArr.push(objectArray.raid_progression[x]);
             let uglyRaid = x;
             let betterRaid = this.stringReplaceAll(uglyRaid, '-', ' ');
-            
+
             progressionCategories.push(this.stringCapital(betterRaid));
         };
 
         for (let x in progressionArr[0]) {
             if (x.includes('killed')) {
-                seriesArr.push({name: x, data: [], color: color[num]});
+                seriesArr.push({ name: x, data: [], color: color[num] });
                 num++;
             };
         };
@@ -112,7 +112,7 @@ class About extends Component {
             });
         };
 
-        this.setState({ barChartRaidProgress: seriesArr, barChartRaidCategories: progressionCategories, raiderIO: objectArray , raiderIOLoaded: true });
+        this.setState({ barChartRaidProgress: seriesArr, barChartRaidCategories: progressionCategories, raiderIO: objectArray, raiderIOLoaded: true });
     }
 
     columnGroupBy = (objectArray, property) => {
@@ -136,7 +136,7 @@ class About extends Component {
         allProperties.map(prop => {
             let count = 0;
 
-            for (let i =0; i < objectArray.length; i++) {
+            for (let i = 0; i < objectArray.length; i++) {
                 if (property === 'spec_name') {
                     if (`${objectArray[i][property]} ${objectArray[i].className}` === prop) {
                         count++;
@@ -180,7 +180,7 @@ class About extends Component {
             let count = 0;
             let color = '';
 
-            for (let i =0; i < objectArray.length; i++) {
+            for (let i = 0; i < objectArray.length; i++) {
                 if (property === 'spec_name') {
                     if (`${objectArray[i][property]} ${objectArray[i].className}` === prop) {
                         count++;
@@ -197,9 +197,9 @@ class About extends Component {
             }
 
             if (property === 'className' || property === 'spec_name') {
-                arr.push({name: `${prop}s`, y: count, dataLabels: {color: color}, color: color});
+                arr.push({ name: `${prop}s`, y: count, dataLabels: { color: color }, color: color });
             } else {
-                arr.push({name: prop, y: count});
+                arr.push({ name: prop, y: count });
             }
         });
 
@@ -224,265 +224,211 @@ class About extends Component {
         return str.join(" ");
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <div className="about-background image-mask" />
                 <div className="page-div fade1s">
-                    <div id="about-page" style={{marginBottom: '100px'}}>
+                    <div id="about-page" style={{ marginBottom: '100px' }}>
                         <div className="about-chart-column">
-                        {this.state.pieChartClasses.length > 1 ? 
-                                    <PieChart 
-                                        pieChartID='classPie' 
-                                        pieChartTitle='Classes' 
-                                        pieChartData={this.state.pieChartClasses} 
-                                        pieChartClassName='about-pie fade1s'
-                                        pieChartLegend={false}
-                                        pieChartLabels={true}
-                                        pieChartSize={100}
-                                    />
-                            : 
-                                <div className="loader" />
+                            {this.state.pieChartClasses.length > 1 ?
+                                <PieChart
+                                    pieChartID='classPie'
+                                    pieChartTitle='Classes'
+                                    pieChartData={this.state.pieChartClasses}
+                                    pieChartClassName='about-pie fade1s'
+                                    pieChartLegend={false}
+                                    pieChartLabels={true}
+                                    pieChartSize={100}
+                                />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
-                            {this.state.pieChartRoles.length > 1 ? 
-                                    <PieChart 
-                                        pieChartID='rolePie' 
-                                        pieChartTitle='Roles' 
-                                        pieChartData={this.state.pieChartRoles} 
-                                        pieChartClassName='about-pie fade1s'
-                                        pieChartLegend={false}
-                                        pieChartLabels={true}
-                                        pieChartSize={100}
-                                    /> 
-                            : 
-                                <div className="loader" />
+                            {this.state.pieChartRoles.length > 1 ?
+                                <PieChart
+                                    pieChartID='rolePie'
+                                    pieChartTitle='Roles'
+                                    pieChartData={this.state.pieChartRoles}
+                                    pieChartClassName='about-pie fade1s'
+                                    pieChartLegend={false}
+                                    pieChartLabels={true}
+                                    pieChartSize={100}
+                                />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
-                            {this.state.pieChartRaces.length > 1 ? 
-                                    <PieChart 
-                                        pieChartID='racesPie' 
-                                        pieChartTitle='Races' 
-                                        pieChartData={this.state.pieChartRaces} 
-                                        pieChartClassName='about-pie fade1s'
-                                        pieChartLegend={false}
-                                        pieChartLabels={true}
-                                        pieChartSize={80}
+                            {this.state.pieChartRaces.length > 1 ?
+                                <PieChart
+                                    pieChartID='racesPie'
+                                    pieChartTitle='Races'
+                                    pieChartData={this.state.pieChartRaces}
+                                    pieChartClassName='about-pie fade1s'
+                                    pieChartLegend={false}
+                                    pieChartLabels={true}
+                                    pieChartSize={80}
 
-                                    />
-                            : 
-                                <div className="loader" />
+                                />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
                         </div>
                         <div id="about-info" className="about-chart-column">
-                            {this.state.raiderIOLoaded ? 
+                            {this.state.raiderIOLoaded ?
                                 <div className="not-mobile-friendly">
-                                    <BarChart 
-                                        barChartID='barProgression' 
-                                        barChartTitle='Raid Progression' 
-                                        barChartCategories={this.state.barChartRaidCategories} 
-                                        barChartYTitle='Bosses Killed' 
+                                    <BarChart
+                                        barChartID='barProgression'
+                                        barChartTitle='Raid Progression'
+                                        barChartCategories={this.state.barChartRaidCategories}
+                                        barChartYTitle='Bosses Killed'
                                         barChartTooltipSuffix=' bosses killed'
                                         barChartData={this.state.barChartRaidProgress}
                                     />
                                 </div>
-                            : 
-                                <div className="loader" />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
                             <div className="gradient-line-purple" />
                             <div id="about-text-container">
                                 <h1>
                                     <strong>Guild History</strong>
                                 </h1>
-                                <p style={{textShadow: '1px 1px black'}}>During the tail end of World of Warcraft: Wrath of the Lich King, Complexity was founded by Glacial on July 4th, 2010 with the help of Hopeless, Theeotown, Shockerfist, and Holykush. The focus quickly shifted to the next expansion, World of Warcraft: Cataclysm, where Complexity started with Normal Difficulty and was eventually able to complete Dragon Soul on Heroic Difficulty with two separate groups. After some difficulties during World of Warcraft: Mists of Pandaria in the Throne of Thunder, Complexity bounced back and was able to complete Siege of Orgrimmar on Heroic difficulty, earning the Ahead of the Curve achievement. World of Warcraft: Warlords of Draenor showed steady progress as Complexity was able to complete this expansion on Heroic Difficulty, earning the Ahead of the Curve achievement on all raids. Currently in World of Warcraft: Legion, Complexity has continued to show steady progress, earning the Ahead of the Curve Achievement on all current raid content.</p>
+                                <p style={{ textShadow: '1px 1px black' }}>During the tail end of World of Warcraft: Wrath of the Lich King, Complexity was founded by Glacial on July 4th, 2010 with the help of Hopeless, Theeotown, Shockerfist, and Holykush. The focus quickly shifted to the next expansion, World of Warcraft: Cataclysm, where Complexity started with Normal Difficulty and was eventually able to complete Dragon Soul on Heroic Difficulty with two separate groups. After some difficulties during World of Warcraft: Mists of Pandaria in the Throne of Thunder, Complexity bounced back and was able to complete Siege of Orgrimmar on Heroic difficulty, earning the Ahead of the Curve achievement. World of Warcraft: Warlords of Draenor showed steady progress as Complexity was able to complete this expansion on Heroic Difficulty, earning the Ahead of the Curve achievement on all raids. Currently in World of Warcraft: Legion, Complexity has continued to show steady progress, earning the Ahead of the Curve Achievement on all current raid content.</p>
                             </div>
                             <div className="gradient-line-purple" />
-                            {this.state.columnChartSpecs.length > 1 ? 
+                            {this.state.columnChartSpecs.length > 1 ?
                                 <div className="not-mobile-friendly">
-                                    <ColumnChart 
-                                        columnChartID='specsColumns' 
-                                        columnChartTitle='Specializations' 
-                                        columnChartData={this.state.columnChartSpecs} 
+                                    <ColumnChart
+                                        columnChartID='specsColumns'
+                                        columnChartTitle='Specializations'
+                                        columnChartData={this.state.columnChartSpecs}
                                     />
                                 </div>
-                            : 
-                                <div className="loader" />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
                         </div>
                         <div id="about-last-charts" className="about-chart-column">
-                            {this.state.pieChartRaiderClasses.length > 1 ? 
-                                <PieChart 
-                                    pieChartID='classRaiderPie' 
-                                    pieChartTitle='Raider Classes' 
-                                    pieChartData={this.state.pieChartRaiderClasses} 
+                            {this.state.pieChartRaiderClasses.length > 1 ?
+                                <PieChart
+                                    pieChartID='classRaiderPie'
+                                    pieChartTitle='Raider Classes'
+                                    pieChartData={this.state.pieChartRaiderClasses}
                                     pieChartClassName='about-pie fade1s'
                                     pieChartLegend={false}
                                     pieChartLabels={true}
                                     pieChartSize={100}
                                 />
-                            : 
-                                <div className="loader" />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
-                            {this.state.pieChartRaiderRoles.length > 1 ? 
-                                    <PieChart 
-                                        pieChartID='roleRaiderPie' 
-                                        pieChartTitle='Raider Roles' 
-                                        pieChartData={this.state.pieChartRaiderRoles} 
-                                        pieChartClassName='about-pie fade1s'
-                                        pieChartLegend={false}
-                                        pieChartLabels={true}
-                                        pieChartSize={100}
-                                    /> 
-                            : 
-                                <div className="loader" />
+                            {this.state.pieChartRaiderRoles.length > 1 ?
+                                <PieChart
+                                    pieChartID='roleRaiderPie'
+                                    pieChartTitle='Raider Roles'
+                                    pieChartData={this.state.pieChartRaiderRoles}
+                                    pieChartClassName='about-pie fade1s'
+                                    pieChartLegend={false}
+                                    pieChartLabels={true}
+                                    pieChartSize={100}
+                                />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
-                            {this.state.pieChartRaiderRaces.length > 1 ? 
-                                    <PieChart 
-                                        pieChartID='racesRaiderPie' 
-                                        pieChartTitle='Raider Races' 
-                                        pieChartData={this.state.pieChartRaiderRaces} 
-                                        pieChartClassName='about-pie fade1s'
-                                        pieChartLegend={false}
-                                        pieChartLabels={true}
-                                        pieChartSize={80}
+                            {this.state.pieChartRaiderRaces.length > 1 ?
+                                <PieChart
+                                    pieChartID='racesRaiderPie'
+                                    pieChartTitle='Raider Races'
+                                    pieChartData={this.state.pieChartRaiderRaces}
+                                    pieChartClassName='about-pie fade1s'
+                                    pieChartLegend={false}
+                                    pieChartLabels={true}
+                                    pieChartSize={80}
 
-                                    />
-                            : 
-                                <div className="loader" />
+                                />
+                                :
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             }
                         </div>
-                    </div>                        
-                    {/* {this.state.raiderIOLoaded && 
-                        <div className="guildinfo-container" style={{width: '600px'}}>
-                            <div className= "guildinfo-titles">Raid Progress</div>
-                            <div>
-                                <div style={{fontSize: '18px'}}>Uldir {this.state.raiderIO.raid_progression.uldir.summary}</div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression.uldir.normal_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.normal.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.normal.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.normal.realm}</div>
-                                </div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression.uldir.heroic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.heroic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.heroic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.heroic.realm}</div>
-                                </div>
-                                { this.state.raiderIO.raid_progression.uldir.mythic_bosses_killed > 0 &&
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression.uldir.mythic_bosses_killed}/{this.state.raiderIO.raid_progression.uldir.total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings.uldir.mythic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings.uldir.mythic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings.uldir.mythic.realm}</div>
-                                </div>
-                                }
-                            </div>
-                            <div style={{marginTop: '10px'}}>
-                                <div style={{fontSize: '18px'}}>Antorus the Burning Throne {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].summary}</div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].normal.realm}</div>
-                                </div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].heroic.realm}</div>
-                                </div>
-                                { this.state.raiderIO.raid_progression["antorus-the-burning-throne"].mythic_bosses_killed > 0 &&
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["antorus-the-burning-throne"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["antorus-the-burning-throne"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["antorus-the-burning-throne"].mythic.realm}</div>
-                                </div>
-                                }
-                            </div>
-                            <div style={{marginTop: '10px'}}>
-                                <div style={{fontSize: '18px'}}>Tomb of Sargeras {this.state.raiderIO.raid_progression["tomb-of-sargeras"].summary}</div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].normal.realm}</div>
-                                </div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].heroic.realm}</div>
-                                </div>
-                                { this.state.raiderIO.raid_progression["tomb-of-sargeras"].mythic_bosses_killed > 0 &&
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["tomb-of-sargeras"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["tomb-of-sargeras"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["tomb-of-sargeras"].mythic.realm}</div>
-                                </div>
-                                }
-                            </div>
-                            <div style={{marginTop: '10px'}}>
-                                <div style={{fontSize: '18px'}}>The Nighthold {this.state.raiderIO.raid_progression["the-nighthold"].summary}</div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Normal: {this.state.raiderIO.raid_progression["the-nighthold"].normal_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].normal.realm}</div>
-                                </div>
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Heroic: {this.state.raiderIO.raid_progression["the-nighthold"].heroic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].heroic.realm}</div>
-                                </div>
-                                { this.state.raiderIO.raid_progression["the-nighthold"].mythic_bosses_killed > 0 &&
-                                <div className="evenspaced-row">
-                                    <div style={{width: '120px'}}>Mythic: {this.state.raiderIO.raid_progression["the-nighthold"].mythic_bosses_killed}/{this.state.raiderIO.raid_progression["the-nighthold"].total_bosses}</div>
-                                    <div style={{width: '120px'}}>World: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.world}</div>
-                                    <div style={{width: '120px'}}>Region: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.region}</div>
-                                    <div style={{width: '120px'}}>Realm: {this.state.raiderIO.raid_rankings["the-nighthold"].mythic.realm}</div>
-                                </div>
-                                }
-                            </div>
-                            <div style={{textAlign: 'right', fontSize: '10px', marginTop: 'auto'}}>Provided by <a href="https://raider.io">Raider.IO</a></div>
-                        </div>
-                    } */}
-                    {/* {this.state.raiderIOLoaded === true ? 
-                        <div className="guildinfo-container">
-                            <div className= "guildinfo-titles">Guild Scores</div>
-                            <a href="https://www.wowprogress.com/guild/us/thunderlord/Complexity" target="_blank"  rel="noopener noreferrer">
-                                <div className="button-border" id="about-scores">
-                                    <div className="button-text">Score: {this.state.wowProgress.score}</div>
-                                </div>
-                            </a>
-                            <a href="https://www.wowprogress.com/pve/world" target="_blank"  rel="noopener noreferrer">
-                                <div className="button-border" id="about-scores">
-                                    <div className="button-text">World Rank: {this.state.wowProgress.world_rank}</div>
-                                </div>
-                            </a>
-                            <a href="https://www.wowprogress.com/pve/us" target="_blank"  rel="noopener noreferrer">
-                                <div className="button-border" id="about-scores">
-                                    <div className="button-text">Region Rank: {this.state.wowProgress.area_rank}</div>
-                                </div> 
-                            </a>
-                            <a href="https://www.wowprogress.com/pve/us/thunderlord" target="_blank"  rel="noopener noreferrer">
-                                <div className="button-border" id="about-scores">
-                                    <div className="button-text">Realm Rank: {this.state.wowProgress.realm_rank}</div>
-                                </div>
-                            </a>
-                            <div style={{textAlign: 'right', fontSize: '10px', marginTop: 'auto'}}>Provided by <a href="https://www.wowprogress.com/">WoWProgress.com</a></div>
-                        </div>
-                        :
-                        <div className="loader"></div>
-                    } */}
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     return {
         modalOpen: state.modalOpen,
         modalTitle: state.modalTitle,
@@ -491,4 +437,4 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-export default connect( mapStateToProps, {infoModal} )( About );
+export default connect(mapStateToProps, { infoModal })(About);

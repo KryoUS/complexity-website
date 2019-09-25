@@ -46,35 +46,44 @@ class Logs extends Component {
         }
     }
 
-    render () {
+    render() {
         return (
-            <div className="flex-column" style={{height: '100%', width: '100%', marginTop: '80px'}}>
-                <div className="flex-row" style={{width: '95%', alignSelf: 'center'}}>
-                    <div 
+            <div className="flex-column" style={{ height: '100%', width: '100%', marginTop: '80px' }}>
+                <div className="flex-row" style={{ width: '95%', alignSelf: 'center' }}>
+                    <div
                         className="basic-hover" style={{
-                            padding: '5px', 
-                            backgroundColor: `${this.state.type === 'Discord' ? '#202125' : '#121315'}`, 
+                            padding: '5px',
+                            backgroundColor: `${this.state.type === 'Discord' ? '#202125' : '#121315'}`,
                             border: `${this.state.type === 'Discord' ? '1px solid grey' : '1px solid black'}`
                         }}
-                        onClick={ () => this.setLogType('Discord') }
+                        onClick={() => this.setLogType('Discord')}
                     >Discord</div>
-                    <div 
-                        className="basic-hover" 
+                    <div
+                        className="basic-hover"
                         style={{
-                            padding: '5px', 
-                            backgroundColor: `${this.state.type === 'Services' ? '#202125' : '#121315'}`, 
+                            padding: '5px',
+                            backgroundColor: `${this.state.type === 'Services' ? '#202125' : '#121315'}`,
                             border: `${this.state.type === 'Services' ? '1px solid grey' : '1px solid black'}`
                         }}
-                        onClick={ () => this.setLogType('Services') }
+                        onClick={() => this.setLogType('Services')}
                     >Services</div>
                 </div>
-                {this.state.data.length > 1 ? <LogTable data={this.state.data} /> : <div className="loader"></div>}
+                {this.state.data.length > 1 ? <LogTable data={this.state.data} /> : <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>}
             </div>
         )
     }
 }
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     return {
         modalOpen: state.modalOpen,
         modalTitle: state.modalTitle,
@@ -83,4 +92,4 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-export default connect( mapStateToProps, {infoModal} )( Logs );
+export default connect(mapStateToProps, { infoModal })(Logs);

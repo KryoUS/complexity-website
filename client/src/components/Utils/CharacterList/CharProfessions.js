@@ -17,7 +17,7 @@ class CharProfessions extends Component {
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/professions/`).then(res => {
             this.setState({
-                primary: res.data.professions.primary, 
+                primary: res.data.professions.primary,
                 secondary: res.data.professions.secondary
             });
         }).catch(error => {
@@ -27,33 +27,33 @@ class CharProfessions extends Component {
 
     professionBuilder = (obj) => {
         return <div className="flex-row flex-end row-container animate-right" id="prof-row" key={obj.name}>
-                    <div className="flex-row flex-end prof-name-container">
-                        <div className="prof-name">{obj.name}</div>
-                        <div className ="icon20" style={{
-                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 20px`, 
-                            backgroundSize: '20px'
-                        }} />
-                    </div>
-                    <div className="prof-bar-container">
-                        <ProgressBar 
-                        current={obj.rank} 
-                        remaining={obj.max - obj.rank} 
-                        height={'20px'}
-                        bgColor={'#edba03'}
-                        fontSize={'18px'}
-                        />
-                    </div>
-                </div>
+            <div className="flex-row flex-end prof-name-container">
+                <div className="prof-name">{obj.name}</div>
+                <div className="icon20" style={{
+                    background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 20px`,
+                    backgroundSize: '20px'
+                }} />
+            </div>
+            <div className="prof-bar-container">
+                <ProgressBar
+                    current={obj.rank}
+                    remaining={obj.max - obj.rank}
+                    height={'20px'}
+                    bgColor={'#edba03'}
+                    fontSize={'18px'}
+                />
+            </div>
+        </div>
     }
 
-    render () {
+    render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.primary.length > 0 ? 
+                {this.state.primary.length > 0 ?
                     <div className="animate-right">
-                        <Collapsible trigger={<div className="prof-category">Primary</div>} 
-                            transitionTime={200} 
-                            easing={'ease 0s'} 
+                        <Collapsible trigger={<div className="prof-category">Primary</div>}
+                            transitionTime={200}
+                            easing={'ease 0s'}
                             open={true}
                             lazyRender={true}
                         >
@@ -61,9 +61,9 @@ class CharProfessions extends Component {
                                 return this.professionBuilder(obj)
                             })}
                         </Collapsible>
-                        <Collapsible trigger={<div className="prof-category">Secondary</div>} 
-                            transitionTime={200} 
-                            easing={'ease 0s'} 
+                        <Collapsible trigger={<div className="prof-category">Secondary</div>}
+                            transitionTime={200}
+                            easing={'ease 0s'}
                             lazyRender={true}
                         >
                             {this.state.secondary.map(obj => {
@@ -71,8 +71,17 @@ class CharProfessions extends Component {
                             })}
                         </Collapsible>
                     </div>
-                : 
-                    <div className="loader" style={{left: '85vw'}}/>
+                    :
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 }
             </div>
         )

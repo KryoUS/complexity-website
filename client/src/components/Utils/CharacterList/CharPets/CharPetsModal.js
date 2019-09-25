@@ -93,7 +93,16 @@ class CharPetsModal extends React.Component {
                 >
                     {this.props.loading ? 
                         <DialogContent style={{width: '500px', height: '320px'}} id="alert-dialog-slide-content">
-                            <div className="loader"></div>
+                            <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                         </DialogContent>
                     :
                         <div>

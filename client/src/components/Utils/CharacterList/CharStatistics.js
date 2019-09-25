@@ -69,7 +69,16 @@ class CharStatistics extends Component {
                         })}
                     </div>
                 : 
-                    <div className="loader" style={{left: '85vw'}}/>
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 }
             </div>
         )

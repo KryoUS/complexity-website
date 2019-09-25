@@ -16,30 +16,30 @@ class CharProgression extends Component {
 
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/progression/`).then(res => {
-            this.setState({raids: res.data.progression.raids.reverse()});
+            this.setState({ raids: res.data.progression.raids.reverse() });
         }).catch(error => {
             console.log('WoW Character Progression API Error: ', error);
         });
     }
 
     progressBarBuilder = (kills, count) => {
-        return <ProgressBar 
-                current={kills} 
-                remaining={count - kills} 
-                height={'17px'}
-                bgColor={'#edba03'}
-                fontSize={'13px'}
+        return <ProgressBar
+            current={kills}
+            remaining={count - kills}
+            height={'17px'}
+            bgColor={'#edba03'}
+            fontSize={'13px'}
         />
     }
 
     bossImageBuilder = (npc) => {
         //NOTE: Blizzard's render isn't very reliable, onError is used to hide broken images
-        return <div key={npc.creatureDisplayId} style={{width: '150px'}}>
-            <img className="image-mask fade1s" src={`https://render-us.worldofwarcraft.com/npcs/zoom/creature-display-${npc.creatureDisplayId}.jpg`} 
+        return <div key={npc.creatureDisplayId} style={{ width: '150px' }}>
+            <img className="image-mask fade1s" src={`https://render-us.worldofwarcraft.com/npcs/zoom/creature-display-${npc.creatureDisplayId}.jpg`}
                 alt={npc.urlSlug}
                 width="150"
-                onError={(e) => { 
-                    e.target.style = 'display: none' 
+                onError={(e) => {
+                    e.target.style = 'display: none'
                 }}
                 onLoad={(e) => {
                     e.target.style = 'animation: fade 1s; -o-animation: fade 1s; -moz-animation: fade 1s; -webkit-animation: fade 1s;'
@@ -77,74 +77,74 @@ class CharProgression extends Component {
             }
         })
 
-        return <Collapsible 
+        return <Collapsible
             key={obj.id}
             trigger={
                 <div className="flex-row flex-between prog-category">
-                    <a className="prog-title"href={`https://www.wowhead.com/zone=${obj.id}`} target="_blank" rel="noopener noreferrer">{obj.name}</a>
+                    <a className="prog-title" href={`https://www.wowhead.com/zone=${obj.id}`} target="_blank" rel="noopener noreferrer">{obj.name}</a>
                     <div className="prog-bar">
-                        <ProgressBar 
-                            current={Math.max(lfrBossKills, normalBossKills, heroicBossKills, mythicBossKills)} 
-                            remaining={Math.max(lfrBossCount, normalBossCount, heroicBossCount, mythicBossCount) - Math.max(lfrBossKills, normalBossKills, heroicBossKills, mythicBossKills)} 
+                        <ProgressBar
+                            current={Math.max(lfrBossKills, normalBossKills, heroicBossKills, mythicBossKills)}
+                            remaining={Math.max(lfrBossCount, normalBossCount, heroicBossCount, mythicBossCount) - Math.max(lfrBossKills, normalBossKills, heroicBossKills, mythicBossKills)}
                             height={'17px'}
                             bgColor={'rgb(146, 91, 234)'}
                             fontSize={'13px'}
                         />
                     </div>
                 </div>
-            } 
-            transitionTime={200} 
-            easing={'ease 0s'} 
+            }
+            transitionTime={200}
+            easing={'ease 0s'}
             lazyRender={true}
             open={index === 0 ? true : false}
         >
             <div className="flex-column flex-between prog-sub-category animate-right">
-                {lfrBossCount > 0 && 
+                {lfrBossCount > 0 &&
                     <div className="flex-row">
                         <div className="prog-title" id="prog-raid-type">Looking for Raid</div>
                         <div className="prog-bar">{this.progressBarBuilder(lfrBossKills, lfrBossCount)}</div>
                     </div>
                 }
-                {normalBossCount > 0 && 
+                {normalBossCount > 0 &&
                     <div className="flex-row">
                         <div className="prog-title" id="prog-raid-type">Normal</div>
                         <div className="prog-bar">{this.progressBarBuilder(normalBossKills, normalBossCount)}</div>
                     </div>
                 }
-                {heroicBossCount > 0 && 
+                {heroicBossCount > 0 &&
                     <div className="flex-row">
                         <div className="prog-title" id="prog-raid-type">Heroic</div>
                         <div className="prog-bar">{this.progressBarBuilder(heroicBossKills, heroicBossCount)}</div>
                     </div>
                 }
-                {mythicBossCount > 0 && 
+                {mythicBossCount > 0 &&
                     <div className="flex-row">
                         <div className="prog-title" id="prog-raid-type">Mythic</div>
                         <div className="prog-bar">{this.progressBarBuilder(mythicBossKills, mythicBossCount)}</div>
                     </div>
                 }
-                <div className="flex-column" style={{width: '90%', marginTop: '10px', alignSelf: 'flex-end'}}>
+                <div className="flex-column" style={{ width: '90%', marginTop: '10px', alignSelf: 'flex-end' }}>
                     {obj.bosses.map((bossObj, bossIndex) => {
-                        return <Collapsible 
-                        key={bossObj.id * bossIndex}
-                        trigger={
-                            <div className="flex-row flex-between prog-category" id="prog-sub-boss">
-                                <a href={`https://www.wowhead.com/npc=${bossObj.id}`} target="_blank" rel="noopener noreferrer">{bossObj.name}</a>
-                                <div className="flex-row flex-between prog-kills">
-                                    {/* If a className is being defined through a ternary, {condition ? value : undefined} must be used */}
-                                    <div className={!bossObj.hasOwnProperty('lfrKills') ? `opacity25` : undefined}>LFR: {bossObj.lfrKills}</div>
-                                    <div className={!bossObj.hasOwnProperty('normalKills') ? `opacity25` : undefined}>Normal: {bossObj.normalKills}</div>
-                                    <div className={!bossObj.hasOwnProperty('heroicKills') ? `opacity25` : undefined}>Heroic: {bossObj.heroicKills}</div>
-                                    <div className={!bossObj.hasOwnProperty('mythicKills') ? `opacity25` : undefined}>Mythic: {bossObj.mythicKills}</div>
+                        return <Collapsible
+                            key={bossObj.id * bossIndex}
+                            trigger={
+                                <div className="flex-row flex-between prog-category" id="prog-sub-boss">
+                                    <a href={`https://www.wowhead.com/npc=${bossObj.id}`} target="_blank" rel="noopener noreferrer">{bossObj.name}</a>
+                                    <div className="flex-row flex-between prog-kills">
+                                        {/* If a className is being defined through a ternary, {condition ? value : undefined} must be used */}
+                                        <div className={!bossObj.hasOwnProperty('lfrKills') ? `opacity25` : undefined}>LFR: {bossObj.lfrKills}</div>
+                                        <div className={!bossObj.hasOwnProperty('normalKills') ? `opacity25` : undefined}>Normal: {bossObj.normalKills}</div>
+                                        <div className={!bossObj.hasOwnProperty('heroicKills') ? `opacity25` : undefined}>Heroic: {bossObj.heroicKills}</div>
+                                        <div className={!bossObj.hasOwnProperty('mythicKills') ? `opacity25` : undefined}>Mythic: {bossObj.mythicKills}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        } 
-                        openedClassName={'prog-category-open'}
-                        transitionTime={200} 
-                        easing={'ease 0s'} 
-                        lazyRender={true}
+                            }
+                            openedClassName={'prog-category-open'}
+                            transitionTime={200}
+                            easing={'ease 0s'}
+                            lazyRender={true}
                         >
-                            <div  id="prog-card">
+                            <div id="prog-card">
                                 <div>{bossObj.bossInfo.description}</div>
                                 <div className="flex-row flex-around flex-wrap">
                                     {bossObj.bossInfo.npcs.map(npc => {
@@ -159,7 +159,7 @@ class CharProgression extends Component {
                                     <div>Level:</div>
                                     <div>{bossObj.bossInfo.level}</div>
                                 </div>
-                                {bossObj.hasOwnProperty('lfrKills') && bossObj.lfrTimestamp > 0 && 
+                                {bossObj.hasOwnProperty('lfrKills') && bossObj.lfrTimestamp > 0 &&
                                     <div className="flex-row flex-between">
                                         <div>LFR First Kill:</div>
                                         <div>{moment(bossObj.lfrTimestamp).format('MMMM Do YYYY')}</div>
@@ -177,7 +177,7 @@ class CharProgression extends Component {
                                         <div>{moment(bossObj.heroicTimestamp).format('MMMM Do YYYY')}</div>
                                     </div>
                                 }
-                                {bossObj.hasOwnProperty('mythicKills') && bossObj.mythicTimestamp > 0 && 
+                                {bossObj.hasOwnProperty('mythicKills') && bossObj.mythicTimestamp > 0 &&
                                     <div className="flex-row flex-between">
                                         <div>Mythic First Kill:</div>
                                         <div>{moment(bossObj.mythicTimestamp).format('MMMM Do YYYY')}</div>
@@ -192,17 +192,26 @@ class CharProgression extends Component {
 
     }
 
-    render () {
+    render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.raids.length > 0 ? 
+                {this.state.raids.length > 0 ?
                     <div className="animate-right">
                         {this.state.raids.map((obj, index) => {
                             return this.progressionBuilder(obj, index);
                         })}
                     </div>
-                : 
-                    <div className="loader" style={{left: '85vw'}}/>
+                    :
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 }
             </div>
         )

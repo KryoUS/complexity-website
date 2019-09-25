@@ -21,7 +21,7 @@ class Members extends Component {
 
     componentDidMount = () => {
         axios.get('/api/members').then(response => {
-            this.setState({memberTable: response.data, loadTable: true});
+            this.setState({ memberTable: response.data, loadTable: true });
             this.maxLevelOnly();
         }).catch(error => {
             console.log('Members Stat API Failed');
@@ -41,7 +41,7 @@ class Members extends Component {
     };
 
     sortBy = (orderBy) => {
-        this.setState({selectedHeader: orderBy, loadTable: false});
+        this.setState({ selectedHeader: orderBy, loadTable: false });
         let sortArray = [...this.state.memberTable];
         let sortMaxLevelArray = [...this.state.maxLevelMemberTable];
 
@@ -50,11 +50,11 @@ class Members extends Component {
         } else {
             this.numberSort(sortArray, sortMaxLevelArray, orderBy);
         }
-        
+
     }
 
     numberSort = (sortArray, sortMaxLevelArray, orderBy) => {
-        
+
         if (this.state.sortMethod === 'asc') {
             sortArray.sort((a, b) => {
                 return a[orderBy] - b[orderBy]
@@ -62,7 +62,7 @@ class Members extends Component {
             sortMaxLevelArray.sort((a, b) => {
                 return a[orderBy] - b[orderBy]
             })
-            this.setState({sortMethod: 'desc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true});
+            this.setState({ sortMethod: 'desc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true });
         } else {
             sortArray.sort((a, b) => {
                 return b[orderBy] - a[orderBy]
@@ -70,12 +70,12 @@ class Members extends Component {
             sortMaxLevelArray.sort((a, b) => {
                 return b[orderBy] - a[orderBy]
             })
-            this.setState({sortMethod: 'asc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true});
+            this.setState({ sortMethod: 'asc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true });
         }
     }
 
     letterSort = (sortArray, sortMaxLevelArray, orderBy) => {
-        
+
         if (this.state.sortMethod === 'asc') {
             sortArray.sort((a, b) => {
                 return a[orderBy] > b[orderBy] ? 1 : ((a[orderBy] < b[orderBy]) ? -1 : 0)
@@ -83,7 +83,7 @@ class Members extends Component {
             sortMaxLevelArray.sort((a, b) => {
                 return a[orderBy] > b[orderBy] ? 1 : ((a[orderBy] < b[orderBy]) ? -1 : 0)
             })
-            this.setState({sortMethod: 'desc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true});
+            this.setState({ sortMethod: 'desc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true });
         } else {
             sortArray.sort((a, b) => {
                 return a[orderBy] < b[orderBy] ? 1 : ((a[orderBy] > b[orderBy]) ? -1 : 0)
@@ -91,45 +91,54 @@ class Members extends Component {
             sortMaxLevelArray.sort((a, b) => {
                 return a[orderBy] < b[orderBy] ? 1 : ((a[orderBy] > b[orderBy]) ? -1 : 0)
             })
-            this.setState({sortMethod: 'asc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true});
+            this.setState({ sortMethod: 'asc', memberTable: sortArray, maxLevelMemberTable: sortMaxLevelArray, loadTable: true });
         }
 
     }
 
-    render(){
+    render() {
 
-        return(
-            <div className="stats-div fade1s" style={{background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/members.jpg') top center no-repeat`}}>
-                {this.state.loadTable === false && <div className="loader"/>}
+        return (
+            <div className="stats-div fade1s" style={{ background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/members.jpg') top center no-repeat` }}>
+                {this.state.loadTable === false && <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>}
                 <Slide direction="up" in={this.state.loadTable} mountOnEnter unmountOnExit>
-                <div style={{marginTop: '60px'}}>
-                    <div style={{color: 'white'}}>
-                        <Checkbox
-                            checked={this.state.maxLevel}
-                            onChange={this.handleChange('maxLevel')}
-                            value="maxLevel"
-                            color="primary"
-                        />
-                        Show Max Level Only
+                    <div style={{ marginTop: '60px' }}>
+                        <div style={{ color: 'white' }}>
+                            <Checkbox
+                                checked={this.state.maxLevel}
+                                onChange={this.handleChange('maxLevel')}
+                                value="maxLevel"
+                                color="primary"
+                            />
+                            Show Max Level Only
                     </div>
-                    <StatTable 
-                        headerRow={[
-                            {displayName: 'Character', name: 'character_name', tooltip: `The character's name.`},
-                            {displayName: 'Rank', name: 'rank', tooltip: 'Guild rank.'},
-                            {displayName: 'Level', name: 'level', tooltip: 'The current level of the character.'},
-                            {displayName: 'Average Item Level', name: 'average_ilvl', tooltip: 'The average item level of the character including gear in bags.'},
-                            {displayName: 'Average Item Level Equipped', name: 'average_equipped_ilvl', tooltip: 'The average item level equipped by the character.'},
-                            {displayName: 'Azerite Level', name: 'azerite_lvl', tooltip: 'The current Azerite level of the character.'},
-                            {displayName: 'Race', name: 'race', tooltip: `The character's race.`},
-                            {displayName: 'Specialization', name: 'spec_name', tooltip: `The character's specialization.`},
-                            {displayName: 'Class', name: 'class', tooltip: `The character's class.`},
-                            {displayName: 'Realm', name: 'realm', tooltip: `The character's realm/server.`}
-                        ]}
-                        tableData={this.state.maxLevel ? this.state.maxLevelMemberTable : this.state.memberTable}
-                        sortBy={this.sortBy}
-                        selectedHeader={this.state.selectedHeader}
-                    />
-                </div>
+                        <StatTable
+                            headerRow={[
+                                { displayName: 'Character', name: 'character_name', tooltip: `The character's name.` },
+                                { displayName: 'Rank', name: 'rank', tooltip: 'Guild rank.' },
+                                { displayName: 'Level', name: 'level', tooltip: 'The current level of the character.' },
+                                { displayName: 'Average Item Level', name: 'average_ilvl', tooltip: 'The average item level of the character including gear in bags.' },
+                                { displayName: 'Average Item Level Equipped', name: 'average_equipped_ilvl', tooltip: 'The average item level equipped by the character.' },
+                                { displayName: 'Azerite Level', name: 'azerite_lvl', tooltip: 'The current Azerite level of the character.' },
+                                { displayName: 'Race', name: 'race', tooltip: `The character's race.` },
+                                { displayName: 'Specialization', name: 'spec_name', tooltip: `The character's specialization.` },
+                                { displayName: 'Class', name: 'class', tooltip: `The character's class.` },
+                                { displayName: 'Realm', name: 'realm', tooltip: `The character's realm/server.` }
+                            ]}
+                            tableData={this.state.maxLevel ? this.state.maxLevelMemberTable : this.state.memberTable}
+                            sortBy={this.sortBy}
+                            selectedHeader={this.state.selectedHeader}
+                        />
+                    </div>
                 </Slide>
             </div>
         )

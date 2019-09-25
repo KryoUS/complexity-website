@@ -76,14 +76,14 @@ class CharPets extends Component {
                     pets: res.data.pets.collected.sort((a, b) => {
                         var x = a.name.toLowerCase();
                         var y = b.name.toLowerCase();
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
-                      }).sort((x, y) => {
+                    }).sort((x, y) => {
                         return y.isFavorite - x.isFavorite
-                    }), 
+                    }),
                 },
-                numCollected: res.data.pets.numCollected, 
+                numCollected: res.data.pets.numCollected,
                 numNotCollected: res.data.pets.numNotCollected
             });
 
@@ -92,7 +92,7 @@ class CharPets extends Component {
                     this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >=
                     this.refs.iScroll.scrollHeight
                 ) {
-                    this.setState({loadedPets: this.state.loadedPets + 20});
+                    this.setState({ loadedPets: this.state.loadedPets + 20 });
                 };
             });
 
@@ -144,22 +144,22 @@ class CharPets extends Component {
     };
 
     setDefaultBreedLabel = (x) => {
-            if ( x === 4 || x ===14) {return '4/14 (P/P)'}
-            else if ( x === 5 || x ===15) {return '5/15 (S/S)'}
-            else if ( x === 6 || x ===16) {return '6/16 (H/H'}
-            else if ( x === 7 || x ===17) {return '7/17 (H/P)'}
-            else if ( x === 8 || x ===18) {return '8/18 (P/S)'}
-            else if ( x === 9 || x ===19) {return '9/19 (H/S)'}
-            else if ( x === 10 || x === 20) {return '10/20 (P/B)'}
-            else if ( x === 11 || x === 21) {return '11/21 (S/B)'}
-            else if ( x === 12 || x === 22) {return '12/22 (H/B)'}
-            else if ( x === 3 || x ===13) {return '3/13 (B/B)'}
-            else {return 'Unknown'}
+        if (x === 4 || x === 14) { return '4/14 (P/P)' }
+        else if (x === 5 || x === 15) { return '5/15 (S/S)' }
+        else if (x === 6 || x === 16) { return '6/16 (H/H' }
+        else if (x === 7 || x === 17) { return '7/17 (H/P)' }
+        else if (x === 8 || x === 18) { return '8/18 (P/S)' }
+        else if (x === 9 || x === 19) { return '9/19 (H/S)' }
+        else if (x === 10 || x === 20) { return '10/20 (P/B)' }
+        else if (x === 11 || x === 21) { return '11/21 (S/B)' }
+        else if (x === 12 || x === 22) { return '12/22 (H/B)' }
+        else if (x === 3 || x === 13) { return '3/13 (B/B)' }
+        else { return 'Unknown' }
     };
 
     searchData = (e) => {
         let searchResults = [];
-        if(e.target.value !== '' && e.target.value.length > 2) {
+        if (e.target.value !== '' && e.target.value.length > 2) {
             this.state.character.pets.forEach(pet => {
                 if (pet.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1) {
                     searchResults.push(pet);
@@ -168,7 +168,7 @@ class CharPets extends Component {
                 }
             });
         };
-        this.setState({filteredPets: searchResults});
+        this.setState({ filteredPets: searchResults });
     };
 
     familyWowhead = (family) => {
@@ -211,14 +211,14 @@ class CharPets extends Component {
 
             axios.get(`/api/wow/pet/species/${obj.stats.speciesId}`).then(res => {
                 obj.stats.speciesInfo = res.data;
-                this.setState({ 
-                    petModalObj: obj, 
-                    petSpeciesInfoLoading: false, 
+                this.setState({
+                    petModalObj: obj,
+                    petSpeciesInfoLoading: false,
                     petCalcQualityValue: {
                         label: this.setDefaultQualityLabel(obj.stats.petQualityId),
                         value: obj.stats.petQualityId,
                         color: this.setDefaultQualityColor(obj.stats.petQualityId),
-                    }, 
+                    },
                     petCalcSliderValue: obj.stats.level,
                     petCalcHealth: obj.stats.health,
                     petCalcPower: obj.stats.power,
@@ -252,10 +252,10 @@ class CharPets extends Component {
     };
 
     getPetCalcInfo = () => {
-        if (this.state.petCalcBreedValue.value === this.state.petModalObj.stats.breedId 
-            && this.state.petCalcSliderValue === this.state.petModalObj.stats.level 
+        if (this.state.petCalcBreedValue.value === this.state.petModalObj.stats.breedId
+            && this.state.petCalcSliderValue === this.state.petModalObj.stats.level
             && this.state.petCalcQualityValue.value === this.state.petModalObj.stats.petQualityId) {
-                this.props.infoModal(true, 'Oops!', "The Battle Pet Calculator values match the pet's values. Change a value and try again.", 'OK');
+            this.props.infoModal(true, 'Oops!', "The Battle Pet Calculator values match the pet's values. Change a value and try again.", 'OK');
         } else {
             this.setState({ petCalcLoading: true })
             axios.get(`/api/wow/pet/stats/${this.state.petModalObj.stats.speciesId}&${this.state.petCalcSliderValue}&${this.state.petCalcBreedValue.value}&${this.state.petCalcQualityValue.value}`).then(res => {
@@ -267,83 +267,83 @@ class CharPets extends Component {
     };
 
     petBreedInfo = (breed) => {
-        if (breed === 4 || breed === 14) {return `Breed: ${breed}(P/P)`}
-        else if (breed === 5 || breed === 15) {return `Breed: ${breed}(S/S)`}
-        else if (breed === 6 || breed === 16) {return `Breed: ${breed}(H/H)`}
-        else if (breed === 7 || breed === 17) {return `Breed: ${breed}(H/P)`}
-        else if (breed === 8 || breed === 18) {return `Breed: ${breed}(P/S)`}
-        else if (breed === 9 || breed === 19) {return `Breed: ${breed}(H/S)`}
-        else if (breed === 10 || breed === 20) {return `Breed: ${breed}(P/B)`}
-        else if (breed === 11 || breed === 21) {return `Breed: ${breed}(S/B)`}
-        else if (breed === 12 || breed === 22) {return `Breed: ${breed}(H/B)`}
-        else if (breed === 3 || breed === 13) {return `Breed: ${breed}(B/B)`}
-        else {return `Breed: Unknown`}
+        if (breed === 4 || breed === 14) { return `Breed: ${breed}(P/P)` }
+        else if (breed === 5 || breed === 15) { return `Breed: ${breed}(S/S)` }
+        else if (breed === 6 || breed === 16) { return `Breed: ${breed}(H/H)` }
+        else if (breed === 7 || breed === 17) { return `Breed: ${breed}(H/P)` }
+        else if (breed === 8 || breed === 18) { return `Breed: ${breed}(P/S)` }
+        else if (breed === 9 || breed === 19) { return `Breed: ${breed}(H/S)` }
+        else if (breed === 10 || breed === 20) { return `Breed: ${breed}(P/B)` }
+        else if (breed === 11 || breed === 21) { return `Breed: ${breed}(S/B)` }
+        else if (breed === 12 || breed === 22) { return `Breed: ${breed}(H/B)` }
+        else if (breed === 3 || breed === 13) { return `Breed: ${breed}(B/B)` }
+        else { return `Breed: Unknown` }
     };
 
     petBreedTooltip = (breed) => {
-        if (breed === 4 || breed === 14) {return 'P/P the pet has a boost to base power. (+2)'}
-        else if (breed === 5 || breed === 15) {return 'S/S the pet has a boost to base speed. (+2)'}
-        else if (breed === 6 || breed === 16) {return 'H/H the pet has a boost to base health. (+2)'}
-        else if (breed === 7 || breed === 17) {return 'H/P the pet has a boost to base health and power. (+0.9)'}
-        else if (breed === 8 || breed === 18) {return 'P/S the pet has a boost to base power and speed. (+0.9)'}
-        else if (breed === 9 || breed === 19) {return 'H/S the pet has a boost to base health and speed. (+0.9)'}
-        else if (breed === 10 || breed === 20) {return 'P/B the pet has a boost to all base stats with a little more to power. (+0.4 & +0.9)'}
-        else if (breed === 11 || breed === 21) {return 'S/B the pet has a boost to all base stats with a little more to speed. (+0.4 & +0.9)'}
-        else if (breed === 12 || breed === 22) {return 'H/B the pet has a boost to all base stats with a little more to health. (+0.4 & +0.9)'}
-        else if (breed === 3 || breed === 13) {return 'B/B the pet has a slight boost to all base stats evenly. (+0.5)'}
-        else {return 'This breed is unknown.'}
+        if (breed === 4 || breed === 14) { return 'P/P the pet has a boost to base power. (+2)' }
+        else if (breed === 5 || breed === 15) { return 'S/S the pet has a boost to base speed. (+2)' }
+        else if (breed === 6 || breed === 16) { return 'H/H the pet has a boost to base health. (+2)' }
+        else if (breed === 7 || breed === 17) { return 'H/P the pet has a boost to base health and power. (+0.9)' }
+        else if (breed === 8 || breed === 18) { return 'P/S the pet has a boost to base power and speed. (+0.9)' }
+        else if (breed === 9 || breed === 19) { return 'H/S the pet has a boost to base health and speed. (+0.9)' }
+        else if (breed === 10 || breed === 20) { return 'P/B the pet has a boost to all base stats with a little more to power. (+0.4 & +0.9)' }
+        else if (breed === 11 || breed === 21) { return 'S/B the pet has a boost to all base stats with a little more to speed. (+0.4 & +0.9)' }
+        else if (breed === 12 || breed === 22) { return 'H/B the pet has a boost to all base stats with a little more to health. (+0.4 & +0.9)' }
+        else if (breed === 3 || breed === 13) { return 'B/B the pet has a slight boost to all base stats evenly. (+0.5)' }
+        else { return 'This breed is unknown.' }
     };
 
     buildPets = (array) => {
         return array.map((obj, index) => {
             return index <= this.state.loadedPets &&
                 <div className={`flex-row flex-between row-container pet-container`} key={obj.battlePetGuid + obj.creatureId} onClick={() => this.petModalOpen(obj)} >
-                    <a className="flex-row" style={{width: '280px', alignItems: 'center'}} data-wowhead={`npc=${obj.creatureId}`} href={`https://www.wowhead.com/npc=${obj.creatureId}`} onClick={(e) => this.skipHref(e)} target="_blank" rel="noopener noreferrer">
-                        <div className ="icon40" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533519767/wow/icons/${obj.icon.replace(/&|-/g, '_')}.png) 40px`, backgroundSize: '40px'}} />
-                        <div className="row-name" style={{color: obj.qualityColor, fontSize: '.95rem'}}>{obj.name} {obj.name !== obj.creatureName && `the ${obj.creatureName}`}</div>
+                    <a className="flex-row" style={{ width: '280px', alignItems: 'center' }} data-wowhead={`npc=${obj.creatureId}`} href={`https://www.wowhead.com/npc=${obj.creatureId}`} onClick={(e) => this.skipHref(e)} target="_blank" rel="noopener noreferrer">
+                        <div className="icon40" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533519767/wow/icons/${obj.icon.replace(/&|-/g, '_')}.png) 40px`, backgroundSize: '40px' }} />
+                        <div className="row-name" style={{ color: obj.qualityColor, fontSize: '.95rem' }}>{obj.name} {obj.name !== obj.creatureName && `the ${obj.creatureName}`}</div>
                     </a>
                     <div className="flex-column flex-between pet-stat-container">
                         <div className="flex-row flex-between pet-stat-row">
                             <div className="pet-stats" data-tip={this.petBreedTooltip(obj.stats.breedId)}>{this.petBreedInfo(obj.stats.breedId)}</div>
                             <div className="flex-row" data-tip='Pet Family'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px'}} />
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/family.png`, backgroundSize: '20px' }} />
                                 <a href={`https://www.wowhead.com/${this.familyWowhead(obj.family)}`} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
-                                    <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px'}} />
+                                    <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${obj.family === 'dragonkin' ? 'dragon' : `${obj.family}`}.png) 20px`, backgroundSize: '20px' }} />
                                 </a>
                             </div>
                             <div className="flex-row" data-tip='Strong Against'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/strong.png`, backgroundSize: '20px'}} />
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/strong.png`, backgroundSize: '20px' }} />
                                 {obj.strongAgainst.map(strong => {
                                     return <a href={`https://www.wowhead.com/${this.familyWowhead(strong)}`} key={strong} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
-                                        <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${strong === 'dragonkin' ? 'dragon' : `${strong}`}.png) 20px`, backgroundSize: '20px'}} />
+                                        <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${strong === 'dragonkin' ? 'dragon' : `${strong}`}.png) 20px`, backgroundSize: '20px' }} />
                                     </a>
                                 })}
                             </div>
                             <div className="flex-row" data-tip='Weak Against'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/weak.png`, backgroundSize: '20px'}} />
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547745534/site/icons/pets/weak.png`, backgroundSize: '20px' }} />
                                 {obj.weakAgainst.map(weak => {
                                     return <a href={`https://www.wowhead.com/${this.familyWowhead(weak)}`} key={weak} target="_blank" rel="noopener noreferrer" onClick={(e) => this.skipHref(e)}>
-                                        <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${weak === 'dragonkin' ? 'dragon' : `${weak}`}.png) 20px`, backgroundSize: '20px'}} />
+                                        <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/icon_petfamily_${weak === 'dragonkin' ? 'dragon' : `${weak}`}.png) 20px`, backgroundSize: '20px' }} />
                                     </a>
                                 })}
                             </div>
-                            <div className={`icon20 ${obj.isFavorite === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/${obj.isFavorite === true ? 'favorite' : 'notfavorite' }.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.isFavorite === true ? 'This pet is a favorite.' : 'This pet is not a favorite.'}`}/>
+                            <div className={`icon20 ${obj.isFavorite === false && 'opacity25'}`} style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/${obj.isFavorite === true ? 'favorite' : 'notfavorite'}.png) 20px`, backgroundSize: '20px' }} data-tip={`${obj.isFavorite === true ? 'This pet is a favorite.' : 'This pet is not a favorite.'}`} />
                         </div>
                         <div className="flex-row flex-between pet-stat-row">
                             <div className="pet-stats">Level {obj.stats.level}</div>
                             <div className="flex-row" data-tip='Pet Health Points'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '20px'}} />
-                                <div style={{width: '36px'}}>{obj.stats.health}</div>
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547749233/site/icons/pets/health.png`, backgroundSize: '20px' }} />
+                                <div style={{ width: '36px' }}>{obj.stats.health}</div>
                             </div>
                             <div className="flex-row" data-tip='Pet Power'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '20px'}} />
-                                <div style={{width: '28px'}}>{obj.stats.power}</div>
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/str.png`, backgroundSize: '20px' }} />
+                                <div style={{ width: '28px' }}>{obj.stats.power}</div>
                             </div>
                             <div className="flex-row" data-tip='Pet Speed'>
-                                <div className ="icon20" style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '20px'}} />
-                                <div style={{width: '28px'}}>{obj.stats.speed}</div>
+                                <div className="icon20" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547571993/site/icons/stats/speed.png`, backgroundSize: '20px' }} />
+                                <div style={{ width: '28px' }}>{obj.stats.speed}</div>
                             </div>
-                            <div className={`icon20 ${obj.canBattle === false && 'opacity25'}`} style={{background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/battle.png) 20px`, backgroundSize: '20px'}} data-tip={`${obj.canBattle === false ? 'This pet is unable to do battle.' : 'This pet is able to do battle.'}`}/>
+                            <div className={`icon20 ${obj.canBattle === false && 'opacity25'}`} style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547742281/site/icons/pets/battle.png) 20px`, backgroundSize: '20px' }} data-tip={`${obj.canBattle === false ? 'This pet is unable to do battle.' : 'This pet is able to do battle.'}`} />
                         </div>
                     </div>
                 </div>
@@ -351,341 +351,350 @@ class CharPets extends Component {
     };
 
     sortPetsBy = (x) => {
-        if (x.value === 1) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+        if (x.value === 1) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var x = a.name.toLowerCase();
                         var y = b.name.toLowerCase();
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 2) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 2) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var y = a.name.toLowerCase();
                         var x = b.name.toLowerCase();
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
+            })
         } else if (x.value === 3) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((x, y) => {
                         return y.isFavorite - x.isFavorite
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 4) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((x, y) => {
                         return x.isFavorite - y.isFavorite
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 5) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         let aBreed = a.stats.breedId;
                         let bBreed = b.stats.breedId;
-                        if (aBreed > 12) {aBreed = aBreed - 10;}
-                        if (bBreed > 12) {bBreed = bBreed - 10;}
+                        if (aBreed > 12) { aBreed = aBreed - 10; }
+                        if (bBreed > 12) { bBreed = bBreed - 10; }
                         return aBreed - bBreed;
                     })
                 }
             })
         } else if (x.value === 6) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         let aBreed = a.stats.breedId;
                         let bBreed = b.stats.breedId;
-                        if (aBreed > 12) {aBreed = aBreed - 10;}
-                        if (bBreed > 12) {bBreed = bBreed - 10;}
+                        if (aBreed > 12) { aBreed = aBreed - 10; }
+                        if (bBreed > 12) { bBreed = bBreed - 10; }
                         return bBreed - aBreed;
                     })
                 }
             })
         } else if (x.value === 7) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return a.stats.health - b.stats.health;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 8) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return b.stats.health - a.stats.health;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 9) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return a.stats.power - b.stats.power;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 10) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return b.stats.power - a.stats.power;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 11) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return a.stats.speed - b.stats.speed;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 12) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return b.stats.speed - a.stats.speed;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 13) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return a.stats.level - b.stats.level;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 14) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         return b.stats.level - a.stats.level;
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 15) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((x, y) => {
                         return y.canBattle - x.canBattle
-                    }), 
+                    }),
                 },
             });
         } else if (x.value === 16) {
             this.setState({
-                petSortValue: { 
-                    label: x.label, 
+                petSortValue: {
+                    label: x.label,
                     value: x.value
                 },
                 character: {
                     pets: this.state.character.pets.sort((x, y) => {
                         return x.canBattle - y.canBattle
-                    }), 
+                    }),
                 },
             });
-        } else if (x.value === 17) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+        } else if (x.value === 17) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var x = a.family.toLowerCase();
                         var y = b.family.toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 18) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 18) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var y = a.family.toLowerCase();
                         var x = b.family.toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 19) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 19) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var x = a.strongAgainst[0].toLowerCase();
                         var y = b.strongAgainst[0].toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 20) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 20) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var y = a.strongAgainst[0].toLowerCase();
                         var x = b.strongAgainst[0].toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 21) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 21) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var x = a.weakAgainst[0].toLowerCase();
                         var y = b.weakAgainst[0].toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
-        } else if (x.value === 22) { 
-            this.setState( { 
-                petSortValue: { 
-                    label: x.label, 
+            })
+        } else if (x.value === 22) {
+            this.setState({
+                petSortValue: {
+                    label: x.label,
                     value: x.value
-                }, 
+                },
                 character: {
                     pets: this.state.character.pets.sort((a, b) => {
                         var y = a.weakAgainst[0].toLowerCase();
                         var x = b.weakAgainst[0].toLowerCase();
-                        if (x === 'water') {x = 'aquatic'}
-                        if (y === 'water') {y = 'aquatic'}
-                        if (x < y) {return -1;}
-                        if (x > y) {return 1;}
+                        if (x === 'water') { x = 'aquatic' }
+                        if (y === 'water') { y = 'aquatic' }
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
                         return 0;
                     }),
                 },
-            } ) 
+            })
         } else {
             //Error here?
         }
     };
 
-    render () {
+    render() {
         return (
             <div>
-                {this.state.character.pets.length === 0 && <div className="loader" style={{left: '85vw'}} />}
-                {this.state.character.pets.length > 0 && 
-                    <div className="animate-right" style={{width: '100%'}}>
-                        <div className="flex-row flex-between" style={{alignItems: 'center'}}>
-                            <input type="text" className="input" placeholder="Search for a pet by name..." onChange={this.searchData}/>
-                            <div style={{width: '340px'}}>
-                                <Select 
+                {this.state.character.pets.length === 0 && <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>}
+                {this.state.character.pets.length > 0 &&
+                    <div className="animate-right" style={{ width: '100%' }}>
+                        <div className="flex-row flex-between" style={{ alignItems: 'center' }}>
+                            <input type="text" className="input" placeholder="Search for a pet by name..." onChange={this.searchData} />
+                            <div style={{ width: '340px' }}>
+                                <Select
                                     className="sort-select-container"
                                     classNamePrefix="sort-select"
                                     value={this.state.petSortValue}
-                                    options={sortOptions} 
+                                    options={sortOptions}
                                     onChange={(x) => this.sortPetsBy(x)}
                                     menuPlacement="top"
                                     styles={{
@@ -697,29 +706,29 @@ class CharPets extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="char-info-overflow" style={{height: '68vh', width: '100%'}} ref="iScroll">
-                        {this.state.filteredPets.length > 0 ?
-                            this.buildPets(this.state.filteredPets)
-                        :
-                            this.buildPets(this.state.character.pets)
-                        }
+                        <div className="char-info-overflow" style={{ height: '68vh', width: '100%' }} ref="iScroll">
+                            {this.state.filteredPets.length > 0 ?
+                                this.buildPets(this.state.filteredPets)
+                                :
+                                this.buildPets(this.state.character.pets)
+                            }
                         </div>
-                        <div className="flex-column flex-center" style={{width: '90%', margin: 'auto'}}>
-                            <div style={{textAlign: 'center'}}>Pets Collected</div>
-                            <ProgressBar 
-                                current={this.state.numCollected} 
+                        <div className="flex-column flex-center" style={{ width: '90%', margin: 'auto' }}>
+                            <div style={{ textAlign: 'center' }}>Pets Collected</div>
+                            <ProgressBar
+                                current={this.state.numCollected}
                                 remaining={this.state.numNotCollected}
                                 height={'18px'}
                                 bgColor={'#edba03'}
                                 fontSize={'14px'}
                             />
                         </div>
-                        <ReactTooltip place='left' type='light'/>
+                        <ReactTooltip place='left' type='light' />
                         <CharPetsModal
-                            pet={this.state.petModalObj} 
-                            petModalIsOpen={this.state.petModalIsOpen} 
-                            petModalClose={this.petModalClose} 
-                            loading={this.state.petSpeciesInfoLoading} 
+                            pet={this.state.petModalObj}
+                            petModalIsOpen={this.state.petModalIsOpen}
+                            petModalClose={this.petModalClose}
+                            loading={this.state.petSpeciesInfoLoading}
                             familyWowhead={this.familyWowhead}
                             petCalcSliderValue={this.state.petCalcSliderValue}
                             handleSliderChange={this.handleSliderChange}
@@ -742,7 +751,7 @@ class CharPets extends Component {
     }
 }
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = (state) => {
     return {
         modalOpen: state.modalOpen,
         modalTitle: state.modalTitle,
@@ -751,4 +760,4 @@ const mapStateToProps = ( state ) => {
     }
 }
 
-export default connect( mapStateToProps, {infoModal} )( CharPets );
+export default connect(mapStateToProps, { infoModal })(CharPets);

@@ -39,12 +39,12 @@ class CharPVP extends Component {
     }
 
     progressBarBuilder = (rating) => {
-        return <ProgressBar 
-                current={rating} 
-                remaining={2400 - rating} 
-                height={'17px'}
-                bgColor={'#edba03'}
-                fontSize={'13px'}
+        return <ProgressBar
+            current={rating}
+            remaining={2400 - rating}
+            height={'17px'}
+            bgColor={'#edba03'}
+            fontSize={'13px'}
         />
     }
 
@@ -69,18 +69,27 @@ class CharPVP extends Component {
         </div>
     }
 
-    render () {
+    render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.pvp.brackets ? 
+                {this.state.pvp.brackets ?
                     <div className="flex-row flex-end flex-wrap animate-right">
                         {this.pvpCardBuilder(this.state.pvp.brackets.ARENA_BRACKET_2v2, 'Rated 2v2')}
                         {this.pvpCardBuilder(this.state.pvp.brackets.ARENA_BRACKET_3v3, 'Rated 3v3')}
                         {this.pvpCardBuilder(this.state.pvp.brackets.ARENA_BRACKET_RBG, 'Rated RBG')}
                         {this.pvpCardBuilder(this.state.pvp.brackets.ARENA_BRACKET_2v2_SKIRMISH, 'Skirmish 2v2')}
                     </div>
-                : 
-                    <div className="loader" style={{left: '85vw'}}/>
+                    :
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 }
             </div>
         )

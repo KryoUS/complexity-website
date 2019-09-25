@@ -14,13 +14,13 @@ class CharReputation extends Component {
 
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/reputation/`).then(res => {
-            this.setState({ 
-                reputation: res.data.reputation.sort((a,b) => {
+            this.setState({
+                reputation: res.data.reputation.sort((a, b) => {
                     let x = a.name.toLowerCase();
                     let y = b.name.toLowerCase();
-                    if (x < y) {return -1;}
-                    if (x > y) {return 1;}
-                    return 0;               
+                    if (x < y) { return -1; }
+                    if (x > y) { return 1; }
+                    return 0;
                 })
             });
         }).catch(error => {
@@ -80,25 +80,25 @@ class CharReputation extends Component {
                 {obj.name}
             </div>
             <a href={`https://www.wowhead.com/faction=${obj.id}`} target="_blank" rel="noopener noreferrer">
-                <img src="https://res.cloudinary.com/complexityguild/image/upload/v1550396606/site/icons/wowhead_32.png" alt={`${obj.name} on Wowhead`} width='20' height='20'/>
+                <img src="https://res.cloudinary.com/complexityguild/image/upload/v1550396606/site/icons/wowhead_32.png" alt={`${obj.name} on Wowhead`} width='20' height='20' />
             </a>
             <div className="reputation-bar">
-                <ProgressBar 
-                    current={obj.value} 
-                    remaining={obj.max - obj.value} 
+                <ProgressBar
+                    current={obj.value}
+                    remaining={obj.max - obj.value}
                     height={'17px'}
                     bgColor={this.reputationBarColor(obj.standing)}
                     fontSize={'.85rem'}
                 />
             </div>
-            <div className="reputation-standing" style={{color: `${this.reputationBarColor(obj.standing)}`}}>{this.reputationStanding(obj.standing)}</div>
+            <div className="reputation-standing" style={{ color: `${this.reputationBarColor(obj.standing)}` }}>{this.reputationStanding(obj.standing)}</div>
         </div>
     }
 
-    render () {
+    render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.reputation.length > 0 ? 
+                {this.state.reputation.length > 0 ?
                     this.state.reputation.map(obj => {
                         if (obj.name !== 'Alliance' && obj.name !== 'Horde') {
                             return this.reputationBarBuilder(obj);
@@ -106,8 +106,17 @@ class CharReputation extends Component {
                             return null
                         }
                     })
-                : 
-                    <div className="loader" style={{left: '85vw'}}/>
+                    :
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                 }
             </div>
         )

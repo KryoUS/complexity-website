@@ -14,7 +14,7 @@ class CharStats extends Component {
 
     componentDidMount = () => {
         axios.put(`/api/wow/character/${this.props.selectedCharName}&${this.props.selectedCharRealm}/stats/`).then(res => {
-            this.setState({charStats: res.data.stats, loaded: true});
+            this.setState({ charStats: res.data.stats, loaded: true });
         }).catch(error => {
             console.log('WoW Character Stat API Error: ', error);
         });
@@ -30,28 +30,37 @@ class CharStats extends Component {
 
     statBuilder = (name, value, percentage, tooltip, icon) => {
         if (percentage > 0 || value > 0) {
-            return <div className="flex-column row-container collected" style={{fontSize: '18px', width: '125px', alignItems: 'center', textAlign: 'center'}} data-tip={tooltip}>
-                        <div className="icon60" style={{
-                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547522492/site/icons/stats/${icon}.png) center no-repeat`, 
-                            backgroundSize: '60px'
-                            }} 
-                        />
-                        <div>{name}</div>
-                        <div>{value} {percentage && this.createPercentage(percentage)}</div>
-                    </div>
+            return <div className="flex-column row-container collected" style={{ fontSize: '18px', width: '125px', alignItems: 'center', textAlign: 'center' }} data-tip={tooltip}>
+                <div className="icon60" style={{
+                    background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547522492/site/icons/stats/${icon}.png) center no-repeat`,
+                    backgroundSize: '60px'
+                }}
+                />
+                <div>{name}</div>
+                <div>{value} {percentage && this.createPercentage(percentage)}</div>
+            </div>
         } else {
             return null
         }
     }
 
-    render () {
+    render() {
         return (
-            <div>
+            <div className="selected-category-container char-info-overflow">
                 {this.state.loaded === false ?
-                    <div className="loader" style={{left: '85vw'}} />
+                    <div class="lds-roller">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                     :
-                    <div className="animate-right" style={{width: '95%'}}>
-                        <div className="char-info-overflow" style={{width: '100%', display: 'flex', flexWrap: 'wrap'}}>
+                    <div className="animate-right" style={{ width: '95%' }}>
+                        <div className="char-info-overflow" style={{ width: '100%', display: 'flex', flexWrap: 'wrap' }}>
                             {this.statBuilder('Health', this.state.charStats.health, null, 'Character health before buffs.', 'health')}
                             {this.statBuilder(this.capitalizeFirst(this.state.charStats.powerType), this.state.charStats.power, null, 'Class resource.', 'power')}
                             {this.statBuilder('Strength', this.state.charStats.str, null, 'Character strength.', 'str')}
@@ -72,7 +81,7 @@ class CharStats extends Component {
                             {this.statBuilder('Armor', this.state.charStats.armor, null, 'The amount of armor the character has.', 'armor')}
                             {this.statBuilder('Dodge', this.state.charStats.dodgeRating, this.state.charStats.dodge, 'The chance the character has to dodge a physical attack.', 'dodge')}
                             {this.statBuilder('Parry', this.state.charStats.parryRating, this.state.charStats.parry, 'The chance the character has to parry a physical attack.', 'parry')}
-                            {this.statBuilder('Block', this.state.charStats.blockRating, this.state.charStats.block, 'The chance the character has to block a physical attack.', 'block')}                            
+                            {this.statBuilder('Block', this.state.charStats.blockRating, this.state.charStats.block, 'The chance the character has to block a physical attack.', 'block')}
                         </div>
                         <ReactTooltip />
                     </div>
