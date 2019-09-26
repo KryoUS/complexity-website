@@ -60,9 +60,6 @@ class BarChart extends Component {
                     },
                 },
             },
-            legend: {
-                enabled: false
-            },
             tooltip: {
                 valueSuffix: this.props.barChartTooltipSuffix,
             },
@@ -79,6 +76,7 @@ class BarChart extends Component {
                 },
             },
             legend: {
+                enabled: false,
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'top',
