@@ -74,7 +74,7 @@ class Blizztrack extends Component {
             <div className="flex-row flex-center">
                 <div className="flex-row flex-center blizztrack-diff">{moment(obj.date_published).fromNow(true)}</div>
             </div>
-            <div className="blizztrack-link">{obj.id}</div>
+            <div className="blizztrack-link">{obj.title}</div>
         </div>
     }
 
