@@ -24,5 +24,15 @@ module.exports = {
             console.log('WoW API Error');
             console.log(error);
         })
-    }
+    },
+
+    getAlert: (req, res) => {
+        
+        req.app.get('db').query('select * from breakingnews order by id desc limit 1').then(response => {
+            res.status(200).send(response);
+        }).catch(error => {
+            console.log(error)
+            res.sendStatus(503);
+        })
+    },
 }

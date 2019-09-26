@@ -53,6 +53,7 @@ routes.post('/api/releases', requireAdmin, releaseController.post);
 routes.delete('/api/deleterelease/:id', requireAdmin, releaseController.delete);
 //News Endpoints from DB
 routes.get('/api/news', news.get);
+routes.get('/api/breakingnews', news.getAlert);
 routes.get('/api/guildnews', news.getGuildNews);
 //Raider Endpoints from DB
 routes.get('/api/raiders', raiders.get);
