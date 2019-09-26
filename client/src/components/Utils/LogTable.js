@@ -126,6 +126,8 @@ class LogTable extends Component {
                                     return <div key={'LogString'+dataIndex} className="flex-row flex-center" style={{width: `${this.state.widthPercentage}%`, margin: 'auto'}}>{data}</div>
                                 }
 
+                                return null;
+
                             })}
                         </div>
                     })                    

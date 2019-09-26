@@ -64,6 +64,8 @@ class About extends Component {
 
             });
         });
+
+        return null;
     }
 
     raidProgressBarGroupBy = (objectArray) => {
@@ -101,7 +103,7 @@ class About extends Component {
 
         seriesArr.forEach(obj => {
             progressionArr.map(progObj => {
-                obj.data.push(progObj[obj.name])
+                return obj.data.push(progObj[obj.name])
             });
         });
 
@@ -113,6 +115,7 @@ class About extends Component {
         };
 
         this.setState({ barChartRaidProgress: seriesArr, barChartRaidCategories: progressionCategories, raiderIO: objectArray, raiderIOLoaded: true });
+        return null;
     }
 
     columnGroupBy = (objectArray, property) => {
@@ -126,11 +129,16 @@ class About extends Component {
                 } else {
                     return obj[property]
                 }
-            }
+            };
+
+            return null;
+
         }).filter((value, index, self) => {
             if (value) {
                 return self.indexOf(value) === index;
             }
+
+            return null;
         });
 
         allProperties.map(prop => {
@@ -148,7 +156,7 @@ class About extends Component {
                 }
             }
 
-            arr.push([prop, count]);
+            return arr.push([prop, count]);
         });
 
         return arr.sort((a, b) => {
@@ -170,10 +178,14 @@ class About extends Component {
                     return obj[property]
                 }
             }
+
+            return null;
         }).filter((value, index, self) => {
             if (value) {
                 return self.indexOf(value) === index;
             }
+
+            return null;
         });
 
         allProperties.map(prop => {
@@ -201,6 +213,8 @@ class About extends Component {
             } else {
                 arr.push({ name: prop, y: count });
             }
+
+            return null;
         });
 
         return arr.sort((a, b) => {

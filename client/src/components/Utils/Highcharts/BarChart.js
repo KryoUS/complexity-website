@@ -92,14 +92,14 @@ class BarChart extends Component {
             credits: {
                 enabled: false
             },
-         
+
             series: this.props.barChartData,
         });
     }
 
-    render(){
-        return(
-            <div id={this.props.barChartID} style={{minWidth: '930px'}}/>
+    render() {
+        return (
+            <div id={this.props.barChartID} style={{ minWidth: '930px' }} />
         )
     }
 }
