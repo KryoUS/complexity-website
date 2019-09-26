@@ -49,19 +49,12 @@ class Blizztrack extends Component {
         }).catch(error => {
             console.log('Blizztrack WoW Version Error = ', error)
         });
-
-        axios.get('/api/blizztrack/wow/latestposts').then(res => {
-            this.setState({ wowLatestPosts: res.data });
-            ReactTooltip.rebuild();
-        }).catch(error => {
-            console.log('Blizztrack WoW Version Error = ', error)
-        });
     }
 
     versionBuilder = (obj) => {
         return <div className="flex-row flex-between" key={obj.regionname}>
             <div className="flex-row">
-                <div className="flex-row flex-center blizztrack-diff">{moment(parseInt(obj.updated)).fromNow(true)}</div> 
+                <div className="flex-row flex-center blizztrack-diff">{moment(parseInt(obj.updated)).fromNow(true)}</div>
                 <div>{obj.regionname}</div>
             </div>
             <div>{obj.versionsname}</div>
@@ -71,61 +64,32 @@ class Blizztrack extends Component {
     patchBuilder = (obj) => {
         return <div className="flex-row flex-between blizztrack-highlight" key={obj.id} onClick={() => this.patchNotesShow(obj.title, moment(obj.date_published).format('MMMM Do YYYY, h:mm:ss a'), obj.content_html, obj.url)}>
             <div className="flex-row flex-center">
-                <div className="flex-row flex-center blizztrack-diff">{moment(obj.date_published).fromNow(true)}</div> 
+                <div className="flex-row flex-center blizztrack-diff">{moment(obj.date_published).fromNow(true)}</div>
             </div>
             <div className="blizztrack-link">{obj.id}</div>
         </div>
     }
 
     bluePostsBuilder = (obj) => {
-        return <a className="flex-row flex-between blizztrack-highlight" 
-            key={obj.id} 
+        return <a className="flex-row flex-between blizztrack-highlight"
+            key={obj.id}
             href={`https://us.forums.blizzard.com/en/wow${obj.url}`}
-            target="_blank" 
-            rel="noopener noreferrer" 
+            target="_blank"
+            rel="noopener noreferrer"
             data-for="blizztrack-posts"
             data-tip={`
                 <div class="flex-row flex-between">
                     <div class="blizztrack-link">${obj.author.user} - ${obj.author.title}</div>
                     <div>${moment(obj.created_at).format('MMMM Do YYYY, h:mm:ss a')}</div>
                 </div>
-                <div class="blizztrack-tooltip">${obj.excerpt ? obj.excerpt : 'Click for more info...' }</div>`
-            } 
+                <div class="blizztrack-tooltip">${obj.excerpt ? obj.excerpt : 'Click for more info...'}</div>`
+            }
             data-html={true}
         >
             <div className="flex-row flex-center">
-                <div className="flex-row flex-center blizztrack-diff">{moment(obj.created_at).fromNow(true)}</div> 
+                <div className="flex-row flex-center blizztrack-diff">{moment(obj.created_at).fromNow(true)}</div>
             </div>
             <div className="blizztrack-post blizztrack-bluepost">{obj.title}</div>
-        </a>
-    }
-
-    latestPostsBuilder = (obj) => {
-        return <a className="flex-row flex-between blizztrack-highlight" 
-            key={obj.id} 
-            href={`https://us.forums.blizzard.com/en/wow/t/${obj.slug}/${obj.id}`}
-            target="_blank" 
-            rel="noopener noreferrer" 
-            data-for="blizztrack-posts"
-            data-tip={`
-                <div class="flex-row flex-between blizztrack-tooltip">
-                    <div class="blizztrack-link">${obj.last_poster_username}</div>
-                    <div>${obj.category}</div>
-                </div>
-                <div class="flex-row flex-between blizztrack-diff">
-                    <div>${moment(obj.last_posted_at).format('MMMM Do YYYY, h:mm:ss a')}</div>
-                    <div>${obj.posts_count} Posts |</div>
-                    <div>${obj.reply_count} Replies |</div>
-                    <div>${obj.views} Views</div>
-                </div>
-                <div class="flex-row flex-center">Click to Read More on WorldofWarcraft.com</div>`
-            } 
-            data-html={true}
-        >
-            <div className="flex-row flex-center">
-                <div className="flex-row flex-center blizztrack-diff">{moment(obj.last_posted_at).fromNow(true)}</div> 
-            </div>
-            <div className="blizztrack-post">{obj.title}</div>
         </a>
     }
 
@@ -146,59 +110,51 @@ class Blizztrack extends Component {
             <div className="flex-row flex-center blizztrack-back">
                 {this.state.wowVersion.name &&
                     <div className="flex-column blizztrack-container">
-                        
-                            <div className="fade2s">
-                                <div className="blizztrack-title">World of Warcraft - Retail</div>
-                                <div className="flex-column blizztrack-overflow">
-                                    {this.state.wowVersion.regions.map(obj => {
-                                        return this.versionBuilder(obj)
-                                    })}
-                                </div>
-                                <div className="blizztrack-bottom" />
+
+                        <div className="fade2s">
+                            <div className="blizztrack-title">World of Warcraft - Retail</div>
+                            <div className="flex-column blizztrack-overflow">
+                                {this.state.wowVersion.regions.map(obj => {
+                                    return this.versionBuilder(obj)
+                                })}
                             </div>
+                            <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
+                                <div className="icon20 blizztrack-modal-logo" />
+                                <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
+                            </a>
+                        </div>
                     </div>
                 }
                 {this.state.wowPatchNotes.items &&
                     <div className="flex-column blizztrack-container">
-                        
-                            <div className="fade2s">
-                                <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
-                                <div className="flex-column blizztrack-overflow">
-                                    {this.state.wowPatchNotes.items.map(obj => {
-                                        return this.patchBuilder(obj)
-                                    })}
-                                </div>
-                                <div className="blizztrack-bottom" />
+
+                        <div className="fade2s">
+                            <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
+                            <div className="flex-column blizztrack-overflow">
+                                {this.state.wowPatchNotes.items.map(obj => {
+                                    return this.patchBuilder(obj)
+                                })}
                             </div>
-                        
+                            <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
+                                <div className="icon20 blizztrack-modal-logo" />
+                                <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
+                            </a>
+                        </div>
+
                     </div>
                 }
                 {this.state.wowBluePosts.length > 0 &&
                     <div className="flex-column blizztrack-container">
-                        
-                            <div className="fade2s">
-                                <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
-                                <div className="flex-column blizztrack-overflow">
-                                    {this.state.wowBluePosts.map(obj => {
-                                        return this.bluePostsBuilder(obj)
-                                    })}
-                                </div>
-                                <div className="blizztrack-bottom" />
-                                <ReactTooltip id="blizztrack-posts" />
-                            </div>
-                    </div>
-                }
-                {this.state.wowLatestPosts.Posts &&
-                    <div className="flex-column blizztrack-container">
+
                         <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Latest Posts</div>
+                            <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
                             <div className="flex-column blizztrack-overflow">
-                                {this.state.wowLatestPosts.Posts.map(obj => {
-                                    return this.latestPostsBuilder(obj)
+                                {this.state.wowBluePosts.map(obj => {
+                                    return this.bluePostsBuilder(obj)
                                 })}
                             </div>
                             <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
-                                <div className="icon20 blizztrack-modal-logo"/>
+                                <div className="icon20 blizztrack-modal-logo" />
                                 <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
                             </a>
                             <ReactTooltip id="blizztrack-posts" />
@@ -227,11 +183,11 @@ class Blizztrack extends Component {
                     </DialogContent>
                     <DialogActions id="alert-dialog-slide-actions">
                         <a className="blizztrack-modal-logo-container flex-row"
-                            href={this.state.patchNotesURL} 
-                            target="_blank" 
+                            href={this.state.patchNotesURL}
+                            target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <div className="icon20 blizztrack-modal-logo"/>
+                            <div className="icon20 blizztrack-modal-logo" />
                             <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
                         </a>
                         <div className="button-border" id="blizztrack-modal-button" onClick={this.modalClose}>
