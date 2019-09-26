@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import './Blizztrack.css';
 import axios from 'axios';
+import Loader from '../Loader';
 
 const Transition = (props) => {
     return <Slide direction="up" {...props} />;
@@ -26,7 +27,8 @@ class Blizztrack extends Component {
             patchNotesTitle: '',
             patchNotesDate: '',
             patchNotesContent: '',
-            patchNotesURL: ''
+            patchNotesURL: '',
+            breakingNews: ''
         }
     }
 
@@ -48,6 +50,12 @@ class Blizztrack extends Component {
             ReactTooltip.rebuild();
         }).catch(error => {
             console.log('Blizztrack WoW Version Error = ', error)
+        });
+
+        axios.get('/api/breakingnews').then(res => {
+            this.setState({ breakingNews: res.data[0].alert.replace(/<br \/>/g, ' ').replace('  ', ' ') });
+        }).catch(error => {
+            console.log('Breaking News Error = ', error)
         });
     }
 
@@ -108,59 +116,72 @@ class Blizztrack extends Component {
     render() {
         return (
             <div className="flex-row flex-center blizztrack-back">
-                {this.state.wowVersion.name &&
-                    <div className="flex-column blizztrack-container">
-
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Retail</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowVersion.regions.map(obj => {
-                                    return this.versionBuilder(obj)
-                                })}
-                            </div>
-                            <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
-                                <div className="icon20 blizztrack-modal-logo" />
-                                <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
-                            </a>
+                <div className="flex-column blizztrack-container">
+                    <div className="fade2s">
+                        <div className="blizztrack-title">World of Warcraft - Retail</div>
+                        <div className="flex-column blizztrack-overflow">
+                            {this.state.wowVersion.name ? this.state.wowVersion.regions.map(obj => {
+                                return this.versionBuilder(obj)
+                            })
+                                :
+                                <Loader />
+                            }
                         </div>
+                        <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
+                            <div className="icon20 blizztrack-modal-logo" />
+                            <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
+                        </a>
                     </div>
-                }
-                {this.state.wowPatchNotes.items &&
-                    <div className="flex-column blizztrack-container">
-
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowPatchNotes.items.map(obj => {
-                                    return this.patchBuilder(obj)
-                                })}
-                            </div>
-                            <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
-                                <div className="icon20 blizztrack-modal-logo" />
-                                <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
-                            </a>
+                </div>
+                <div className="flex-column blizztrack-container">
+                    <div className="fade2s">
+                        <div className="blizztrack-title">World of Warcraft - Patch Notes</div>
+                        <div className="flex-column blizztrack-overflow">
+                            {this.state.wowPatchNotes.items ? this.state.wowPatchNotes.items.map(obj => {
+                                return this.patchBuilder(obj)
+                            })
+                                :
+                                <Loader />
+                            }
                         </div>
-
+                        <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
+                            <div className="icon20 blizztrack-modal-logo" />
+                            <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
+                        </a>
                     </div>
-                }
-                {this.state.wowBluePosts.length > 0 &&
-                    <div className="flex-column blizztrack-container">
-
-                        <div className="fade2s">
-                            <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
-                            <div className="flex-column blizztrack-overflow">
-                                {this.state.wowBluePosts.map(obj => {
-                                    return this.bluePostsBuilder(obj)
-                                })}
-                            </div>
-                            <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
-                                <div className="icon20 blizztrack-modal-logo" />
-                                <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
-                            </a>
-                            <ReactTooltip id="blizztrack-posts" />
+                </div>
+                <div className="flex-column blizztrack-container">
+                    <div className="fade2s">
+                        <div className="blizztrack-title">World of Warcraft - Blue Posts</div>
+                        <div className="flex-column blizztrack-overflow">
+                            {this.state.wowBluePosts.length > 0 ? this.state.wowBluePosts.map(obj => {
+                                return this.bluePostsBuilder(obj)
+                            })
+                                :
+                                <Loader />
+                            }
                         </div>
+                        <a className="blizztrack-bottom" href="https://blizztrack.com/" target="_blank" rel="noopener noreferrer">
+                            <div className="icon20 blizztrack-modal-logo" />
+                            <div className="blizztrack-diff" id="blizztrack-provider">Provided by Blizztrack</div>
+                        </a>
+                        <ReactTooltip id="blizztrack-posts" />
                     </div>
-                }
+                </div>
+                <div className="flex-column blizztrack-container">
+                    <div className="fade2s">
+                        <div className="blizztrack-title">World of Warcraft - Breaking News</div>
+                        <div className="flex-column blizztrack-overflow">
+                            {this.state.breakingNews ?
+                                `"${this.state.breakingNews}"`
+                                :
+                                <Loader />
+                            }
+                        </div>
+                        <div className="blizztrack-bottom" />
+                        <ReactTooltip id="blizztrack-posts" />
+                    </div>
+                </div>
                 <Dialog
                     id="blizztrack-modal"
                     fullScreen={true}
