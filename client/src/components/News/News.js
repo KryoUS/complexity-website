@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import Timer from '../Timer/Timer';
 import Blizztrack from '../Utils/Blizztrack/Blizztrack';
+import Quote from '../Utils/Quote';
 import axios from 'axios';
 import './News.css';
 
@@ -10,7 +11,7 @@ class News extends Component {
 
         this.state = {
             news: [],
-            releases: []
+            releases: [],
         }
     }
 
@@ -27,7 +28,7 @@ class News extends Component {
         }).catch(error => {
             console.log('Releases Error')
             console.log(error);
-        })
+        });
     }
 
     render(){
@@ -36,6 +37,7 @@ class News extends Component {
                 <div className="news-background image-mask" />
                 <div className="page-div fade1s">
                     <div className="news-header">
+                        <Quote />
                         <Blizztrack />
                         {   this.state.releases.length ?
                             <div className="news-countdown">
