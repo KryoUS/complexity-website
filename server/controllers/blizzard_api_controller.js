@@ -1,4 +1,5 @@
 const axios = require('axios');
+const functions = require('./Database/tools/functions');
 
 //Realm Status
 let realmObj = {};
@@ -38,27 +39,6 @@ const className = (classNum, classesArr) => {
         if (obj.id === classNum) {return obj.name};
     });
 };
-
-const qualityColor = (quality) => {
-    switch (quality) {
-        case 1:
-            return '#ffffff'
-        case 2:
-            return '#02ff4e'
-        case 3:
-            return '#0281ff'
-        case 4:
-            return '#c600ff'
-        case 5:
-            return '#ff8002'
-        case 6:
-            return '#e5cc80'
-        case 7:
-            return '#0cf'
-        default:
-            return null
-    }
-}
 
 module.exports = {
     setBlizzardToken: () => {
@@ -225,22 +205,22 @@ module.exports = {
             req.app.get('db').wowcache.findOne({id: 4}).then(dbResponse => {
     
                 response.data.className = className(response.data.class, dbResponse.body.data.classes);
-                response.data.items.head.qualityColor = qualityColor(response.data.items.head.quality);
-                response.data.items.neck.qualityColor = qualityColor(response.data.items.neck.quality);
-                response.data.items.shoulder.qualityColor = qualityColor(response.data.items.shoulder.quality);
-                response.data.items.back.qualityColor = qualityColor(response.data.items.back.quality);
-                response.data.items.chest.qualityColor = qualityColor(response.data.items.chest.quality);
-                response.data.items.wrist.qualityColor = qualityColor(response.data.items.wrist.quality);
-                response.data.items.hands.qualityColor = qualityColor(response.data.items.hands.quality);
-                response.data.items.waist.qualityColor = qualityColor(response.data.items.waist.quality);
-                response.data.items.legs.qualityColor = qualityColor(response.data.items.legs.quality);
-                response.data.items.feet.qualityColor = qualityColor(response.data.items.feet.quality);
-                response.data.items.finger1.qualityColor = qualityColor(response.data.items.finger1.quality);
-                response.data.items.finger2.qualityColor = qualityColor(response.data.items.finger2.quality);
-                response.data.items.trinket1.qualityColor = qualityColor(response.data.items.trinket1.quality);
-                response.data.items.trinket2.qualityColor = qualityColor(response.data.items.trinket2.quality);
-                response.data.items.mainHand.qualityColor = qualityColor(response.data.items.mainHand.quality);
-                if (response.data.items.offHand) {response.data.items.offHand.qualityColor = qualityColor(response.data.items.offHand.quality)};
+                response.data.items.head.qualityColor = functions.qualityColor(response.data.items.head.quality);
+                response.data.items.neck.qualityColor = functions.qualityColor(response.data.items.neck.quality);
+                response.data.items.shoulder.qualityColor = functions.qualityColor(response.data.items.shoulder.quality);
+                response.data.items.back.qualityColor = functions.qualityColor(response.data.items.back.quality);
+                response.data.items.chest.qualityColor = functions.qualityColor(response.data.items.chest.quality);
+                response.data.items.wrist.qualityColor = functions.qualityColor(response.data.items.wrist.quality);
+                response.data.items.hands.qualityColor = functions.qualityColor(response.data.items.hands.quality);
+                response.data.items.waist.qualityColor = functions.qualityColor(response.data.items.waist.quality);
+                response.data.items.legs.qualityColor = functions.qualityColor(response.data.items.legs.quality);
+                response.data.items.feet.qualityColor = functions.qualityColor(response.data.items.feet.quality);
+                response.data.items.finger1.qualityColor = functions.qualityColor(response.data.items.finger1.quality);
+                response.data.items.finger2.qualityColor = functions.qualityColor(response.data.items.finger2.quality);
+                response.data.items.trinket1.qualityColor = functions.qualityColor(response.data.items.trinket1.quality);
+                response.data.items.trinket2.qualityColor = functions.qualityColor(response.data.items.trinket2.quality);
+                response.data.items.mainHand.qualityColor = functions.qualityColor(response.data.items.mainHand.quality);
+                if (response.data.items.offHand) {response.data.items.offHand.qualityColor = functions.qualityColor(response.data.items.offHand.quality)};
 
                 res.status(200).send(response.data);
             }).catch(err => {
