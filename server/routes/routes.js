@@ -16,6 +16,7 @@ const userFunctions = require('../controllers/Database/user_controller');
 const quotes = require('../controllers/Database/quotes_controller');
 const logs = require('../controllers/Database/logs_controller');
 const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
+const raidbots = require('../controllers/Database/raidbots_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -106,5 +107,7 @@ routes.get('/api/blizztrack/wow/patchnotes', blizztrackApi.getWoWPatchNotes);
 routes.get('/api/blizztrack/wow/version', blizztrackApi.getWoWVersion);
 //Google Assistant Endpoint
 routes.post('/fulfillment', dialogFlow);
+//Raidbots Endpoints
+routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbots.getByCharName);
 
 module.exports = routes;
