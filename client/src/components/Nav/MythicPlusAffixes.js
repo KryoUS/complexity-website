@@ -58,62 +58,86 @@ class MythicPlusAffixes extends React.Component {
                 {
                     week: 1,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
-                    plusSeven: 'Necrotic',                    
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Grievous',                    
+                    type: 'Void'
                 },
                 {
                     week: 2,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Skittish',                    
+                    plusFour: 'Raging',
+                    plusSeven: 'Explosive',                    
+                    type: 'Tides'
                 },
                 {
                     week: 3,
                     baseAffix: 'Fortified',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Quaking',                    
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Grievous',                    
+                    type: 'Enchanted'
                 },
                 {
                     week: 4,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Necrotic',                    
+                    plusFour: 'Teeming',
+                    plusSeven: 'Volcanic',                    
+                    type: 'Void'
                 },
                 {
                     week: 5,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
-                    plusSeven: 'Grievous',                  
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Skittish',                  
+                    type: 'Tides'
                 },
                 {
                     week: 6,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Explosive',
+                    plusFour: 'Bursting',
+                    plusSeven: 'Necrotic',
+                    type: 'Enchanted'
                 },
                 {
                     week: 7,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Volcanic',
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Quaking',
+                    type: 'Void'
                 },
                 {
                     week: 8,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Volcanic',
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Explosive',
+                    type: 'Tides'
                 },
                 {
                     week: 9,
                     baseAffix: 'Fortified',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Explosive',
+                    plusFour: 'Bursting',
+                    plusSeven: 'Volcanic',
+                    type: 'Enchanted'
                 },
                 {
                     week: 10,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Grievous',
+                    plusFour: 'Raging',
+                    plusSeven: 'Necrotic',
+                    type: 'Void'
+                },
+                {
+                    week: 11,
+                    baseAffix: 'Fortified',
+                    plusFour: 'Teeming',
+                    plusSeven: 'Quaking',
+                    type: 'Tides'
+                },
+                {
+                    week: 12,
+                    baseAffix: 'Tyrannical',
+                    plusFour: 'Bursting',
+                    plusSeven: 'Skittish',
+                    type: 'Enchanted'
                 },
                 
             ],
@@ -144,14 +168,14 @@ class MythicPlusAffixes extends React.Component {
                 <a className="affix" href={this.affixWowheadURL(obj.baseAffix)} data-wowhead={`affix=${this.affixId(obj.baseAffix)}`} target="_blank"  rel="noopener noreferrer">{obj.baseAffix}</a>
                 <a className="affix" href={this.affixWowheadURL(obj.plusFour)} data-wowhead={`affix=${this.affixId(obj.plusFour)}`} target="_blank"  rel="noopener noreferrer">{obj.plusFour}</a>
                 <a className="affix" href={this.affixWowheadURL(obj.plusSeven)} data-wowhead={`affix=${this.affixId(obj.plusSeven)}`} target="_blank"  rel="noopener noreferrer">{obj.plusSeven}</a>
-                <a className="affix" href={this.affixWowheadURL(this.state.seasonalAffix)} data-wowhead={`affix=${this.affixId(this.state.seasonalAffix)}`} target="_blank"  rel="noopener noreferrer">{this.state.seasonalAffix}</a>
+                <a className="affix" href={this.affixWowheadURL(this.state.seasonalAffix)} data-wowhead={`affix=${this.affixId(this.state.seasonalAffix)}`} target="_blank"  rel="noopener noreferrer">{obj.type}</a>
             </div>
         } else {
             return <div key={obj.week} className="affix-row">
                 <a className="affix" href={this.affixWowheadURL(obj.baseAffix)} data-wowhead={`affix=${this.affixId(obj.baseAffix)}`} target="_blank"  rel="noopener noreferrer">{obj.baseAffix}</a>
                 <a className="affix" href={this.affixWowheadURL(obj.plusFour)} data-wowhead={`affix=${this.affixId(obj.plusFour)}`} target="_blank"  rel="noopener noreferrer">{obj.plusFour}</a>
                 <a className="affix" href={this.affixWowheadURL(obj.plusSeven)} data-wowhead={`affix=${this.affixId(obj.plusSeven)}`} target="_blank"  rel="noopener noreferrer">{obj.plusSeven}</a>
-                <a className="affix" href={this.affixWowheadURL(this.state.seasonalAffix)} data-wowhead={`affix=${this.affixId(this.state.seasonalAffix)}`} target="_blank"  rel="noopener noreferrer">{this.state.seasonalAffix}</a>
+                <a className="affix" href={this.affixWowheadURL(this.state.seasonalAffix)} data-wowhead={`affix=${this.affixId(this.state.seasonalAffix)}`} target="_blank"  rel="noopener noreferrer">{obj.type}</a>
             </div>
         }
     }
