@@ -80,7 +80,7 @@ class CharPVP extends Component {
                         {this.pvpCardBuilder(this.state.pvp.brackets.ARENA_BRACKET_2v2_SKIRMISH, 'Skirmish 2v2')}
                     </div>
                     :
-                    <div class="lds-roller">
+                    <div className="lds-roller">
                         <div></div>
                         <div></div>
                         <div></div>

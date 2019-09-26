@@ -50,7 +50,7 @@ class CharAchievements extends Component {
         return (
             <div className="selected-category-container char-info-overflow">
                 {this.state.charAchievements.length <= 0 ?
-                    <div class="lds-roller">
+                    <div className="lds-roller">
                         <div></div>
                         <div></div>
                         <div></div>

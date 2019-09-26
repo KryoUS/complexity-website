@@ -68,7 +68,7 @@ class Logs extends Component {
                         onClick={() => this.setLogType('Services')}
                     >Services</div>
                 </div>
-                {this.state.data.length > 1 ? <LogTable data={this.state.data} /> : <div class="lds-roller">
+                {this.state.data.length > 1 ? <LogTable data={this.state.data} /> : <div className="lds-roller">
                     <div></div>
                     <div></div>
                     <div></div>

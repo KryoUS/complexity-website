@@ -675,7 +675,7 @@ class CharPets extends Component {
     render() {
         return (
             <div>
-                {this.state.character.pets.length === 0 && <div class="lds-roller">
+                {this.state.character.pets.length === 0 && <div className="lds-roller">
                     <div></div>
                     <div></div>
                     <div></div>

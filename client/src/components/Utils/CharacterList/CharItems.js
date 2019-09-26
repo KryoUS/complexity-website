@@ -78,7 +78,7 @@ class CharItems extends Component {
         return (
             <div className="selected-category-container char-info-overflow">
                 {this.state.loaded === false ?
-                    <div class="lds-roller">
+                    <div className="lds-roller">
                         <div></div>
                         <div></div>
                         <div></div>

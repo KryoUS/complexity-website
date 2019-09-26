@@ -57,7 +57,7 @@ class CharHunterPets extends Component {
     render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.hunterPets.length === 0 && <div class="lds-roller">
+                {this.state.hunterPets.length === 0 && <div className="lds-roller">
                     <div></div>
                     <div></div>
                     <div></div>

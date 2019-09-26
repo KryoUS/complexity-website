@@ -100,7 +100,7 @@ class Members extends Component {
 
         return (
             <div className="stats-div fade1s" style={{ background: `url('https://res.cloudinary.com/complexityguild/image/upload/v1534798726/wow/backgrounds/members.jpg') top center no-repeat` }}>
-                {this.state.loadTable === false && <div class="lds-roller">
+                {this.state.loadTable === false && <div className="lds-roller">
                     <div></div>
                     <div></div>
                     <div></div>

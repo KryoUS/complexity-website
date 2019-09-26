@@ -256,7 +256,7 @@ class About extends Component {
                                     pieChartSize={100}
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -278,7 +278,7 @@ class About extends Component {
                                     pieChartSize={100}
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -301,7 +301,7 @@ class About extends Component {
 
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -326,7 +326,7 @@ class About extends Component {
                                     />
                                 </div>
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -354,7 +354,7 @@ class About extends Component {
                                     />
                                 </div>
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -378,7 +378,7 @@ class About extends Component {
                                     pieChartSize={100}
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -400,7 +400,7 @@ class About extends Component {
                                     pieChartSize={100}
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
@@ -423,7 +423,7 @@ class About extends Component {
 
                                 />
                                 :
-                                <div class="lds-roller">
+                                <div className="lds-roller">
                                     <div></div>
                                     <div></div>
                                     <div></div>
