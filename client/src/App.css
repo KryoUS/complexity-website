@@ -85,6 +85,11 @@ body::-webkit-scrollbar {
   color: rgb(146, 91, 234);
 }
 
+#non-allowed .button-text:hover {
+  cursor: not-allowed;
+  color: white;
+}
+
 .basic-hover:hover {
   cursor: pointer;
   background-color: #25262A;
@@ -92,6 +97,7 @@ body::-webkit-scrollbar {
 
 .button-text {
   /* transform: skewX(25deg); */
+  text-align: center;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.73;
