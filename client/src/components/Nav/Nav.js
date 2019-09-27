@@ -117,6 +117,11 @@ class Nav extends Component {
                                     <div className='button-text'>Leaderboards</div>
                                 </div>
                             </Link>
+                            <Link to="/simulationcraft">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>SimulationCraft</div>
+                                </div>
+                            </Link>
                         </div>
                         
                         {this.props.user.id ?
