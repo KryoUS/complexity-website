@@ -85,7 +85,6 @@ class SimulationCraft extends Component {
                 simCraftPTRVer: `Patch: ${res.data.publicRealm[0].patch} (Build: ${res.data.publicRealm[0].build}) SimCraft Ver: ${res.data.publicRealm[0].simcraftVer} (${Moment.unix(Number(res.data.publicRealm[0].reportDateTime)).format('MMMM Do YYYY, h:mm:ss a')})`,
                 loaded: true
             });
-            console.log(res.data)
         }).catch(simulationCraftError => {
             console.log(simulationCraftError);
         });
