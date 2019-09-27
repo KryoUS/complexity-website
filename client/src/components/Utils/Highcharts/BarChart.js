@@ -14,7 +14,8 @@ class BarChart extends Component {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                type: 'bar'
+                type: 'bar',
+                height: this.props.barChartHeight
             },
             exporting: {
                 buttons: {
@@ -27,6 +28,18 @@ class BarChart extends Component {
                 text: this.props.barChartTitle,
                 style: {
                     color: 'white',
+                    textOutline: 'black',
+                    fontFamily: 'Oswald,sans-serif',
+                    fontSize: '2.5rem'
+                },
+            },
+            subtitle: {
+                text: this.props.barChartSubTitle,
+                style: {
+                    color: 'white',
+                    textOutline: 'black',
+                    fontFamily: 'Oswald,sans-serif',
+                    fontSize: '1rem'
                 },
             },
             xAxis: {
@@ -38,9 +51,11 @@ class BarChart extends Component {
                     enabled: true,
                     style: {
                         color: 'white',
-                        fontSize: '12px',
+                        fontSize: this.props.barChartXFont,
                         textDecoration: 'none',
                     },
+                    align: 'left',
+                    reserveSpace: true
                 },
             },
             yAxis: {
@@ -61,7 +76,14 @@ class BarChart extends Component {
                 },
             },
             tooltip: {
+                backgroundColor: '#110b29',
+                headerFormat: this.props.barChartHeaderFormat ? this.props.barChartHeaderFormat : '<span style="font-size: 10px">{point.key}</span><br/>',
+                pointFormat: this.props.barChartPointFormat ? this.props.barChartPointFormat : '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b><br/>',
+                formatter: this.props.barChartFormatter,
                 valueSuffix: this.props.barChartTooltipSuffix,
+                style: {
+                    color: 'white'
+                }
             },
             plotOptions: {
                 bar: {
@@ -69,7 +91,7 @@ class BarChart extends Component {
                         enabled: true,
                         style: {
                             color: 'white',
-                            fontSize: '8px',
+                            fontSize: this.props.barChartDataLabelFont,
                             textOutline: null,
                         },
                     },
@@ -88,7 +110,15 @@ class BarChart extends Component {
                 shadow: false
             },
             credits: {
-                enabled: false
+                enabled: this.props.barChartCredits ? true : false,
+                href: this.props.barChartCredits && this.props.barChartCredits,
+                text: this.props.barChartCredits && this.props.barChartCredits.replace('https://www.', '').replace('/', ''),
+                style: {
+                    color: 'white',
+                    textOutline: 'black',
+                    fontFamily: 'Oswald,sans-serif',
+                    fontSize: '0.8rem'
+                },
             },
 
             series: this.props.barChartData,
