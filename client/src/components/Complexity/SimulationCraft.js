@@ -146,7 +146,9 @@ class SimulationCraft extends Component {
                                         return statString;
                                     }
                                     return `<span style="color: ${this.point.color};font-size: 1rem">${this.point.race} ${this.point.category} ${this.point.class}</span> 
-                                        <br /> 
+                                        <br />
+                                        <span style="color: gray;font-size: 0.75rem">${this.y} DPS</span>
+                                        <br />
                                         Talents: ${this.point.talents} ${objectLoop(this.point.stats)}`
                                 }}
                                 barChartCredits='https://www.simulationcraft.org/'
