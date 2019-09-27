@@ -318,6 +318,9 @@ class About extends Component {
                                 <div className="not-mobile-friendly">
                                     <BarChart
                                         barChartID='barProgression'
+                                        barChartHeight={600}
+                                        barChartXFont='1rem'
+                                        barChartDataLabelFont='10px'
                                         barChartTitle='Raid Progression'
                                         barChartCategories={this.state.barChartRaidCategories}
                                         barChartYTitle='Bosses Killed'
