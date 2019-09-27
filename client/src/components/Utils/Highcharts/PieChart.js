@@ -53,6 +53,9 @@ class PieCharts extends Component {
                 colorByPoint: true,
                 data: this.props.pieChartData
             }],
+            credits: {
+                enabled: false
+            },
         });
     }
 
