@@ -7,6 +7,7 @@ import Members from './components/Complexity/Members';
 import Leaderboards from './components/Complexity/Leaderboards';
 import Settings from './components/Settings/Settings';
 import Logs from './components/Settings/Logs';
+import SimulactionCraft from './components/Complexity/SimulationCraft';
 
 
 export default (
@@ -18,5 +19,6 @@ export default (
         <Route component={Leaderboards} path='/leaderboards'/>
         <Route component={Settings} path='/settings' />
         <Route component={Logs} path='/logs' />
+        <Route component={SimulactionCraft} path='/simulationcraft'/>
     </Switch>
 )

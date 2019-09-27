@@ -17,6 +17,7 @@ const quotes = require('../controllers/Database/quotes_controller');
 const logs = require('../controllers/Database/logs_controller');
 const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
 const raidbots = require('../controllers/Database/raidbots_controller');
+const simulationcraft = require('../controllers/Database/simulationcraft_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -109,5 +110,7 @@ routes.get('/api/blizztrack/wow/version', blizztrackApi.getWoWVersion);
 routes.post('/fulfillment', dialogFlow);
 //Raidbots Endpoints
 routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbots.getByCharName);
+//SimulationCraft Endpoints
+routes.get('/api/simulationcraft', simulationcraft.get);
 
 module.exports = routes;
