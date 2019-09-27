@@ -1,3 +1,18 @@
+const classColors = {
+    'Death Knight': '#c41e3b',
+    'Demon Hunter': '#a330c9',
+    'Druid': '#ff7c0a',
+    'Hunter': '#aad372',
+    'Mage': '#68ccef',
+    'Monk': '#00ffba',
+    'Paladin': '#f48cba',
+    'Priest': '#f0ebe0',
+    'Rogue': '#fff468',
+    'Shaman': '#2359ff',
+    'Warlock': '#9382c9',
+    'Warrior': '#c69b6d'
+}
+
 module.exports = {
     //Function to remove Circular Object references
     getCircularReplacer: () => {
@@ -33,5 +48,9 @@ module.exports = {
             default:
                 return null
         }
+    },
+
+    getClassColor: (x) => {
+        return classColors[x]
     },
 }
