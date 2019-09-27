@@ -112,9 +112,13 @@
     z-index: 1;
 }
 
-#non-hunter {
+#non-allowed {
     opacity: 0.25;
     border-color: transparent;
+    cursor: not-allowed;
+}
+
+#non-allowed:hover {
     cursor: not-allowed;
 }
 
