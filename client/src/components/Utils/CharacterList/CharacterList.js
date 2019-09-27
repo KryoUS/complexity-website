@@ -12,24 +12,27 @@ import CharProgression from './CharProgression';
 import CharPVP from './CharPVP';
 import CharReputation from './CharReputation';
 import CharStatistics from './CharStatistics';
+import CharBloodmallet from './CharBloodmallet';
+import CharRaidbots from './CharRaidbots';
 
 const buttonArray = [
-    'Achievements', 
-    'Hunter Pets', 
-    'Items', 
-    'Mounts', 
-    'Pets', 
-    'Professions', 
-    'Progression', 
-    'PVP', 
-    'Reputation', 
-    'Statistics', 
-    'Stats', 
-    'Talents', 
+    'Achievements',
+    'Hunter Pets',
+    'Items',
+    'Mounts',
+    'Pets',
+    'Professions',
+    'Progression',
+    'PVP',
+    'Reputation',
+    'Statistics',
+    'Stats',
+    'Talents',
     'Titles',
     'Warcraft Logs',
-    'Raidbots Sim',
-    'RaiderIO'
+    'Raidbots',
+    'RaiderIO',
+    'Bloodmallet'
 ];
 
 export default class CharacterList extends Component {
@@ -44,6 +47,7 @@ export default class CharacterList extends Component {
             selectedCharRealm: '',
             selectedCharBackground: 'https://res.cloudinary.com/complexityguild/image/upload/v1546758915/wow/backgrounds/raiders.jpg',
             selectedCharClass: '',
+            selectedCharClassColor: '',
             selectedCharRace: '',
             selectedCharLevel: 0,
             selectedCharSpec: '',
@@ -77,96 +81,14 @@ export default class CharacterList extends Component {
         }
     }
 
-    //TODO: The two functions below need to instead be an API reference to the server
-    classNameSet = (x) => {
-        switch (x) {
-            case 1:
-                return 'Warrior'
-            case 2:
-                return 'Paladin'
-            case 3:
-                return 'Hunter'
-            case 4:
-                return 'Rogue'
-            case 5:
-                return 'Priest'
-            case 6:
-                return 'Death Knight'
-            case 7:
-                return 'Shaman'
-            case 8:
-                return 'Mage'
-            case 9:
-                return 'Warlock'
-            case 10:
-                return 'Monk'
-            case 11:
-                return 'Druid'
-            case 12:
-                return 'Demon Hunter'
-            default:
-                return 'Unknown Class'
-        }
-    }
-
-    raceNameSet = (x) => {
-        switch (x) {
-            case 1:
-                return 'Human'
-            case 2:
-                return 'Orc'
-            case 3:
-                return 'Dwarf'
-            case 4:
-                return 'Night Elf'
-            case 5:
-                return 'Undead'
-            case 6:
-                return 'Tauren'
-            case 7:
-                return 'Gnome'
-            case 8:
-                return 'Troll'
-            case 9:
-                return 'Goblin'
-            case 10:
-                return 'Blood Elf'
-            case 11:
-                return 'Draenei'
-            case 22:
-                return 'Worgen'
-            case 24:
-                return 'Pandaren'
-            case 25:
-                return 'Pandaren'
-            case 26:
-                return 'Pandaren'
-            case 27:
-                return 'Nightborne'
-            case 28:
-                return 'Highmountain Tauren'
-            case 29:
-                return 'Void Elf'
-            case 30:
-                return 'Lightforged Draenei'
-            case 34:
-                return 'Dark Iron Dwarf'
-            case 36:
-                return `Mag'har Orc`
-            default:
-                return 'Unknown Race'
-        }
-    }
-
-    selectedChar = (name, realm, avatar, className, race, level, spec, azeriteLvl, azeriteXp, azeriteXpRemaining) => {
-        className = this.classNameSet(className);
-        race = this.raceNameSet(race);
+    selectedChar = (name, realm, avatar, className, classColor, raceName, level, spec, azeriteLvl, azeriteXp, azeriteXpRemaining) => {
         this.setState({
-            selectedCharName: name, 
-            selectedCharRealm: realm, 
-            selectedCharBackground: avatar, 
-            selectedCharClass: className, 
-            selectedCharRace: race, 
+            selectedCharName: name,
+            selectedCharRealm: realm,
+            selectedCharBackground: avatar,
+            selectedCharClass: className,
+            selectedCharClassColor: classColor,
+            selectedCharRace: raceName,
             selectedCharLevel: level,
             selectedCharSpec: spec,
             selectedCharAzeriteLevel: azeriteLvl,
@@ -174,7 +96,7 @@ export default class CharacterList extends Component {
             selectedCharAzeriteXpRemaining: azeriteXpRemaining,
             selectedButton: ''
         });
-        setTimeout(() => {this[name].current.scrollIntoView({ block: 'start',  behavior: 'smooth' })}, 500);
+        setTimeout(() => { this[name].current.scrollIntoView({ block: 'start', behavior: 'smooth' }) }, 500);
     }
 
     selectedButton = (button) => {
@@ -185,24 +107,24 @@ export default class CharacterList extends Component {
         this.setState({ charInfoSlide: true });
     }
 
-    render () {
+    render() {
         return (
             <div>
-                <div className="char-background image-mask" style={{background: `-webkit-linear-gradient(17deg, rgb(17, 11, 41, 0.5), rgb(44, 36, 77, 0.5)), url(${this.state.selectedCharBackground}) fixed center -140px no-repeat`}}/>
+                <div className="char-background image-mask" style={{ background: `-webkit-linear-gradient(17deg, rgb(17, 11, 41, 0.1), rgb(44, 36, 77, 0.1)), url(${this.state.selectedCharBackground}) fixed center -140px no-repeat` }} />
                 <div className="char-info-container">
                     {this.props.charsArray.length > 0 &&
                         <div className="animate-bottom hidden-scrollbar char-info-overflow" id={this.state.selectedCharName ? undefined : 'char-info-fullscreen'}>
                             {this.props.charsArray.length > 0 && this.props.charsArray.map(char => {
                                 this[char.character_name] = React.createRef();
-                                return <div key={`${char.character_name}${char.class}`} 
-                                            style={{
-                                                background: `url(${char.avatar_large}) no-repeat 10% ${this.raceBackgroundTop(char.race)}%`,
-                                                backgroundSize: '100%'
-                                            }} 
-                                            className="armorycharimage"
-                                            id={this.state.selectedCharName ? undefined : 'armorycharimage-fullscreen'}
-                                            onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.class, char.race, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining)}
-                                            ref={this[char.character_name]}
+                                return <div key={`${char.character_name}${char.class}`}
+                                    style={{
+                                        background: `url(${char.avatar_large}) no-repeat 10% ${this.raceBackgroundTop(char.race)}%`,
+                                        backgroundSize: '100%'
+                                    }}
+                                    className="armorycharimage"
+                                    id={this.state.selectedCharName ? undefined : 'armorycharimage-fullscreen'}
+                                    onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.className, char.classColor, char.raceName, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining)}
+                                    ref={this[char.character_name]}
                                 >
                                     {char.spec_icon ? <div style={{
                                         marginLeft: '5px',
@@ -210,22 +132,22 @@ export default class CharacterList extends Component {
                                         width: '25px',
                                         height: '25px',
                                         backgroundSize: '25px'
-                                    }}/>
-                                    :
-                                    <div style={{
-                                        marginLeft: '5px',
-                                        background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
-                                        width: '25px',
-                                        height: '25px',
-                                        backgroundSize: '25px'
-                                    }}/>
+                                    }} />
+                                        :
+                                        <div style={{
+                                            marginLeft: '5px',
+                                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
+                                            width: '25px',
+                                            height: '25px',
+                                            backgroundSize: '25px'
+                                        }} />
                                     }
-                                    <div className="charname">{char.character_name}</div>
+                                    <div className="charname" style={{color: char.classColor}}>{char.character_name}</div>
                                 </div>
                             })}
                         </div>
                     }
-                    {this.state.selectedCharName ? 
+                    {this.state.selectedCharName ?
                         <div className='selected-char'>
                             <div className="selected-char-info">
                                 <div>
@@ -237,9 +159,9 @@ export default class CharacterList extends Component {
                                 {this.state.selectedCharAzeriteLevel > 0 &&
                                     <div>
                                         <div className="selected-char-extrainfo">Azerite Level: {this.state.selectedCharAzeriteLevel}</div>
-                                        <ProgressBar 
-                                            current={this.state.selectedCharAzeriteXp} 
-                                            remaining={this.state.selectedCharAzeriteXpRemaining} 
+                                        <ProgressBar
+                                            current={this.state.selectedCharAzeriteXp}
+                                            remaining={this.state.selectedCharAzeriteXpRemaining}
                                             height={'30px'}
                                             bgColor={'#edba03'}
                                             fontSize={'18px'}
@@ -248,64 +170,98 @@ export default class CharacterList extends Component {
                                 }
                             </div>
                         </div>
-                    :
-                        this.props.charsArray.length <= 0 ? 
-                            <div style={{width: '100vw', height: '100vh'}}>
-                                <div className="loader" />
-                            </div>
                         :
+                        this.props.charsArray.length <= 0 ?
+                            <div style={{ width: '100vw', height: '100vh' }}>
+                                <div className="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            :
                             null
                     }
                     <div className="char-info">
                         {this.state.selectedButton === 'Achievements' &&
                             <CharAchievements selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Hunter Pets' && 
+                        {this.state.selectedButton === 'Hunter Pets' &&
                             <CharHunterPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Mounts' && 
+                        {this.state.selectedButton === 'Mounts' &&
                             <CharMounts selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Stats' && 
+                        {this.state.selectedButton === 'Stats' &&
                             <CharStats selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Items' && 
+                        {this.state.selectedButton === 'Items' &&
                             <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Pets' && 
+                        {this.state.selectedButton === 'Pets' &&
                             <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Professions' && 
+                        {this.state.selectedButton === 'Professions' &&
                             <CharProfessions selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Progression' && 
+                        {this.state.selectedButton === 'Progression' &&
                             <CharProgression selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'PVP' && 
+                        {this.state.selectedButton === 'PVP' &&
                             <CharPVP selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Reputation' && 
+                        {this.state.selectedButton === 'Reputation' &&
                             <CharReputation selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
-                        {this.state.selectedButton === 'Statistics' && 
+                        {this.state.selectedButton === 'Statistics' &&
                             <CharStatistics selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
+                        {this.state.selectedButton === 'Bloodmallet' &&
+                            <CharBloodmallet selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Raidbots' &&
+                            <CharRaidbots selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
+                        }
                     </div>
-                    {this.state.selectedCharName && 
+                    {this.state.selectedCharName &&
                         <div className="flex-row flex-center flex-wrap char-button-container">
+                            <div className="gradient-line-white" style={{width: '100%'}} />
                             {buttonArray.map(button => {
                                 return this.state.selectedButton === button ?
-                                    <div className='button-border animate-bottom' id='button-selected' key={button}>
-                                        <div className='button-text'>{button}</div>
+                                    <div className='button-border animate-bottom' key={button}>
+                                        <div className='button-text' id='button-selected'>{button}</div>
                                     </div>
-                                :
-                                    button === 'Hunter Pets' ? 
-                                        this.state.selectedCharClass === 'Hunter' ? 
+                                    :
+                                    button === 'Hunter Pets' ?
+                                        this.state.selectedCharClass === 'Hunter' ?
                                             <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
                                                 <div className='button-text'>{button}</div>
                                             </div>
                                         :
-                                            <div className='button-border animate-bottom' id='non-hunter' key={button} >
+                                            <div className='button-border animate-bottom' id='non-allowed' key={button} >
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                    :
+                                    button === 'Bloodmallet' ?
+                                        this.state.selectedCharSpec === 'Restoration' ? 
+                                            <div className='button-border animate-bottom' id={'non-allowed'} key={button}>
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                        : this.state.selectedCharSpec === 'Mistweaver' ?
+                                            <div className='button-border animate-bottom' id={'non-allowed'} key={button}>
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                        : this.state.selectedCharSpec === 'Holy' ? 
+                                            <div className='button-border animate-bottom' id={'non-allowed'} key={button}>
+                                                <div className='button-text'>{button}</div>
+                                            </div>
+                                        :
+                                            <div className='button-border animate-bottom' key={button} onClick={() => this.selectedButton(button)}>
                                                 <div className='button-text'>{button}</div>
                                             </div>
                                     :
