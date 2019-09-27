@@ -1,18 +1,4 @@
-
-const classColors = {
-    'Death Knight': '#c41e3b',
-    'Demon Hunter': '#a330c9',
-    'Druid': '#ff7c0a',
-    'Hunter': '#aad372',
-    'Mage': '#68ccef',
-    'Monk': '#00ffba',
-    'Paladin': '#f48cba',
-    'Priest': '#f0ebe0',
-    'Rogue': '#fff468',
-    'Shaman': '#2359ff',
-    'Warlock': '#9382c9',
-    'Warrior': '#c69b6d'
-}
+const tools = require('./tools/functions');
 
 module.exports = {
     all: (req, res, next) => {
@@ -25,7 +11,7 @@ module.exports = {
                         for (let i = 0;i<classesRes.data.classes.length;i++) {
                             if (classesRes.data.classes[i].id === obj.class) {
                                 obj.className = classesRes.data.classes[i].name;
-                                obj.classColor = classColors[classesRes.data.classes[i].name];
+                                obj.classColor = tools.getClassColor(classesRes.data.classes[i].name);
                             }
                         }
 

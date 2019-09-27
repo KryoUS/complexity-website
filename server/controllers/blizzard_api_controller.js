@@ -255,7 +255,7 @@ module.exports = {
 
                 response.data.mounts.collected.map(obj => {
                     masterMounts.mounts.map((masterObj, masterIndex) => {
-                        masterMounts.mounts[masterIndex].qualityColor = qualityColor(masterMounts.mounts[masterIndex].qualityId);
+                        masterMounts.mounts[masterIndex].qualityColor = functions.qualityColor(masterMounts.mounts[masterIndex].qualityId);
                         if (masterObj.itemId === obj.itemId && masterObj.creatureId === obj.creatureId) {
                             return masterMounts.mounts[masterIndex].collected = true;
                         };
@@ -282,7 +282,7 @@ module.exports = {
             axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=petSlots&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(slotResponse => {
                 req.app.get('db').wowcache.findOne({id: 6}).then(dbResponse => {
                     response.data.pets.collected.map((petsObj, petsIndex) => {
-                        response.data.pets.collected[petsIndex].qualityColor = qualityColor(petsObj.qualityId);
+                        response.data.pets.collected[petsIndex].qualityColor = functions.qualityColor(petsObj.qualityId);
                         response.data.pets.collected[petsIndex].slot = 4;
                         response.data.pets.collected[petsIndex].abilities = [];
 
