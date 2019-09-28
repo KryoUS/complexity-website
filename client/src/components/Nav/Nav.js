@@ -122,6 +122,11 @@ class Nav extends Component {
                                     <div className='button-text'>SimulationCraft</div>
                                 </div>
                             </Link>
+                            <Link to="/bloodmallet">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Bloodmallet</div>
+                                </div>
+                            </Link>
                         </div>
                         
                         {this.props.user.id ?

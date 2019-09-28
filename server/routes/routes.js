@@ -63,6 +63,7 @@ routes.get('/api/raiders', raiders.get);
 routes.get('/api/members', stats.members);
 routes.get('/api/members/names', stats.memberNames);
 routes.get('/api/members/all', members.all);
+routes.get('/api/members/specs', members.specsOnly);
 //Stat Endpoints from DB
 routes.get('/api/stats/character', stats.characters);
 routes.get('/api/stats/consumables', stats.consumables);

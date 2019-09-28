@@ -8,6 +8,7 @@ import Leaderboards from './components/Complexity/Leaderboards';
 import Settings from './components/Settings/Settings';
 import Logs from './components/Settings/Logs';
 import SimulactionCraft from './components/Complexity/SimulationCraft';
+import Bloodmallet from './components/Complexity/FullBloodmallet';
 
 
 export default (
@@ -20,5 +21,6 @@ export default (
         <Route component={Settings} path='/settings' />
         <Route component={Logs} path='/logs' />
         <Route component={SimulactionCraft} path='/simulationcraft'/>
+        <Route component={Bloodmallet} path='/bloodmallet'/>
     </Switch>
 )
