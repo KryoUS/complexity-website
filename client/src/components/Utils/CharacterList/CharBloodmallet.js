@@ -52,6 +52,17 @@ const tierTypes = [
     },
 ];
 
+const fightTypes = [
+    {
+        type: 'patchwerk',
+        name: 'Patchwerk'
+    },
+    {
+        type: 'hecticaddcleave',
+        name: 'Hectic Cleave'
+    }
+]
+
 class CharBloodmallet extends Component {
     constructor() {
         super();
@@ -101,6 +112,12 @@ class CharBloodmallet extends Component {
         });
     };
 
+    fightButton = (button) => {
+        this.setState({ bloodMalletFightStyle: button }, () => {
+            this.bloodMalletLoad();
+        });
+    };
+
     componentDidMount = () => {
         this.bloodMalletLoad();
     };
@@ -121,9 +138,19 @@ class CharBloodmallet extends Component {
                     })}
                 </div>
                 <div className="gradient-line-white" />
-                {(this.state.bloodMalletType === 'azerite_traits_itemlevel' || this.state.bloodMalletType === 'azerite_traits_stacking') &&
-                    <div className="flex-row flex-center flex-wrap char-button-container">
-                        {tierTypes.map(button => {
+                <div className="flex-row flex-center flex-wrap char-button-container">
+                    {fightTypes.map(button => {
+                        return this.state.bloodMalletFightStyle === button.type ?
+                            <div className='button-border' key={button.type}>
+                                <div className='button-text' id='button-selected'>{button.name}</div>
+                            </div>
+                            :
+                            <div className='button-border' key={button.type} onClick={() => this.fightButton(button.type)}>
+                                <div className='button-text'>{button.name}</div>
+                            </div>
+                    })}
+                    {(this.state.bloodMalletType === 'azerite_traits_itemlevel' || this.state.bloodMalletType === 'azerite_traits_stacking') &&
+                        tierTypes.map(button => {
                             return this.state.bloodMalletAzeriteTier === button.type ?
                                 <div className='button-border' key={button.type}>
                                     <div className='button-text' id='button-selected'>{button.name}</div>
@@ -132,25 +159,23 @@ class CharBloodmallet extends Component {
                                 <div className='button-border' key={button.type} onClick={() => this.tierButton(button.type)}>
                                     <div className='button-text'>{button.name}</div>
                                 </div>
-                        })}
-                    </div>
-                }
-                {(this.state.bloodMalletType === 'azerite_traits_itemlevel' || this.state.bloodMalletType === 'azerite_traits_stacking') &&
+                        })
+                    }
                     <div className="gradient-line-white" />
-                }
-                {!this.state.chartLoaded && <div style={{height: '100%', width: '100%'}}><Loader /></div>}
-                <div
-                    style={{height: !this.state.chartLoaded && '0px'}}
-                    id="bloodMalletChart"
-                    data-bloodmallet="chart"
-                    data-wow-class={this.props.selectedCharClass.toLowerCase().replace(' ', '_')}
-                    data-wow-spec={this.props.selectedCharSpec.toLowerCase().replace(' ', '_')}
-                    data-type={this.state.bloodMalletType}
-                    data-azerite-tier={this.state.bloodMalletAzeriteTier}
-                    data-fight-style={this.state.bloodMalletFightStyle}
-                    data-entries={100}
-                    data-background-color='rgba(17, 11, 40, 0)'
-                >Loading...</div>
+                    {!this.state.chartLoaded && <div style={{ height: '100%', width: '100%' }}><Loader /></div>}
+                    <div
+                        style={{ height: !this.state.chartLoaded && '0px' }}
+                        id="bloodMalletChart"
+                        data-bloodmallet="chart"
+                        data-wow-class={this.props.selectedCharClass.toLowerCase().replace(' ', '_')}
+                        data-wow-spec={this.props.selectedCharSpec.toLowerCase().replace(' ', '_')}
+                        data-type={this.state.bloodMalletType}
+                        data-azerite-tier={this.state.bloodMalletAzeriteTier}
+                        data-fight-style={this.state.bloodMalletFightStyle}
+                        data-entries={100}
+                        data-background-color='rgba(17, 11, 40, 0)'
+                    >Loading...</div>
+                </div>
             </div>
         )
     }
