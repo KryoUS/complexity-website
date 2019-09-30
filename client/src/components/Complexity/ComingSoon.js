@@ -1,5 +1,4 @@
 import React,  { Component } from 'react';
-import axios from 'axios';
 import Quote from '../Utils/Quote';
 import '../News/News.css';
 
