@@ -18,6 +18,7 @@ const logs = require('../controllers/Database/logs_controller');
 const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
 const raidbots = require('../controllers/Database/raidbots_controller');
 const simulationcraft = require('../controllers/Database/simulationcraft_controller');
+const icons = require('../controllers/Database/icons_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -96,6 +97,8 @@ routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCh
 routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
 routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
 routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
+//WoW API Data Collection Endpoints
+routes.get('/api/wow/collectItemIcons', requireAdmin, icons.getItemIcons);
 //Ranking Endpoint from WoWProgress API
 routes.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API

@@ -98,6 +98,14 @@ class Settings extends Component {
         type === 'add' && this.setState({ quoteAddDialog: true })
     }
 
+    itemIconCollect() {
+        axios.get('/api/wow/collectItemIcons').then(res => {
+            console.log(res.data);
+        }).catch(err => {
+            console.log('Item Icon Error ----------------------------', err);
+        })
+    }
+
     render(){
 
         const mainNameStyle = {
@@ -110,7 +118,7 @@ class Settings extends Component {
             <div>
                 <div className="settings-background image-mask" />
                 <div className="page-div fade1s">
-                    <div className="settings-container">
+                    <div className="settings-container" style={{marginBottom: '100px'}}>
                         <div className="settings-column-avatars">
                             <h1>Set Main Character</h1>
                             <div className="settings-row-avatars">
@@ -168,6 +176,12 @@ class Settings extends Component {
                                     </Link>
                                 </div>
                                 <div className="gradient-line-white" />
+                                <p>Collect Item Icons</p>
+                                <div className="settings-row">
+                                    <div className="button-border" onClick={() => this.itemIconCollect()} data-tip='This starts a service to collect all uncollected item icons.'>
+                                        <div className="button-text">Start</div>
+                                    </div>
+                                </div>
                                 <ReactTooltip />
                             </div>
                         }
