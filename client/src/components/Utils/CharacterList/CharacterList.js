@@ -28,10 +28,10 @@ const buttonArray = [
     'Statistics',
     'Stats',
     'Talents',
-    'Titles',
-    'Warcraft Logs',
-    'Raidbots',
-    'RaiderIO',
+    // 'Titles',
+    // 'Warcraft Logs',
+    // 'Raidbots',
+    // 'RaiderIO',
     'Bloodmallet'
 ];
 
@@ -229,7 +229,7 @@ export default class CharacterList extends Component {
                         }
                     </div>
                     {this.state.selectedCharName &&
-                        <div className="flex-row flex-center flex-wrap char-button-container">
+                        <div className="flex-row flex-center flex-wrap char-button-container" style={{width: '100%'}}>
                             <div className="gradient-line-white" style={{width: '100%'}} />
                             {buttonArray.map(button => {
                                 return this.state.selectedButton === button ?
