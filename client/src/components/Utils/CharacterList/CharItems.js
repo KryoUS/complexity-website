@@ -51,12 +51,12 @@ class CharItems extends Component {
 
         if (obj.tooltipParams.transmogItem) { wowheadData += `&transmog=${obj.tooltipParams.transmogItem}` };
 
-        return <div className={`flex-row flex-between row-container collected`}>
+        return <div className={`flex-row flex-between row-container`} style={{width: '100%'}}>
             <a className="flex-row" style={{ alignItems: 'center' }} data-wowhead={wowheadData} href={`https://www.wowhead.com/${obj.id}`} target="_blank" rel="noopener noreferrer">
                 <div className="icon25" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px' }} />
                 <div className="row-name" style={{ color: obj.qualityColor }}>{obj.name}</div>
             </a>
-            <div className="flex-row flex-between">
+            <div className="flex-row flex-between" style={{marginRight: '5px'}}>
                 {obj.tooltipParams.gem0 && <a className="flex-row" style={{ alignItems: 'center' }} data-wowhead={wowheadData} href={`https://www.wowhead.com/item=${obj.tooltipParams.gem0}`} target="_blank" rel="noopener noreferrer">
                     <div className="icon25" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/inv_misc_gem_01.png) 25px`, backgroundSize: '25px' }} />
                 </a>}
@@ -92,21 +92,37 @@ class CharItems extends Component {
                     <div className="animate-right" style={{ width: '95%' }}>
                         <div className="char-info-overflow" style={{ width: '100%', overflow: 'hidden' }}>
                             {this.state.items.head && this.buildItems(this.state.items.head)}
+                            <div className="gradient-line-white" />
                             {this.state.items.neck && this.buildItems(this.state.items.neck)}
+                            <div className="gradient-line-white" />
                             {this.state.items.shoulder && this.buildItems(this.state.items.shoulder)}
+                            <div className="gradient-line-white" />
                             {this.state.items.back && this.buildItems(this.state.items.back)}
+                            <div className="gradient-line-white" />
                             {this.state.items.chest && this.buildItems(this.state.items.chest)}
+                            <div className="gradient-line-white" />
                             {this.state.items.wrist && this.buildItems(this.state.items.wrist)}
+                            <div className="gradient-line-white" />
                             {this.state.items.hands && this.buildItems(this.state.items.hands)}
+                            <div className="gradient-line-white" />
                             {this.state.items.waist && this.buildItems(this.state.items.waist)}
+                            <div className="gradient-line-white" />
                             {this.state.items.legs && this.buildItems(this.state.items.legs)}
+                            <div className="gradient-line-white" />
                             {this.state.items.feet && this.buildItems(this.state.items.feet)}
+                            <div className="gradient-line-white" />
                             {this.state.items.finger1 && this.buildItems(this.state.items.finger1)}
+                            <div className="gradient-line-white" />
                             {this.state.items.finger2 && this.buildItems(this.state.items.finger2)}
+                            <div className="gradient-line-white" />
                             {this.state.items.trinket1 && this.buildItems(this.state.items.trinket1)}
+                            <div className="gradient-line-white" />
                             {this.state.items.trinket2 && this.buildItems(this.state.items.trinket2)}
+                            <div className="gradient-line-white" />
                             {this.state.items.mainHand && this.buildItems(this.state.items.mainHand)}
+                            <div className="gradient-line-white" />
                             {this.state.items.offHand && this.buildItems(this.state.items.offHand)}
+                            <div className="gradient-line-white" />
                             <div className="flex-row flex-evenly" style={{ textAlign: 'center', fontSize: '18px' }}>
                                 <div style={{ width: '50%' }}>Item Level:{this.state.items.averageItemLevel}</div>
                                 <div style={{ width: '50%' }}>Item Level Equipped:{this.state.items.averageItemLevelEquipped}</div>
