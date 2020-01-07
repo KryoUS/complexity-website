@@ -344,6 +344,21 @@ body::-webkit-scrollbar {
   color: white;
 }
 
+/* Wowhead Tooltop Overrides */
+.wowhead-tooltip td, .wowhead-tooltip th {
+  background: #110b29 !important;
+  font-family: Oswald, Verdana, "Open Sans", Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+  font-size: 0.75rem !important;
+}
+
+.wowhead-tooltip {
+  border: 1px solid white;
+}
+
+.wowhead-tooltip > p {
+  display: none;
+}
+
 /* Class Colors */
 #deathKnight {
   color: #c41e3b;
