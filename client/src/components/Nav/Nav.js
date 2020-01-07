@@ -134,9 +134,9 @@ class Nav extends Component {
                                 <div className="avatar" style={{backgroundImage: `url('${this.props.user.mainAvatarSmall}')`}} alt={this.props.user.main}>
                                         <div className="settings-menu">
                                             <div className="settings-menu-content">
-                                                <Link className="button-border" id='nav-button' to="/">
+                                                {/* <Link className="button-border" id='nav-button' to="/">
                                                     <div className='button-text'>My Characters</div>
-                                                </Link>
+                                                </Link> */}
                                                 <Link className="button-border" id='nav-button' to="/settings">
                                                     <div className='button-text'>Settings</div>
                                                 </Link>
