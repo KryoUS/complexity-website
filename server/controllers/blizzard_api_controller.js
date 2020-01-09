@@ -60,6 +60,18 @@ const createSpellIconInClause = (arr) => {
     return spellIds.replace(/.$/,'');
 };
 
+const createItemIconInClause = (arr) => {
+    let itemIds = '';
+
+    arr.map(obj => {
+        if (obj.item) {
+            itemIds += obj.item.id + ',';
+        }
+    });
+
+    return itemIds.replace(/.$/,'');
+};
+
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -220,34 +232,28 @@ module.exports = {
     },
 
     getCharacterItems: (req, res) => {
-        axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=items&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+        axios.get(`https://us.api.blizzard.com/profile/wow/character/${req.params.realm}/${req.params.character}/equipment?namespace=profile-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             
-            req.app.get('db').wowcache.findOne({id: 4}).then(dbResponse => {
-    
-                response.data.className = className(response.data.class, dbResponse.body.data.classes);
-                response.data.items.head.qualityColor = functions.qualityColor(response.data.items.head.quality);
-                response.data.items.neck.qualityColor = functions.qualityColor(response.data.items.neck.quality);
-                response.data.items.shoulder.qualityColor = functions.qualityColor(response.data.items.shoulder.quality);
-                response.data.items.back.qualityColor = functions.qualityColor(response.data.items.back.quality);
-                response.data.items.chest.qualityColor = functions.qualityColor(response.data.items.chest.quality);
-                response.data.items.wrist.qualityColor = functions.qualityColor(response.data.items.wrist.quality);
-                response.data.items.hands.qualityColor = functions.qualityColor(response.data.items.hands.quality);
-                response.data.items.waist.qualityColor = functions.qualityColor(response.data.items.waist.quality);
-                response.data.items.legs.qualityColor = functions.qualityColor(response.data.items.legs.quality);
-                response.data.items.feet.qualityColor = functions.qualityColor(response.data.items.feet.quality);
-                response.data.items.finger1.qualityColor = functions.qualityColor(response.data.items.finger1.quality);
-                response.data.items.finger2.qualityColor = functions.qualityColor(response.data.items.finger2.quality);
-                response.data.items.trinket1.qualityColor = functions.qualityColor(response.data.items.trinket1.quality);
-                response.data.items.trinket2.qualityColor = functions.qualityColor(response.data.items.trinket2.quality);
-                response.data.items.mainHand.qualityColor = functions.qualityColor(response.data.items.mainHand.quality);
-                if (response.data.items.offHand) {response.data.items.offHand.qualityColor = functions.qualityColor(response.data.items.offHand.quality)};
+            req.app.get('db').query(`select * from icons where id in (${createItemIconInClause(response.data.equipped_items)})`).then(iconRes => {
+
+                response.data.equipped_items.forEach(obj => {
+                    if (obj.item) {
+                        obj.icon = iconRes.find(iconObj => { 
+                            return iconObj.id === obj.item.id;
+                        }).iconurl;
+                    };
+
+                    if (obj.quality) {
+                        obj.quality.color = functions.qualityType(obj.quality.type);
+                    };
+                });
 
                 res.status(200).send(response.data);
-            }).catch(err => {
-                console.log('DB WoW Get Character Items Error');
-                console.log(err);
-                res.status(500).send('DB WoW Get Character Items Error');
-            });
+
+            }).catch(error => {
+                console.log('DB Error! HALP', error.message);
+                res.sendStatus(503);
+            })
 
         }).catch(error => {
             console.log('Get Character Items Error: ', error);
