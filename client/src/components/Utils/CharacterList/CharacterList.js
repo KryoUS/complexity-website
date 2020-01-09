@@ -14,6 +14,7 @@ import CharReputation from './CharReputation';
 import CharStatistics from './CharStatistics';
 import CharBloodmallet from './CharBloodmallet';
 import CharRaidbots from './CharRaidbots';
+import CharTalents from './CharTalents/CharTalents';
 
 const buttonArray = [
     'Achievements',
@@ -226,6 +227,9 @@ export default class CharacterList extends Component {
                         }
                         {this.state.selectedButton === 'Raidbots' &&
                             <CharRaidbots selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
+                        }
+                        {this.state.selectedButton === 'Talents' &&
+                            <CharTalents selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
                         }
                     </div>
                     {this.state.selectedCharName &&
