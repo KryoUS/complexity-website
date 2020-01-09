@@ -23,7 +23,7 @@ class CharStatistics extends Component {
     }
 
     statisticsBuilder = (obj, index) => {
-        return <div className="flex-row flex-between">
+        return <div className="flex-row flex-between" key={obj.name}>
             <div className="statistics-name">{obj.name} {obj.highest && `: ${obj.highest}`}</div>
             <div className="flex-row flex-between">
                 <div>{obj.quantity}</div>
