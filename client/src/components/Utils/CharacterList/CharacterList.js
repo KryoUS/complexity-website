@@ -49,6 +49,7 @@ export default class CharacterList extends Component {
             selectedCharBackground: 'https://res.cloudinary.com/complexityguild/image/upload/v1546758915/wow/backgrounds/raiders.jpg',
             selectedCharClass: '',
             selectedCharClassColor: '',
+            selectedCharClassNum: 0,
             selectedCharRace: '',
             selectedCharLevel: 0,
             selectedCharSpec: '',
@@ -82,13 +83,14 @@ export default class CharacterList extends Component {
         }
     }
 
-    selectedChar = (name, realm, avatar, className, classColor, raceName, level, spec, azeriteLvl, azeriteXp, azeriteXpRemaining) => {
+    selectedChar = (name, realm, avatar, className, classColor, raceName, level, spec, azeriteLvl, azeriteXp, azeriteXpRemaining, classNum) => {
         this.setState({
             selectedCharName: name,
             selectedCharRealm: realm,
             selectedCharBackground: avatar,
             selectedCharClass: className,
             selectedCharClassColor: classColor,
+            selectedCharClassNum: classNum,
             selectedCharRace: raceName,
             selectedCharLevel: level,
             selectedCharSpec: spec,
@@ -124,7 +126,7 @@ export default class CharacterList extends Component {
                                     }}
                                     className="armorycharimage"
                                     id={this.state.selectedCharName ? undefined : 'armorycharimage-fullscreen'}
-                                    onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.className, char.classColor, char.raceName, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining)}
+                                    onClick={() => this.selectedChar(char.character_name, char.realm, char.avatar_large, char.className, char.classColor, char.raceName, char.level, char.spec_name, char.azerite_lvl, char.azerite_xp, char.azerite_xp_remaining, char.class)}
                                     ref={this[char.character_name]}
                                 >
                                     {char.spec_icon ? <div style={{
@@ -202,7 +204,7 @@ export default class CharacterList extends Component {
                             <CharStats selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
                         }
                         {this.state.selectedButton === 'Items' &&
-                            <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
+                            <CharItems selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClassNum={this.state.selectedCharClassNum} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
                         }
                         {this.state.selectedButton === 'Pets' &&
                             <CharPets selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} charInfoSlider={this.charInfoSlider} />
@@ -226,7 +228,7 @@ export default class CharacterList extends Component {
                             <CharBloodmallet selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
                         }
                         {this.state.selectedButton === 'Raidbots' &&
-                            <CharRaidbots selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
+                            <CharRaidbots selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharClassNum={this.state.selectedCharClassNum} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
                         }
                         {this.state.selectedButton === 'Talents' &&
                             <CharTalents selectedCharName={this.state.selectedCharName} selectedCharRealm={this.state.selectedCharRealm} selectedCharClass={this.state.selectedCharClass} selectedCharClassColor={this.state.selectedCharClassColor} selectedCharSpec={this.state.selectedCharSpec} charInfoSlider={this.charInfoSlider} />
