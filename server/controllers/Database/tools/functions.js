@@ -50,6 +50,27 @@ module.exports = {
         }
     },
 
+    qualityType: (quality) => {
+        switch (quality) {
+            case "COMMON":
+                return '#ffffff'
+            case "UNCOMMON":
+                return '#02ff4e'
+            case "RARE":
+                return '#0281ff'
+            case "EPIC":
+                return '#c600ff'
+            case "LEGENDARY":
+                return '#ff8002'
+            case "ARTIFACT":
+                return '#e5cc80'
+            case 7:
+                return '#0cf'
+            default:
+                return null
+        }
+    },
+
     getClassColor: (x) => {
         return classColors[x]
     },
