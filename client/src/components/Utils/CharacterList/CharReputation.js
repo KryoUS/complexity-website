@@ -75,7 +75,7 @@ class CharReputation extends Component {
     }
 
     reputationBarBuilder = (obj) => {
-        return <div key={obj.id} className="flex-row reputation-row">
+        return <div key={obj.id} className="flex-row reputation-row animate-right">
             <div className="reputation-name">
                 {obj.name}
             </div>
