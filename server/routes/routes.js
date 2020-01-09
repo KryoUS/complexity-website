@@ -97,6 +97,7 @@ routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCh
 routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
 routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
 routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
+routes.put('/api/wow/character/:character&:realm/talents', blizzardApi.getCharacterTalents);
 //WoW API Data Collection Endpoints
 routes.get('/api/wow/collectItemIcons', requireAdmin, icons.getItemIcons);
 //Ranking Endpoint from WoWProgress API

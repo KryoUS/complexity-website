@@ -40,6 +40,26 @@ const className = (classNum, classesArr) => {
     });
 };
 
+const createSpellIconInClause = (arr) => {
+    let spellIds = '';
+
+    arr.map(obj => {
+        if (obj.talents) {
+            obj.talents.map(talentObj => {
+                spellIds += talentObj.spell_tooltip.spell.id + ',';
+            });
+        }
+
+        if (obj.pvp_talent_slots) {
+            obj.pvp_talent_slots.map(pvpObj => {
+                spellIds += pvpObj.selected.spell_tooltip.spell.id + ',';
+            });
+        }
+    });
+
+    return spellIds.replace(/.$/,'');
+};
+
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -406,8 +426,46 @@ module.exports = {
     },
 
     getCharacterTalents: (req, res) => {
-        axios.get(`https://us.api.blizzard.com/wow/character/${req.params.realm}/${req.params.character}?fields=talents&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            res.status(200).send(response.data);
+        axios.get(`https://us.api.blizzard.com/profile/wow/character/${req.params.realm}/${req.params.character}/specializations?namespace=profile-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+
+            req.app.get('db').query(`select * from spellicons where id in (${createSpellIconInClause(response.data.specializations)})`).then(iconRes => {
+
+                response.data.specializations.sort((a, b) => {
+                    let x = a.specialization.name.toLowerCase();
+                    let y = b.specialization.name.toLowerCase();
+    
+                    if (x < y) {return -1;}
+                    if (x > y) {return 1;}
+    
+                    return 0;
+                    
+                });
+
+                response.data.specializations.forEach(obj => {
+                    if (obj.talents) {
+                        obj.talents.forEach(talentObj => {
+                            talentObj.spell_tooltip.iconurl = iconRes.find(iconObj => { 
+                                return iconObj.id === talentObj.spell_tooltip.spell.id;
+                            }).iconurl;
+                        });
+                    }
+
+                    if (obj.pvp_talent_slots) {
+                        obj.pvp_talent_slots.forEach(pvpObj => {
+                            pvpObj.selected.spell_tooltip.iconurl = iconRes.find(iconObj => { 
+                                return iconObj.id === pvpObj.selected.spell_tooltip.spell.id;
+                            }).iconurl;
+                        });
+                    }
+                });
+
+                res.status(200).send(response.data);
+
+            }).catch(error => {
+                console.log('DB Error! HALP', error.message);
+                res.sendStatus(503);
+            })
+
         }).catch(error => {
             console.log('Get Character Talents Error: ', error);
         });
