@@ -4,7 +4,8 @@ class ItemIcon extends Component {
 
     wowheadData = (obj) => {
 
-        if (obj) {
+        if (obj.id) {
+            //Old Item API
 
             let wowheadData = `item=${obj.id}`;
 
@@ -38,6 +39,53 @@ class ItemIcon extends Component {
 
             return wowheadData;
 
+        } else if (obj.item) {
+            //New Item API 2019-12
+
+            let wowheadData = `item=${obj.item.id}`;
+
+            if (obj.bonus_list) {
+                wowheadData += `&bonus=`;
+                obj.bonus_list.forEach((bonus) => {
+                    wowheadData += `:${bonus}`
+                });
+            };
+
+            if (obj.azerite_details && obj.azerite_details.selected_powers) {
+                wowheadData += `&azerite-powers=${this.props.classNum}`;
+                obj.azerite_details.selected_powers.slice().reverse().forEach(power => {
+                    wowheadData += `:${power.id}`;
+                });
+            };
+
+            if (obj.level.value) { wowheadData += `&ilvl=${obj.level.value}` };
+            if (obj.enchantments) { 
+                obj.enchantments.forEach(enchant => {
+                    wowheadData += `&ench=${enchant.enchantment_id}`
+                })
+            };
+            if (obj.sockets) { 
+                wowheadData += `&gems=`;
+                obj.sockets.forEach(socket => {
+                    if (socket.item) {
+                        wowheadData += `:${socket.item.id}`
+                    }
+                });
+            };
+            if (obj.set) {
+                //ISSUE: Future issue here where we won't know in this component that we have the other piece for the set bonus.
+                wowheadData += `&pcs=`;
+                obj.set.items.forEach(bonus => {
+                    if (bonus.item.name === obj.name) {
+                        wowheadData += `:${bonus}`
+                    }
+                });
+            };
+
+            if (obj.transmog) { wowheadData += `&transmog=${obj.transmog.item.id}` };
+
+            return wowheadData;
+        
         } else {
             return null;
         };
