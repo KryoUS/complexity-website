@@ -15,6 +15,7 @@ import CharStatistics from './CharStatistics';
 import CharBloodmallet from './CharBloodmallet';
 import CharRaidbots from './CharRaidbots';
 import CharTalents from './CharTalents/CharTalents';
+import Loader from '../Loader';
 
 const buttonArray = [
     'Achievements',
@@ -131,7 +132,7 @@ export default class CharacterList extends Component {
                                 >
                                     {char.spec_icon ? <div style={{
                                         marginLeft: '5px',
-                                        background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${char.spec_icon}.png)`,
+                                        background: `url(https://render-us.worldofwarcraft.com/icons/56/${char.spec_icon}.jpg)`,
                                         width: '25px',
                                         height: '25px',
                                         backgroundSize: '25px'
@@ -139,7 +140,7 @@ export default class CharacterList extends Component {
                                         :
                                         <div style={{
                                             marginLeft: '5px',
-                                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/INV_Misc_QuestionMark.png)`,
+                                            background: `url(https://render-us.worldofwarcraft.com/icons/56/INV_Misc_QuestionMark.jpg)`,
                                             width: '25px',
                                             height: '25px',
                                             backgroundSize: '25px'
@@ -176,16 +177,7 @@ export default class CharacterList extends Component {
                         :
                         this.props.charsArray.length <= 0 ?
                             <div style={{ width: '100vw', height: '100vh' }}>
-                                <div className="lds-roller">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
+                                <Loader />
                             </div>
                             :
                             null
