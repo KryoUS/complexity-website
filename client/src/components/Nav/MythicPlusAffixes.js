@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { infoModal } from '../../ducks/reducer';
 
+//TODO: This needs to be pulled from DB and not hard-coded
 const wowheadAffixData = {
     Fortified: {
         id: 10
@@ -46,6 +49,9 @@ const wowheadAffixData = {
     },
     Beguiling: {
         id: 119
+    },
+    Awakened: {
+        id: 120
     }
 }
 
@@ -60,84 +66,84 @@ class MythicPlusAffixes extends React.Component {
                     baseAffix: 'Fortified',
                     plusFour: 'Bolstering',
                     plusSeven: 'Grievous',                    
-                    type: 'Void'
+                    type: 'Awakened'
                 },
                 {
                     week: 2,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Raging',
                     plusSeven: 'Explosive',                    
-                    type: 'Tides'
+                    type: 'Awakened'
                 },
                 {
                     week: 3,
                     baseAffix: 'Fortified',
                     plusFour: 'Sanguine',
                     plusSeven: 'Grievous',                    
-                    type: 'Enchanted'
+                    type: 'Awakened'
                 },
                 {
                     week: 4,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Teeming',
                     plusSeven: 'Volcanic',                    
-                    type: 'Void'
+                    type: 'Awakened'
                 },
                 {
                     week: 5,
                     baseAffix: 'Fortified',
                     plusFour: 'Bolstering',
                     plusSeven: 'Skittish',                  
-                    type: 'Tides'
+                    type: 'Awakened'
                 },
                 {
                     week: 6,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Bursting',
                     plusSeven: 'Necrotic',
-                    type: 'Enchanted'
+                    type: 'Awakened'
                 },
                 {
                     week: 7,
                     baseAffix: 'Fortified',
                     plusFour: 'Sanguine',
                     plusSeven: 'Quaking',
-                    type: 'Void'
+                    type: 'Awakened'
                 },
                 {
                     week: 8,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Bolstering',
                     plusSeven: 'Explosive',
-                    type: 'Tides'
+                    type: 'Awakened'
                 },
                 {
                     week: 9,
                     baseAffix: 'Fortified',
                     plusFour: 'Bursting',
                     plusSeven: 'Volcanic',
-                    type: 'Enchanted'
+                    type: 'Awakened'
                 },
                 {
                     week: 10,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Raging',
                     plusSeven: 'Necrotic',
-                    type: 'Void'
+                    type: 'Awakened'
                 },
                 {
                     week: 11,
                     baseAffix: 'Fortified',
                     plusFour: 'Teeming',
                     plusSeven: 'Quaking',
-                    type: 'Tides'
+                    type: 'Awakened'
                 },
                 {
                     week: 12,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Bursting',
                     plusSeven: 'Skittish',
-                    type: 'Enchanted'
+                    type: 'Awakened'
                 },
                 
             ],
@@ -149,6 +155,7 @@ class MythicPlusAffixes extends React.Component {
     componentDidMount = () => {
         axios.get('/api/raiderio/mythicaffixes').then(res => {
             this.setState({ usMythicAffixes: res.data, seasonalAffix: res.data.affix_details[3].name });
+            console.log(this.props);
         }).catch(raiderIOMythicAffixesError => {
             this.props.infoModal(true, 'Oops!', "We tried to get the Mythic+ affixes for the week but couldn't. Please exercise extreme caution when entering dungeons for now.", 'OK');
         });
@@ -209,4 +216,13 @@ class MythicPlusAffixes extends React.Component {
     }
 }
 
-export default MythicPlusAffixes;
+const mapStateToProps = (state) => {
+    return {
+        modalOpen: state.modalOpen,
+        modalTitle: state.modalTitle,
+        modalMessage: state.modalMessage,
+        modalButton: state.modalButton
+    }
+}
+
+export default connect(mapStateToProps, { infoModal })(MythicPlusAffixes);
