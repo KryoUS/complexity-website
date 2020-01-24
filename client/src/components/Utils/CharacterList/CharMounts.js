@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 import ProgressBar from '../ProgressBar';
+import Loader from '../Loader';
 
+//TODO: Convert to new Profile API (https://develop.battle.net/documentation/world-of-warcraft/profile-apis)
+//TODO: Convert icons to use ItemIcon component. (Also requires API work.)
 class CharMounts extends Component {
     constructor() {
         super();
@@ -37,7 +40,7 @@ class CharMounts extends Component {
                 };
             });
         }).catch(error => {
-            console.log('WoW Character Achievements API Error: ', error);
+            console.log('WoW Character Mounts API Error: ', error);
         });
     }
 
@@ -69,16 +72,7 @@ class CharMounts extends Component {
     render() {
         return (
             <div className="selected-category-container char-info-overflow">
-                {this.state.character.mounts.length === 0 && <div className="lds-roller">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>}
+                {this.state.character.mounts.length === 0 && <Loader />}
                 {this.state.character.mounts.length > 0 &&
                     <div className="animate-right" style={{ width: '95%' }}>
                         <input type="text" className="input" placeholder="Search for a mount..." onChange={this.searchData} />
@@ -88,14 +82,14 @@ class CharMounts extends Component {
                                     let collected = 'not-collected';
                                     if (obj.collected === true) { collected = '' };
                                     return index <= this.state.loadedMounts &&
-                                        <div>
-                                            <div className={`flex-row flex-between row-container ${collected && collected}`} key={obj.itemId} >
+                                        <div key={obj.itemId}>
+                                            <div className={`flex-row flex-between row-container ${collected && collected}`} >
                                                 <a className="flex-row" style={{ alignItems: 'center' }} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
-                                                    <div className="icon25" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px' }} />
+                                                    <div className="icon25" style={{ background: `url(https://render-us.worldofwarcraft.com/icons/56/${obj.icon}.jpg) 25px`, backgroundSize: '25px' }} />
                                                     <div className="row-name" style={{ color: obj.qualityColor }}>{obj.name}</div>
                                                 </a>
                                                 <div className="flex-row flex-between">
-                                                    <div className={`icon25 ${this.opacitySet(obj.isGround)}`}
+                                                    {/* <div className={`icon25 ${this.opacitySet(obj.isGround)}`}
                                                         style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px' }}
                                                         data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`} />
                                                     <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`}
@@ -103,7 +97,7 @@ class CharMounts extends Component {
                                                         data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`} />
                                                     <div className={`icon25 ${this.opacitySet(obj.isFlying)}`}
                                                         style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px' }}
-                                                        data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`} />
+                                                        data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`} /> */}
                                                 </div>
                                             </div>
                                             <div className="gradient-line-white" />
@@ -114,14 +108,14 @@ class CharMounts extends Component {
                                     let collected = 'not-collected';
                                     if (obj.collected === true) { collected = '' };
                                     return index <= this.state.loadedMounts &&
-                                        <div>
-                                            <div className={`flex-row flex-between row-container ${collected && collected}`} key={obj.itemId} >
+                                        <div key={obj.itemId} >
+                                            <div className={`flex-row flex-between row-container ${collected && collected}`} >
                                                 <a className="flex-row" style={{ alignItems: 'center' }} data-wowhead={`item=${obj.icon}`} href={`https://www.wowhead.com/item=${obj.itemId}`} target="_blank" rel="noopener noreferrer">
-                                                    <div className="icon25" style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.icon}.png) 25px`, backgroundSize: '25px' }} />
+                                                    <div className="icon25" style={{ background: `url(https://render-us.worldofwarcraft.com/icons/56/${obj.icon}.jpg) 25px`, backgroundSize: '25px' }} />
                                                     <div className="row-name" style={{ color: obj.qualityColor }}>{obj.name}</div>
                                                 </a>
                                                 <div className="flex-row flex-between">
-                                                    <div className={`icon25 ${this.opacitySet(obj.isGround)}`}
+                                                    {/* <div className={`icon25 ${this.opacitySet(obj.isGround)}`}
                                                         style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_mountains_200.png) 25px`, backgroundSize: '25px' }}
                                                         data-tip={`This mount ${this.canOrCannot(obj.isGround)} walk.`} />
                                                     <div className={`icon25 ${this.opacitySet(obj.isAquatic)}`}
@@ -129,7 +123,7 @@ class CharMounts extends Component {
                                                         data-tip={`This mount ${this.canOrCannot(obj.isAquatic)} swim underwater.`} />
                                                     <div className={`icon25 ${this.opacitySet(obj.isFlying)}`}
                                                         style={{ background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1547124405/site/icons/white_flying_200.png) 25px`, backgroundSize: '25px' }}
-                                                        data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`} />
+                                                        data-tip={`This mount ${this.canOrCannot(obj.isFlying)} fly.`} /> */}
                                                 </div>
                                             </div>
                                             <div className="gradient-line-white" />
