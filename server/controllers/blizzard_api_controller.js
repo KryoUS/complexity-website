@@ -82,7 +82,7 @@ module.exports = {
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
             if (tokenPrice.price === 0) {module.exports.setTokenPrice();}
-            if (!realmObj.name) {module.exports.setServerStatus();}
+            // if (!realmObj.name) {module.exports.setServerStatus();}
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });
