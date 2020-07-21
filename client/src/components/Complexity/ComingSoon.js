@@ -9,7 +9,7 @@ class ComingSoon extends Component {
 
         this.state = {
             weeksFirstHalf: false,
-            rotationSchedule: (Moment().week() - 29) % 4 - 1,
+            rotationSchedule: (Moment().week() - 29) % 4,
             corruptionRotation: [
                 {
                     rotation: 1,
@@ -306,10 +306,10 @@ class ComingSoon extends Component {
     componentDidMount = () => {
         //If between Tuesday and Friday (Saturday UTC)
         if (Moment().utc().day() >= 2 && Moment().utc().day() <= 6) {
-            if (Moment().utc().day() === 2 && Moment().utc().hours >= 15) {
-                //If Tuesday (Wednesday to UTC) and after 8am Pacific (3pm UTC)
+            if (Moment().utc().day() === 2 && Moment().utc().hours() >= 15) {
+                //If Tuesday and after 8am Pacific (3pm UTC)
                 this.setState({ weeksFirstHalf: true });
-            } else if (Moment().utc().day() === 6 && Moment().utc().hours <= 3) {
+            } else if (Moment().utc().day() === 6 && Moment().utc().hours() <= 3) {
                 //If Friday (Saturday to UTC) and before 8pm Pacifc (3am UTC)
                 this.setState({ weeksFirstHalf: true });
             };
