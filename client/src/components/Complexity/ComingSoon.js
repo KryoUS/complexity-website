@@ -309,7 +309,7 @@ class ComingSoon extends Component {
             if (Moment().utc().day() === 2 && Moment().utc().hours() >= 15) {
                 //If Tuesday and after 8am Pacific (3pm UTC)
                 this.setState({ weeksFirstHalf: true });
-            } else if (Moment().utc().day() === 6 && Moment().utc().hours() <= 3) {
+            } else if (Moment().utc().day() === 6 && Moment().utc().hours() < 3) {
                 //If Friday (Saturday UTC) and before 8pm Pacifc (3am UTC)
                 this.setState({ weeksFirstHalf: true });
             } else if (Moment().utc().day() === 3 || Moment().utc().day() === 4 || Moment().utc().day() === 5) {
