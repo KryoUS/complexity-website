@@ -317,6 +317,11 @@ class ComingSoon extends Component {
                 this.setState({ weeksFirstHalf: true });
             };
         };
+
+        //If Sunday, Monday, or Tuesday before reset, subtract one index from the rotation schedule
+        if (Moment().utc().day() === 0 || Moment().utc().day() === 1 || Moment().utc().day() === 2 && Moment().utc().hours() <= 14) {
+            this.setState({ rotationSchedule: this.state.rotationSchedule - 1 });
+        };
     };
 
     corruptions = (corruption) => {
