@@ -10,6 +10,7 @@ class ComingSoon extends Component {
         this.state = {
             weeksFirstHalf: false,
             rotationSchedule: (Moment().week() - 29) % 4,
+            weekNum: Moment().week(),
             corruptionRotation: [
                 {
                     rotation: 1,
@@ -304,6 +305,7 @@ class ComingSoon extends Component {
     }   
 
     componentDidMount = () => {
+
         //If between Tuesday and Friday (Saturday UTC)
         if (Moment().utc().day() >= 2 && Moment().utc().day() <= 6) {
             if (Moment().utc().day() === 2 && Moment().utc().hours() >= 15) {
@@ -318,9 +320,9 @@ class ComingSoon extends Component {
             };
         };
 
-        //If Sunday, Monday, or Tuesday before reset, subtract one index from the rotation schedule
-        if (Moment().utc().day() === 0 || Moment().utc().day() === 1 || Moment().utc().day() === 2 && Moment().utc().hours() <= 14) {
-            this.setState({ rotationSchedule: this.state.rotationSchedule - 1 });
+        //If Sunday, Monday, or Tuesday before reset, subtract one index from the rotation schedule and the week number
+        if (Moment().utc().day() === 0 || Moment().utc().day() === 1 || (Moment().utc().day() === 2 && Moment().utc().hours() <= 14)) {
+            this.setState({ rotationSchedule: this.state.rotationSchedule - 1, weekNum: this.state.weekNum - 1 });
         };
     };
 
@@ -340,15 +342,15 @@ class ComingSoon extends Component {
     weeklyRotation = (rotation, rotationIndex) => {
     return <div key={`corruptionIndex${rotationIndex}`}>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
-    <div style={{width: '200px'}}>{Moment().day(-5).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
+    <div style={{width: '200px'}}>{Moment().week(this.state.weekNum).day(-5).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
             {rotation.tuesdayCorruptions.map(corruption => {return this.corruptions(corruption)})}
         </div>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && !this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
-            <div style={{width: '200px'}}>{Moment().day(-2).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
+            <div style={{width: '200px'}}>{Moment().week(this.state.weekNum).day(-2).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
             {rotation.fridayCorruptions.map(corruption => {return this.corruptions(corruption)})}
         </div>
     </div>
-    }
+    };
 
     render(){
         return(
@@ -374,4 +376,4 @@ class ComingSoon extends Component {
     }
 }
 
-export default ComingSoon
+export default ComingSoon;
