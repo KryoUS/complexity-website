@@ -331,7 +331,7 @@ class ComingSoon extends Component {
         return <a 
             key={corruption.itemId} 
             className={"button-text"} 
-            style={{width: '200px'}} 
+            style={{width: '225px'}} 
             data-wowhead={`item=${corruption.itemId}`} 
             href={`https://www.wowhead.com/item=${corruption.itemId}`} 
             target="_blank" 
