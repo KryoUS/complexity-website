@@ -324,6 +324,7 @@ class ComingSoon extends Component {
         if (Moment().utc().day() === 0 || Moment().utc().day() === 1 || (Moment().utc().day() === 2 && Moment().utc().hours() <= 14)) {
             this.setState({ rotationSchedule: this.state.rotationSchedule - 1, weekNum: this.state.weekNum - 1 });
         };
+
     };
 
     corruptions = (corruption) => {
@@ -340,16 +341,61 @@ class ComingSoon extends Component {
     };
 
     weeklyRotation = (rotation, rotationIndex) => {
-    return <div key={`corruptionIndex${rotationIndex}`}>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
-    <div style={{width: '200px'}}>{Moment().week(this.state.weekNum).day(-5).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
-            {rotation.tuesdayCorruptions.map(corruption => {return this.corruptions(corruption)})}
+
+        let week = this.state.weekNum;
+        let rotationSchedule = this.state.rotationSchedule;
+
+        //Based on the current week and the 4 week rotation, we need to set the week numbers for each rotation shown
+        //First Week of Rotation Schedule
+        if (rotationSchedule === 0) {
+            //Second Week
+            if (rotationIndex === 1) {week = week + 1};
+            //Third Week
+            if (rotationIndex === 2) {week = week + 2};
+            //Fourth Week
+            if (rotationIndex === 3) {week = week + 3};
+        };
+
+        //Second Week of Rotation Schedule
+        if (rotationSchedule === 1) {
+            //First Week
+            if (rotationIndex === 0) {week = week - 1};
+            //Third Week
+            if (rotationIndex === 2) {week = week + 1};
+            //Fourth Week
+            if (rotationIndex === 3) {week = week + 2};
+        };
+
+        //Third Week of Rotation Schedule
+        if (rotationSchedule === 2) {
+            //First Week
+            if (rotationIndex === 0) {week = week - 2};
+            //Second Week
+            if (rotationIndex === 1) {week = week - 1};
+            //Fourth Week
+            if (rotationIndex === 3) {week = week + 1};
+        };
+
+        //Fourth Week of Rotation Schedule
+        if (rotationSchedule === 3) {
+            //First Week
+            if (rotationIndex === 0) {week = week - 3};
+            //Second Week
+            if (rotationIndex === 1) {week = week - 2};
+            //Third Week
+            if (rotationIndex === 2) {week = week - 1};
+        };
+
+        return <div key={`corruptionIndex${rotationIndex}`}>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
+                <div style={{width: '200px'}}>{Moment().week(week).day(2).format("dddd, MMMM Do")}</div>
+                {rotation.tuesdayCorruptions.map(corruption => {return this.corruptions(corruption)})}
+            </div>
+            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && !this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
+                <div style={{width: '200px'}}>{Moment().week(week).day(5).format("dddd, MMMM Do")}</div>
+                {rotation.fridayCorruptions.map(corruption => {return this.corruptions(corruption)})}
+            </div>
         </div>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', border: 'none', backgroundImage: 'none'}} className={rotationIndex === this.state.rotationSchedule && !this.state.weeksFirstHalf ? 'collected' : 'not-collected'}>
-            <div style={{width: '200px'}}>{Moment().week(this.state.weekNum).day(-2).add((7 * rotationIndex), 'day').format("dddd, MMMM Do")}</div>
-            {rotation.fridayCorruptions.map(corruption => {return this.corruptions(corruption)})}
-        </div>
-    </div>
     };
 
     render(){
