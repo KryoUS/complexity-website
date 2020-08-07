@@ -349,11 +349,7 @@ body::-webkit-scrollbar {
 }
 
 .wowhead-tooltip {
-  border: 1px solid white;
-}
-
-.wowhead-tooltip > p {
-  display: none;
+  border: 1px solid gray;
 }
 
 /* Class Colors */
