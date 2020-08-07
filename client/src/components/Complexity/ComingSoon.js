@@ -18,69 +18,69 @@ class ComingSoon extends Component {
                         {
                             name: "Ineffable Truth 1",
                             cost: 3300,
-                            spellId: 318303,
+                            itemId: 177981,
                         },
                         {
                             name: "Honed Mind 1",
                             cost: 4125,
-                            spellId: 318269,
+                            itemId: 177978,
                         },
                         {
                             name: "Strikethrough 2",
                             cost: 4125,
-                            spellId: 315281,
+                            itemId: 177999,
                         },
                         {
                             name: "Masterful 2",
                             cost: 4125,
-                            spellId: 315530,
+                            itemId: 177987,
                         },
                         {
                             name: "Expedient 3",
                             cost: 5000,
-                            spellId: 315546,
+                            itemId: 177975,
                         },
                         {
                             name: "Twisted Appendage 3",
                             cost: 13200,
-                            spellId: 318483,
+                            itemId: 178009,
                         },
                     ],
                     fridayCorruptions: [
                         {
                             name: "Ineffable Truth 2",
                             cost: 6750,
-                            spellId: 318484,
+                            itemId: 177982,
                         },
                         {
                             name: "Void Ritual 1",
                             cost: 4125,
-                            spellId: 318286,
+                            itemId: 178013,
                         },
                         {
                             name: "Deadly Momentum 2",
                             cost: 5000,
-                            spellId: 318493,
+                            itemId: 177965,
                         },
                         {
                             name: "Masterful 1",
                             cost: 3000,
-                            spellId: 315529,
+                            itemId: 177986,
                         },
                         {
                             name: "Versatile 3",
                             cost: 5000,
-                            spellId: 315553,
+                            itemId: 178012,
                         },
                         {
                             name: "Siphoner 2",
                             cost: 6300,
-                            spellId: 315591,
+                            itemId: 177996,
                         },
                         {
                             name: "Avoidant 2",
                             cost: 3300,
-                            spellId: 315608,
+                            itemId: 177971,
                         },
                     ],
                 },
@@ -90,69 +90,69 @@ class ComingSoon extends Component {
                         {
                             name: "Infinite Stars 1",
                             cost: 5000,
-                            spellId: 318489,
+                            itemId: 177983,
                         },
                         {
                             name: "Surging Vitality 1",
                             cost: 4125,
-                            spellId: 318270,
+                            itemId: 178001,
                         },
                         {
                             name: "Glimpse of Clarity",
                             cost: 4125,
-                            spellId: 315573,
+                            itemId: 177976,
                         },
                         {
                             name: "Severe 2",
                             cost: 4125,
-                            spellId: 315557,
+                            itemId: 177993,
                         },
                         {
                             name: "Racing Pulse 3",
                             cost: 7875,
-                            spellId: 318496,
+                            itemId: 177991,
                         },
                         {
                             name: "Siphoner 3",
                             cost: 9000,
-                            spellId: 315592,
+                            itemId: 177997,
                         },
                         {
                             name: "Avoidant 3",
                             cost: 4250,
-                            spellId: 315609,
+                            itemId: 177972,
                         },
                     ],
                     fridayCorruptions: [
                         {
                             name: "Twilight Devastation 2",
                             cost: 10000,
-                            spellId: 318477,
+                            itemId: 178005,
                         },
                         {
                             name: "Severe 1",
                             cost: 3000,
-                            spellId: 315554,
+                            itemId: 177992,
                         },
                         {
                             name: "Strikethrough 3",
                             cost: 5000,
-                            spellId: 315282,
+                            itemId: 178000,
                         },
                         {
                             name: "Honed Mind 3",
                             cost: 7875,
-                            spellId: 318498,
+                            itemId: 177980,
                         },
                         {
                             name: "Expedient 2",
                             cost: 4125,
-                            spellId: 315545,
+                            itemId: 177974,
                         },
                         {
                             name: "Siphoner 1",
                             cost: 4250,
-                            spellId: 315590,
+                            itemId: 177995,
                         },
                     ],
                 },
@@ -162,69 +162,69 @@ class ComingSoon extends Component {
                         {
                             name: "Infinite Stars 3",
                             cost: 15000,
-                            spellId: 318488,
+                            itemId: 177985,
                         },
                         {
                             name: "Racing Pulse 2",
                             cost: 5000,
-                            spellId: 318492,
+                            itemId: 177990,
                         },
                         {
                             name: "Echoing Void 2",
                             cost: 7875,
-                            spellId: 318485,
+                            itemId: 177968,
                         },
                         {
                             name: "Severe 3",
                             cost: 5000,
-                            spellId: 315558,
+                            itemId: 177994,
                         },
                         {
                             name: "Expedient 1",
                             cost: 3000,
-                            spellId: 315544,
+                            itemId: 177973,
                         },
                         {
                             name: "Twisted Appendage 1",
                             cost: 3000,
-                            spellId: 318481,
+                            itemId: 178007,
                         },
                     ],
                     fridayCorruptions: [
                         {
                             name: "Twilight Devastation 3",
                             cost: 15000,
-                            spellId: 318478,
+                            itemId: 178006,
                         },
                         {
                             name: "Racing Pulse 1",
                             cost: 4125,
-                            spellId: 318266,
+                            itemId: 177989,
                         },
                         {
                             name: "Strikethrough 1",
                             cost: 3000,
-                            spellId: 315277,
+                            itemId: 177998,
                         },
                         {
                             name: "Masterful 3",
                             cost: 5000,
-                            spellId: 315531,
+                            itemId: 177988,
                         },
                         {
                             name: "Surging Vitality 2",
                             cost: 5000,
-                            spellId: 318495,
+                            itemId: 178002,
                         },
                         {
                             name: "Void Ritual 2",
                             cost: 7875,
-                            spellId: 318479,
+                            itemId: 178014,
                         },
                         {
                             name: "Avoidant 1",
                             cost: 2400,
-                            spellId: 315607,
+                            itemId: 177970,
                         },
                     ],
                 },
@@ -234,69 +234,69 @@ class ComingSoon extends Component {
                         {
                             name: "Infinite Stars 2",
                             cost: 10000,
-                            spellId: 318487,
+                            itemId: 177984,
                         },
                         {
                             name: "Deadly Momentum 3",
                             cost: 7875,
-                            spellId: 318497,
+                            itemId: 177966,
                         },
                         {
                             name: "Echoing Void 1",
                             cost: 6250,
-                            spellId: 318280,
+                            itemId: 177967,
                         },
                         {
                             name: "Honed Mind 2",
                             cost: 5000,
-                            spellId: 318494,
+                            itemId: 177979,
                         },
                         {
                             name: "Versatile 1",
                             cost: 3000,
-                            spellId: 315549,
+                            itemId: 178010,
                         },
                         {
                             name: "Void Ritual 3",
                             cost: 13200,
-                            spellId: 318480,
+                            itemId: 178015,
                         },
                         {
                             name: "Gushing Wound",
                             cost: 4125,
-                            spellId: 318179,
+                            itemId: 177977,
                         },
                     ],
                     fridayCorruptions: [
                         {
                             name: "Twilight Devastation 1",
                             cost: 6250,
-                            spellId: 318276,
+                            itemId: 178004,
                         },
                         {
                             name: "Surging Vitality 3",
                             cost: 7875,
-                            spellId: 318499,
+                            itemId: 178003,
                         },
                         {
                             name: "Echoing Void 3",
                             cost: 12000,
-                            spellId: 318486,
+                            itemId: 177969,
                         },
                         {
                             name: "Deadly Momentum 1",
                             cost: 4125,
-                            spellId: 318268,
+                            itemId: 177955,
                         },
                         {
                             name: "Versatile 2",
                             cost: 4125,
-                            spellId: 315552,
+                            itemId: 178011,
                         },
                         {
                             name: "Twisted Appendage 2",
                             cost: 7875,
-                            spellId: 318482,
+                            itemId: 178008,
                         },
                     ],
                 },
@@ -329,11 +329,11 @@ class ComingSoon extends Component {
 
     corruptions = (corruption) => {
         return <a 
-            key={corruption.spellId} 
+            key={corruption.itemId} 
             className={"button-text"} 
             style={{width: '200px'}} 
-            data-wowhead={`spell=${corruption.spellId}`} 
-            href={`https://www.wowhead.com/spell=${corruption.spellId}`} 
+            data-wowhead={`item=${corruption.itemId}`} 
+            href={`https://www.wowhead.com/item=${corruption.itemId}`} 
             target="_blank" 
             rel="noopener noreferrer">
                 {corruption.name} - {corruption.cost}
