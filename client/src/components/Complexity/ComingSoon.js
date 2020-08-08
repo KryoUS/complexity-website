@@ -13,7 +13,7 @@ class ComingSoon extends Component {
             weekNum: Moment().week(),
             corruptionRotation: [
                 {
-                    rotation: 1,
+                    rotation: 0,
                     tuesdayCorruptions: [
                         {
                             name: "Ineffable Truth 1",
@@ -85,7 +85,7 @@ class ComingSoon extends Component {
                     ],
                 },
                 {
-                    rotation: 2,
+                    rotation: 1,
                     tuesdayCorruptions: [
                         {
                             name: "Infinite Stars 1",
@@ -157,7 +157,7 @@ class ComingSoon extends Component {
                     ],
                 },
                 {
-                    rotation: 3,
+                    rotation: 2,
                     tuesdayCorruptions: [
                         {
                             name: "Infinite Stars 3",
@@ -229,7 +229,7 @@ class ComingSoon extends Component {
                     ],
                 },
                 {
-                    rotation: 4,
+                    rotation: 3,
                     tuesdayCorruptions: [
                         {
                             name: "Infinite Stars 2",
@@ -306,6 +306,8 @@ class ComingSoon extends Component {
 
     componentDidMount = () => {
 
+        console.log(Moment().week());
+
         //If between Tuesday and Friday (Saturday UTC)
         if (Moment().utc().day() >= 2 && Moment().utc().day() <= 6) {
             if (Moment().utc().day() === 2 && Moment().utc().hours() >= 15) {
@@ -325,6 +327,35 @@ class ComingSoon extends Component {
             this.setState({ rotationSchedule: this.state.rotationSchedule - 1, weekNum: this.state.weekNum - 1 });
         };
 
+        //Reorder Corruption Array based on Rotation so that current week is always first
+        if (this.state.rotationSchedule === 3) {
+            //Fourth Week, move fourth week to front of array
+            let corruptionArray = this.state.corruptionRotation;
+            let rotation3Obj = corruptionArray.pop();
+
+            corruptionArray.unshift(rotation3Obj);
+            
+            this.setState({ corruptionRotation: corruptionArray });
+        } else if (this.state.rotationSchedule === 2) {
+            //Third Week, move fourth week and third week to beginning of array
+            let corruptionArray = this.state.corruptionRotation;
+            let rotation3Obj = corruptionArray.pop();
+            let rotation2Obj = corruptionArray.pop();
+
+            corruptionArray.unshift(rotation3Obj);
+            corruptionArray.unshift(rotation2Obj);
+
+            this.setState({ corruptionRotation: corruptionArray });
+        } else if (this.state.rotationSchedule === 1) {
+            //Second Week, move first week to end of array
+            let corruptionArray = this.state.corruptionRotation;
+            let rotation1Obj = corruptionArray.shift();
+
+            corruptionArray.push(rotation1Obj);
+
+            this.setState({ corruptionRotation: corruptionArray });
+        };
+
     };
 
     corruptions = (corruption) => {
@@ -340,10 +371,11 @@ class ComingSoon extends Component {
             </a>
     };
 
-    weeklyRotation = (rotation, rotationIndex) => {
+    weeklyRotation = (rotation) => {
 
         let week = this.state.weekNum;
         let rotationSchedule = this.state.rotationSchedule;
+        let rotationIndex = rotation.rotation;
 
         //Based on the current week and the 4 week rotation, we need to set the week numbers for each rotation shown
         //First Week of Rotation Schedule
@@ -359,7 +391,7 @@ class ComingSoon extends Component {
         //Second Week of Rotation Schedule
         if (rotationSchedule === 1) {
             //First Week
-            if (rotationIndex === 0) {week = week - 1};
+            if (rotationIndex === 0) {week = week + 3};
             //Third Week
             if (rotationIndex === 2) {week = week + 1};
             //Fourth Week
@@ -369,9 +401,9 @@ class ComingSoon extends Component {
         //Third Week of Rotation Schedule
         if (rotationSchedule === 2) {
             //First Week
-            if (rotationIndex === 0) {week = week - 2};
+            if (rotationIndex === 0) {week = week + 2};
             //Second Week
-            if (rotationIndex === 1) {week = week - 1};
+            if (rotationIndex === 1) {week = week + 3};
             //Fourth Week
             if (rotationIndex === 3) {week = week + 1};
         };
@@ -379,11 +411,11 @@ class ComingSoon extends Component {
         //Fourth Week of Rotation Schedule
         if (rotationSchedule === 3) {
             //First Week
-            if (rotationIndex === 0) {week = week - 3};
+            if (rotationIndex === 0) {week = week + 1};
             //Second Week
-            if (rotationIndex === 1) {week = week - 2};
+            if (rotationIndex === 1) {week = week + 2};
             //Third Week
-            if (rotationIndex === 2) {week = week - 1};
+            if (rotationIndex === 2) {week = week + 3};
         };
 
         return <div key={`corruptionIndex${rotationIndex}`}>
@@ -410,8 +442,8 @@ class ComingSoon extends Component {
                             <Quote />
                             <div className='modal-title' style={{fontSize: '2rem', textAlign: 'center'}}>Corruption Rotation</div>
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                                {this.state.corruptionRotation.map((rotation, index) => {
-                                    return this.weeklyRotation(rotation, index);
+                                {this.state.corruptionRotation.map(rotation => {
+                                    return this.weeklyRotation(rotation);
                                 })}
                             </div>
                         </div>
