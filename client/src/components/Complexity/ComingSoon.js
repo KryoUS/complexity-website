@@ -306,8 +306,6 @@ class ComingSoon extends Component {
 
     componentDidMount = () => {
 
-        console.log(Moment().week());
-
         //If between Tuesday and Friday (Saturday UTC)
         if (Moment().utc().day() >= 2 && Moment().utc().day() <= 6) {
             if (Moment().utc().day() === 2 && Moment().utc().hours() >= 15) {
@@ -334,7 +332,7 @@ class ComingSoon extends Component {
             let rotation3Obj = corruptionArray.pop();
 
             corruptionArray.unshift(rotation3Obj);
-            
+
             this.setState({ corruptionRotation: corruptionArray });
         } else if (this.state.rotationSchedule === 2) {
             //Third Week, move fourth week and third week to beginning of array
