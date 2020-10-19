@@ -77,7 +77,7 @@ class Nav extends Component {
                                 </div>
                                 <div style={{display: 'flex', width: '70px', justifyContent: 'space-evenly'}}>
                                     <div>Queue:</div>
-                                    {this.state.realmInfo.queue ? 
+                                    {this.state.realmInfo.has_queue ? 
                                         <img style={{width: '16px', height: '16px'}} alt="Thunderlord has a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336983/site/server_status_queue.png"></img> 
                                     : 
                                         <img style={{width: '16px', height: '16px'}} alt="Thunderlord does not have a Queue" src="https://res.cloudinary.com/complexityguild/image/upload/v1537336981/site/server_status.png"></img>
