@@ -10,10 +10,10 @@ class App extends Component {
   render() {
     return (
       <div style={{width: '100vw', height: '100vh', position: 'relative', top: 0, overflow: 'hidden'}}>
-        <ComingSoon />
-        {/* <Nav />
+        {/* <ComingSoon /> */}
+        <Nav />
         {router}
-        <Footer /> */}
+        <Footer />
       </div>
     )
   }
