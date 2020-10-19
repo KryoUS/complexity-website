@@ -40,14 +40,14 @@ blizzardApi.setBlizzardToken();
 
 /*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
-routes.get('/auth/login', passport.authenticate('bnet'));
-routes.get('/auth', userFunctions.auth);
-routes.post('/auth/newmain', checkAuth, userFunctions.setMain);
-routes.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
-routes.get('/auth/logout', checkAuth, userFunctions.logout);
+// routes.get('/auth/login', passport.authenticate('bnet'));
+// routes.get('/auth', userFunctions.auth);
+// routes.post('/auth/newmain', checkAuth, userFunctions.setMain);
+// routes.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
+// routes.get('/auth/logout', checkAuth, userFunctions.logout);
 //Logging routes from DB
-routes.get('/logs/discordbot', requireAdmin, logs.getDiscordBot);
-routes.get('/logs/serviceslog', requireAdmin, logs.getServicesLog);
+// routes.get('/logs/discordbot', requireAdmin, logs.getDiscordBot);
+// routes.get('/logs/serviceslog', requireAdmin, logs.getServicesLog);
 //Releases Endpoints from DB
 routes.get('/api/releases', releaseController.get);
 routes.get('/api/allreleases', releaseController.getAll);
@@ -81,22 +81,22 @@ routes.get('/api/stats/pets', stats.pets);
 routes.get('/api/complexity/quotes', quotes.get);
 routes.post('/api/complexity/quotes', requireAdmin, quotes.post);
 //WoW API Endpoints
-routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
-routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
-routes.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
-routes.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
-routes.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
-routes.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
-routes.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
-routes.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPets);
-routes.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
-routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
-routes.put('/api/wow/character/:character&:realm/professions', blizzardApi.getCharacterProfessions);
-routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCharacterProgression);
-routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
-routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
-routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
-routes.put('/api/wow/character/:character&:realm/talents', blizzardApi.getCharacterTalents);
+// routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
+// routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
+// routes.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
+// routes.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
+// routes.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
+// routes.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
+// routes.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
+// routes.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPets);
+// routes.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
+// routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
+// routes.put('/api/wow/character/:character&:realm/professions', blizzardApi.getCharacterProfessions);
+// routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCharacterProgression);
+// routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
+// routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
+// routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
+// routes.put('/api/wow/character/:character&:realm/talents', blizzardApi.getCharacterTalents);
 //WoW API Data Collection Endpoints
 routes.get('/api/wow/collectItemIcons', requireAdmin, icons.getItemIcons);
 //Ranking Endpoint from WoWProgress API
