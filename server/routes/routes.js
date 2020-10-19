@@ -81,8 +81,8 @@ routes.get('/api/stats/pets', stats.pets);
 routes.get('/api/complexity/quotes', quotes.get);
 routes.post('/api/complexity/quotes', requireAdmin, quotes.post);
 //WoW API Endpoints
-// routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
-// routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
+routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
+routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
 // routes.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
 // routes.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
 // routes.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
