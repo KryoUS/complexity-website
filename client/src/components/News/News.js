@@ -1,6 +1,6 @@
 import React,  { Component } from 'react';
 import Timer from '../Timer/Timer';
-import Blizztrack from '../Utils/Blizztrack/Blizztrack';
+import WoWNews from '../Utils/WoWNews/WoWNews';
 import Quote from '../Utils/Quote';
 import axios from 'axios';
 import './News.css';
@@ -38,7 +38,7 @@ class News extends Component {
                 <div className="page-div fade1s">
                     <div className="news-header">
                         <Quote />
-                        <Blizztrack />
+                        <WoWNews />
                         {   this.state.releases.length ?
                             <div className="news-countdown">
                                 {this.state.releases ?
