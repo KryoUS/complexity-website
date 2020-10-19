@@ -18,16 +18,17 @@ class Nav extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('/auth').then(res => {
-            if (res.status === 200) {
-                const user = res.data;
-                this.props.setUser({user});
-            } else {
-                this.props.infoModal(true, 'Oops!', "User Authorization Error! Don't panic, We've informed the monkeys. Please try again in a moment.", 'OK');
-            }
-        }).catch(error => {
-            //Do not place an error message in this catch, otherwise none logged in users will see it.
-        });
+        // Stopping user auth as it is not ready for production
+        // axios.get('/auth').then(res => {
+        //     if (res.status === 200) {
+        //         const user = res.data;
+        //         this.props.setUser({user});
+        //     } else {
+        //         this.props.infoModal(true, 'Oops!', "User Authorization Error! Don't panic, We've informed the monkeys. Please try again in a moment.", 'OK');
+        //     }
+        // }).catch(error => {
+        //     //Do not place an error message in this catch, otherwise none logged in users will see it.
+        // });
 
         axios.get('/api/wow/server/status').then(res => {
             this.setState({ realmInfo: res.data })
@@ -37,21 +38,21 @@ class Nav extends Component {
 
     }
 
-    login = () => {
-        axios.get('/auth/login').then(response => {
+    // login = () => {
+    //     axios.get('/auth/login').then(response => {
 
-        }).catch(loginError => {
-            this.props.infoModal(true, 'Oops!', "We couldn't log you in at this time, are a time traveler by chance? Hmm, please try again in a moment.", 'OK');
-        })
-    }
+    //     }).catch(loginError => {
+    //         this.props.infoModal(true, 'Oops!', "We couldn't log you in at this time, are a time traveler by chance? Hmm, please try again in a moment.", 'OK');
+    //     })
+    // }
 
-    logout = () => {
-        axios.get('/auth/logout').then(response => {
-            this.props.userLogout();
-        }).catch(logoutError => {
-            this.props.infoModal(true, 'Oops!', "There's no way this failed but here we are... Please try again in a moment.", 'OK');
-        })
-    }
+    // logout = () => {
+    //     axios.get('/auth/logout').then(response => {
+    //         this.props.userLogout();
+    //     }).catch(logoutError => {
+    //         this.props.infoModal(true, 'Oops!', "There's no way this failed but here we are... Please try again in a moment.", 'OK');
+    //     })
+    // }
 
     handleMouseOver = () => {
         this.setState({discordWidgetShow: !this.state.discordWidgetShow})
@@ -102,7 +103,7 @@ class Nav extends Component {
                                     <div className='button-text'>About</div>
                                 </div>
                             </Link>
-                            <Link to="/raiders">
+                            {/* <Link to="/raiders">
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>Raid Roster</div>
                                 </div>
@@ -116,17 +117,17 @@ class Nav extends Component {
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>Leaderboards</div>
                                 </div>
-                            </Link>
+                            </Link> */}
                             <Link to="/simulationcraft">
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>SimulationCraft</div>
                                 </div>
                             </Link>
-                            <Link to="/bloodmallet">
+                            {/* <Link to="/bloodmallet">
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>Bloodmallet</div>
                                 </div>
-                            </Link>
+                            </Link> */}
                         </div>
                         
                         {this.props.user.id ?
@@ -153,7 +154,7 @@ class Nav extends Component {
                         :
                             <div className="login-container">
                                 {/* ISSUE */}
-                                <a href="https://localhost:3050/auth/login" className="login"> </a>
+                                {/* <a href="https://localhost:3050/auth/login" className="login"> </a> */}
                                 <div className="discord-widget" onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseOver}>
                                     {this.state.discordWidgetShow && <DiscordWidget />}
                                 </div>
