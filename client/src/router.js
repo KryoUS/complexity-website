@@ -15,12 +15,12 @@ export default (
     <Switch>
         <Route component={News}  exact path='/'/>
         <Route component={About} path='/about'/>
-        <Route component={Raiders} path='/raiders'/>
+        {/* <Route component={Raiders} path='/raiders'/>
         <Route component={Members} path='/members'/>
         <Route component={Leaderboards} path='/leaderboards'/>
         <Route component={Settings} path='/settings' />
-        <Route component={Logs} path='/logs' />
+        <Route component={Logs} path='/logs' /> */}
         <Route component={SimulactionCraft} path='/simulationcraft'/>
-        <Route component={Bloodmallet} path='/bloodmallet'/>
+        {/* <Route component={Bloodmallet} path='/bloodmallet'/> */}
     </Switch>
 )
