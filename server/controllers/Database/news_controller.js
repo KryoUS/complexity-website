@@ -28,7 +28,13 @@ module.exports = {
 
     getAlert: (req, res) => {
         
-        req.app.get('db').query('select * from breakingnews order by id desc limit 1').then(response => {
+        req.app.get('db').query('select * from breakingnews order by id desc').then(response => {
+            
+            for (i=0; i<response.length; i++)
+            {
+                response[i].alert = response[i].alert.replace(/\s?(<br\s?\/?>)\s?/g, ' ');
+            }           
+
             res.status(200).send(response);
         }).catch(error => {
             console.log(error)

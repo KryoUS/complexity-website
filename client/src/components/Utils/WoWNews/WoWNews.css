@@ -1,0 +1,49 @@
+.wownews-back {
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.wownews-container {
+    background-color: #17171ab0;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 12px;
+    margin: 5px;
+    max-height: 246px;
+    width: 80%;
+}
+
+.wownews-overflow {
+    display: block;
+    height: 180px;
+    border-radius: 4px;
+    padding: 0px 12px;
+    overflow: auto;
+}
+
+.wownews-title {
+    font-size: 1.5rem;
+    color: white;
+    text-shadow: rgb(146, 91, 234) 0px 1px 9px;
+}
+
+@media (max-width: 600px) {
+
+    .wownews-back {
+        margin-top: 60px;
+        width: 100vw;
+        height: 400px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+
+    .button-border {
+        width: 75px;
+        height: 25px;
+    }
+
+    .wownews-modal-logo-container{
+        left: 2%;
+    }
+
+}
