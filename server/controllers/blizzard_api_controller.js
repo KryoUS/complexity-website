@@ -140,10 +140,8 @@ module.exports = {
 
     //Set Server Status Object
     setServerStatus: (req, res) => {
-        axios.get(`https://us.api.blizzard.com/wow/realm/status?locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            realmObj = response.data.realms.find(obj => {
-                return obj.name === 'Thunderlord';
-            });
+        axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/77?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            realmObj = response.data;
         }).catch(serverStatusError => {
             console.log('Server Status Error: ?', serverStatusError);
         });
