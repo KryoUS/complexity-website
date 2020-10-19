@@ -6,7 +6,6 @@ const passport = require('passport');
 const blizzardApi = require('../controllers/blizzard_api_controller');
 const raiderioApi = require('../controllers/raiderio_api_controller');
 const wowprogressApi = require('../controllers/wowprogress_api_controller');
-const blizztrackApi = require('../controllers/Blizztrack/blizztrack_api_controller');
 const releaseController = require('../controllers/Database/releases_controller');
 const stats = require('../controllers/Database/stats_controller');
 const members = require('../controllers/Database/members_controller');
@@ -106,11 +105,6 @@ routes.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
 routes.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
 //Mythic Affixes Endpoint from RaiderIO API
 routes.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
-//Blizztrack API Endpoints
-routes.get('/api/blizztrack/wow/blueposts', blizztrackApi.getWoWBluePosts);
-routes.get('/api/blizztrack/wow/latestposts', blizztrackApi.getWoWLatestPosts);
-routes.get('/api/blizztrack/wow/patchnotes', blizztrackApi.getWoWPatchNotes);
-routes.get('/api/blizztrack/wow/version', blizztrackApi.getWoWVersion);
 //Google Assistant Endpoint
 routes.post('/fulfillment', dialogFlow);
 //Raidbots Endpoints
