@@ -7,7 +7,7 @@ const CronJob = require('cron').CronJob;
 //Every x minutes
 const minutes =  {
     every5: () => new CronJob('00 */5 * * * *', () => {
-        // blizzardApi.setServerStatus();
+        blizzardApi.setServerStatus();
         blizzardApi.setTokenPrice();
     }, null, false, 'America/Denver').start(),
 }
