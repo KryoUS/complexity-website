@@ -30,7 +30,7 @@ class WoWNews extends Component {
                         <div className="flex-column wownews-overflow">
                             {this.state.breakingNews.length >= 1 ?
                                 this.state.breakingNews.map(obj => {
-                                    return <div key={`wownews${obj.epoch_datetime}`}><div>{moment().format('MMMM Do YYYY')} - {obj.alert}</div><br /></div>
+                                    return <div key={`wownews${obj.epoch_datetime}`}><div>{moment(obj.created_at).format('MMMM Do YYYY')} - {obj.alert}</div><br /></div>
                                 })
                                 :
                                 <Loader />
