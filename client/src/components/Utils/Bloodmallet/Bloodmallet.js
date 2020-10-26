@@ -141,13 +141,14 @@ class Bloodmallet extends Component {
                 <div
                     style={{ height: !this.props.chartLoaded && '0px' }}
                     id="bloodMalletChart"
+                    className="bloodmallet_chart"
                     data-bloodmallet="chart"
                     data-wow-class={this.props.selectedCharClass.toLowerCase().replace(' ', '_')}
                     data-wow-spec={this.props.selectedCharSpec.toLowerCase().replace(' ', '_')}
                     data-type={this.state.bloodMalletType}
                     data-azerite-tier={this.state.bloodMalletAzeriteTier}
                     data-fight-style={this.state.bloodMalletFightStyle}
-                    data-entries={100}
+                    data-entries={7}
                     data-background-color='rgba(17, 11, 40, 0)'
                     data-font-color={this.props.bloodMalletFontColor}
                 >Loading...</div>

@@ -28,7 +28,7 @@ class FullBloodmallet extends Component {
             for (let mutation of mutationsList) {
                 if (proceed) {
                     if (mutation.type === 'childList') {
-                        if (mutation.target.innerHTML === '<tspan>Δ Damage per second</tspan>') {
+                        if (mutation.target.innerHTML === '<g></g>') {
                             proceed = false;
                             observer.disconnect();
                             this.setState({ chartLoaded: true });
@@ -49,19 +49,35 @@ class FullBloodmallet extends Component {
     }
 
     componentDidMount() {
-        Axios.get('/api/members/specs').then(res => {
-            this.setState({
-                classes: res.data.sort((a, b) => {
-                    var x = a.className.toLowerCase();
-                    var y = b.className.toLowerCase();
-                    if (x < y) { return -1; }
-                    if (x > y) { return 1; }
-                    return 0;
-                }),
-                classesLoaded: true
-            }, () => {
-                console.log(this.state.classes)
+        Axios.get('/api/wow/classes').then(res => {
+            let classes = [];
+
+            const dataMap = res.data.map(obj => {
+                return obj.specializations.map(specObj => {
+                    return classes.push({ 
+                        className: obj.name.en_US,
+                        spec_name: specObj.name.en_US, 
+                        spec_role: specObj.name.en_US === 'Holy' || specObj.name.en_US === 'Restoration' || specObj.name.en_US === 'Mistweaver' ? 'HEALING' : '',
+                        spec_icon: specObj.media.assets[0].value
+                    });
+                })
             });
+
+            Promise.all(dataMap).then(() => {
+                this.setState({
+                    classes: classes.sort((a, b) => {
+                        var x = a.className.toLowerCase();
+                        var y = b.className.toLowerCase();
+                        if (x < y) { return -1; }
+                        if (x > y) { return 1; }
+                        return 0;
+                    }),
+                    classesLoaded: true
+                });
+            }).catch(promiseErr => {
+                console.log('Promise Error? ', promiseErr);
+            });
+            
         }).catch(err => {
             console.log('FullBloodmallet spec fetch error ---', err);
         })
@@ -80,7 +96,7 @@ class FullBloodmallet extends Component {
                                         return <div className="icon-border-black not-collected" 
                                         key={`${obj.spec_name}${obj.className}`} 
                                         style={{
-                                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.spec_icon}.png)`,
+                                            background: `url(${obj.spec_icon})`,
                                             width: '30px',
                                             height: '30px',
                                             backgroundSize: '30px',
@@ -91,7 +107,7 @@ class FullBloodmallet extends Component {
                                         className={obj.spec_name === this.state.selectedSpec ? 'icon-border-purple' : 'icon-border-white'} 
                                         key={`${obj.spec_name}${obj.className}`} 
                                         style={{
-                                            background: `url(https://res.cloudinary.com/complexityguild/image/upload/v1533521203/wow/icons/${obj.spec_icon}.png)`,
+                                            background: `url(${obj.spec_icon})`,
                                             width: '30px',
                                             height: '30px',
                                             backgroundSize: '30px',
