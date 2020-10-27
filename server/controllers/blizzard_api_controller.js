@@ -72,6 +72,36 @@ const createItemIconInClause = (arr) => {
     return itemIds.replace(/.$/,'');
 };
 
+
+
+async function getClassesAndMedia() {
+
+    let classData = [];
+
+    try {
+        const classIndex = await axios.get(`https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`);
+        const classes = await Promise.all(classIndex.data.classes.map((classObj, index) => {
+            return axios.get(`${classObj.key.href}&access_token=${process.env.BLIZZ_API_TOKEN}`)
+            .then(response => {
+                classData[index] = response.data;
+            })
+        }));
+        const specs = await Promise.all(classData.map((classObj, classIndex) => {
+            return Promise.all(classObj.specializations.map((specObj, specIndex) => {
+                return axios.get(`https://us.api.blizzard.com/data/wow/media/playable-specialization/${specObj.id}?namespace=static-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`)
+                .then(response => {
+                    classData[classIndex].specializations[specIndex].media = response.data;
+                })
+            }))
+        }));
+        // const data = await Promise.all([classIndex, classes, specs]);
+
+        return classData;
+    } catch (err) {
+        console.log(err.stack);
+    }
+}
+
 module.exports = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
@@ -82,50 +112,15 @@ module.exports = {
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
             if (tokenPrice.price === 0) {module.exports.setTokenPrice();}
-            // if (!realmObj.name) {module.exports.setServerStatus();}
+            if (!realmObj.name) {module.exports.setServerStatus();}
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });
     },
 
-    getClasses: (req, res, next) => {
-        axios.get(`https://us.api.blizzard.com/data/wow/playable-class/index?namespace=static-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(classIndexRes => {
-            let classData = [];
-            
-            const requests = classIndexRes.data.classes.map(obj => {
-                return axios.get(`${obj.key.href}&access_token=${process.env.BLIZZ_API_TOKEN}`).then(classRes => {
-
-                    const specRequests = classRes.data.specializations.map((classSpecObj, index) => {
-                        return axios.get(`https://us.api.blizzard.com/data/wow/media/playable-specialization/${classSpecObj.id}?namespace=static-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(specMediaRes => {
-                            classRes.data.specializations[index].media = specMediaRes.data;
-                        }).catch(specMediaErr => {
-                            console.log(new Date(), '------WoW Api getClasses Spec Media Error!------', specMediaErr);
-                            res.status(500).send('WoW Api getClasses Spec Media Error');
-                        })
-                    });
-
-                    Promise.all(specRequests).then(()=> {
-                        classData.push(classRes.data);
-                    }).catch(mediaSpecErr => {
-                        console.log(new Date(), '-----WoW Api getClasses Spec Media Promise Error---', mediaSpecErr);
-                        res.status(500).send('WoW Api getClasses Spec Media Promise Error');
-                    })
-                }).catch(classErr => {
-                    console.log(new Date(), '------WoW Api getClasses Error!------', classErr);
-                    res.status(500).send('WoW Api getClasses Error');
-                })
-            });
-
-            Promise.all(requests).then(() => {
-                res.status(200).send(classData);
-            }).catch(promiseErr => {
-                console.log(new Date(), '-----WoW Api getClasses Promise Error---', promiseErr);
-                res.status(500).send('WoW Api getClasses Error');
-            });
-        }).catch(err => {
-            console.log(new Date(), '------WoW Api getClasses Error!------', err);
-            res.status(500).send('WoW Api getClasses Error');
-        });
+    getClasses: async (req, res, next) => {
+        const data = await getClassesAndMedia();
+        res.status(200).send(data);
     },
 
     getMounts: (req, res) => {
