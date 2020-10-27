@@ -68,7 +68,7 @@ class Bloodmallet extends Component {
         super();
 
         this.state = {
-            bloodMalletType: 'azerite_traits_stacking',
+            bloodMalletType: 'trinkets',
             bloodMalletAzeriteTier: 3,
             bloodMalletFightStyle: 'patchwerk',
         }
@@ -143,8 +143,8 @@ class Bloodmallet extends Component {
                     id="bloodMalletChart"
                     className="bloodmallet_chart"
                     data-bloodmallet="chart"
-                    data-wow-class={this.props.selectedCharClass.toLowerCase().replace(' ', '_')}
-                    data-wow-spec={this.props.selectedCharSpec.toLowerCase().replace(' ', '_')}
+                    data-wow-class={this.props.selectedCharClass}
+                    data-wow-spec={this.props.selectedCharSpec}
                     data-type={this.state.bloodMalletType}
                     data-azerite-tier={this.state.bloodMalletAzeriteTier}
                     data-fight-style={this.state.bloodMalletFightStyle}

@@ -121,10 +121,10 @@ class FullBloodmallet extends Component {
                         }
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '100px', width: '100vw' }}>
-                        {this.state.selectedSpec ? 
+                        {this.state.selectedSpec !== '' ? 
                             <Bloodmallet 
-                            selectedCharClass={this.state.selectedClass} 
-                            selectedCharSpec={this.state.selectedSpec} 
+                            selectedCharClass={this.state.selectedClass.toLowerCase().replace(' ', '_')} 
+                            selectedCharSpec={this.state.selectedSpec.toLowerCase().replace(' ', '_')} 
                             chartLoaded={this.state.chartLoaded}
                             bloodMalletLoad={this.bloodMalletLoad}
                             bloodMalletFontColor={this.state.selectedClassColor}
