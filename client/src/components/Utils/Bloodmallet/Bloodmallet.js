@@ -98,7 +98,7 @@ class Bloodmallet extends Component {
 
     render() {
         return (
-            <div style={{width: '100%'}}>
+            <div style={{width: '95%'}}>
                 <div className="flex-row flex-center flex-wrap char-button-container">
                     {dataTypes.map(button => {
                         return this.state.bloodMalletType === button.type ?
@@ -123,6 +123,9 @@ class Bloodmallet extends Component {
                                 <div className='button-text'>{button.name}</div>
                             </div>
                     })}
+                </div>
+                <div className="gradient-line-purple" />
+                <div className="flex-row flex-center flex-wrap char-button-container">
                     {(this.state.bloodMalletType === 'azerite_traits_itemlevel' || this.state.bloodMalletType === 'azerite_traits_stacking') &&
                         tierTypes.map(button => {
                             return this.state.bloodMalletAzeriteTier === button.type ?
@@ -148,7 +151,7 @@ class Bloodmallet extends Component {
                     data-type={this.state.bloodMalletType}
                     data-azerite-tier={this.state.bloodMalletAzeriteTier}
                     data-fight-style={this.state.bloodMalletFightStyle}
-                    data-entries={7}
+                    data-entries={300}
                     data-background-color='rgba(17, 11, 40, 0)'
                     data-font-color={this.props.bloodMalletFontColor}
                 >Loading...</div>
