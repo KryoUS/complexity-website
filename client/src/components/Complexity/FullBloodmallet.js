@@ -88,9 +88,9 @@ class FullBloodmallet extends Component {
             <div>
                 <div className="about-background image-mask" />
                 <div className="flex-column page-div fade1s" style={{ marginBottom: '100px', background: 'rgba(17, 11, 41, 0.5)', height: '100%' }} >
-                    <div style={{minHeight: '42px'}}>
-                        {this.state.classes.length > 0 ?
-                            <div className="flex-row flex-between flex-wrap">
+                    {this.state.classes.length > 0 ?
+                        <div className="flex-column flex-center" style={{alignItems: 'center'}}>
+                            <div className="flex-row flex-between flex-wrap" style={{ justifyContent: 'center' }}>
                                 {this.state.classes.map(obj => {
                                     if (obj.spec_role === 'HEALING') {
                                         return <div className="icon-border-black not-collected" 
@@ -116,21 +116,20 @@ class FullBloodmallet extends Component {
                                     }
                                 })}
                             </div>
-                        :
-                            <Loader scale={'0.75'} margin={'-20px'} />
-                        }
-                    </div>
+                            <div style={{fontSize: '2rem'}}>Select a Specialization...</div>
+                        </div>
+                    :
+                        <Loader scale={'0.75'} margin={'-20px'} />
+                    }
                     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '100px', width: '100vw' }}>
-                        {this.state.selectedSpec !== '' ? 
+                        {this.state.selectedSpec !== '' && 
                             <Bloodmallet 
                             selectedCharClass={this.state.selectedClass.toLowerCase().replace(' ', '_')} 
                             selectedCharSpec={this.state.selectedSpec.toLowerCase().replace(' ', '_')} 
                             chartLoaded={this.state.chartLoaded}
                             bloodMalletLoad={this.bloodMalletLoad}
-                            bloodMalletFontColor={this.state.selectedClassColor}
+                            bloodMalletFontColor={'white'}
                             />
-                        :
-                            <div style={{fontSize: '2rem'}}>Select a Specialization...</div>
                         }
                     </div>
                 </div>
