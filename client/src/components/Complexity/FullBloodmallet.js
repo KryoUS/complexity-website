@@ -104,7 +104,7 @@ class FullBloodmallet extends Component {
                                         }} />
                                     } else {
                                         return <div 
-                                        className={obj.spec_name === this.state.selectedSpec ? 'icon-border-purple' : 'icon-border-white'} 
+                                        className={obj.spec_name === this.state.selectedSpec && obj.className === this.state.selectedClass ? 'icon-border-purple' : 'icon-border-white'} 
                                         key={`${obj.spec_name}${obj.className}`} 
                                         style={{
                                             background: `url(${obj.spec_icon})`,
@@ -116,7 +116,7 @@ class FullBloodmallet extends Component {
                                     }
                                 })}
                             </div>
-                            <div style={{fontSize: '2rem'}}>Select a Specialization...</div>
+                            {this.state.selectedSpec === '' && <div style={{fontSize: '2rem'}}>Select a Specialization...</div>}
                         </div>
                     :
                         <Loader scale={'0.75'} margin={'-20px'} />
