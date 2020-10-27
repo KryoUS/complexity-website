@@ -14,7 +14,6 @@
     "helmet": "^3.23.3",
     "https": "^1.0.0",
     "massive": "^5.11.2",
-    "nodemon": "^2.0.5",
     "passport": "^0.4.1",
     "passport-bnet": "^2.0.0"
   },
