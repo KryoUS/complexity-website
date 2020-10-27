@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { infoModal } from '../../ducks/reducer';
 import axios from 'axios';
-import PieChart from '../Utils/Highcharts/PieChart';
-import ColumnChart from '../Utils/Highcharts/ColumnChart';
+// import PieChart from '../Utils/Highcharts/PieChart';
+// import ColumnChart from '../Utils/Highcharts/ColumnChart';
 import BarChart from '../Utils/Highcharts/BarChart';
 import './About.css';
 

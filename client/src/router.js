@@ -2,11 +2,11 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import News from './components/News/News';
 import About from './components/Complexity/About';
-import Raiders from './components/Complexity/Raiders';
-import Members from './components/Complexity/Members';
-import Leaderboards from './components/Complexity/Leaderboards';
-import Settings from './components/Settings/Settings';
-import Logs from './components/Settings/Logs';
+// import Raiders from './components/Complexity/Raiders';
+// import Members from './components/Complexity/Members';
+// import Leaderboards from './components/Complexity/Leaderboards';
+// import Settings from './components/Settings/Settings';
+// import Logs from './components/Settings/Logs';
 import SimulactionCraft from './components/Complexity/SimulationCraft';
 import Bloodmallet from './components/Complexity/FullBloodmallet';
 
@@ -21,6 +21,6 @@ export default (
         <Route component={Settings} path='/settings' />
         <Route component={Logs} path='/logs' /> */}
         <Route component={SimulactionCraft} path='/simulationcraft'/>
-        {/* <Route component={Bloodmallet} path='/bloodmallet'/> */}
+        <Route component={Bloodmallet} path='/bloodmallet'/>
     </Switch>
 )
