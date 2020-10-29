@@ -1,6 +1,7 @@
 import React,  { Component } from 'react';
 import Timer from '../Timer/Timer';
 import WoWNews from '../Utils/WoWNews/WoWNews';
+import Moment from 'moment';
 import Quote from '../Utils/Quote';
 import axios from 'axios';
 import './News.css';
@@ -46,6 +47,7 @@ class News extends Component {
                                         <a className="news-flex-column" key={release.id} href={release.link} target="_blank"  rel="noopener noreferrer">
                                             <div className="news-countdown-timer">
                                                 <div style={{color: 'rgb(146, 91, 234)'}}>{release.title}</div>
+                                                <div>{Moment(Number(release.release_date)).format('MMMM Do YYYY')}</div>
                                                 <Timer className="news-countdown-time" key={release.id} date={release.release_date}/>
                                             </div>
                                         </a>
