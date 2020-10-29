@@ -179,7 +179,6 @@ module.exports = {
     //Set Token Price Object
     setTokenPrice: () => {
         axios.get(`https://us.api.blizzard.com/data/wow/token/index?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log('US Token Price Set!');
             tokenPrice.price = response.data.price;
         }).catch(error => {
             console.log('Get Token Price Error: ', error);
