@@ -29,7 +29,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 100vw;
-    height: 70px;
+    margin-bottom: 10px;
     animation: fade 4s;
     -o-animation: fade 4s;
     -moz-animation: fade 4s;
@@ -46,16 +46,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 238px;
+    min-width: 200px;
     border: 2px solid transparent;
-    border-left: 2px solid rgb(146, 91, 234);
-    border-radius: 10px;
+    border-radius: 4px;
+    transition: all 0.5s ease-in-out;
 }
 
 .news-countdown-timer {
-    letter-spacing: 0;
+    width: 240px;
     color: white;
-    background-color: #17171A;
+    background-color: #17171ac7;
     border-radius: 4px;
     padding: 5px 6px;
     text-align: center;
@@ -63,7 +63,7 @@
 
 .news-card {
     overflow: hidden;
-    width: 20%;
+    width: 25%;
     min-width: 382px;
     height: 425px;
 }
