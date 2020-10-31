@@ -31,6 +31,14 @@ class ClassDiscords extends React.Component {
                         <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_hunter.jpg)'}} />
                         <div className="class-discords-text">Hunter</div>
                     </a>
+                    <a id="mage-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/makGfZA" target="_blank"  rel="noopener noreferrer">
+                        <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_mage.jpg)'}} />
+                        <div className="class-discords-text">Mage</div>
+                    </a>
+                    <a id="monk-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/peakofserenity" target="_blank"  rel="noopener noreferrer">
+                        <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_monk.jpg)'}} />
+                        <div className="class-discords-text">Monk</div>
+                    </a>
                     <a id="paladin-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/hammerofwrath" target="_blank"  rel="noopener noreferrer">
                         <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_paladin.jpg)'}} />
                         <div className="class-discords-text">Paladin</div>
@@ -46,14 +54,6 @@ class ClassDiscords extends React.Component {
                     <a id="shaman-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/earthshrine" target="_blank"  rel="noopener noreferrer">
                         <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_shaman.jpg)'}} />
                         <div className="class-discords-text">Shaman</div>
-                    </a>
-                    <a id="mage-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/makGfZA" target="_blank"  rel="noopener noreferrer">
-                        <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_mage.jpg)'}} />
-                        <div className="class-discords-text">Mage</div>
-                    </a>
-                    <a id="monk-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/peakofserenity" target="_blank"  rel="noopener noreferrer">
-                        <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_monk.jpg)'}} />
-                        <div className="class-discords-text">Monk</div>
                     </a>
                     <a id="warlock-background-gradient" className="flex-row class-discords-class" href="https://discord.gg/BlackHarvest" target="_blank"  rel="noopener noreferrer">
                         <div className="class-discords-icon" style={{background: 'url(https://render-us.worldofwarcraft.com/icons/56/classicon_warlock.jpg)'}} />
