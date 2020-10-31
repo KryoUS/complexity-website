@@ -86,7 +86,7 @@ class SimulationCraft extends Component {
                 loaded: true
             });
         }).catch(simulationCraftError => {
-            console.log(simulationCraftError);
+            this.props.infoModal(true, 'Simulation Error!', "We simluated the result of all these simulations and the simulation was less than favorable. Please simulate another atempt later.", 'Sim U Later');
         });
 
         return null;
@@ -94,11 +94,11 @@ class SimulationCraft extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page-div">
                 <div className="news-background image-mask" />
-                <div className="flex-column page-div fade1s">
+                <div className="flex-column fade1s">
                     {this.state.loaded ?
-                        <div style={{ width: '90vw', marginBottom: '100px', alignSelf: 'center', background: 'rgba(17, 11, 41, 0.5)' }}>
+                        <div style={{ width: '90vw', alignSelf: 'center' }}>
                             <BarChart
                                 barChartID='barSimulationCraftTier'
                                 barChartHeight={1200}

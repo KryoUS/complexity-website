@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { infoModal } from '../../ducks/reducer';
 import Bloodmallet from '../Utils/Bloodmallet/Bloodmallet';
 import Loader from '../Utils/Loader';
 import Axios from 'axios';
@@ -79,15 +81,15 @@ class FullBloodmallet extends Component {
             });
             
         }).catch(err => {
-            console.log('FullBloodmallet spec fetch error ---', err);
+            this.props.infoModal(true, 'Drats!', "Looks like there might be a small issue with the flurbal flobbin. Please try again later.", 'Understood...');
         })
     };
 
     render() {
         return (
-            <div>
+            <div className="page-div">
                 <div className="about-background image-mask" />
-                <div className="flex-column page-div fade1s" style={{ marginBottom: '100px', background: 'rgba(17, 11, 41, 0.5)', height: '100%' }} >
+                <div className="flex-column fade1s" >
                     {this.state.classes.length > 0 ?
                         <div className="flex-column flex-center" style={{alignItems: 'center'}}>
                             <div className="flex-row flex-between flex-wrap" style={{ justifyContent: 'center' }}>
@@ -119,9 +121,9 @@ class FullBloodmallet extends Component {
                             {this.state.selectedSpec === '' && <div style={{fontSize: '2rem'}}>Select a Specialization...</div>}
                         </div>
                     :
-                        <Loader scale={'0.75'} margin={'-20px'} />
+                        <Loader />
                     }
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '100px', width: '100vw' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                         {this.state.selectedSpec !== '' && 
                             <Bloodmallet 
                             selectedCharClass={this.state.selectedClass.toLowerCase().replace(' ', '_')} 
@@ -138,4 +140,13 @@ class FullBloodmallet extends Component {
     }
 }
 
-export default FullBloodmallet
+const mapStateToProps = (state) => {
+    return {
+        modalOpen: state.modalOpen,
+        modalTitle: state.modalTitle,
+        modalMessage: state.modalMessage,
+        modalButton: state.modalButton
+    }
+}
+
+export default connect(mapStateToProps, { infoModal })(FullBloodmallet);

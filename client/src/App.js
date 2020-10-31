@@ -9,7 +9,7 @@ import ComingSoon from './components/Complexity/ComingSoon';
 class App extends Component {
   render() {
     return (
-      <div style={{width: '100vw', height: '100vh', position: 'relative', top: 0, overflow: 'hidden'}}>
+      <div className="App">
         {/* <ComingSoon /> */}
         <Nav />
         {router}

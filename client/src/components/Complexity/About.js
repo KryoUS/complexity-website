@@ -31,13 +31,13 @@ class About extends Component {
         axios.get('/api/wowprogress/guildranking').then(res => {
             this.setState({ wowProgress: res.data });
         }).catch(wowProgressError => {
-            console.log(wowProgressError);
+            this.props.infoModal(true, 'No rank!?', "Somehow our rank was a negative number. Give us a minute to add more to it and try again later.", 'Rank +100');
         });
 
         axios.get('/api/raiderio/guildranking').then(res => {
             this.raidProgressBarGroupBy(res.data);
         }).catch(raiderIOError => {
-            console.log(raiderIOError);
+            this.props.infoModal(true, 'No rank!?', "Somehow our rank was a negative number. Give us a minute to add more to it and try again later.", 'Rank +100');
         });
 
         // axios.get('/api/members/all').then(res => {
@@ -238,10 +238,10 @@ class About extends Component {
 
     render() {
         return (
-            <div>
+            <div className="page-div">
                 <div className="about-background image-mask" />
-                <div className="page-div fade1s">
-                    <div id="about-page" style={{ marginBottom: '100px' }}>
+                <div className="fade1s">
+                    <div id="about-page">
                         <div className="about-chart-column">
                             {/* {this.state.pieChartClasses.length > 1 ?
                                 <PieChart

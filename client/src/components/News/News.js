@@ -1,4 +1,6 @@
 import React,  { Component } from 'react';
+import { connect } from 'react-redux';
+import { infoModal } from '../../ducks/reducer';
 import Timer from '../Timer/Timer';
 import WoWNews from '../Utils/WoWNews/WoWNews';
 import Moment from 'moment';
@@ -20,15 +22,13 @@ class News extends Component {
         axios.get('/api/news').then(res => {
             this.setState({news: res.data});
         }).catch(error => {
-            console.log('News Error')
-            console.log(error);
+            
         });
 
         axios.get('/api/releases').then(res => {
             this.setState({releases: res.data});
         }).catch(error => {
-            console.log('Releases Error')
-            console.log(error);
+            this.props.infoModal(true, 'Uh oh!', "We couldn't speak the same language as the database. Give us a moment to learn it and try again later.", 'Sure');
         });
     }
 
@@ -89,4 +89,13 @@ class News extends Component {
     }
 }
 
-export default News
+const mapStateToProps = (state) => {
+    return {
+        modalOpen: state.modalOpen,
+        modalTitle: state.modalTitle,
+        modalMessage: state.modalMessage,
+        modalButton: state.modalButton
+    }
+}
+
+export default connect(mapStateToProps, { infoModal })(News);

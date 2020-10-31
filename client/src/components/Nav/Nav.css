@@ -3,21 +3,20 @@
     top: 0;
     z-index: 2;
     width: 100vw;
-    height: 60px;
-    /* background-color: #160e37d7; */
+    height: 70px;
+    background-color: #160e37;
 }
 
 .nav-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     z-index: 2;
     width: 100vw;
     height: 30px;
-    background-color: rgba(17, 11, 41, 0.5);
+    background-color: rgba(17, 11, 41);
 }
 
 .nav-flex-container {
