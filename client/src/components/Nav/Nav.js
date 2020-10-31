@@ -103,6 +103,16 @@ class Nav extends Component {
                                     <div className='button-text'>About</div>
                                 </div>
                             </Link>
+                            <Link to="/classdiscords">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Class Discords</div>
+                                </div>
+                            </Link>
+                            <Link to="/bloodmallet">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Bloodmallet</div>
+                                </div>
+                            </Link>
                             {/* <Link to="/raiders">
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>Raid Roster</div>
@@ -121,16 +131,6 @@ class Nav extends Component {
                             <Link to="/simulationcraft">
                                 <div className='button-border' id='nav-button'>
                                     <div className='button-text'>SimulationCraft</div>
-                                </div>
-                            </Link>
-                            <Link to="/bloodmallet">
-                                <div className='button-border' id='nav-button'>
-                                    <div className='button-text'>Bloodmallet</div>
-                                </div>
-                            </Link>
-                            <Link to="/classdiscords">
-                                <div className='button-border' id='nav-button'>
-                                    <div className='button-text'>Class Discords</div>
                                 </div>
                             </Link>
                         </div>
