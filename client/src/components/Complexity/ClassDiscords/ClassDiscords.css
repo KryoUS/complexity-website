@@ -1,0 +1,66 @@
+.class-discords-class {
+    margin-top: 10px;
+    width: 60%;
+    min-width: 400px;
+    height: 62px;
+    border-radius: 62px;
+    align-items: center;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.class-discords-class:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+}
+
+.class-discords-class:hover > .class-discords-icon {
+    border: 3px solid rgb(146, 91, 234);
+}
+
+.class-discords-class:hover > .class-discords-text {
+    color: rgb(146, 91, 234);
+}
+
+.class-discords-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid white;
+    position: relative;
+    left: -1px;
+    transition: all 0.5s ease-in-out;
+}
+
+.class-discords-text {
+    margin-left: 20px;
+    color: white;
+    font-size: 56px;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px black;
+    transition: all 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    .class-discords-class {
+        width: 80%;
+        height: 56px;
+        border-radius: 56px;
+    }
+
+    .class-discords-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .class-discords-text {
+        font-size: 50px;
+    }
+
+}

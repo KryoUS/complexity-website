@@ -128,6 +128,11 @@ class Nav extends Component {
                                     <div className='button-text'>Bloodmallet</div>
                                 </div>
                             </Link>
+                            <Link to="/classdiscords">
+                                <div className='button-border' id='nav-button'>
+                                    <div className='button-text'>Class Discords</div>
+                                </div>
+                            </Link>
                         </div>
                         
                         {this.props.user.id ?

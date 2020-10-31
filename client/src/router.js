@@ -9,6 +9,7 @@ import About from './components/Complexity/About';
 // import Logs from './components/Settings/Logs';
 import SimulactionCraft from './components/Complexity/SimulationCraft';
 import Bloodmallet from './components/Complexity/FullBloodmallet';
+import ClassDiscords from './components/Complexity/ClassDiscords/ClassDiscords';
 
 
 export default (
@@ -22,5 +23,6 @@ export default (
         <Route component={Logs} path='/logs' /> */}
         <Route component={SimulactionCraft} path='/simulationcraft'/>
         <Route component={Bloodmallet} path='/bloodmallet'/>
+        <Route component={ClassDiscords} path='/classdiscords'/>
     </Switch>
 )
