@@ -9,9 +9,7 @@ import { connect } from 'react-redux';
 import { infoModal } from '../../ducks/reducer';
 import Prettyjson from '../Utils/PrettyJson';
 
-function Transition(props) {
-    return <Slide direction="up" {...props} />;
-}
+const Transition = React.forwardRef((props, ref) => <Slide direction="up" {...props} ref={ref} />);
 
 class InfoModal extends React.Component {
 
