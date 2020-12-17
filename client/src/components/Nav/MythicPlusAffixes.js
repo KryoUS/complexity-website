@@ -52,6 +52,18 @@ const wowheadAffixData = {
     },
     Awakened: {
         id: 120
+    },
+    Prideful: {
+        id: 121
+    },
+    Inspiring: {
+        id: 122
+    },
+    Spiteful: {
+        id: 123
+    },
+    Storming: {
+        id: 124
     }
 }
 
@@ -64,86 +76,86 @@ class MythicPlusAffixes extends React.Component {
                 {
                     week: 1,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Grievous',                    
-                    type: 'Awakened'
+                    plusFour: 'Bursting',
+                    plusSeven: 'Volcanic',                    
+                    type: 'Prideful'
                 },
                 {
                     week: 2,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Explosive',                    
-                    type: 'Awakened'
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Storming',                    
+                    type: 'Prideful'
                 },
                 {
                     week: 3,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
+                    plusFour: 'Spiteful',
                     plusSeven: 'Grievous',                    
-                    type: 'Awakened'
+                    type: 'Prideful'
                 },
                 {
                     week: 4,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Volcanic',                    
-                    type: 'Awakened'
+                    plusFour: 'Inspiring',
+                    plusSeven: 'Necrotic',                    
+                    type: 'Prideful'
                 },
                 {
                     week: 5,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Skittish',                  
-                    type: 'Awakened'
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Explosive',                  
+                    type: 'Prideful'
                 },
                 {
                     week: 6,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Necrotic',
-                    type: 'Awakened'
+                    plusFour: 'Raging',
+                    plusSeven: 'Explosive',
+                    type: 'Prideful'
                 },
                 {
                     week: 7,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
-                    plusSeven: 'Quaking',
-                    type: 'Awakened'
+                    plusFour: 'Spiteful',
+                    plusSeven: 'Volcanic',
+                    type: 'Prideful'
                 },
                 {
                     week: 8,
                     baseAffix: 'Tyrannical',
                     plusFour: 'Bolstering',
-                    plusSeven: 'Explosive',
-                    type: 'Awakened'
+                    plusSeven: 'Necrotic',
+                    type: 'Prideful'
                 },
                 {
                     week: 9,
                     baseAffix: 'Fortified',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Volcanic',
-                    type: 'Awakened'
+                    plusFour: 'Inspiring',
+                    plusSeven: 'Storming',
+                    type: 'Prideful'
                 },
                 {
                     week: 10,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Necrotic',
-                    type: 'Awakened'
+                    plusFour: 'Bursting',
+                    plusSeven: 'Explosive',
+                    type: 'Prideful'
                 },
                 {
                     week: 11,
                     baseAffix: 'Fortified',
-                    plusFour: 'Teeming',
-                    plusSeven: 'Quaking',
-                    type: 'Awakened'
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Grievous',
+                    type: 'Prideful'
                 },
                 {
                     week: 12,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Skittish',
-                    type: 'Awakened'
+                    plusFour: 'Raging',
+                    plusSeven: 'Quaking',
+                    type: 'Prideful'
                 },
                 
             ],
