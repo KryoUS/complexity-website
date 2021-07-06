@@ -1,6 +1,6 @@
 //Environment Variables
 const path = require('path');
-//require('dotenv').config({path: path.join(__dirname, '.env')});
+require('dotenv').config({path: path.join(__dirname, '.env')});
 
 //Libraries
 const https = require('https');
@@ -8,7 +8,6 @@ const http = require('http');
 const fs = require('fs');
 const app = require('./app');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const passport = require('passport');
 const massive = require('massive');
 const express = require('express');
@@ -16,16 +15,13 @@ const helmet = require('helmet');
 const routes = require('./routes/routes');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
-const cron = require('./cronjobs/cronjobs');
+const crons = require('./cronjobs/cronjobs');
 
 //Start Cron Job Timers
-cron.jobs();
+crons.jobs();
 
 //Basic Express Security with Helmet and API Rate Limiting
 app.use( helmet() );
-
-//Body Parser
-app.use( bodyParser.json() );
 
 //Cors
 app.use( cors() );
@@ -45,7 +41,7 @@ app.use(session({
 app.use( passport.initialize() );
 app.use( passport.session() );
 passport.use( bnetStrategy );
-app.use(express.static(__dirname + '/../build'));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 //Auth Serialize
 passport.serializeUser(function(user, done) {
@@ -58,40 +54,41 @@ passport.deserializeUser(function(user, done) {
 });
 
 //Massive
-massive({
-    host: process.env.PGHOST,
-    port: process.env.PGPORT,
-    database: process.env.PGDATABASE,
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    ssl: true
-}).then(instance => {
-    app.set('db', instance);
+(async () => {
+    const db = await massive({
+        host: process.env.PGHOST,
+        port: process.env.PGPORT,
+        database: process.env.PGDATABASE,
+        user: process.env.PGUSER,
+        password: process.env.PGPASSWORD,
+        ssl: { rejectUnauthorized: false },
+        poolsize: 25
+    });
+
+    app.set('db', db);
 
     /* API Routes */
-    app.use('/', routes);
+    app.all('/', routes);
     //Catch all routes that don't match anything and send to Build/index.js for Production
-    app.get('/*', express.static(
-        path.join(__dirname, '..', 'client', 'build')
-    ));
-    
-}).catch(error => {
-    console.log('Massive Error: ', error)
-});
+    app.all("/*", (req, res) => {
+        return res.sendFile(path.join(__dirname + "/../client/build/index.html"));
+    });
 
-//Start Server
-let port = process.env.PORT || 3050;
-//Set to 'false' for Google Assistant testing.
-if (process.env.DEV == 'true') {
-    https.createServer( 
-        {
-            key: fs.readFileSync('./security/cert.key'),
-            cert: fs.readFileSync('./security/cert.pem')
-        }, app ).listen(port, () => {
-        console.log( 'HTTPS Express server listening on port ' + port );
-    });
-} else {
-    http.createServer(app).listen(port, () => {
-        console.log( 'HTTP Express server listening on port ' + port );
-    });
-};
+    //Start Server
+    let port = process.env.PORT || 3050;
+    //Set to 'false' for Google Assistant testing with NGROK.
+    if (process.env.DEV == 'true') {
+        https.createServer( 
+            {
+                key: fs.readFileSync('./security/cert.key'),
+                cert: fs.readFileSync('./security/cert.pem')
+            }, app ).listen(port, () => {
+            console.log( 'HTTPS Express server listening on port ' + port );
+        });
+    } else {
+        http.createServer(app).listen(port, () => {
+            console.log( 'HTTP Express server listening on port ' + port );
+        });
+    };
+    
+})();
