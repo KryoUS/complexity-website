@@ -28,7 +28,7 @@ module.exports = {
 
     getAlert: (req, res) => {
         
-        req.app.get('db').query('select * from breakingnews order by id desc').then(response => {
+        req.app.get('db').query('select * from breakingnews order by id desc limit 1').then(response => {
             
             for (i=0; i<response.length; i++)
             {
