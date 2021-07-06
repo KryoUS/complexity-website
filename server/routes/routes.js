@@ -1,5 +1,6 @@
 //Libraries
-const routes = require('express').Router();
+const routes = require('../app');
+// const routes = app.Router();
 const passport = require('passport');
 
 //Controllers
@@ -18,6 +19,7 @@ const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
 const raidbots = require('../controllers/Database/raidbots_controller');
 const simulationcraft = require('../controllers/Database/simulationcraft_controller');
 const icons = require('../controllers/Database/icons_controller');
+const twitch = require('../controllers/twitch_api_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -112,5 +114,10 @@ routes.post('/fulfillment', dialogFlow);
 routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbots.getByCharName);
 //SimulationCraft Endpoints
 routes.get('/api/simulationcraft', simulationcraft.get);
+//Twitch Endpoints
+routes.put('/api/twitch/streamer/golive/:twitchName', twitch.addComplexityStream);
+routes.post('/api/twitch/webhooks/callback', twitch.webhookCallback);
+routes.get('/api/twitch/webhooks/list', twitch.listComplexityStream);
+routes.delete('/api/twitch/streamer/removeid/:twitchid', twitch.removeComplexityStream);
 
 module.exports = routes;
