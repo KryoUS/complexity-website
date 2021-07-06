@@ -102,7 +102,7 @@ module.exports = {
             } else if (req.header("Twitch-Eventsub-Message-Type") === "notification") {
                 console.log(req.body.event) //Send Event to Discord webhook.
                 
-                // axios.post('https://discord.com/api/webhooks/860371543573004299/zzGMyZMJlgi3hucM7RvOynZ4KGqYzo148Wqj-tye5AksMw1xu9Lh5CB9prFGy8V3Mlcm', 
+                // axios.post('DISCORD WEBHOOK GOES HERE', 
                 //     {
                 //         "title": title,
                 //         "url": "https://www.twitch.tv/" + user_login,
