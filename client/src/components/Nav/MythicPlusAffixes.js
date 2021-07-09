@@ -64,6 +64,9 @@ const wowheadAffixData = {
     },
     Storming: {
         id: 124
+    },
+    Tormented: {
+        id: 128
     }
 }
 
@@ -173,7 +176,11 @@ class MythicPlusAffixes extends React.Component {
     }
 
     affixId = (affixName) => {
-        return wowheadAffixData[affixName].id;
+        if (wowheadAffixData[affixName]) {
+            return wowheadAffixData[affixName].id;
+        } else {
+            return 999;
+        }
     }
 
     affixWowheadURL = (affixName) => {
