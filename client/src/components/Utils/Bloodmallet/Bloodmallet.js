@@ -8,32 +8,16 @@ const dataTypes = [
         name: 'Trinkets'
     },
     {
-        type: 'azerite_traits_stacking',
-        name: 'Trait Stacking'
+        type: 'legendaries',
+        name: 'Legendaries'
     },
     {
-        type: 'azerite_traits_itemlevel',
-        name: 'Trait iLevel'
+        type: 'soul_binds',
+        name: 'Soul Binds'
     },
     {
-        type: 'essences',
-        name: 'Essences'
-    },
-    {
-        type: 'essence_combinations',
-        name: 'Essence Combinations'
-    },
-    {
-        type: 'azerite_items_chest',
-        name: 'Trait Chest'
-    },
-    {
-        type: 'azerite_items_head',
-        name: 'Trait Head'
-    },
-    {
-        type: 'azerite_items_shoulders',
-        name: 'Trait Shoulder'
+        type: 'talents',
+        name: 'Talents'
     },
     {
         type: 'races',
@@ -41,27 +25,35 @@ const dataTypes = [
     },
 ];
 
-const tierTypes = [
-    {
-        type: 3,
-        name: 'Outer Traits'
-    },
-    {
-        type: 2,
-        name: 'Inner Traits'
-    },
-];
-
 const fightTypes = [
     {
-        type: 'patchwerk',
+        type: 'castingpatchwerk',
         name: 'Patchwerk'
     },
     {
         type: 'hecticaddcleave',
         name: 'Hectic Cleave'
     }
-]
+];
+
+const covenantTypes = [
+    {
+        type: 'Kyrian',
+        name: 'Kyrian'
+    },
+    {
+        type: 'Necrolord',
+        name: 'Necrolord'
+    },
+    {
+        type: 'Night Fae',
+        name: 'Night Fae'
+    },
+    {
+        type: 'Venthyr',
+        name: 'Venthyr'
+    },
+];
 
 class Bloodmallet extends Component {
     constructor() {
@@ -69,8 +61,9 @@ class Bloodmallet extends Component {
 
         this.state = {
             bloodMalletType: 'trinkets',
-            bloodMalletAzeriteTier: 3,
-            bloodMalletFightStyle: 'patchwerk',
+            bloodMalletConduitRank: 7,
+            bloodMalletFightStyle: 'castingpatchwerk',
+            bloodMalletCovenant: 'Kyrian',
         }
     };
 
@@ -80,8 +73,14 @@ class Bloodmallet extends Component {
         });
     };
 
-    tierButton = (button) => {
-        this.setState({ bloodMalletAzeriteTier: button}, () => {
+    covenantButton = (button) => {
+        this.setState({ bloodMalletCovenant: button}, () => {
+            this.props.bloodMalletLoad();
+        });
+    };
+
+    bloodMalletConduitRank = (button) => {
+        this.setState({ bloodMalletConduitRank: button}, () => {
             this.props.bloodMalletLoad();
         });
     };
@@ -99,6 +98,19 @@ class Bloodmallet extends Component {
     render() {
         return (
             <div style={{width: '95%'}}>
+                <div className="flex-row flex-center flex-wrap char-button-container">
+                    {covenantTypes.map(button => {
+                        return this.state.bloodMalletCovenant === button.type ?
+                            <div className='button-border' key={button.type}>
+                                <div className='button-text' id='button-selected'>{button.name}</div>
+                            </div>
+                            :
+                            <div className='button-border' key={button.type} onClick={() => this.covenantButton(button.type)}>
+                                <div className='button-text'>{button.name}</div>
+                            </div>
+                    })}
+                </div>
+                <div className="gradient-line-purple" />
                 <div className="flex-row flex-center flex-wrap char-button-container">
                     {dataTypes.map(button => {
                         return this.state.bloodMalletType === button.type ?
@@ -125,21 +137,6 @@ class Bloodmallet extends Component {
                     })}
                 </div>
                 <div className="gradient-line-purple" />
-                <div className="flex-row flex-center flex-wrap char-button-container">
-                    {(this.state.bloodMalletType === 'azerite_traits_itemlevel' || this.state.bloodMalletType === 'azerite_traits_stacking') &&
-                        tierTypes.map(button => {
-                            return this.state.bloodMalletAzeriteTier === button.type ?
-                                <div className='button-border' key={button.type}>
-                                    <div className='button-text' id='button-selected'>{button.name}</div>
-                                </div>
-                                :
-                                <div className='button-border' key={button.type} onClick={() => this.tierButton(button.type)}>
-                                    <div className='button-text'>{button.name}</div>
-                                </div>
-                        })
-                    }
-                </div>
-                <div className="gradient-line-purple" />
                 {!this.props.chartLoaded && <div style={{ height: '100%', width: '100%' }}><Loader /></div>}
                 <div
                     style={{ height: !this.props.chartLoaded && '0px' }}
@@ -149,7 +146,12 @@ class Bloodmallet extends Component {
                     data-wow-class={this.props.selectedCharClass}
                     data-wow-spec={this.props.selectedCharSpec}
                     data-type={this.state.bloodMalletType}
-                    data-azerite-tier={this.state.bloodMalletAzeriteTier}
+                    data-conduit-rank={this.state.bloodMalletConduitRank}
+                    data-covenant={this.state.bloodMalletCovenant}
+                    data-renown="35"
+                    data-chart-mode="soulbinds"
+                    data-chart-engine="highcharts"
+                    data-tooltip-engine="wowhead"
                     data-fight-style={this.state.bloodMalletFightStyle}
                     data-entries={300}
                     data-background-color='rgba(17, 11, 40, 0)'
