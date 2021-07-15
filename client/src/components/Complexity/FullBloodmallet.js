@@ -21,6 +21,7 @@ class FullBloodmallet extends Component {
 
     bloodMalletLoad = () => {
         this.setState({ chartLoaded: false });
+        document.querySelectorAll("div.bloodmallet_chart")[0].setAttribute("data-loaded-data", "");
         window.bloodmallet_chart_import();
 
         let proceed = true;
