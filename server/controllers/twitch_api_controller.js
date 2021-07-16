@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 function verifySignature(messageSignature, messageID, messageTimestamp, body) {
     let message = messageID + messageTimestamp + body;
-    let signature = crypto.createHmac('sha256', "c0mp13xity").update(message);
+    let signature = crypto.createHmac('sha256', process.env.TWITCH_SECRET).update(message);
     let expectedSignatureHeader = "sha256=" + signature.digest("hex");
 
     return expectedSignatureHeader === messageSignature
@@ -35,7 +35,6 @@ module.exports = {
     },
 
     createTwitchWebhook: (req, res, twitchID) => {
-        console.log(`Registering Twitch Webhook...`);
         axios.post('https://api.twitch.tv/helix/eventsub/subscriptions', {
             type: "stream.online",
             version: "1",
@@ -45,7 +44,7 @@ module.exports = {
             transport: {
                 method: "webhook",
                 callback: "https://www.complexityguild.net/api/twitch/webhooks/callback",
-                secret: "c0mp13xity"
+                secret: process.env.TWITCH_SECRET
             }
         }, 
         {
@@ -55,7 +54,6 @@ module.exports = {
                 "Content-Type": "application/json"
             }
         }).then(response => {
-            console.log(`Webhook Verification in Progress...`, response.data);
             res.status(200).send('Webhook Verification in Progress...');
         }).catch(addComplexityStreamError => {
             console.log('Twitch API Add Complexity Stream Error: ', addComplexityStreamError);
@@ -87,58 +85,92 @@ module.exports = {
             res.status(200).send(response.data);
         }).catch(listComplexityStreamError => {
             console.log('Twitch API List Stream Error: ', listComplexityStreamError);
-        })
+        });
     },
 
     webhookCallback: (req, res) => {
-        if (!verifySignature(req.header("Twitch-Eventsub-Message-Signature"),
-            req.header("Twitch-Eventsub-Message-Id"),
-            req.header("Twitch-Eventsub-Message-Timestamp"),
+        if (!verifySignature(req.header("twitch-eventsub-message-signature"),
+            req.header("twitch-eventsub-message-id"),
+            req.header("twitch-eventsub-message-timestamp"),
             req.rawBody)) {
             res.status(403).send("Forbidden");
         } else {
-            if (req.header("Twitch-Eventsub-Message-Type") === "webhook_callback_verification") {
+            if (req.header("twitch-eventsub-message-type") === "webhook_callback_verification") {
                 res.send(req.body.challenge) 
-            } else if (req.header("Twitch-Eventsub-Message-Type") === "notification") {
-                console.log(req.body.event) //Send Event to Discord webhook.
+            } else if (req.header("twitch-eventsub-message-type") === "notification") {
                 
-                // axios.post('DISCORD WEBHOOK GOES HERE', 
-                //     {
-                //         "title": title,
-                //         "url": "https://www.twitch.tv/" + user_login,
-                //         "color": 6570404,
-                //         "footer": {
-                //             "text": started_at
-                //         },
-                //         "image": {
-                //             "url": thumbnail_url.replace('{width}', 440).replace('{height}', 248)
-                //         },
-                //         "author": {
-                //             "name": user_name + " is now streaming"
-                //         },
-                //         "fields": [
-                //             {
-                //                 "name": "Playing",
-                //                 "value": game_name,
-                //                 "inline": true
-                //             },
-                //             {
-                //                 "name": "Started at (streamer timezone)",
-                //                 "value": started_at,
-                //                 "inline": true
-                //             }
-                //         ]
-                //     },
-                //     {
-                //         headers: {
-                //             'Content-Type': 'application/json',
-                //         },
-                //     }
-                // ).then(response => {
-                //     console.log("Discord Posted that a user went live!");
-                // }).catch(twitchNotificationError => {
-                //     console.log("Twitch Notification Error: ", twitchNotificationError);
-                // });
+                const {broadcaster_user_name, broadcaster_user_login, broadcaster_user_id, started_at} = req.body.event;
+
+                axios.get(`https://api.twitch.tv/helix/channels?broadcaster_id=${broadcaster_user_id}`, {
+                    headers: {
+                        "Client-ID": process.env.TWITCH_CLIENT_ID,
+                        "Authorization": 'Bearer ' + process.env.TWITCH_TOKEN,
+                        "Content-Type": "application/json"
+                    }
+                }).then(response => {
+                    
+                    const {game_name, title} = response.data.data[0];
+
+                    let thumbnail_url = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${broadcaster_user_login}-640x360.jpg?time=${new Date().getTime()}`;
+
+                    axios.get(`https://api.twitch.tv/helix/users?login=${broadcaster_user_login}`, {
+                        headers: {
+                            "Client-ID": process.env.TWITCH_CLIENT_ID,
+                            "Authorization": 'Bearer ' + process.env.TWITCH_TOKEN,
+                            "Content-Type": "application/json"
+                        }
+                    }).then(userResponse => {
+
+                        const {description, profile_image_url, offline_image_url} = userResponse.data.data[0];
+                        
+                        axios.post(process.env.DISCORD_WEBHOOK, 
+                            {
+                                embeds: [
+                                    {
+                                        "title": title,
+                                        "description": description,
+                                        "url": "https://www.twitch.tv/" + broadcaster_user_login,
+                                        "color": 6570404,
+                                        "footer": {
+                                            "text": started_at
+                                        },
+                                        "image": {
+                                            "url": thumbnail_url
+                                        },
+                                        "thumbnail": {
+                                            "url": profile_image_url
+                                        },
+                                        "author": {
+                                            "name": broadcaster_user_name + " is now streaming!"
+                                        },
+                                        "fields": [
+                                            {
+                                                "name": "Playing",
+                                                "value": game_name,
+                                                "inline": true
+                                            },
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                            }
+                        ).then(discordResponse => {
+                            
+                        }).catch(discordWebhookError => {
+                            console.log("Discord Webhook POST Error: ", discordWebhookError);
+                        });
+
+                    }).catch(twitchUserInformationError => {
+                        console.log('Twitch API User Information Error: ', twitchUserInformationError);
+                    });
+
+                }).catch(twitchChannelInfoError => {
+                    console.log('Twitch API Channel Info Error: ', twitchChannelInfoError);
+                });
 
                 res.send("");
             }
