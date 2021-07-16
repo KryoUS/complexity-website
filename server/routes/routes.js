@@ -37,6 +37,19 @@ const requireAdmin = (req, res, next) => {
     }    
 }
 
+const discordBotID = (req, res, next) => {
+
+    if (req.originalUrl.includes("/api/twitch/streamer/golive/") && req.get("Discord-Bot-Id") !== process.env.DISCORD_BOT_ID) {
+        res.sendStatus(403);
+    } else if (req.originalUrl.includes("/api/twitch/webhooks/list") && req.get("Discord-Bot-Id") !== process.env.DISCORD_BOT_ID) {
+        res.sendStatus(403);
+    } else if (req.originalUrl.includes("/api/twitch/streamer/removeid/") && req.get("Discord-Bot-Id") !== process.env.DISCORD_BOT_ID) {
+        res.sendStatus(403);
+    } else {
+        next();
+    }
+}
+
 // API Initialization Variables
 blizzardApi.setBlizzardToken();
 
@@ -115,9 +128,9 @@ routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidb
 //SimulationCraft Endpoints
 routes.get('/api/simulationcraft', simulationcraft.get);
 //Twitch Endpoints
-routes.put('/api/twitch/streamer/golive/:twitchName', twitch.addComplexityStream);
+routes.put('/api/twitch/streamer/golive/:twitchName', discordBotID, twitch.addComplexityStream);
 routes.post('/api/twitch/webhooks/callback', twitch.webhookCallback);
-routes.get('/api/twitch/webhooks/list', twitch.listComplexityStream);
-routes.delete('/api/twitch/streamer/removeid/:twitchid', twitch.removeComplexityStream);
+routes.get('/api/twitch/webhooks/list', discordBotID, twitch.listComplexityStream);
+routes.delete('/api/twitch/streamer/removeid/:twitchid', discordBotID, twitch.removeComplexityStream);
 
 module.exports = routes;
