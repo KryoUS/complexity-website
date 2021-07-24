@@ -31,6 +31,7 @@ module.exports = {
             module.exports.createTwitchWebhook(req, res, response.data.data[0].id);
         }).catch(getTwitchIDError => {
             console.log('Twitch API Get Twitch ID Error: ', getTwitchIDError);
+            res.status(502).send('Twitch API Get Twitch ID Error');
         });
     },
 
@@ -57,6 +58,7 @@ module.exports = {
             res.status(200).send('Webhook Verification in Progress...');
         }).catch(addComplexityStreamError => {
             console.log('Twitch API Add Complexity Stream Error: ', addComplexityStreamError);
+            res.status(502).send('Twitch API Add Complexity Streamer Error');
         });
     },
 
@@ -70,7 +72,8 @@ module.exports = {
         }).then(response => {
             res.send(`${req.params.twitchid} removed.`);
         }).catch(removeComplexityStreamError => {
-            console.log('Remove Complexity Stream Error: ', removeComplexityStreamError);
+            console.log('Twitch API Remove Complexity Stream Error: ', removeComplexityStreamError);
+            res.status(502).send('Twitch API Remove Complexity Streamer Error');
         });
     },
 
@@ -85,6 +88,7 @@ module.exports = {
             res.status(200).send(response.data);
         }).catch(listComplexityStreamError => {
             console.log('Twitch API List Stream Error: ', listComplexityStreamError);
+            res.status(502).send('Twitch API List Streamers Error');
         });
     },
 
