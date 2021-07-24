@@ -85,7 +85,36 @@ module.exports = {
                 "Content-Type": "application/json"
             }
         }).then(response => {
-            res.status(200).send(response.data);
+
+            const twitchAsyncFunction = async (twitchStreamerList) => {
+                const allAsyncResults = [];
+
+                for (const twitchObj of twitchStreamerList) {
+                    const asyncResults = await axios.get(`https://api.twitch.tv/helix/channels?broadcaster_id=${twitchObj.condition.broadcaster_user_id}`, {
+                        headers: {
+                            "Client-ID": process.env.TWITCH_CLIENT_ID,
+                            "Authorization": 'Bearer ' + process.env.TWITCH_TOKEN,
+                            "Content-Type": "application/json"
+                        }
+                    }).catch(twitchChannelInfoError => {
+                        console.log('Twitch API Channel Info Error: ', twitchChannelInfoError);
+                    });
+
+                    twitchObj.channel_info = asyncResults.data.data[0];
+                    allAsyncResults.push(twitchObj)
+                }
+
+                return allAsyncResults;
+            }
+
+            twitchAsyncFunction(response.data.data).then(data => {
+                response.data.data = data;
+                res.status(200).send(response.data);
+            }).catch(listNameFetchError => {
+                console.log('Twitch API List Channel Name Fetch Error', listNameFetchError)
+                res.status(502).send('Twitch API List Channel Name Fetch Error');
+            });
+
         }).catch(listComplexityStreamError => {
             console.log('Twitch API List Stream Error: ', listComplexityStreamError);
             res.status(502).send('Twitch API List Streamers Error');
