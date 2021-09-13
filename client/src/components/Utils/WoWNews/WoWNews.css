@@ -15,7 +15,7 @@
 
 .wownews-overflow {
     display: block;
-    height: 180px;
+    /* height: 180px; */
     border-radius: 4px;
     padding: 0px 12px;
     overflow: auto;
