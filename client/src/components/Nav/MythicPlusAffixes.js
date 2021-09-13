@@ -80,85 +80,85 @@ class MythicPlusAffixes extends React.Component {
                     week: 1,
                     baseAffix: 'Fortified',
                     plusFour: 'Bursting',
-                    plusSeven: 'Volcanic',                    
-                    type: 'Prideful'
+                    plusSeven: 'Storming',                    
+                    type: 'Tormented'
                 },
                 {
                     week: 2,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Storming',                    
-                    type: 'Prideful'
+                    plusFour: 'Raging',
+                    plusSeven: 'Volcanic',                    
+                    type: 'Tormented'
                 },
                 {
                     week: 3,
                     baseAffix: 'Fortified',
-                    plusFour: 'Spiteful',
+                    plusFour: 'Inspiring',
                     plusSeven: 'Grievous',                    
-                    type: 'Prideful'
+                    type: 'Tormented'
                 },
                 {
                     week: 4,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Inspiring',
+                    plusFour: 'Spiteful',
                     plusSeven: 'Necrotic',                    
-                    type: 'Prideful'
+                    type: 'Tormented'
                 },
                 {
                     week: 5,
                     baseAffix: 'Fortified',
-                    plusFour: 'Sanguine',
-                    plusSeven: 'Explosive',                  
-                    type: 'Prideful'
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Quaking',                  
+                    type: 'Tormented'
                 },
                 {
                     week: 6,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Explosive',
-                    type: 'Prideful'
+                    plusFour: 'Sanguine',
+                    plusSeven: 'Storming',
+                    type: 'Tormented'
                 },
                 {
                     week: 7,
                     baseAffix: 'Fortified',
-                    plusFour: 'Spiteful',
-                    plusSeven: 'Volcanic',
-                    type: 'Prideful'
+                    plusFour: 'Raging',
+                    plusSeven: 'Explosive',
+                    type: 'Tormented'
                 },
                 {
                     week: 8,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bolstering',
-                    plusSeven: 'Necrotic',
-                    type: 'Prideful'
+                    plusFour: 'Bursting',
+                    plusSeven: 'Volcanic',
+                    type: 'Tormented'
                 },
                 {
                     week: 9,
                     baseAffix: 'Fortified',
-                    plusFour: 'Inspiring',
-                    plusSeven: 'Storming',
-                    type: 'Prideful'
+                    plusFour: 'Spiteful',
+                    plusSeven: 'Grievous',
+                    type: 'Tormented'
                 },
                 {
                     week: 10,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Bursting',
-                    plusSeven: 'Explosive',
-                    type: 'Prideful'
+                    plusFour: 'Inspiring',
+                    plusSeven: 'Quaking',
+                    type: 'Tormented'
                 },
                 {
                     week: 11,
                     baseAffix: 'Fortified',
                     plusFour: 'Sanguine',
-                    plusSeven: 'Grievous',
-                    type: 'Prideful'
+                    plusSeven: 'Necrotic',
+                    type: 'Tormented'
                 },
                 {
                     week: 12,
                     baseAffix: 'Tyrannical',
-                    plusFour: 'Raging',
-                    plusSeven: 'Quaking',
-                    type: 'Prideful'
+                    plusFour: 'Bolstering',
+                    plusSeven: 'Explosive',
+                    type: 'Tormented'
                 },
                 
             ],
