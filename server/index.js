@@ -77,8 +77,8 @@ passport.deserializeUser(function(user, done) {
 
     //Start Server
     let port = process.env.PORT || 3050;
-    //Set to 'false' for Google Assistant testing with NGROK.
-    if (process.env.DEV == 'true') {
+    //Set to env for Google Assistant testing with NGROK.
+    if (process.env.HTTPS == 'true') {
         https.createServer( 
             {
                 key: fs.readFileSync('./security/cert.key'),
