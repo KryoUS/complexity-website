@@ -15,7 +15,7 @@ const raiders = require('../controllers/Database/raider_controller');
 const userFunctions = require('../controllers/Database/user_controller');
 const quotes = require('../controllers/Database/quotes_controller');
 const logs = require('../controllers/Database/logs_controller');
-const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant');
+//const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant'); TODO: Complete Rework
 const raidbots = require('../controllers/Database/raidbots_controller');
 const simulationcraft = require('../controllers/Database/simulationcraft_controller');
 const icons = require('../controllers/Database/icons_controller');
@@ -122,7 +122,7 @@ routes.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
 //Mythic Affixes Endpoint from RaiderIO API
 routes.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
 //Google Assistant Endpoint
-routes.post('/fulfillment', dialogFlow);
+//routes.post('/fulfillment', dialogFlow); --TODO: Complete Rework
 //Raidbots Endpoints
 routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbots.getByCharName);
 //SimulationCraft Endpoints
