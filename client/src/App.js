@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/header/Header';
-import News from './components/news/News';
+import News from './components/news/SiteNews';
 import Footer from './components/footer/Footer';
 import About from './components/about/About';
 import '@fontsource/roboto';
