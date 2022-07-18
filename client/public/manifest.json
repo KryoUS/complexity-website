@@ -3,13 +3,12 @@
   "name": "Complexity Guild of Thunderlord",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64",
-      "type": "image/x-icon"
+      "src": "complexityMoose.svg",
+      "sizes": "64x64"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#121212"
 }

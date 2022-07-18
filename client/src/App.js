@@ -1,22 +1,26 @@
-import React, { Component } from 'react';
-import router from './router';
-import Nav from './components/Nav/Nav';
-import Footer from './components/Nav/Footer';
 import './App.css';
-// eslint-disable-next-line
-import ComingSoon from './components/Complexity/ComingSoon';
+import Header from './components/header/Header';
+import News from './components/news/News';
+import Footer from './components/footer/Footer';
+import About from './components/about/About';
+import '@fontsource/roboto';
+import {
+  Switch,
+  Route,
+  // Link
+} from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        {/* <ComingSoon /> */}
-        <Nav />
-        {router}
-        <Footer />
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div className="App">
+      <Header />
+        <Switch>
+          <Route component={News} exact path="/" />
+          <Route component={About} path="/about" />
+        </Switch>
+      <Footer />      
+    </div>
+  );
 }
 
 export default App;
