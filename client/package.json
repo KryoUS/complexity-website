@@ -16,9 +16,6 @@
     "react-router-dom": "^5.3.3",
     "web-vitals": "^1.1.2"
   },
-  "devDependencies": {
-    "react-scripts": "^5.0.1"
-  },
   "proxy": "https://localhost:3050",
   "scripts": {
     "start": "react-scripts start",
