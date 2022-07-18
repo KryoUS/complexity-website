@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/header/Header';
-import News from './components/news/SiteNews';
+import SiteNews from './components/news/SiteNews';
 import Footer from './components/footer/Footer';
 import About from './components/about/About';
 import '@fontsource/roboto';
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Header />
         <Switch>
-          <Route component={News} exact path="/" />
+          <Route component={SiteNews} exact path="/" />
           <Route component={About} path="/about" />
         </Switch>
       <Footer />      
