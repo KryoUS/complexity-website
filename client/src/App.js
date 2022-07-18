@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/header/Header';
-import SiteNews from './components/news/SiteNews.js';
+import SiteNews from './components/news/SiteNews';
 import Footer from './components/footer/Footer';
 import About from './components/about/About';
 import '@fontsource/roboto';
