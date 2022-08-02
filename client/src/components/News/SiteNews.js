@@ -26,7 +26,7 @@ export default class News extends React.Component{
             <Container>
                 <Box style={{padding: "24px"}}>
                     <Grid container spacing={2} justifyContent="center" alignItems="stretch">
-                        <Grid item xs={11}>
+                        <Grid item xs={12}>
                             <Card>
                                 <CardContent>
                                     <Typography variant={'h5'} color="secondary">World of Warcraft - Breaking News</Typography>
@@ -36,6 +36,7 @@ export default class News extends React.Component{
                         </Grid>
                     </Grid>
                     <Hidden mdDown>
+                        {/* DESKTOP */}
                         <Grid container spacing={2} justifyContent="center">
                             {   this.state.news
                                 ?
@@ -53,20 +54,20 @@ export default class News extends React.Component{
                                                 />
                                             </Grid>
                                             <Grid item xs container direction="column" spacing={2}>
-                                                <Grid item xs container justifyContent="space-between" alignItems="center">
+                                                <Grid item xs container direction="column" justifyContent="space-between">
                                                     <Grid item>
-                                                        <Typography variant="h5" component="div" color="secondary" style={{textAlign: "left"}}>{news.title}</Typography>
+                                                        <Typography variant="h6" component="div" color="secondary" style={{textAlign: "left"}}>{news.title}</Typography>
                                                     </Grid>
                                                     <Grid item>
-                                                        <Typography variant="body1" component="div" color="textSecondary" style={{fontSize: 14, textAlign: "right"}}>{moment(Number(news.news_datetime)).format('MMM. Do YYYY, h:mm:ssa')}</Typography>
+                                                        <Typography variant="body2" component="div" color="textSecondary" style={{textAlign: "right"}}>{moment(Number(news.news_datetime)).format('MMM. Do YYYY, h:mm:ssa')}</Typography>
                                                     </Grid>
                                                 </Grid>
                                                 <Grid item xs>
-                                                    <Typography gutterBottom variant="body1" color="textSecondary" style={{textAlign: "left"}}>{news.description}</Typography>
+                                                    <Typography gutterBottom variant="body2" color="textSecondary" style={{textAlign: "left"}}>{news.description}</Typography>
                                                 </Grid>
                                                 <Grid item xs>
-                                                    <Button variant="contained" size="medium" color="secondary" width="100%" href={news.link} target="_blank" rel="noopener noreferrer">
-                                                        <Typography>Read More on {news.source}</Typography>
+                                                    <Button variant="contained" size="medium" color="secondary" href={news.link} target="_blank" rel="noopener noreferrer">
+                                                        <Typography variant="body2">Read More on {news.source}</Typography>
                                                     </Button>
                                                 </Grid>
                                             </Grid>
@@ -79,6 +80,7 @@ export default class News extends React.Component{
                         </Grid>
                     </Hidden>
                     <Hidden lgUp>
+                        {/* MOBILE */}
                         <Grid container spacing={4} alignItems="stretch">
                             {   this.state.news
                                 ?
@@ -93,10 +95,10 @@ export default class News extends React.Component{
                                                 e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
                                             }}
                                             />
-                                            <CardContent>
-                                                <Typography variant="h5" component="div" color="secondary">{news.title}</Typography>
-                                                <Typography gutterBottom color="textSecondary" style={{fontSize: 14}}>{moment(Number(news.news_datetime)).format('MMMM Do YYYY, h:mm:ss a')}</Typography>
-                                                <Typography variant="body1">{news.description}</Typography>
+                                            <CardContent style={{ textAlign: "left" }}>
+                                                <Typography gutterBottom variant="body1" component="div" color="secondary">{news.title}</Typography>
+                                                <Typography gutterBottom variant="body2" color="textSecondary">{moment(Number(news.news_datetime)).format('MMMM Do YYYY, h:mm:ss a')}</Typography>
+                                                <Typography variant="body2">{news.description}</Typography>
                                             </CardContent>
                                             <CardActions>
                                                 <Button size="small" color="secondary" href={news.link} target="_blank" rel="noopener noreferrer">Read More on Wowhead</Button>

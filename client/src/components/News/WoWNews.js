@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Typography, CircularProgress } from '@material-ui/core';
+import { Typography, CircularProgress, Hidden } from '@material-ui/core';
 
 export default class WoWNews extends Component {
     constructor() {
@@ -24,7 +24,16 @@ export default class WoWNews extends Component {
         return (
             this.state.breakingNews.length >= 1 ?
                 this.state.breakingNews.map(obj => {
-                    return <Typography key={`wownews${obj.epoch_datetime}`} variant={'body1'}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
+                    return <div key={obj.created_at}>
+                        <Hidden mdDown>
+                            {/* DESKTOP */}
+                            <Typography align="center" key={`wownews${obj.epoch_datetime}`} variant={'body2'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
+                        </Hidden>
+                        <Hidden lgUp>
+                            {/* MOBILE */}
+                            <Typography align="left" key={`wownews${obj.epoch_datetime}`} variant={'body2'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
+                        </Hidden>
+                    </div>
                 })
                 :
                 <CircularProgress />
