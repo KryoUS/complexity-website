@@ -166,7 +166,7 @@ class Header extends React.Component {
                                     </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button size="large" disabled>
+                                    <Button component={RouterLink} to={"/simulations"} size="large">
                                         <Typography variant="h6">Simulations</Typography>
                                     </Button>
                                 </Grid>
@@ -225,7 +225,7 @@ class Header extends React.Component {
                             </ListItemIcon>
                             <ListItemText primary="Discord" />
                         </ListItem>
-                        <ListItem button key="simulations" disabled>
+                        <ListItem button key="simulations" component={RouterLink} to={"/simulations"}>
                             <ListItemIcon>
                                 <Assessment />
                             </ListItemIcon>
