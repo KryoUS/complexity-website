@@ -100,6 +100,10 @@ const affixes = {
     Encrypted: {
         id: 130,
         icon: 'spell_progenitor_orb'
+    },
+    Shrouded: {
+        id: 131,
+        icon: 'spell_shadow_nethercloak'
     }
 }
 
@@ -109,84 +113,84 @@ const schedule = [
         baseAffix: 'Fortified',
         plusFour: 'Bursting',
         plusSeven: 'Storming',                    
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 2,
         baseAffix: 'Tyrannical',
         plusFour: 'Raging',
         plusSeven: 'Volcanic',                    
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 3,
         baseAffix: 'Fortified',
         plusFour: 'Inspiring',
         plusSeven: 'Grievous',                    
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 4,
         baseAffix: 'Tyrannical',
         plusFour: 'Spiteful',
         plusSeven: 'Necrotic',                    
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 5,
         baseAffix: 'Fortified',
         plusFour: 'Bolstering',
         plusSeven: 'Quaking',                  
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 6,
         baseAffix: 'Tyrannical',
         plusFour: 'Sanguine',
         plusSeven: 'Storming',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 7,
         baseAffix: 'Fortified',
         plusFour: 'Raging',
         plusSeven: 'Explosive',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 8,
         baseAffix: 'Tyrannical',
         plusFour: 'Bursting',
         plusSeven: 'Volcanic',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 9,
         baseAffix: 'Fortified',
         plusFour: 'Spiteful',
         plusSeven: 'Necrotic',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 10,
         baseAffix: 'Tyrannical',
         plusFour: 'Inspiring',
         plusSeven: 'Quaking',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 11,
         baseAffix: 'Fortified',
         plusFour: 'Sanguine',
         plusSeven: 'Grievous',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     {
         week: 12,
         baseAffix: 'Tyrannical',
         plusFour: 'Bolstering',
         plusSeven: 'Explosive',
-        type: 'Encrypted'
+        type: 'Shrouded'
     },
     
 ]
