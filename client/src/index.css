@@ -13,6 +13,11 @@ code {
     monospace;
 }
 
+/* Blizzard color */
+#blizzard {
+  color: #00aeff;
+}
+
 /* Class Colors */
 #deathknight {
   color: #c41e3b;
