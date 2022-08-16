@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { CheckRounded, CheckCircle, ClearRounded } from '@material-ui/icons';
-import { Typography, Tooltip } from '@material-ui/core'
+import { Typography, Tooltip, CircularProgress } from '@material-ui/core'
 import Error from '@material-ui/icons/Error';
 
 export default class RealmStatus extends React.Component{
@@ -47,7 +47,7 @@ export default class RealmStatus extends React.Component{
                 </Typography>
             </>
             :
-            null
+            <CircularProgress size={16} color="secondary" />
         )
     }
 }
