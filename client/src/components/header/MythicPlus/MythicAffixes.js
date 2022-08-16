@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { IconButton } from '@material-ui/core';
+import { IconButton, CircularProgress } from '@material-ui/core';
 
 export default class MythicAffixes extends React.Component {
     constructor() {
@@ -8,12 +8,13 @@ export default class MythicAffixes extends React.Component {
 
         this.state = {
             raiderIOData: {},
+            raiderIOLoaded: false
         }
     }
     
     componentDidMount = () => {
         axios.get('/api/raiderio/mythicaffixes').then(res => {
-            this.setState({ raiderIOData: res.data });
+            this.setState({ raiderIOData: res.data, raiderIOLoaded: true });
         }).catch(raiderIOMythicAffixesError => {
             console.log("Mythic Affix fetch issue.");
         });
@@ -21,7 +22,7 @@ export default class MythicAffixes extends React.Component {
 
     render() {
         return (
-            this.state.raiderIOData.affix_details ? 
+            this.state.raiderIOLoaded ? 
                 this.state.raiderIOData.affix_details.map(obj => {
                     return <IconButton
                         key={`affixId${obj.id}`}
@@ -42,7 +43,7 @@ export default class MythicAffixes extends React.Component {
                     </IconButton>
                 })
             :
-            null
+            <CircularProgress size={16} color="secondary" />
         );
     }
 }
