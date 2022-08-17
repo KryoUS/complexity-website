@@ -1,33 +1,34 @@
 //Controllers
-const blizzardApi = require('../controllers/blizzard_api_controller');
-const twitchAPI = require('../controllers/twitch_api_controller');
+const { blizzardController } = require('../controllers/blizzard_api_controller');
+const { twitchController } = require('../controllers/twitch_api_controller');
 
 //Cron Library https://www.npmjs.com/package/cron
 const CronJob = require('cron').CronJob;
 
 //Every x minutes
 const minutes =  {
+    
+    every1: () => new CronJob('00 */1 * * * *', () => {
+        if (process.env.BLIZZ_API_TOKEN) {blizzardController.setServerStatus()};
+    }, null, false, 'America/Denver'),
+    
     every5: () => new CronJob('00 */5 * * * *', () => {
-        console.log("blizz cron running")
-        blizzardApi.setServerStatus();
-        blizzardApi.setTokenPrice();
+        if (process.env.BLIZZ_API_TOKEN) {blizzardController.setTokenPrice()};
     }, null, false, 'America/Denver'),
 }
 
 // Every x hours
 const hours = {
-    every: () => new CronJob('00 0 */1 * * *', () => {
-        blizzardApi.setBlizzardToken();
-        twitchAPI.setTwitchToken();
-    }, null, false, 'America/Denver', hours.every, true),
+    every1: () => new CronJob('00 0 */1 * * *', () => {
+        blizzardController.setBlizzardToken();
+        twitchController.setTwitchToken();
+    }, null, false, 'America/Denver'),
 }
 
 //Export cron jobs so server starts them
-module.exports = {
-
-    jobs: () => {
-        minutes.every5();
-        hours.every();
-    }
-
+module.exports.jobs = () => {
+    blizzardController.setBlizzardToken();
+    minutes.every1().start();
+    minutes.every5().start();
+    hours.every1().start();
 }
