@@ -1,10 +1,10 @@
-const app = require('../../app');
+const { app } = require('../../app');
 
 const getRandomArbitrary = (min, max) => {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-module.exports = {
+module.exports.quotesController = {
     get: (req, res) => {
 
         return app.get('db').quotes.find().then(response => {

@@ -25,7 +25,7 @@ const classColors = {
     'warrior': '#c69b6d'
 }
 
-module.exports = {
+module.exports.simulationcraftController = {
     get: (req, res) => {
         
         req.app.get('db').wowcache.findOne({id: 9}).then(response => {

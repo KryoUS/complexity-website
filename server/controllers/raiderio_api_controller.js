@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.raiderIOController = {
 
     getWowRankingsGuild: (req, res) => {
         req.app.get('db').wowcache.findOne({id: 14}).then(response => {

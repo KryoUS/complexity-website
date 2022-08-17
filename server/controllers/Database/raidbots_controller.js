@@ -14,7 +14,7 @@ const createInClause = (arr) => {
     return itemIds.replace(/.$/,'');
 };
 
-module.exports = {
+module.exports.raidbotsController = {
     getByCharName: (req, res) => {
         
         req.app.get('db').query(`

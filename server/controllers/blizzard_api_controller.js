@@ -72,8 +72,6 @@ const createItemIconInClause = (arr) => {
     return itemIds.replace(/.$/,'');
 };
 
-
-
 async function getClassesAndMedia() {
 
     let classData = [];
@@ -102,7 +100,7 @@ async function getClassesAndMedia() {
     }
 }
 
-module.exports = {
+module.exports.blizzardController = {
     setBlizzardToken: () => {
         axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
             auth: {
@@ -111,8 +109,8 @@ module.exports = {
             }
         }).then(response => {
             process.env.BLIZZ_API_TOKEN = response.data.access_token;
-            if (tokenPrice.price === 0) {module.exports.setTokenPrice();}
-            if (!realmObj.name) {module.exports.setServerStatus();}
+            if (tokenPrice.price === 0) {module.exports.blizzardController.setTokenPrice()}
+            if (!realmObj.status) {module.exports.blizzardController.setServerStatus();}
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });
@@ -163,9 +161,48 @@ module.exports = {
         });
     },
 
-    //Set Server Status Object
     setServerStatus: (req, res) => {
+        console.log("Setting Server Status...")
         axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/77?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            console.log("Getting Server Status...")
+            if (realmObj.status && response.data.status.type !== realmObj.status.type) {
+                
+                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
+                    {
+                        embeds: [
+                            {
+                                "title": "Retail",
+                                "description": response.data.status.type === "DOWN" ? "Retail Servers are down." : "Retail Servers are up!",
+                                "url": "https://worldofwarcraft.com/en-us/game/status/us",
+                                "color": response.data.status.type === "DOWN" ? 16711680 : 65280,
+                                "footer": {
+                                    "text": new Date()
+                                },
+                                // "image": {
+                                //     "url": thumbnail_url
+                                // },
+                                "thumbnail": {
+                                    "url": "https://assets.worldofwarcraft.com/static/components/Logo/Logo-wow-sitenav.596840db77b4d485a44d65e897e3de57.png"
+                                },
+                                "author": {
+                                    "name": "World of Warcraft Server Status"
+                                },
+                            }
+                        ]
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                ).then(discordResponse => {
+                    
+                }).catch(discordWebhookError => {
+                    console.log("Discord Webhook POST Error: ", discordWebhookError);
+                });
+
+            };
+        
             realmObj = response.data;
         }).catch(serverStatusError => {
             console.log('Server Status Error: ?', serverStatusError);

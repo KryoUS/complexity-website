@@ -1,25 +1,25 @@
 //Libraries
-const routes = require('../app');
+const { app } = require('../app');
 // const routes = app.Router();
 const passport = require('passport');
 
 //Controllers
-const blizzardApi = require('../controllers/blizzard_api_controller');
-const raiderioApi = require('../controllers/raiderio_api_controller');
-const wowprogressApi = require('../controllers/wowprogress_api_controller');
-const releaseController = require('../controllers/Database/releases_controller');
-const stats = require('../controllers/Database/stats_controller');
-const members = require('../controllers/Database/members_controller');
-const news = require('../controllers/Database/news_controller');
-const raiders = require('../controllers/Database/raider_controller');
-const userFunctions = require('../controllers/Database/user_controller');
-const quotes = require('../controllers/Database/quotes_controller');
-const logs = require('../controllers/Database/logs_controller');
+const { blizzardController } = require('../controllers/blizzard_api_controller');
+const { raiderIOController } = require('../controllers/raiderio_api_controller');
+const { wowProgressController } = require('../controllers/wowprogress_api_controller');
+const { releasesController } = require('../controllers/Database/releases_controller');
+const { statsController } = require('../controllers/Database/stats_controller');
+const { memberController } = require('../controllers/Database/members_controller');
+const { newsController } = require('../controllers/Database/news_controller');
+const { raiderController } = require('../controllers/Database/raider_controller');
+const { userController } = require('../controllers/Database/user_controller');
+const { quotesController } = require('../controllers/Database/quotes_controller');
+const { logsController } = require('../controllers/Database/logs_controller');
 //const dialogFlow = require('../controllers/GoogleAssistant/GoogleAssistant'); TODO: Complete Rework
-const raidbots = require('../controllers/Database/raidbots_controller');
-const simulationcraft = require('../controllers/Database/simulationcraft_controller');
-const icons = require('../controllers/Database/icons_controller');
-const twitch = require('../controllers/twitch_api_controller');
+const { raidbotsController } = require('../controllers/Database/raidbots_controller');
+const { simulationcraftController } = require('../controllers/Database/simulationcraft_controller');
+const { iconController } = require('../controllers/Database/icons_controller');
+const { twitchController } = require('../controllers/twitch_api_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -51,86 +51,86 @@ const discordBotID = (req, res, next) => {
 }
 
 // API Initialization Variables
-blizzardApi.setBlizzardToken();
+//blizzardController.setBlizzardToken();
 
 /*      API ENDPOINTS       */
 //Battle.net Passport Auth Endpoints
-// routes.get('/auth/login', passport.authenticate('bnet'));
-// routes.get('/auth', userFunctions.auth);
-// routes.post('/auth/newmain', checkAuth, userFunctions.setMain);
-// routes.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userFunctions.bnetCallback);
-// routes.get('/auth/logout', checkAuth, userFunctions.logout);
+// app.get('/auth/login', passport.authenticate('bnet'));
+// app.get('/auth', userController.auth);
+// app.post('/auth/newmain', checkAuth, userController.setMain);
+// app.get('/auth/bnet/callback', passport.authenticate('bnet', { failureRedirect: '/' }), userController.bnetCallback);
+// app.get('/auth/logout', checkAuth, userController.logout);
 //Logging routes from DB
-// routes.get('/logs/discordbot', requireAdmin, logs.getDiscordBot);
-// routes.get('/logs/serviceslog', requireAdmin, logs.getServicesLog);
+// app.get('/logs/discordbot', requireAdmin, logsController.getDiscordBot);
+// app.get('/logs/serviceslog', requireAdmin, logsController.getServicesLog);
 //Releases Endpoints from DB
-routes.get('/api/releases', releaseController.get);
-routes.get('/api/allreleases', releaseController.getAll);
-routes.post('/api/releases', requireAdmin, releaseController.post);
-routes.delete('/api/deleterelease/:id', requireAdmin, releaseController.delete);
+app.get('/api/releases', releasesController.get);
+app.get('/api/allreleases', releasesController.getAll);
+app.post('/api/releases', requireAdmin, releasesController.post);
+app.delete('/api/deleterelease/:id', requireAdmin, releasesController.delete);
 //News Endpoints from DB
-routes.get('/api/news', news.get);
-routes.get('/api/breakingnews', news.getAlert);
-routes.get('/api/guildnews', news.getGuildNews);
+app.get('/api/news', newsController.get);
+app.get('/api/breakingnews', newsController.getAlert);
+app.get('/api/guildnews', newsController.getGuildNews);
 //Raider Endpoints from DB
-routes.get('/api/raiders', raiders.get);
+app.get('/api/raiders', raiderController.get);
 //Guild Members Endpoint from DB
-routes.get('/api/members', stats.members);
-routes.get('/api/members/names', stats.memberNames);
-routes.get('/api/members/all', members.all);
-routes.get('/api/members/specs', members.specsOnly);
+app.get('/api/members', statsController.members);
+app.get('/api/members/names', statsController.memberNames);
+app.get('/api/members/all', memberController.all);
+app.get('/api/members/specs', memberController.specsOnly);
 //Stat Endpoints from DB
-routes.get('/api/stats/character', stats.characters);
-routes.get('/api/stats/consumables', stats.consumables);
-routes.get('/api/stats/combat', stats.combat);
-routes.get('/api/stats/kills', stats.kills);
-routes.get('/api/stats/deaths', stats.deaths);
-routes.get('/api/stats/pve', stats.pve);
-routes.get('/api/stats/professions', stats.professions);
-routes.get('/api/stats/travel', stats.travel);
-routes.get('/api/stats/emotes', stats.emotes);
-routes.get('/api/stats/pvp', stats.pvp);
-routes.get('/api/stats/arena', stats.arena);
-routes.get('/api/stats/pets', stats.pets);
+app.get('/api/stats/character', statsController.characters);
+app.get('/api/stats/consumables', statsController.consumables);
+app.get('/api/stats/combat', statsController.combat);
+app.get('/api/stats/kills', statsController.kills);
+app.get('/api/stats/deaths', statsController.deaths);
+app.get('/api/stats/pve', statsController.pve);
+app.get('/api/stats/professions', statsController.professions);
+app.get('/api/stats/travel', statsController.travel);
+app.get('/api/stats/emotes', statsController.emotes);
+app.get('/api/stats/pvp', statsController.pvp);
+app.get('/api/stats/arena', statsController.arena);
+app.get('/api/stats/pets', statsController.pets);
 //Quotes Endpoint from DB
-routes.get('/api/complexity/quotes', quotes.get);
-routes.post('/api/complexity/quotes', requireAdmin, quotes.post);
+app.get('/api/complexity/quotes', quotesController.get);
+app.post('/api/complexity/quotes', requireAdmin, quotesController.post);
 //WoW API Endpoints
-routes.get('/api/wow/server/status', blizzardApi.getServerStatus);
-routes.get('/api/wow/token/price', blizzardApi.getTokenPrice);
-routes.get('/api/wow/classes', blizzardApi.getClasses);
-// routes.put('/api/wow/character/:character&:realm/achievements', blizzardApi.getCharacterAchievements);
-// routes.put('/api/wow/character/:character&:realm/mounts', blizzardApi.getCharacterMounts);
-// routes.put('/api/wow/character/:character&:realm/hunterPets', blizzardApi.getCharacterHunterPets);
-// routes.put('/api/wow/character/:character&:realm/stats', blizzardApi.getCharacterStats);
-// routes.put('/api/wow/character/:character&:realm/items', blizzardApi.getCharacterItems);
-// routes.put('/api/wow/character/:character&:realm/pets', blizzardApi.getCharacterPets);
-// routes.get('/api/wow/pet/species/:speciesId', blizzardApi.getPetsSpecies);
-// routes.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardApi.getPetsStats);
-// routes.put('/api/wow/character/:character&:realm/professions', blizzardApi.getCharacterProfessions);
-// routes.put('/api/wow/character/:character&:realm/progression', blizzardApi.getCharacterProgression);
-// routes.put('/api/wow/character/:character&:realm/pvp', blizzardApi.getCharacterPVP);
-// routes.put('/api/wow/character/:character&:realm/reputation', blizzardApi.getCharacterReputation);
-// routes.put('/api/wow/character/:character&:realm/statistics', blizzardApi.getCharacterStatistics);
-// routes.put('/api/wow/character/:character&:realm/talents', blizzardApi.getCharacterTalents);
+app.get('/api/wow/server/status', blizzardController.getServerStatus);
+app.get('/api/wow/token/price', blizzardController.getTokenPrice);
+app.get('/api/wow/classes', blizzardController.getClasses);
+// app.put('/api/wow/character/:character&:realm/achievements', blizzardController.getCharacterAchievements);
+// app.put('/api/wow/character/:character&:realm/mounts', blizzardController.getCharacterMounts);
+// app.put('/api/wow/character/:character&:realm/hunterPets', blizzardController.getCharacterHunterPets);
+// app.put('/api/wow/character/:character&:realm/stats', blizzardController.getCharacterStats);
+// app.put('/api/wow/character/:character&:realm/items', blizzardController.getCharacterItems);
+// app.put('/api/wow/character/:character&:realm/pets', blizzardController.getCharacterPets);
+// app.get('/api/wow/pet/species/:speciesId', blizzardController.getPetsSpecies);
+// app.get('/api/wow/pet/stats/:speciesId&:level&:breedId&:qualityId', blizzardController.getPetsStats);
+// app.put('/api/wow/character/:character&:realm/professions', blizzardController.getCharacterProfessions);
+// app.put('/api/wow/character/:character&:realm/progression', blizzardController.getCharacterProgression);
+// app.put('/api/wow/character/:character&:realm/pvp', blizzardController.getCharacterPVP);
+// app.put('/api/wow/character/:character&:realm/reputation', blizzardController.getCharacterReputation);
+// app.put('/api/wow/character/:character&:realm/statistics', blizzardController.getCharacterStatistics);
+// app.put('/api/wow/character/:character&:realm/talents', blizzardController.getCharacterTalents);
 //WoW API Data Collection Endpoints
-routes.get('/api/wow/collectItemIcons', requireAdmin, icons.getItemIcons);
+// app.get('/api/wow/collectItemIcons', requireAdmin, iconController.getItemIcons);
 //Ranking Endpoint from WoWProgress API
-routes.get('/api/wowprogress/guildranking', wowprogressApi.getWowProgressGuild);
+app.get('/api/wowprogress/guildranking', wowProgressController.getWowProgressGuild);
 //Ranking Endpoint from RaiderIO API
-routes.get('/api/raiderio/guildranking', raiderioApi.getWowRankingsGuild);
+app.get('/api/raiderio/guildranking', raiderIOController.getWowRankingsGuild);
 //Mythic Affixes Endpoint from RaiderIO API
-routes.get('/api/raiderio/mythicaffixes', raiderioApi.getWowMythicAffixes);
+app.get('/api/raiderio/mythicaffixes', raiderIOController.getWowMythicAffixes);
 //Google Assistant Endpoint
-//routes.post('/fulfillment', dialogFlow); --TODO: Complete Rework
+//app.post('/fulfillment', dialogFlow); --TODO: Complete Rework
 //Raidbots Endpoints
-routes.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbots.getByCharName);
+app.put('/api/raidbots/character/:selectedCharName&:selectedCharRealm', raidbotsController.getByCharName);
 //SimulationCraft Endpoints
-routes.get('/api/simulationcraft', simulationcraft.get);
+app.get('/api/simulationcraft', simulationcraftController.get);
 //Twitch Endpoints
-routes.put('/api/twitch/streamer/golive/:twitchName', discordBotID, twitch.addComplexityStream);
-routes.post('/api/twitch/webhooks/callback', twitch.webhookCallback);
-routes.get('/api/twitch/webhooks/list', discordBotID, twitch.listComplexityStream);
-routes.delete('/api/twitch/streamer/removeid/:twitchid', discordBotID, twitch.removeComplexityStream);
+app.put('/api/twitch/streamer/golive/:twitchName', discordBotID, twitchController.addComplexityStream);
+app.post('/api/twitch/webhooks/callback', twitchController.webhookCallback);
+app.get('/api/twitch/webhooks/list', discordBotID, twitchController.listComplexityStream);
+app.delete('/api/twitch/streamer/removeid/:twitchid', discordBotID, twitchController.removeComplexityStream);
 
-module.exports = routes;
+module.exports.routes = app;

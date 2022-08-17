@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.releasesController = {
     get: (req, res) => {
         const now = new Date().getTime();
     

@@ -6,19 +6,16 @@ require('dotenv').config({path: path.join(__dirname, '.env')});
 const https = require('https');
 const http = require('http');
 const fs = require('fs');
-const app = require('./app');
+const { app } = require('./app');
 const cors = require('cors');
 const passport = require('passport');
 const massive = require('massive');
 const express = require('express');
 const helmet = require('helmet');
-const routes = require('./routes/routes');
+const { routes } = require('./routes/routes');
 const session = require('express-session');
 const bnetStrategy = require(`${__dirname}/strategy.js`);
-const crons = require('./cronjobs/cronjobs');
-
-//Start Cron Job Timers
-crons.jobs();
+const { jobs } = require('./cronjobs/cronjobs');
 
 //Basic Express Security with Helmet and API Rate Limiting
 app.use( helmet() );
@@ -74,6 +71,9 @@ passport.deserializeUser(function(user, done) {
         console.log("API call didn't match...")
         return res.sendFile(path.join(__dirname + "/../client/build/index.html"));
     });
+
+    //Start Cron Job Timers
+    jobs();
 
     //Start Server
     let port = process.env.PORT || 3050;

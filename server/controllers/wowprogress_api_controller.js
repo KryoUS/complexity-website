@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.wowProgressController = {
 
     getWowProgressGuild: (req, res) => {
         req.app.get('db').wowcache.findOne({id: 16}).then(response => {

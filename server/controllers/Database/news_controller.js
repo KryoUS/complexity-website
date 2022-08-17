@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-module.exports = {
+module.exports.newsController = {
     get: (req, res) => {
         
         req.app.get('db').query('select * from news order by news_datetime desc limit 20').then(response => {

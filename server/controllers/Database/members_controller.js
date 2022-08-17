@@ -1,6 +1,6 @@
 const tools = require('./tools/functions');
 
-module.exports = {
+module.exports.memberController = {
     all: (req, res, next) => {
 
         req.app.get('db').query(`select * from characters`).then(response => {

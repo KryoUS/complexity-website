@@ -1,7 +1,7 @@
-const app = require('../../app');
+const { app } = require('../../app');
 const functions = require('./tools/functions');
 
-module.exports = {
+module.exports.logsController = {
     getDiscordBot: (req, res) => {
     
         req.app.get('db').query('select * from discordbotlog').then(response => {

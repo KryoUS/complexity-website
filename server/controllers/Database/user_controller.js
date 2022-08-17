@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-module.exports = {
+module.exports.userController = {
     setMain: (req, res, next) => {
 
         req.app.get('db').users.update({id: req.body.id}, {

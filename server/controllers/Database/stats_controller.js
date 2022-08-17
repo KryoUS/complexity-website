@@ -1,7 +1,7 @@
 const axios = require('axios');
-const app = require('../../app');
+const { app } = require('../../app');
 
-module.exports = {
+module.exports.statsController = {
 
     getMostOrLeast: (orderBy, dbValue) => {
         return app.get('db').query(

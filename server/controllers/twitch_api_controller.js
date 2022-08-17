@@ -9,7 +9,7 @@ function verifySignature(messageSignature, messageID, messageTimestamp, body) {
     return expectedSignatureHeader === messageSignature
 };
 
-module.exports = {
+module.exports.twitchController = {
 
     setTwitchToken: () => {
         axios.post(`https://id.twitch.tv/oauth2/token?client_id=${process.env.TWITCH_CLIENT_ID}&client_secret=${process.env.TWITCH_CLIENT_SECRET}&grant_type=client_credentials`
@@ -156,7 +156,7 @@ module.exports = {
 
                         const {description, profile_image_url, offline_image_url} = userResponse.data.data[0];
                         
-                        axios.post(process.env.DISCORD_WEBHOOK, 
+                        axios.post(process.env.DISCORD_STREAMER_WEBHOOK, 
                             {
                                 embeds: [
                                     {
