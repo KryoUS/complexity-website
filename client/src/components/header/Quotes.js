@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Typography} from '@material-ui/core';
+import { Button, Typography, Fade, CircularProgress} from '@material-ui/core';
 
 export default class Quotes extends React.Component{
     constructor() {
@@ -29,7 +29,11 @@ export default class Quotes extends React.Component{
     render() {
         return (
             <Button style={{fontStyle: 'italic', textTransform: "none"}} onClick={this.getRandomQuote}>
-                <Typography variant={"h6"} style={{fontWeight: 400}}>"{this.state.quote}" - {this.state.saidBy}</Typography>
+                {this.state.showQuote ? 
+                    <Fade in={true}><Typography variant={"h6"} style={{fontWeight: 400}}>"{this.state.quote}" - {this.state.saidBy}</Typography></Fade> 
+                : 
+                    <CircularProgress size={32}/>
+                }
             </Button>
         )
     }
