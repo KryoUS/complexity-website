@@ -162,9 +162,7 @@ module.exports.blizzardController = {
     },
 
     setServerStatus: (req, res) => {
-        console.log("Setting Server Status...")
         axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/77?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
-            console.log("Getting Server Status...")
             if (realmObj.status && response.data.status.type !== realmObj.status.type) {
                 
                 axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
