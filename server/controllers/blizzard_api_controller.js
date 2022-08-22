@@ -169,21 +169,21 @@ module.exports.blizzardController = {
                     {
                         embeds: [
                             {
-                                "title": "Retail",
-                                "description": response.data.status.type === "DOWN" ? "Retail Servers are down." : "Retail Servers are up!",
+                                "title": "Server Status",
+                                "description": response.data.status.type === "DOWN" ? "Thunderlord is down." : "Thunderlord is up!",
                                 "url": "https://worldofwarcraft.com/en-us/game/status/us",
                                 "color": response.data.status.type === "DOWN" ? 16711680 : 65280,
                                 "footer": {
                                     "text": new Date()
                                 },
-                                // "image": {
-                                //     "url": thumbnail_url
-                                // },
-                                "thumbnail": {
-                                    "url": "https://assets.worldofwarcraft.com/static/components/Logo/Logo-wow-sitenav.596840db77b4d485a44d65e897e3de57.png"
+                                "image": {
+                                    "url": "https://images.blz-contentstack.com/v3/assets/blt3452e3b114fab0cd/blt03dc217d0e54036a/5dbb29281b83a568128c8c9d/Shadowlands_Logo.png"
                                 },
+                                // "thumbnail": {
+                                //     "url": ""
+                                // },
                                 "author": {
-                                    "name": "World of Warcraft Server Status"
+                                    "name": "World of Warcraft: Retail"
                                 },
                             }
                         ]
