@@ -208,7 +208,7 @@ module.exports.blizzardController = {
             console.log('Server Status Error: ?', serverStatusError);
         });
 
-        axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/4384?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+        axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/4384?namespace=dynamic-classic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             if (classicRealmObj.status && response.data.status.type !== classicRealmObj.status.type) {
                 
                 axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
