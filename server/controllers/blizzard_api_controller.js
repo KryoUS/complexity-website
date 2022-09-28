@@ -1,8 +1,10 @@
 const axios = require('axios');
 const functions = require('./Database/tools/functions');
 
-//Realm Status
+//Retail Realm Status
 let realmObj = {};
+//Classic Realm Status
+let classicRealmObj = {};
 //US WoW Token Price
 let tokenPrice = {price: 0};
 
@@ -202,6 +204,50 @@ module.exports.blizzardController = {
             };
         
             realmObj = response.data;
+        }).catch(serverStatusError => {
+            console.log('Server Status Error: ?', serverStatusError);
+        });
+
+        axios.get(`https://us.api.blizzard.com/data/wow/connected-realm/4384?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
+            if (classicRealmObj.status && response.data.status.type !== classicRealmObj.status.type) {
+                
+                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
+                    {
+                        embeds: [
+                            {
+                                "title": "Server Status",
+                                "description": response.data.status.type === "DOWN" ? "Mankrik is down." : "Mankrik is up!",
+                                "url": "https://worldofwarcraft.com/en-us/game/status/classic-us",
+                                "color": response.data.status.type === "DOWN" ? 16711680 : 65280,
+                                "footer": {
+                                    "text": new Date()
+                                },
+                                "image": {
+                                    "url": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/bltac8057c02d5c75cd/624b7a821e44bf0352b08549/logo_na.png"
+                                },
+                                // "thumbnail": {
+                                //     "url": ""
+                                // },
+                                "author": {
+                                    "name": "World of Warcraft: Wrath of the Lich King Classic"
+                                },
+                            }
+                        ]
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                ).then(discordResponse => {
+                    
+                }).catch(discordWebhookError => {
+                    console.log("Discord Webhook POST Error: ", discordWebhookError);
+                });
+
+            };
+        
+            classicRealmObj = response.data;
         }).catch(serverStatusError => {
             console.log('Server Status Error: ?', serverStatusError);
         });
