@@ -263,6 +263,67 @@ module.exports = [
             }
         ]
     },
+    // {
+    //     className: "Evoker",
+    //     discord: "https://discord.gg/JcCFEcmSWD",
+    //     classIcon: "https://render.worldofwarcraft.com/us/icons/56/spell_evoker_classicon.jpg", //Need Blizzard Render
+    //     specs: [
+    //         {
+    //             name: "Devastation",
+    //             specIcon: "https://render.worldofwarcraft.com/us/icons/56/spell_evoker_devastation.jpg", //Need Blizzard Render
+    //             specInfo: [
+    //                 {
+    //                     sourceName: "Wowhead Guide",
+    //                     sourceURL: "https://www.wowhead.com/devastation-evoker-guide" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "IcyVeins Guide",
+    //                     sourceURL: "https://www.icy-veins.com/wow/devastation-evoker-pve-dps-guide" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "Subcreation M+",
+    //                     sourceURL: "https://mplus.subcreation.net/devastation-evoker.html" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "Subcreation Raid",
+    //                     sourceURL: "https://raid.subcreation.net/devastation-evoker.html" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "MurlokIO M+",
+    //                     sourceURL: "https://murlok.io/evoker/devastation/mm+" //Not Live Yet
+    //                 }                    
+    //             ],
+    //             open: false
+    //         },
+    //         {
+    //             name: "Preservation",
+    //             specIcon: "https://render.worldofwarcraft.com/us/icons/56/spell_evoker_preservation.jpg", //Need Blizzard Render
+    //             specInfo: [
+    //                 {
+    //                     sourceName: "Wowhead Guide",
+    //                     sourceURL: "https://www.wowhead.com/preservation-evoker-guide" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "IcyVeins Guide",
+    //                     sourceURL: "https://www.icy-veins.com/wow/preservation-evoker-pve-healing-guide" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "Subcreation M+",
+    //                     sourceURL: "https://mplus.subcreation.net/preservation-evoker.html" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "Subcreation Raid",
+    //                     sourceURL: "https://raid.subcreation.net/preservation-evoker.html" //Not Live Yet
+    //                 },
+    //                 {
+    //                     sourceName: "MurlokIO M+",
+    //                     sourceURL: "https://murlok.io/evoker/preservation/mm+" //Not Live Yet
+    //                 }                    
+    //             ],
+    //             open: false
+    //         },
+    //     ]
+    // },
     {
         className: "Hunter",
         discord: "https://discord.gg/trueshot",
