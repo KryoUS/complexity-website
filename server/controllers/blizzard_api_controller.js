@@ -179,7 +179,7 @@ module.exports.blizzardController = {
                                     "text": new Date()
                                 },
                                 "image": {
-                                    "url": "https://images.blz-contentstack.com/v3/assets/blt3452e3b114fab0cd/blt03dc217d0e54036a/5dbb29281b83a568128c8c9d/Shadowlands_Logo.png"
+                                    "url": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt563e16b3504e5808/62545b180afb5024ae74b677/rc-logo-na.png"
                                 },
                                 // "thumbnail": {
                                 //     "url": ""
