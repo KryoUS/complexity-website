@@ -63,7 +63,7 @@ class ClassInfoList extends React.Component{
                         <ListItem button dense>
                             <ListItemIcon style={{minWidth: "36px"}}>
                                 <img 
-                                style={{width: "24px", height: "24px"}}
+                                style={{width: "24px", height: "24px", border: "1px solid black"}}
                                 src={obj.specIcon} 
                                 alt={obj.name + ' specialization Icon.'}
                                 onError={e => {
