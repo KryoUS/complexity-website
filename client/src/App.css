@@ -40,6 +40,10 @@
   box-shadow: 2px 2px 8px #000000 !important;
 }
 
+.MuiTooltip-tooltip {
+  font-size: 0.75rem !important;
+}
+
 /* .wowhead-tooltip p {
   left: 275px !important;
   top: 2px !important;
