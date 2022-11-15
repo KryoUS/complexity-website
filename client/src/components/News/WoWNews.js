@@ -27,11 +27,11 @@ export default class WoWNews extends Component {
                     return <div key={obj.created_at}>
                         <Hidden mdDown>
                             {/* DESKTOP */}
-                            <Typography align="center" key={`wownews${obj.epoch_datetime}`} variant={'body2'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
+                            <Typography align="center" key={`wownews${obj.epoch_datetime}`} variant={'body1'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
                         </Hidden>
                         <Hidden lgUp>
                             {/* MOBILE */}
-                            <Typography align="left" key={`wownews${obj.epoch_datetime}`} variant={'body2'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
+                            <Typography align="left" key={`wownews${obj.epoch_datetime}`} variant={'body1'} style={{ color: "#00aeff" }}>{moment(obj.created_at).format('MMMM Do YYYY')} - "{obj.alert}."</Typography>
                         </Hidden>
                     </div>
                 })
