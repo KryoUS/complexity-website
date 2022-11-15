@@ -15,6 +15,7 @@ const minutes =  {
     
     every5: () => new CronJob('00 */5 * * * *', () => {
         if (process.env.BLIZZ_API_TOKEN) {blizzardController.setTokenPrice()};
+        blizzardController.setBluePosts();
     }, null, false, 'America/Denver'),
 
     every15: () => new CronJob('00 */15 * * * *', () => {
@@ -33,6 +34,7 @@ const hours = {
 //Export cron jobs so server starts them
 module.exports.jobs = () => {
     blizzardController.setBlizzardToken();
+    blizzardController.setBluePosts();
     minutes.every1().start();
     minutes.every5().start();
     minutes.every15().start();

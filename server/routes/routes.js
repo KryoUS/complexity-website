@@ -99,6 +99,7 @@ app.post('/api/complexity/quotes', requireAdmin, quotesController.post);
 app.get('/api/wow/server/status', blizzardController.getServerStatus);
 app.get('/api/wow/token/price', blizzardController.getTokenPrice);
 app.get('/api/wow/classes', blizzardController.getClasses);
+app.get('/api/wow/blueposts', blizzardController.getBluePosts);
 // app.put('/api/wow/character/:character&:realm/achievements', blizzardController.getCharacterAchievements);
 // app.put('/api/wow/character/:character&:realm/mounts', blizzardController.getCharacterMounts);
 // app.put('/api/wow/character/:character&:realm/hunterPets', blizzardController.getCharacterHunterPets);

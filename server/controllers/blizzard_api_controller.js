@@ -7,6 +7,8 @@ let realmObj = {};
 let classicRealmObj = {};
 //US WoW Token Price
 let tokenPrice = {price: 0};
+//Blue Posts
+let bluePosts = [];
 
 const findAchievement = (data, id) => {
     for (let i in data) {
@@ -116,6 +118,18 @@ module.exports.blizzardController = {
         }).catch(wowTokenFetchError => {
             console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
         });
+    },
+
+    setBluePosts: () => {
+        axios.get('https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.json').then(res => {
+            bluePosts = res.data;
+        }).catch(wowBluePostError => {
+            console.log('Blue Post Error: ', wowBluePostError);
+        });
+    },
+
+    getBluePosts: (req, res) => {
+        res.status(200).send(bluePosts);
     },
 
     getClasses: async (req, res, next) => {
