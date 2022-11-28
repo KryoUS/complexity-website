@@ -15,7 +15,8 @@
     "https": "^1.0.0",
     "massive": "^6.10.2",
     "passport": "^0.6.0",
-    "passport-bnet": "^2.0.0"
+    "passport-bnet": "^2.0.0",
+    "xml2js": "^0.4.23"
   },
   "scripts": {
     "start": "node index.js",

@@ -2,6 +2,7 @@
 const { blizzardController } = require('../controllers/blizzard_api_controller');
 const { twitchController } = require('../controllers/twitch_api_controller');
 const { breakingNewsController } = require('../controllers/Database/breaking_news_controller');
+const { wowNewsController } = require('../controllers/Warcraft/news_controller');
 
 //Cron Library https://www.npmjs.com/package/cron
 const CronJob = require('cron').CronJob;
@@ -16,6 +17,7 @@ const minutes =  {
     every5: () => new CronJob('00 */5 * * * *', () => {
         if (process.env.BLIZZ_API_TOKEN) {blizzardController.setTokenPrice()};
         blizzardController.setBluePosts();
+        wowNewsController.setWowheadNews();
     }, null, false, 'America/Denver'),
 
     every15: () => new CronJob('00 */15 * * * *', () => {
@@ -33,6 +35,7 @@ const hours = {
 
 //Export cron jobs so server starts them
 module.exports.jobs = () => {
+    wowNewsController.setWowheadNews();
     blizzardController.setBlizzardToken();
     blizzardController.setBluePosts();
     minutes.every1().start();

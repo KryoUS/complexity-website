@@ -15,10 +15,16 @@ export default class News extends React.Component{
     }
 
     componentDidMount = () => {
-        axios.get('/api/news').then(res => {
+        // axios.get('/api/news').then(res => {
+        //     this.setState({news: res.data});
+        // }).catch(error => {
+            
+        // });
+
+        axios.get('/api/wow/news').then(res => {
             this.setState({news: res.data});
         }).catch(error => {
-            
+
         });
 
         window.twttr.widgets.load();
@@ -55,7 +61,7 @@ export default class News extends React.Component{
                                         {   this.state.news
                                             ?
                                             this.state.news.map((news, index) => (
-                                                <Zoom key={news.id} in={true} style={{transitionDelay: `${index*0.10}s`}} >
+                                                <Zoom key={news.guid[0]._} in={true} style={{transitionDelay: `${index*0.10}s`}} >
                                                     <Grid item xs={12}>
                                                         <Card>
                                                             <CardContent>
@@ -63,8 +69,8 @@ export default class News extends React.Component{
                                                                     <Grid item xs style={{margin: 0}}>
                                                                         <img 
                                                                         style={{width: 300, objectFit: "cover"}} 
-                                                                        src={news.image ? news.image.replace('http:', 'https:') : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
-                                                                        alt={news.title}
+                                                                        src={news["media:content"][0].$.url ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
+                                                                        alt={news.title[0]}
                                                                         onError={e => {
                                                                             e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
                                                                         }}
@@ -73,18 +79,18 @@ export default class News extends React.Component{
                                                                     <Grid item xs container direction="column" spacing={2}>
                                                                         <Grid item xs container direction="column" justifyContent="space-between">
                                                                             <Grid item xs>
-                                                                                <Typography component="div" color="secondary" style={{textAlign: "left"}}>{news.title}</Typography>
+                                                                                <Typography component="div" color="secondary" style={{textAlign: "left"}}>{news.title[0]}</Typography>
                                                                             </Grid>
                                                                             <Grid item xs>
-                                                                                <Typography variant="body2" component="div" color="textSecondary" style={{textAlign: "right"}}>{moment(Number(news.news_datetime)).format('MMM. Do YYYY, h:mm:ssa')}</Typography>
+                                                                                <Typography variant="body2" component="div" color="textSecondary" style={{textAlign: "right"}}>{moment(news.pubDate[0]).format('MMM. Do YYYY, h:mma')}</Typography>
                                                                             </Grid>
                                                                         </Grid>
                                                                         <Grid item xs>
-                                                                            <Typography gutterBottom variant="body2" color="textSecondary" style={{textAlign: "left"}}>{news.description}</Typography>
+                                                                            <Typography gutterBottom variant="body2" color="textSecondary" style={{textAlign: "left"}}>{news.description[0].substring(0, news.description[0].indexOf('<'))}</Typography>
                                                                         </Grid>
                                                                         <Grid item xs>
-                                                                            <Button variant="contained" size="small" color="secondary" href={news.link} target="_blank" rel="noopener noreferrer">
-                                                                                <Typography variant="body2">Read More on {news.source}</Typography>
+                                                                            <Button variant="contained" size="small" color="secondary" href={news.link[0]} target="_blank" rel="noopener noreferrer">
+                                                                                <Typography variant="body2">Read More on Wowhead</Typography>
                                                                             </Button>
                                                                         </Grid>
                                                                     </Grid>
@@ -105,7 +111,7 @@ export default class News extends React.Component{
                                         class="twitter-timeline" 
                                         data-theme="dark" 
                                         href="https://twitter.com/KryoUS/lists/1588319783837003777?ref_src=twsrc%5Etfw"
-                                        data-tweet-limit={14}
+                                        // data-tweet-limit={14}
                                         data-chrome="noheader nofooter noborders transparent">
                                             <CircularProgress color="secondary" />
                                         </a>
@@ -121,23 +127,23 @@ export default class News extends React.Component{
                                 {   this.state.news
                                     ?
                                     this.state.news.map(news => (
-                                        <Grid key={`mobile${news.id}`} item xs={12} sm={6} md={4} lg={3} xl={2}>
+                                        <Grid key={`mobile${news.guid[0]._}`} item xs={12} sm={6} md={4} lg={3} xl={2}>
                                             <Card>
                                                 <CardMedia 
                                                 component="img" 
                                                 height="140" 
-                                                src={news.image ? news.image.replace('http:', 'https:') : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
+                                                src={news["media:content"][0].$.url ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
                                                 onError={e => {
                                                     e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
                                                 }}
                                                 />
                                                 <CardContent style={{ textAlign: "left" }}>
-                                                    <Typography gutterBottom variant="body1" component="div" color="secondary">{news.title}</Typography>
-                                                    <Typography gutterBottom variant="body2" color="textSecondary">{moment(Number(news.news_datetime)).format('MMMM Do YYYY, h:mm:ss a')}</Typography>
-                                                    <Typography variant="body2">{news.description}</Typography>
+                                                    <Typography gutterBottom variant="body1" component="div" color="secondary">{news.title[0]}</Typography>
+                                                    <Typography gutterBottom variant="body2" color="textSecondary">{moment(news.pubDate[0]).format('MMMM Do YYYY, h:mma')}</Typography>
+                                                    <Typography variant="body2">{news.description[0].substring(0, news.description[0].indexOf('<'))}</Typography>
                                                 </CardContent>
                                                 <CardActions>
-                                                    <Button size="small" color="secondary" href={news.link} target="_blank" rel="noopener noreferrer">Read More on Wowhead</Button>
+                                                    <Button size="small" color="secondary" href={news.link[0]} target="_blank" rel="noopener noreferrer">Read More on Wowhead</Button>
                                                 </CardActions>
                                             </Card>
                                         </Grid>

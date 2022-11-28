@@ -20,6 +20,7 @@ const { raidbotsController } = require('../controllers/Database/raidbots_control
 const { simulationcraftController } = require('../controllers/Database/simulationcraft_controller');
 const { iconController } = require('../controllers/Database/icons_controller');
 const { twitchController } = require('../controllers/twitch_api_controller');
+const { wowNewsController } = require('../controllers/Warcraft/news_controller');
 
 const checkAuth = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -100,6 +101,7 @@ app.get('/api/wow/server/status', blizzardController.getServerStatus);
 app.get('/api/wow/token/price', blizzardController.getTokenPrice);
 app.get('/api/wow/classes', blizzardController.getClasses);
 app.get('/api/wow/blueposts', blizzardController.getBluePosts);
+app.get('/api/wow/news', wowNewsController.getWowheadNews);
 // app.put('/api/wow/character/:character&:realm/achievements', blizzardController.getCharacterAchievements);
 // app.put('/api/wow/character/:character&:realm/mounts', blizzardController.getCharacterMounts);
 // app.put('/api/wow/character/:character&:realm/hunterPets', blizzardController.getCharacterHunterPets);
