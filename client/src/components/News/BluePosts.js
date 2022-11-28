@@ -15,7 +15,6 @@ export default class BluePosts extends Component {
     componentDidMount = () => {
         axios.get('/api/wow/blueposts').then(res => {
             this.setState({bluePosts: res.data});
-            console.log(res.data);
         }).catch(error => {
 
         });
