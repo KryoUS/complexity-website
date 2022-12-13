@@ -4,11 +4,11 @@ import Button from '@material-ui/core/Button';
 import { Container, Grid, Dialog, Paper, Typography } from '@material-ui/core';
 import moment from 'moment';
 
-let currentWeek = (moment().week() % 12) + 1; //Adjusted +1 due to M+ Season not starting is cadence with the actual week of the year.
+let currentWeek = (moment().week() % 10) - 1; //Adjusted -1 due to M+ Season not starting is cadence with the actual week of the year.
 
 //Adjust for Tuesday through Saturday
 if (moment().weekday() >= 2) {
-    currentWeek = ((moment().week() + 1) % 12) + 1;
+    currentWeek = ((moment().week() + 1) % 10) - 1;
 }
 
 //TODO: This needs to be pulled from DB and not hard-coded
@@ -104,6 +104,10 @@ const affixes = {
     Shrouded: {
         id: 131,
         icon: 'spell_shadow_nethercloak'
+    },
+    Thundering: {
+        id: 132,
+        icon: 'shaman_pvp_leaderclan'
     }
 }
 
@@ -111,88 +115,73 @@ const schedule = [
     {
         week: 1,
         baseAffix: 'Fortified',
-        plusFour: 'Bursting',
-        plusSeven: 'Storming',                    
-        type: 'Shrouded'
+        plusFour: 'Raging',
+        plusSeven: 'Quaking',                    
+        type: 'Thundering'
     },
     {
         week: 2,
         baseAffix: 'Tyrannical',
-        plusFour: 'Raging',
-        plusSeven: 'Volcanic',                    
-        type: 'Shrouded'
+        plusFour: 'Bursting',
+        plusSeven: 'Grievous',                    
+        type: 'Thundering'
     },
     {
         week: 3,
         baseAffix: 'Fortified',
-        plusFour: 'Inspiring',
-        plusSeven: 'Grievous',                    
-        type: 'Shrouded'
+        plusFour: 'Sanguine',
+        plusSeven: 'Volcanic',                    
+        type: 'Thundering'
     },
     {
         week: 4,
         baseAffix: 'Tyrannical',
-        plusFour: 'Spiteful',
-        plusSeven: 'Necrotic',                    
-        type: 'Shrouded'
+        plusFour: 'Raging',
+        plusSeven: 'Storming',                    
+        type: 'Thundering'
     },
     {
         week: 5,
         baseAffix: 'Fortified',
-        plusFour: 'Bolstering',
-        plusSeven: 'Quaking',                  
-        type: 'Shrouded'
+        plusFour: 'Spiteful',
+        plusSeven: 'Grievous',                  
+        type: 'Thundering'
     },
     {
         week: 6,
         baseAffix: 'Tyrannical',
         plusFour: 'Sanguine',
-        plusSeven: 'Storming',
-        type: 'Shrouded'
+        plusSeven: 'Explosive',
+        type: 'Thundering'
     },
     {
         week: 7,
         baseAffix: 'Fortified',
-        plusFour: 'Raging',
-        plusSeven: 'Explosive',
-        type: 'Shrouded'
+        plusFour: 'Bolstering',
+        plusSeven: 'Storming',
+        type: 'Thundering'
     },
     {
         week: 8,
         baseAffix: 'Tyrannical',
-        plusFour: 'Bursting',
-        plusSeven: 'Volcanic',
-        type: 'Shrouded'
+        plusFour: 'Spiteful',
+        plusSeven: 'Quaking',
+        type: 'Thundering'
     },
     {
         week: 9,
         baseAffix: 'Fortified',
-        plusFour: 'Spiteful',
-        plusSeven: 'Necrotic',
-        type: 'Shrouded'
+        plusFour: 'Bursting',
+        plusSeven: 'Explosive',
+        type: 'Thundering'
     },
     {
         week: 10,
         baseAffix: 'Tyrannical',
-        plusFour: 'Inspiring',
-        plusSeven: 'Quaking',
-        type: 'Shrouded'
-    },
-    {
-        week: 11,
-        baseAffix: 'Fortified',
-        plusFour: 'Sanguine',
-        plusSeven: 'Grievous',
-        type: 'Shrouded'
-    },
-    {
-        week: 12,
-        baseAffix: 'Tyrannical',
         plusFour: 'Bolstering',
-        plusSeven: 'Explosive',
-        type: 'Shrouded'
-    },
-    
+        plusSeven: 'Volcanic',
+        type: 'Thundering'
+    },   
 ]
 
 export default function AffixSchedule(props){
