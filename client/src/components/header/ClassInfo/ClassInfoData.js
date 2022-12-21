@@ -24,10 +24,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/blood-death-knight.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/death-knight/blood/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/death-knight/blood/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -51,10 +51,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/frost-death-knight.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/death-knight/frost/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/death-knight/frost/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -78,10 +78,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/unholy-death-knight.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/death-knight/unholy/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/death-knight/unholy/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -112,10 +112,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/havoc-demon-hunter.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/demon-hunter/havoc/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/demon-hunter/havoc/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -139,10 +139,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/vengeance-demon-hunter.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/demon-hunter/vengeance/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/demon-hunter/vengeance/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -173,10 +173,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/guardian-druid.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/druid/guardian/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/druid/guardian/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -200,10 +200,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/balance-druid.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/druid/balance/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/druid/balance/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -227,10 +227,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/feral-druid.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/druid/feral/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/druid/feral/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -254,10 +254,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/restoration-druid.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/druid/restoration/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/druid/restoration/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -288,10 +288,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/devastation-evoker.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/evoker/devastation/mm+" //Not Live Yet
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/evoker/devastation/mm+" //Not Live Yet
+                    }                    
                 ],
                 open: false
             },
@@ -315,10 +315,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/preservation-evoker.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/evoker/preservation/mm+" //Not Live Yet
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/evoker/preservation/mm+" //Not Live Yet
+                    }                    
                 ],
                 open: false
             },
@@ -349,10 +349,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/beast-mastery-hunter.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/hunter/beast-mastery/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/hunter/beast-mastery/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -376,10 +376,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/marksmanship-hunter.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/hunter/marksmanship/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/hunter/marksmanship/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -403,10 +403,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/survival-hunter.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/hunter/survival/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/hunter/survival/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -437,10 +437,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/arcane-mage.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/mage/arcane/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/mage/arcane/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -464,10 +464,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/fire-mage.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/mage/fire/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/mage/fire/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -491,10 +491,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/frost-mage.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/mage/frost/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/mage/frost/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -525,10 +525,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/brewmaster-monk.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/monk/brewmaster/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/monk/brewmaster/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -552,10 +552,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/mistweaver-monk.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/monk/mistweaver/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/monk/mistweaver/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -579,10 +579,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/windwalker-monk.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/monk/windwalker/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/monk/windwalker/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -613,10 +613,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/holy-paladin.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/paladin/holy/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/paladin/holy/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -640,10 +640,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/protection-paladin.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/paladin/protection/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/paladin/protection/mm+"
+                    }                    
                 ],
                 open: false
             },
@@ -667,10 +667,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/retribution-paladin.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/paladin/retribution/mm+"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/paladin/retribution/mm+"
+                    }                    
                 ],
                 open: false
             }
@@ -701,10 +701,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/discipline-priest.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/priest/discipline"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/priest/discipline"
+                    }                    
                 ],
                 open: false
             },
@@ -728,10 +728,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/holy-priest.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/priest/holy"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/priest/holy"
+                    }                    
                 ],
                 open: false
             },
@@ -755,10 +755,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/shadow-priest.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/priest/shadow"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/priest/shadow"
+                    }                    
                 ],
                 open: false
             }
@@ -789,10 +789,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/assassination-rogue.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/rogue/assassination"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/rogue/assassination"
+                    }                    
                 ],
                 open: false
             },
@@ -816,10 +816,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/outlaw-rogue.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/rogue/outlaw"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/rogue/outlaw"
+                    }                    
                 ],
                 open: false
             },
@@ -843,10 +843,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/subtlety-rogue.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/rogue/subtlety"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/rogue/subtlety"
+                    }                    
                 ],
                 open: false
             }
@@ -877,10 +877,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/elemental-shaman.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/shaman/elemental"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/shaman/elemental"
+                    }                    
                 ],
                 open: false
             },
@@ -904,10 +904,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/enhancement-shaman.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/shaman/enhancement"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/shaman/enhancement"
+                    }                    
                 ],
                 open: false
             },
@@ -931,10 +931,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/restoration-shaman.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/shaman/restoration"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/shaman/restoration"
+                    }                    
                 ],
                 open: false
             }
@@ -965,10 +965,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/affliction-warlock.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warlock/affliction"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warlock/affliction"
+                    }                    
                 ],
                 open: false
             },
@@ -992,10 +992,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/demonology-warlock.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warlock/demonology"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warlock/demonology"
+                    }                    
                 ],
                 open: false
             },
@@ -1019,10 +1019,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/destruction-warlock.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warlock/destruction"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warlock/destruction"
+                    }                    
                 ],
                 open: false
             }
@@ -1053,10 +1053,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/arms-warrior.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warrior/arms"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warrior/arms"
+                    }                    
                 ],
                 open: false
             },
@@ -1080,10 +1080,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/fury-warrior.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warrior/fury"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warrior/fury"
+                    }                    
                 ],
                 open: false
             },
@@ -1107,10 +1107,10 @@ module.exports = [
                         sourceName: "Subcreation Raid",
                         sourceURL: "https://raid.subcreation.net/protection-warrior.html"
                     },
-                    // {
-                    //     sourceName: "MurlokIO M+",
-                    //     sourceURL: "https://murlok.io/warrior/protection"
-                    // }                    
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/warrior/protection"
+                    }                    
                 ],
                 open: false
             }
