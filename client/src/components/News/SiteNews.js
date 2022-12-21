@@ -58,18 +58,18 @@ export default class News extends React.Component{
                             <Grid container spacing={2}>
                                 <Grid item xs={7}>
                                     <Grid container spacing={2}>
-                                        {   this.state.news
+                                        {   this.state.news.length > 0
                                             ?
-                                            this.state.news.map((news, index) => (
+                                            this.state.news.map((news, index) => ( 
                                                 <Zoom key={news.guid[0]._} in={true} style={{transitionDelay: `${index*0.10}s`}} >
                                                     <Grid item xs={12}>
                                                         <Card>
                                                             <CardContent>
                                                                 <Grid container spacing={2}>
-                                                                    <Grid item xs style={{margin: 0}}>
+                                                                    <Grid item xs style={{margin: 0}}> 
                                                                         <img 
-                                                                        style={{width: 300, objectFit: "cover"}} 
-                                                                        src={news["media:content"][0].$.url ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
+                                                                        style={{width: 300, objectFit: "cover"}}
+                                                                        src={news.hasOwnProperty("media:content") ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
                                                                         alt={news.title[0]}
                                                                         onError={e => {
                                                                             e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
@@ -132,7 +132,7 @@ export default class News extends React.Component{
                                                 <CardMedia 
                                                 component="img" 
                                                 height="140" 
-                                                src={news["media:content"][0].$.url ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
+                                                src={news.hasOwnProperty(["media:content"]) ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
                                                 onError={e => {
                                                     e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
                                                 }}
