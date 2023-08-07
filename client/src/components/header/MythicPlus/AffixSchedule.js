@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Container, Grid, Dialog, Paper, Typography } from '@material-ui/core';
 import moment from 'moment';
 
-let currentWeek = (moment().week() % 10) - 1; //Adjusted -1 due to M+ Season not starting is cadence with the actual week of the year.
+let currentWeek = (moment().week() % 10) + 1; //Adjusted +1 due to M+ Season not starting is cadence with the actual week of the year.
 
 //Adjust for Tuesday through Saturday
 if (moment().weekday() >= 2) {
@@ -108,80 +108,82 @@ const affixes = {
     Thundering: {
         id: 132,
         icon: 'shaman_pvp_leaderclan'
-    }
+    },
+    Entangling: {
+        id: 134,
+        icon: 'inv_misc_root_01'
+    },
+    Afflicted: {
+        id: 135,
+        icon: 'spell_misc_emotionsad'
+    },
+    Incorporeal: {
+        id: 136,
+        icon: 'achievement_boss_anomalus'
+    }    
 }
 
 const schedule = [
     {
         week: 1,
-        baseAffix: 'Fortified',
-        plusFour: 'Raging',
-        plusSeven: 'Quaking',                    
-        type: 'Thundering'
+        baseAffix: 'Tyrannical',
+        plusFour: 'Storming',
+        plusSeven: 'Raging'
     },
     {
         week: 2,
-        baseAffix: 'Tyrannical',
-        plusFour: 'Bursting',
-        plusSeven: 'Grievous',                    
-        type: 'Thundering'
+        baseAffix: 'Fortified',
+        plusFour: 'Entangling',
+        plusSeven: 'Bolstering'
     },
     {
         week: 3,
-        baseAffix: 'Fortified',
-        plusFour: 'Sanguine',
-        plusSeven: 'Volcanic',                    
-        type: 'Thundering'
+        baseAffix: 'Tyrannical',
+        plusFour: 'Incorporeal',
+        plusSeven: 'Spiteful'
     },
     {
         week: 4,
-        baseAffix: 'Tyrannical',
-        plusFour: 'Raging',
-        plusSeven: 'Storming',                    
-        type: 'Thundering'
+        baseAffix: 'Fortified',
+        plusFour: 'Afflicted',
+        plusSeven: 'Raging'
     },
     {
         week: 5,
-        baseAffix: 'Fortified',
-        plusFour: 'Spiteful',
-        plusSeven: 'Grievous',                  
-        type: 'Thundering'
+        baseAffix: 'Tyrannical',
+        plusFour: 'Volcanic',
+        plusSeven: 'Sanguine'
     },
     {
         week: 6,
-        baseAffix: 'Tyrannical',
-        plusFour: 'Sanguine',
-        plusSeven: 'Explosive',
-        type: 'Thundering'
+        baseAffix: 'Fortified',
+        plusFour: 'Storming',
+        plusSeven: 'Bursting'
     },
     {
         week: 7,
-        baseAffix: 'Fortified',
-        plusFour: 'Bolstering',
-        plusSeven: 'Storming',
-        type: 'Thundering'
+        baseAffix: 'Tyrannical',
+        plusFour: 'Afflicted',
+        plusSeven: 'Bolstering'
     },
     {
         week: 8,
-        baseAffix: 'Tyrannical',
-        plusFour: 'Spiteful',
-        plusSeven: 'Quaking',
-        type: 'Thundering'
+        baseAffix: 'Fortified',
+        plusFour: 'Incorporeal',
+        plusSeven: 'Sanguine'
     },
     {
         week: 9,
-        baseAffix: 'Fortified',
-        plusFour: 'Bursting',
-        plusSeven: 'Explosive',
-        type: 'Thundering'
+        baseAffix: 'Tyrannical',
+        plusFour: 'Entangling',
+        plusSeven: 'Bursting'
     },
     {
         week: 10,
-        baseAffix: 'Tyrannical',
-        plusFour: 'Bolstering',
-        plusSeven: 'Volcanic',
-        type: 'Thundering'
-    },   
+        baseAffix: 'Fortified',
+        plusFour: 'Volcanic',
+        plusSeven: 'Spiteful'
+    }
 ]
 
 export default function AffixSchedule(props){
@@ -194,37 +196,27 @@ export default function AffixSchedule(props){
         
         >
             <Paper>
-                    <Grid container direction='column'> {/*Calendar*/}
-                        <Grid item xs container>
-                            <Grid item xs={3}>
-                                <Container>
-                                    <Typography variant='caption'>+2</Typography>
-                                </Container>
+                <Container>
+                    <Grid container> {/*Calendar*/}
+                        <Grid item xs={12} container justifyContent='space-between'>
+                            <Grid item xs={4}>
+                                <Typography variant='h6'>+2</Typography>
                             </Grid>
-                            <Grid item xs={3}>
-                                <Container>
-                                    <Typography variant='caption'>+4</Typography>
-                                </Container>
+                            <Grid item xs={4}>
+                                <Typography variant='h6'>+7</Typography>
                             </Grid>
-                            <Grid item xs={3}>
-                                <Container>
-                                    <Typography variant='caption'>+7</Typography>
-                                </Container>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <Container>
-                                    <Typography variant='caption'>Seasonal</Typography>
-                                </Container>
+                            <Grid item xs={4}>
+                                <Typography variant='h6'>+14</Typography>
                             </Grid>
                         </Grid>
                         {schedule.map(obj => {
                             const isCurrentWeek = currentWeek === obj.week;
 
-                            return <Grid key={`affixWeek${obj.week}`} item xs container style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}` }}> {/*Week*/}
-                                <Grid item xs={3}> {/*baseAffix*/}
+                            return <Grid key={`affixWeek${obj.week}`} item xs={12} container style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> {/*Week*/}
+                                <Grid item xs={4} > {/*baseAffix*/}
                                     <Button 
                                     variant="text" 
-                                    size="small"
+                                    size="medium"
                                     style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
                                     href={`https://wowhead.com/affix=${affixes[obj.baseAffix].id}`} 
                                     data-wowhead={`affix=${affixes[obj.baseAffix].id}`}
@@ -232,7 +224,7 @@ export default function AffixSchedule(props){
                                     rel="noopener noreferrer" 
                                     startIcon={
                                         <img
-                                        style={{width: 12, height: 12}} 
+                                        style={{width: 24, height: 24}} 
                                         src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.baseAffix].icon}.jpg`} 
                                         alt={obj.baseAffix + ' Mythic Plus Affix'}
                                         onError={e => {
@@ -243,10 +235,10 @@ export default function AffixSchedule(props){
                                         {obj.baseAffix}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={3}> {/*plusFour*/}
+                                <Grid item xs={4} > {/*plusFour*/}
                                     <Button 
                                     variant="text" 
-                                    size="small"
+                                    size="medium"
                                     style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
                                     href={`https://wowhead.com/affix=${affixes[obj.plusFour].id}`} 
                                     data-wowhead={`affix=${affixes[obj.plusFour].id}`}
@@ -254,7 +246,7 @@ export default function AffixSchedule(props){
                                     rel="noopener noreferrer" 
                                     startIcon={
                                         <img 
-                                        style={{width: 12, height: 12}} 
+                                        style={{width: 24, height: 24}} 
                                         src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusFour].icon}.jpg`} 
                                         alt={obj.plusFour + ' Mythic Plus Affix'}
                                         onError={e => {
@@ -265,10 +257,10 @@ export default function AffixSchedule(props){
                                         {obj.plusFour}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={3}> {/*plusSeven*/}
+                                <Grid item xs={4} > {/*plusSeven*/}
                                     <Button 
                                     variant="text" 
-                                    size="small"
+                                    size="medium"
                                     style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
                                     href={`https://wowhead.com/affix=${affixes[obj.plusSeven].id}`} 
                                     data-wowhead={`affix=${affixes[obj.plusSeven].id}`}
@@ -276,7 +268,7 @@ export default function AffixSchedule(props){
                                     rel="noopener noreferrer" 
                                     startIcon={
                                         <img 
-                                        style={{width: 12, height: 12}} 
+                                        style={{width: 24, height: 24}} 
                                         src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusSeven].icon}.jpg`} 
                                         alt={obj.plusSeven + ' Mythic Plus Affix'}
                                         onError={e => {
@@ -287,7 +279,7 @@ export default function AffixSchedule(props){
                                         {obj.plusSeven}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={3}> {/*type*/}
+                                {/* <Grid item xs={3}>
                                     <Button 
                                     variant="text" 
                                     size="small"
@@ -308,10 +300,11 @@ export default function AffixSchedule(props){
                                     }>
                                         {obj.type}
                                     </Button>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         })}
                     </Grid>
+                </Container>
             </Paper>
         </Dialog>
     );
