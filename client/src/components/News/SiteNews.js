@@ -56,7 +56,7 @@ export default class News extends React.Component{
                         <Grid item xs={12}>
                             {/* DESKTOP */}
                             <Grid container spacing={2}>
-                                <Grid item xs={7}>
+                                <Grid item xs={12}>
                                     <Grid container spacing={2}>
                                         {   this.state.news.length > 0
                                             ?
@@ -68,7 +68,7 @@ export default class News extends React.Component{
                                                                 <Grid container spacing={2}>
                                                                     <Grid item xs style={{margin: 0}}> 
                                                                         <img 
-                                                                        style={{width: 300, objectFit: "cover"}}
+                                                                        style={{width: 500, height: 300, objectFit: "cover"}}
                                                                         src={news.hasOwnProperty("media:content") ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'} 
                                                                         alt={news.title[0]}
                                                                         onError={e => {
@@ -79,18 +79,18 @@ export default class News extends React.Component{
                                                                     <Grid item xs container direction="column" spacing={2}>
                                                                         <Grid item xs container direction="column" justifyContent="space-between">
                                                                             <Grid item xs>
-                                                                                <Typography component="div" color="secondary" style={{textAlign: "left"}}>{news.title[0]}</Typography>
+                                                                                <Typography variant="h6" component="div" color="secondary" style={{textAlign: "left"}}>{news.title[0]}</Typography>
                                                                             </Grid>
                                                                             <Grid item xs>
-                                                                                <Typography variant="body2" component="div" color="textSecondary" style={{textAlign: "right"}}>{moment(news.pubDate[0]).format('MMM. Do YYYY, h:mma')}</Typography>
+                                                                                <Typography variant="body1" component="div" color="textSecondary" style={{textAlign: "right"}}>{moment(news.pubDate[0]).format('MMM. Do YYYY, h:mma')}</Typography>
                                                                             </Grid>
                                                                         </Grid>
                                                                         <Grid item xs>
-                                                                            <Typography gutterBottom variant="body2" color="textSecondary" style={{textAlign: "left"}}>{news.description[0].substring(0, news.description[0].indexOf('<'))}</Typography>
+                                                                            <Typography gutterBottom variant="body1" color="textSecondary" style={{textAlign: "left"}}>{news.description[0].substring(0, news.description[0].indexOf('<'))}</Typography>
                                                                         </Grid>
                                                                         <Grid item xs>
                                                                             <Button variant="contained" size="small" color="secondary" href={news.link[0]} target="_blank" rel="noopener noreferrer">
-                                                                                <Typography variant="body2">Read More on Wowhead</Typography>
+                                                                                <Typography variant="body1">Read More on Wowhead</Typography>
                                                                             </Button>
                                                                         </Grid>
                                                                     </Grid>
@@ -105,7 +105,8 @@ export default class News extends React.Component{
                                         }
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={5}>
+                                {/* Removed since Twitter broke their API */}
+                                {/* <Grid item xs={5}>
                                     <Card>
                                         <a 
                                         class="twitter-timeline" 
@@ -116,7 +117,7 @@ export default class News extends React.Component{
                                             <CircularProgress color="secondary" />
                                         </a>
                                     </Card>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Hidden>
