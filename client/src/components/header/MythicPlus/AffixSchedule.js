@@ -8,7 +8,7 @@ let currentWeek = (moment().week() % 10) + 1; //Adjusted +1 due to M+ Season not
 
 //Adjust for Tuesday through Saturday
 if (moment().weekday() >= 2) {
-    currentWeek = ((moment().week() + 1) % 10) - 1;
+    currentWeek = ((moment().week() + 1) % 10) + 1;
 }
 
 //TODO: This needs to be pulled from DB and not hard-coded
