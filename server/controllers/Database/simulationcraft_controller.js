@@ -30,6 +30,7 @@ module.exports.simulationcraftController = {
         
         req.app.get('db').wowcache.findOne({id: 9}).then(response => {
 
+            //TODO: Shouldn't this be Async!?
             response.body.currentTier.forEach(obj => {
                 obj.classColor = classColors[obj.class];
             });
