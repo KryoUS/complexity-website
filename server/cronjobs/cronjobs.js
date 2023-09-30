@@ -28,7 +28,7 @@ const minutes =  {
 // Every x hours
 const hours = {
     every1: () => new CronJob('00 0 */1 * * *', () => {
-        twitchController.setTwitchToken();
+
     }, null, false, 'America/Denver'),
 }
 
@@ -39,5 +39,5 @@ module.exports.jobs = () => {
     minutes.every1().start();
     minutes.every5().start();
     minutes.every15().start();
-    hours.every1().start();
+    // hours.every1().start();
 }
