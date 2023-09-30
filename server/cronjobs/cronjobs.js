@@ -11,11 +11,11 @@ const CronJob = require('cron').CronJob;
 const minutes =  {
     
     every1: () => new CronJob('00 */1 * * * *', () => {
-        if (process.env.BLIZZ_API_TOKEN) {blizzardController.setServerStatus()};
+        blizzardController.setServerStatus();
     }, null, false, 'America/Denver'),
     
     every5: () => new CronJob('00 */5 * * * *', () => {
-        if (process.env.BLIZZ_API_TOKEN) {blizzardController.setTokenPrice()};
+        blizzardController.setTokenPrice();
         blizzardController.setBluePosts();
         wowNewsController.setWowheadNews();
     }, null, false, 'America/Denver'),
@@ -28,7 +28,6 @@ const minutes =  {
 // Every x hours
 const hours = {
     every1: () => new CronJob('00 0 */1 * * *', () => {
-        blizzardController.setBlizzardToken();
         twitchController.setTwitchToken();
     }, null, false, 'America/Denver'),
 }
@@ -36,7 +35,6 @@ const hours = {
 //Export cron jobs so server starts them
 module.exports.jobs = () => {
     wowNewsController.setWowheadNews();
-    blizzardController.setBlizzardToken();
     blizzardController.setBluePosts();
     minutes.every1().start();
     minutes.every5().start();
