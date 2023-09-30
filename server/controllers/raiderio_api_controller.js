@@ -1,5 +1,6 @@
 module.exports.raiderIOController = {
 
+    //TODO: These DB points need to be changed, Services is being retired. Card added.
     getWowRankingsGuild: (req, res) => {
         req.app.get('db').wowcache.findOne({id: 14}).then(response => {
             res.status(200).send(response.body.data);
