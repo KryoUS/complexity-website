@@ -8,9 +8,3 @@ create table bnetlog(
   "url" TEXT,
   "message" TEXT
 );
-
-CREATE TRIGGER public_bnetlog_updated
-    BEFORE UPDATE 
-    ON public.bnetlog
-    FOR EACH ROW
-    EXECUTE PROCEDURE public.massive_document_updated();
