@@ -1,6 +1,5 @@
 //Controllers
 const { blizzardController } = require('../controllers/blizzard_api_controller');
-const { twitchController } = require('../controllers/twitch_api_controller');
 const { breakingNewsController } = require('../controllers/Database/breaking_news_controller');
 const { wowNewsController } = require('../controllers/Warcraft/news_controller');
 
@@ -11,6 +10,9 @@ const wowheadLogCleanup = require('../controllers/Database/logging/wowheadLoggin
 
 //Cron Library https://www.npmjs.com/package/cron
 const CronJob = require('cron').CronJob;
+
+//Tasks
+const getAllCharacters = require('../controllers/Warcraft/Character/get/all');
 
 //Every x minutes
 const minutes =  {
@@ -36,13 +38,17 @@ const hours = {
         bnetLogCleanup();
         twitchLogCleanup();
         wowheadLogCleanup();
+        getAllCharacters();
     }, null, false, 'America/Denver'),
 }
 
 //Export cron jobs so server starts them
 module.exports.jobs = () => {
+    blizzardController.setServerStatus();
+    blizzardController.setTokenPrice();
     wowNewsController.setWowheadNews();
     blizzardController.setBluePosts();
+    breakingNewsController.breakingNews();
     minutes.every1().start();
     minutes.every5().start();
     minutes.every15().start();
