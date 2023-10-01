@@ -4,6 +4,11 @@ const { twitchController } = require('../controllers/twitch_api_controller');
 const { breakingNewsController } = require('../controllers/Database/breaking_news_controller');
 const { wowNewsController } = require('../controllers/Warcraft/news_controller');
 
+//DB
+const bnetLogCleanup = require('../controllers/Database/logging/bnetLogging').cleanup;
+const twitchLogCleanup = require('../controllers/Database/logging/twitchLogging').cleanup;
+const wowheadLogCleanup = require('../controllers/Database/logging/wowheadLogging').cleanup;
+
 //Cron Library https://www.npmjs.com/package/cron
 const CronJob = require('cron').CronJob;
 
@@ -28,7 +33,9 @@ const minutes =  {
 // Every x hours
 const hours = {
     every1: () => new CronJob('00 0 */1 * * *', () => {
-
+        bnetLogCleanup();
+        twitchLogCleanup();
+        wowheadLogCleanup();
     }, null, false, 'America/Denver'),
 }
 
@@ -39,5 +46,5 @@ module.exports.jobs = () => {
     minutes.every1().start();
     minutes.every5().start();
     minutes.every15().start();
-    // hours.every1().start();
+    hours.every1().start();
 }
