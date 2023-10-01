@@ -7,7 +7,7 @@ let realmObj = {};
 //Classic Realm Status
 let classicRealmObj = {};
 //US WoW Token Price
-let tokenPrice = {price: 0};
+let tokenPrice = { price: 0 };
 //Blue Posts
 let bluePosts = [];
 
@@ -19,64 +19,6 @@ const findAchievement = (data, id) => {
     return false
 };
 
-const achievementInfo = (arr, id) => {
-    let achievementObject = {};
-    let loop = true;
-
-    arr.achievements.map((obj) => {
-        if (loop == true) {
-            let category = '';
-            if (obj.name) category = obj.name;
-            achievementArray = findAchievement(obj, id);
-            if (achievementArray != false) {
-                achievementArray.category = category;
-                achievementObject = achievementArray;
-                loop = false;
-                return achievementObject
-            }
-        }
-    });
-    return achievementObject
-}
-
-const className = (classNum, classesArr) => {
-    classesArr.map(obj => {
-        if (obj.id === classNum) {return obj.name};
-    });
-};
-
-const createSpellIconInClause = (arr) => {
-    let spellIds = '';
-
-    arr.map(obj => {
-        if (obj.talents) {
-            obj.talents.map(talentObj => {
-                spellIds += talentObj.spell_tooltip.spell.id + ',';
-            });
-        }
-
-        if (obj.pvp_talent_slots) {
-            obj.pvp_talent_slots.map(pvpObj => {
-                spellIds += pvpObj.selected.spell_tooltip.spell.id + ',';
-            });
-        }
-    });
-
-    return spellIds.replace(/.$/,'');
-};
-
-const createItemIconInClause = (arr) => {
-    let itemIds = '';
-
-    arr.map(obj => {
-        if (obj.item) {
-            itemIds += obj.item.id + ',';
-        }
-    });
-
-    return itemIds.replace(/.$/,'');
-};
-
 async function getClassesAndMedia() {
 
     let classData = [];
@@ -86,16 +28,16 @@ async function getClassesAndMedia() {
         const classes = await Promise.all(classIndex.data.classes.map((classObj, index) => {
             //TODO: Below is a future problem as it is using the href and I already have set the BaseURL through the Interceptor
             return axios.get(`${classObj.key.href}&access_token=${process.env.BLIZZ_API_TOKEN}`)
-            .then(response => {
-                classData[index] = response.data;
-            })
+                .then(response => {
+                    classData[index] = response.data;
+                })
         }));
         const specs = await Promise.all(classData.map((classObj, classIndex) => {
             return Promise.all(classObj.specializations.map((specObj, specIndex) => {
                 return bnet.get(`/data/wow/media/playable-specialization/${specObj.id}?namespace=static-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`)
-                .then(response => {
-                    classData[classIndex].specializations[specIndex].media = response.data;
-                })
+                    .then(response => {
+                        classData[classIndex].specializations[specIndex].media = response.data;
+                    })
             }))
         }));
         // const data = await Promise.all([classIndex, classes, specs]);
@@ -140,7 +82,7 @@ module.exports.blizzardController = {
     },
 
     getMounts: (req, res) => {
-        req.app.get('db').wowcache.findOne({id: 5}).then(response => {
+        req.app.get('db').wowcache.findOne({ id: 5 }).then(response => {
             res.status(200).send(response.body.data);
         }).catch(err => {
             console.log('DB WoW Get Mounts Error');
@@ -150,7 +92,7 @@ module.exports.blizzardController = {
     },
 
     getPets: (req, res) => {
-        req.app.get('db').wowcache.findOne({id: 6}).then(response => {
+        req.app.get('db').wowcache.findOne({ id: 6 }).then(response => {
             res.status(200).send(response.body.data);
         }).catch(err => {
             console.log('DB WoW Get Pets Error');
@@ -160,7 +102,7 @@ module.exports.blizzardController = {
     },
 
     getPetTypes: (req, res) => {
-        req.app.get('db').wowcache.findOne({id: 7}).then(response => {
+        req.app.get('db').wowcache.findOne({ id: 7 }).then(response => {
             res.status(200).send(response.body.data);
         }).catch(err => {
             console.log('DB WoW Get PetTypes Error');
@@ -170,7 +112,7 @@ module.exports.blizzardController = {
     },
 
     getRaces: (req, res) => {
-        req.app.get('db').wowcache.findOne({id: 8}).then(response => {
+        req.app.get('db').wowcache.findOne({ id: 8 }).then(response => {
             res.status(200).send(response.body.data);
         }).catch(err => {
             console.log('DB WoW Get Races Error');
@@ -182,8 +124,8 @@ module.exports.blizzardController = {
     setServerStatus: (req, res) => {
         bnet.get(`/data/wow/connected-realm/77?namespace=dynamic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             if (realmObj.status && response.data.status.type !== realmObj.status.type) {
-                
-                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
+
+                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK,
                     {
                         embeds: [
                             {
@@ -212,13 +154,13 @@ module.exports.blizzardController = {
                         },
                     }
                 ).then(discordResponse => {
-                    
+
                 }).catch(discordWebhookError => {
                     console.log("Discord Webhook POST Error: ", discordWebhookError);
                 });
 
             };
-        
+
             realmObj = response.data;
         }).catch(serverStatusError => {
             // Now caught in Axios Interceptor for Bnet
@@ -227,8 +169,8 @@ module.exports.blizzardController = {
 
         bnet.get(`/data/wow/connected-realm/4384?namespace=dynamic-classic-us&locale=en_US&access_token=${process.env.BLIZZ_API_TOKEN}`).then(response => {
             if (classicRealmObj.status && response.data.status.type !== classicRealmObj.status.type) {
-                
-                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK, 
+
+                axios.post(process.env.DISCORD_REALMSTATUS_WEBHOOK,
                     {
                         embeds: [
                             {
@@ -257,20 +199,20 @@ module.exports.blizzardController = {
                         },
                     }
                 ).then(discordResponse => {
-                    
+
                 }).catch(discordWebhookError => {
                     console.log("Discord Webhook POST Error: ", discordWebhookError);
                 });
 
             };
-        
+
             classicRealmObj = response.data;
         }).catch(serverStatusError => {
             // Now caught in Axios Interceptor for Bnet
             // console.log('Server Status Error: ?', serverStatusError);
         });
     },
-    
+
     getServerStatus: (req, res) => {
         res.status(200).send(realmObj);
     },
