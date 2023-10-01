@@ -7,6 +7,7 @@ const { wowNewsController } = require('../controllers/Warcraft/news_controller')
 const bnetLogCleanup = require('../controllers/Database/logging/bnetLogging').cleanup;
 const twitchLogCleanup = require('../controllers/Database/logging/twitchLogging').cleanup;
 const wowheadLogCleanup = require('../controllers/Database/logging/wowheadLogging').cleanup;
+const characterCleanup = require('../controllers/Warcraft/Character/get/removeChar');
 
 //Cron Library https://www.npmjs.com/package/cron
 const CronJob = require('cron').CronJob;
@@ -35,6 +36,7 @@ const minutes =  {
 // Every x hours
 const hours = {
     every1: () => new CronJob('00 0 */1 * * *', () => {
+        characterCleanup();
         bnetLogCleanup();
         twitchLogCleanup();
         wowheadLogCleanup();
