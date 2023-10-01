@@ -18,7 +18,7 @@ module.exports = {
         })
     },
 
-    twitchLoggingCleanup: async () => {
+    cleanup: async () => {
         let db = await app.get('db');
 
         db.query("DELETE FROM twitchlog WHERE created_at < NOW() - INTERVAL '15 days'").catch(dbError => {

@@ -18,10 +18,10 @@ module.exports = {
         })
     },
 
-    bnetLoggingCleanup: async () => {
+    cleanup: async () => {
         let db = await app.get('db');
 
-        db.query("DELETE FROM bnetlog WHERE created_at < NOW() - INTERVAL '15 days'").catch(dbError => {
+        db.query("DELETE FROM bnetlog WHERE created_at < NOW() - INTERVAL '10 days'").catch(dbError => {
             console.log(`${new Date()} ===Massive.js DB Bnet Log Cleanup Error===`, dbError);
         });
     }
