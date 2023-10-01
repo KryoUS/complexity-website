@@ -7,7 +7,7 @@ const bnetLogging = require('../Database/logging/bnetLogging').bnetLogging;
 const bnet = bnetLimit(axios.create({
   baseURL: 'https://us.api.blizzard.com',
   timeout: 10000
-}), { maxRequests: 10, perMilliseconds: 1000, maxRPS: 10 });
+}), { maxRequests: 5, perMilliseconds: 1000, maxRPS: 5 });
 
 axiosRetry(bnet, { retries: 3 });
 
