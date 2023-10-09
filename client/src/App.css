@@ -22,17 +22,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-.wowhead-tooltip td, .wowhead-tooltip th {
+.wowhead-tooltip td,
+.wowhead-tooltip th {
   background: #1a1a1aaf;
 }
 
-.wowhead-tooltip table, .wowhead-tooltip td, .wowhead-tooltip th, .wowhead-tooltip tbody {
-  border: none !important; 
+.wowhead-tooltip table,
+.wowhead-tooltip td,
+.wowhead-tooltip th,
+.wowhead-tooltip tbody {
+  border: none !important;
 }
 
 .wowhead-tooltip {
@@ -42,6 +47,30 @@
 
 .MuiTooltip-tooltip {
   font-size: 0.75rem !important;
+}
+
+#CardArea {
+  color: #000000;
+}
+
+#CardArea:hover>span {
+  opacity: 0.85;
+}
+
+#CardArea:hover #CardDesc {
+  visibility: visible;
+}
+
+#CardDesc {
+  visibility: hidden;
+  z-index: 2;
+  text-align: center;
+  text-shadow: 2px 2px 2px #000000;
+}
+
+.twitter-timeline * {
+  border: 1px solid #000 !important;
+  box-shadow: 2px 2px 2px #000;
 }
 
 /* .wowhead-tooltip p {
