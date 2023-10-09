@@ -30,19 +30,8 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Roboto Condensed',
-    h5: {
-      fontWeight: 600
-    },
-    h3: {
-      fontWeight: 600
-    },
-    h6: {
-      fontWeight: 600
-    },
-    body1: {
-      fontSize: "1rem"
-    }
+    fontFamily: 'Oswald',
+    fontWeightRegular: 300,
   },
 });
 
