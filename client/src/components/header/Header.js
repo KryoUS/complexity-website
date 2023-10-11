@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Avatar, Button, Container, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@material-ui/core';
-import { AccountCircle, Assessment, Computer, Class, DateRange, Group, Home, Info, Menu, YouTube } from '@material-ui/icons';
+import { AppBar, Button, Container, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@material-ui/core';
+import { Assessment, Computer, Class, DateRange, Group, Home, Info, Menu, AccountCircle, YouTube } from '@material-ui/icons';
 import { ReactComponent as DiscordIcon } from '../icons/Discord-Logo-White.svg';
 import { ReactComponent as TwitchIcon } from '../icons/twitch.svg';
 import { ReactComponent as ComplexityLogo } from '../icons/complexityMoose.svg';
@@ -55,7 +55,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position="sticky" style={{ marginBottom: '10px' }}>
+            <AppBar position="sticky">
                 <Toolbar variant={"dense"} style={{ backgroundColor: "#121212" }}>
                     <Hidden lgUp>   {/* MOBILE/TABLET ONLY */}
                         <Grid container alignItems='center'>
@@ -87,34 +87,36 @@ class Header extends React.Component {
                     </Hidden>
                     <Hidden mdDown> {/* DESKTOP ONLY */}
                         <Grid container>
-                            <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-start" }}>
+                            <Grid item xs={6}>
                                 <Quotes />
                             </Grid>
-                            <Grid container spacing={2} item xs={6} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <Grid item xs={3} container spacing={2} style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
-                                    <RealmStatus />
-                                </Grid>
-                                <Grid item>
-                                    <Button
-                                        variant="text"
-                                        size="medium"
-                                        onClick={() => this.classDrawerToggle()}
-                                        startIcon={<Info />}>
-                                        Class Info
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button
-                                        variant="text"
-                                        size="small"
-                                        onClick={() => this.affixesToggle()}
-                                        startIcon={<DateRange />}>
-                                        Mythic+ Affixes
-                                    </Button>
-                                    <MythicAffixes iconHW={16} iconSize={'small'} />
-                                </Grid>
-                                <Grid item>
-                                    <TokenPrice />
+                            <Grid item xs={6}>
+                                <Grid container spacing={2} justifyContent='flex-end' alignItems='center'>
+                                    <Grid item>
+                                        <RealmStatus />
+                                    </Grid>
+                                    <Grid item>
+                                        <Button
+                                            variant="text"
+                                            size="medium"
+                                            onClick={() => this.classDrawerToggle()}
+                                            startIcon={<Info />}>
+                                            Class Info
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button
+                                            variant="text"
+                                            size="medium"
+                                            onClick={() => this.affixesToggle()}
+                                            startIcon={<DateRange />}>
+                                            Mythic+ Affixes
+                                        </Button>
+                                        <MythicAffixes iconHW={16} iconSize={'small'} />
+                                    </Grid>
+                                    <Grid item>
+                                        <TokenPrice />
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -176,11 +178,13 @@ class Header extends React.Component {
                                         </Button>
                                     </Grid>
                                     <Grid item>
-                                        <Avatar
-                                            onClick={this.handleMenu}
-                                            src={<AccountCircle />}
-                                        >
-                                        </Avatar>
+                                    <IconButton
+                                        onClick={this.handleMenu}
+                                        edge={'end'}
+                                        disabled
+                                    >
+                                        <AccountCircle style={{fontSize: 46}} />
+                                    </IconButton>
                                     </Grid>
                                 </Grid>
                             </Grid>
