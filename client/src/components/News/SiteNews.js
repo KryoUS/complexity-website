@@ -28,7 +28,7 @@ export default class News extends React.Component {
             <Grid container>
                 <Grid id="BlueNews" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
                     <Container maxWidth='lg'>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={6}>
                             <Grid item xs={12}>
                                 <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
                                     <CardContent>
@@ -53,7 +53,7 @@ export default class News extends React.Component {
                 <Divider/>
                 <Grid id="NewsContent" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
                     <Container maxWidth={false}>
-                        <Grid container spacing={3}>
+                        <Grid container spacing={6}>
                             <Grid item xs={12} sm={12} md={7} lg={9} xl={9}>
                                 {this.state.news
                                     ?
