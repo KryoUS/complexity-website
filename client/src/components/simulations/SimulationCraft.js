@@ -92,7 +92,7 @@ class SimulationCraft extends Component {
     render() {
         return (
             <Container style={{ padding: '20px' }}>
-                <Paper>
+                <Paper elevation={10}>
                     <Box style={{ padding: '20px' }}>
                         {this.state.loaded ?
                             <div>

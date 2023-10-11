@@ -6,7 +6,7 @@ export default class About extends React.Component{
     render(){
         return(
             <Container style={{padding: '24px'}}>
-                <Paper style={{padding: '24px'}}>
+                <Paper elevation={10} style={{padding: '24px'}}>
                     <Typography variant='h3' color="secondary" align='left' style={{padding: '24px'}}>History</Typography>
                     <Typography align='left'>Founded in July of 2010 by Glacial and Hopeless, Complexity started out as a very small guild of just a few players. Over time the guild grew and so did the friendships. With some seasoned veterans and fresh new blood joining the guild, it didn't take long for Complexity to step into raiding. Finding its stride in Dragon Soul with two separate raid groups completing Heroic Difficulty. Complexity has continued this steady progress with earning the coveted, "Ahead of the Curve" Achievement in every raid, including Shadowlands.</Typography>
                     <Divider style={{margin: '24px'}} />
