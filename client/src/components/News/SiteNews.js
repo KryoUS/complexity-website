@@ -4,7 +4,7 @@ import WoWNews from './WoWNews';
 import BluePosts from './BluePosts';
 import WowheadNews from './wowhead/WowheadCards';
 import Twitter from './twitter/TwitterEmbed';
-import { Card, CardContent, CircularProgress, Container, Grid, Hidden, Typography } from '@material-ui/core';
+import { Card, CardContent, CircularProgress, Container, Divider, Grid, Hidden, Typography } from '@material-ui/core';
 
 export default class News extends React.Component {
     constructor() {
@@ -25,31 +25,34 @@ export default class News extends React.Component {
 
     render() {
         return (
-            <Container maxWidth={false}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Container maxWidth='lg'>
-                            <Card>
-                                <CardContent>
-                                    <Typography variant={'h5'} color="secondary">World of Warcraft - Breaking News</Typography>
-                                    <WoWNews />
-                                </CardContent>
-                            </Card>
-                        </Container>
-                    </Grid>
-                    <Hidden smDown>
-                        <Grid item xs={12}>
-                            <Container maxWidth='lg'>
-                                <Card>
+            <Grid container>
+                <Grid id="BlueNews" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
+                    <Container maxWidth='lg'>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
                                     <CardContent>
-                                        <Typography variant={'h5'} color="secondary">World of Warcraft - Blue Posts</Typography>
-                                        <BluePosts />
+                                        <Typography variant={'h5'} color="secondary" gutterBottom>World of Warcraft - Breaking News</Typography>
+                                        <WoWNews />
                                     </CardContent>
                                 </Card>
-                            </Container>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Hidden smDown>
+                                    <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
+                                        <CardContent>
+                                            <Typography variant={'h5'} color="secondary" gutterBottom>World of Warcraft - Blue Posts</Typography>
+                                            <BluePosts />
+                                        </CardContent>
+                                    </Card>
+                                </Hidden>
+                            </Grid>
                         </Grid>
-                    </Hidden>
-                    <Grid item xs={12}>
+                    </Container>
+                </Grid>
+                <Divider/>
+                <Grid id="NewsContent" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
+                    <Container maxWidth={false}>
                         <Grid container spacing={3}>
                             <Grid item xs={12} sm={12} md={7} lg={9} xl={9}>
                                 {this.state.news
@@ -63,9 +66,9 @@ export default class News extends React.Component {
                                 <Twitter />
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </Container >
                 </Grid>
-            </Container>
+            </Grid>
         )
     }
 }
