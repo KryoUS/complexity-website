@@ -22,7 +22,7 @@ export default class News extends React.Component{
 
     render(){
         return(
-            <Paper style={{paddingBottom: 12}}>
+            <Paper style={{paddingBottom: 12, marginTop: '20px'}}>
                 <Divider />
                 <Container>
                     <Box sx={{padding: 12}}>
@@ -48,17 +48,17 @@ export default class News extends React.Component{
                                 </Grid>
                                 <Grid item>
                                     <Button size="small" disabled>
-                                        <Typography variant="body1">Raiders</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="small" disabled>
                                         <Typography variant="body1">Members</Typography>
                                     </Button>
                                 </Grid>
                                 <Grid item>
                                     <Button size="small" component={RouterLink} to={"/simulations"}>
                                         <Typography variant="body1">Simulations</Typography>
+                                    </Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button size="small" disabled>
+                                        <Typography variant="body1">Statistics</Typography>
                                     </Button>
                                 </Grid>
                                 <Grid item>
