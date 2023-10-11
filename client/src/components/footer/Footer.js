@@ -22,7 +22,7 @@ export default class News extends React.Component{
 
     render(){
         return(
-            <Paper style={{paddingBottom: 12, marginTop: '20px'}}>
+            <Paper style={{paddingBottom: 12}}>
                 <Divider />
                 <Container>
                     <Box sx={{padding: 12}}>
