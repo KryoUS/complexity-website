@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { CheckRounded, CheckCircle, ClearRounded } from '@material-ui/icons';
-import { Typography, Tooltip, CircularProgress } from '@material-ui/core'
-import Error from '@material-ui/icons/Error';
+import { Error, CheckCircle, Warning } from '@material-ui/icons';
+import { Button, Tooltip, CircularProgress } from '@material-ui/core'
 
-export default class RealmStatus extends React.Component{
-    constructor(){
+export default class RealmStatus extends React.Component {
+    constructor() {
         super();
 
         this.state = {
@@ -21,33 +20,38 @@ export default class RealmStatus extends React.Component{
         });
     }
 
-    render(){
-        return(
-            this.state.realmInfo.status ? 
-            <>
-                <Typography style={{display: "flex", justifyContent: "space-evenly", alignItems: "center"}}>
-                    Realm: {this.state.realmInfo.status.type === "DOWN" ? 
-                        <Tooltip title={this.state.realmInfo.status.name}>
-                            <Error color="error" fontSize="small" /> 
-                        </Tooltip>
-                    : 
-                        <Tooltip title={this.state.realmInfo.status.name}>
-                            <CheckRounded fontSize="small" style={{color: "#AAFF00"}} />
-                        </Tooltip>}
-                </Typography>
-                <Typography style={{display: "flex", justifyContent: "space-evenly", alignItems: "center"}}>
-                    Queue: {this.state.realmInfo.has_queue ? 
-                        <Tooltip title="Currently there is a queue to log into the server.">
-                            <CheckCircle color="secondary" fontSize="small" /> 
-                        </Tooltip>
-                    : 
-                        <Tooltip title="There is no queue to log into the server.">
-                            <ClearRounded fontSize="small" style={{color: "#AAFF00"}} /> 
-                        </Tooltip>}
-                </Typography>
-            </>
-            :
-            <CircularProgress size={16} color="secondary" />
+    render() {
+        return (
+            this.state.realmInfo.status ?
+                        <Button
+                            variant="text"
+                            size="medium"
+                            // onClick={() => this.function()}
+                            startIcon={
+                                this.state.realmInfo.status.type === "DOWN"
+                                    ?
+                                    //Server is down
+                                    <Tooltip title="The server is down.">
+                                        <Error color="error" fontSize="small" />
+                                    </Tooltip>
+                                    :
+                                    //Server is up but does it have a queue?
+                                    this.state.realmInfo.has_queue
+                                        ?
+                                        //Server has a queue
+                                        <Tooltip title="The server is up but with a queue.">
+                                            <Warning fontSize="small" style={{ color: "#ffff00" }} />
+                                        </Tooltip>
+                                        :
+                                        //Server does not have a queue
+                                        <Tooltip title="The server is up.">
+                                            <CheckCircle fontSize="small" style={{ color: "#00ff1e" }} />
+                                        </Tooltip>
+                            }>
+                            Realm Status
+                        </Button>
+                :
+                <CircularProgress size={16} color="secondary" />
         )
     }
 }
