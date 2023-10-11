@@ -55,7 +55,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position="sticky">
+            <AppBar position="sticky" style={{filter: 'drop-shadow(2px 2px 2px #000)'}}>
                 <Toolbar variant={"dense"} style={{ backgroundColor: "#121212" }}>
                     <Hidden lgUp>   {/* MOBILE/TABLET ONLY */}
                         <Grid container alignItems='center'>
