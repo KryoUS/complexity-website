@@ -26,7 +26,7 @@ export default class News extends React.Component {
     render() {
         return (
             <Grid container>
-                <Grid id="BlueNews" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
+                <Grid id="BlueNews" item xs={12} style={{ padding: '20px 0px 20px 0px' }}>
                     <Container maxWidth='lg'>
                         <Grid container spacing={6}>
                             <Grid item xs={12}>
@@ -50,11 +50,11 @@ export default class News extends React.Component {
                         </Grid>
                     </Container>
                 </Grid>
-                <Divider/>
-                <Grid id="NewsContent" item xs={12} style={{padding: '20px 0px 20px 0px'}}>
+                <Divider />
+                <Grid id="NewsContent" item xs={12} style={{ padding: '20px 0px 20px 0px' }}>
                     <Container maxWidth={false}>
-                        <Grid container spacing={6}>
-                            <Grid item xs={12} sm={12} md={7} lg={9} xl={9}>
+                        <Grid container spacing={3}>
+                            <Grid item xs={12} sm={12} md={7} lg={8} xl={9}>
                                 {this.state.news
                                     ?
                                     <WowheadNews news={this.state.news} />
@@ -62,9 +62,11 @@ export default class News extends React.Component {
                                     <CircularProgress color="secondary" />
                                 }
                             </Grid>
-                            <Grid item xs={false} sm={false} md={5} lg={3} xl={3}>
-                                <Twitter />
-                            </Grid>
+                            <Hidden smDown>
+                                <Grid item xs={false} sm={false} md={5} lg={4} xl={3}>
+                                    <Twitter />
+                                </Grid>
+                            </Hidden>
                         </Grid>
                     </Container >
                 </Grid>
