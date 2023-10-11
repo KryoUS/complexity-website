@@ -7,7 +7,7 @@ export default function News(props) {
         <Grid container spacing={3}>
             {props.news.map((news) => (
                 <Grid key={news.guid[0]._} item xs={12} sm={12} md={12} lg={6} xl={6}>
-                    <Card style={{ filter: 'drop-shadow(2px 2px 2px #000)' }}>
+                    <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
                         <CardActionArea id='CardArea' href={news.link[0]} target="_blank" rel="noopener noreferrer">
                             <CardMedia
                                 style={{ position: 'relative', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
