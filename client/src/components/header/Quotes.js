@@ -28,7 +28,7 @@ export default class Quotes extends React.Component{
 
     render() {
         return (
-            <Button style={{fontStyle: 'italic', textTransform: "none"}} onClick={this.getRandomQuote}>
+            <Button style={{display: 'flex', fontStyle: 'italic', textTransform: "none"}} onClick={this.getRandomQuote}>
                 {this.state.showQuote ? 
                     <Fade in={true}><Typography variant={"h6"} style={{fontWeight: 400}}>"{this.state.quote}" - {this.state.saidBy}</Typography></Fade> 
                 : 
