@@ -68,7 +68,6 @@ passport.deserializeUser(function(user, done) {
     app.all('/', routes);
     //Catch all routes that don't match anything and send to Build/index.js for Production
     app.all("/*", (req, res) => {
-        console.log("API call didn't match...")
         return res.sendFile(path.join(__dirname + "/../client/build/index.html"));
     });
 
