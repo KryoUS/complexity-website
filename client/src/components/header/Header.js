@@ -1,35 +1,17 @@
 import React from 'react';
-import Appbar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import Typography from '@material-ui/core/Typography';
-import Home from '@material-ui/icons/Home';
-import Info from '@material-ui/icons/Info';
-import Class from '@material-ui/icons/Class';
-import DateRange from '@material-ui/icons/DateRange';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Assessment from '@material-ui/icons/Assessment';
-import Hidden from '@material-ui/core/Hidden';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import MythicAffixes from './MythicPlus/MythicAffixes';
+import { Link as RouterLink } from 'react-router-dom';
+import { AppBar, Avatar, Button, Container, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@material-ui/core';
+import { AccountCircle, Assessment, Computer, Class, DateRange, Group, Home, Info, Menu, YouTube } from '@material-ui/icons';
 import { ReactComponent as DiscordIcon } from '../icons/Discord-Logo-White.svg';
+import { ReactComponent as TwitchIcon } from '../icons/twitch.svg';
 import { ReactComponent as ComplexityLogo } from '../icons/complexityMoose.svg';
-import Discord from './Discord';
 import AffixSchedule from './MythicPlus/AffixSchedule';
+import ClassInfo from './ClassInfo/ClassInfo';
+import Discord from './Discord';
+import MythicAffixes from './MythicPlus/MythicAffixes';
+import Quotes from './Quotes';
 import RealmStatus from './RealmStatus';
 import TokenPrice from './TokenPrice';
-import Quotes from './Quotes';
-import {Link as RouterLink} from 'react-router-dom';
-import ClassInfo from './ClassInfo/ClassInfo';
 
 class Header extends React.Component {
     constructor() {
@@ -59,32 +41,38 @@ class Header extends React.Component {
         }));
     }
 
-    discordToggle =() => {
+    discordToggle = () => {
         this.setState(prevState => ({
             discordOpen: !prevState.discordOpen
         }));
     }
 
-    affixesToggle =() => {
+    affixesToggle = () => {
         this.setState(prevState => ({
             affixesOpen: !prevState.affixesOpen
         }));
     }
 
-    render(){
-        return(
-            <Appbar position="sticky">
-                <Toolbar variant={"dense"} style={{backgroundColor: "#121212"}}>
+    render() {
+        return (
+            <AppBar position="sticky" style={{ marginBottom: '10px' }}>
+                <Toolbar variant={"dense"} style={{ backgroundColor: "#121212" }}>
                     <Hidden lgUp>   {/* MOBILE/TABLET ONLY */}
-                        <Grid container>
+                        <Grid container alignItems='center'>
                             <Grid item xs={2}>
                                 <IconButton onClick={() => this.drawerToggle()} >
-                                    <MenuIcon style={{fontSize: 48}} />
+                                    <Menu style={{ fontSize: 48 }} />
                                 </IconButton>
                             </Grid>
-                            <Grid item xs={8} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                    <ComplexityLogo style={{height: "41px", width: "41px", padding: '2px'}} />
-                                    <Typography variant="h4" align="center">Complexity</Typography>
+                            <Grid item xs={8}>
+                                <Grid container justifyContent='center' alignItems='center'>
+                                    <Grid item>
+                                        <ComplexityLogo height='60px' width='60px' />
+                                    </Grid>
+                                    <Grid item style={{ paddingBottom: '8px' }}>
+                                        <Typography variant="h4">Complexity</Typography>
+                                    </Grid>
+                                </Grid>
                             </Grid>
                             <Grid item xs={2}>
                                 <IconButton
@@ -92,35 +80,35 @@ class Header extends React.Component {
                                     edge={'end'}
                                     disabled
                                 >
-                                    <AccountCircle style={{fontSize: 46}} />
+                                    <AccountCircle style={{ fontSize: 46 }} />
                                 </IconButton>
                             </Grid>
                         </Grid>
                     </Hidden>
                     <Hidden mdDown> {/* DESKTOP ONLY */}
                         <Grid container>
-                            <Grid item xs={6} style={{display: "flex", justifyContent: "flex-start"}}>
+                            <Grid item xs={6} style={{ display: "flex", justifyContent: "flex-start" }}>
                                 <Quotes />
                             </Grid>
-                            <Grid container spacing={2} item xs={6} style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <Grid item xs={3} container spacing={2} style={{display: "flex", justifyContent: "space-evenly", alignItems: "center"}}>
+                            <Grid container spacing={2} item xs={6} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                <Grid item xs={3} container spacing={2} style={{ display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
                                     <RealmStatus />
                                 </Grid>
                                 <Grid item>
-                                    <Button 
-                                    variant="text" 
-                                    size="medium"
-                                    onClick={() => this.classDrawerToggle()}
-                                    startIcon={<Info />}>
+                                    <Button
+                                        variant="text"
+                                        size="medium"
+                                        onClick={() => this.classDrawerToggle()}
+                                        startIcon={<Info />}>
                                         Class Info
                                     </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button 
-                                    variant="text" 
-                                    size="small"
-                                    onClick={() => this.affixesToggle()}
-                                    startIcon={<DateRange />}>
+                                    <Button
+                                        variant="text"
+                                        size="small"
+                                        onClick={() => this.affixesToggle()}
+                                        startIcon={<DateRange />}>
                                         Mythic+ Affixes
                                     </Button>
                                     <MythicAffixes iconHW={16} iconSize={'small'} />
@@ -134,71 +122,70 @@ class Header extends React.Component {
                 </Toolbar>
                 <Hidden mdDown> {/* DESKTOP ONLY */}
                     <Toolbar>
-                        <Grid container align-items={"center"}>
-                            <Grid container item xs={2} zeroMinWidth style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                                <Grid item xs>
-                                    <ComplexityLogo style={{height: "80px", width: "80px"}} />
-                                </Grid>
-                                <Grid item xs>
-                                    <Typography variant="h3">Complexity</Typography>
-                                    <Typography variant="body1">Thunderlord | US</Typography>
+                        <Grid container spacing={2} alignItems='center'>
+                            <Grid item xs={2}>
+                                <Grid container alignItems='center'>
+                                    <Grid item>
+                                        <ComplexityLogo height='60px' width='60px' />
+                                    </Grid>
+                                    <Grid item style={{ paddingBottom: '8px' }}>
+                                        <Typography variant="h4">Complexity</Typography>
+                                    </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid container spacing={2} item xs={10} zeroMinWidth style={{display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
-                                <Grid item>
-                                    <Button component={RouterLink} to={"/"} size="large">
-                                        <Typography variant="h6">News</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button component={RouterLink} to={"/about"} size="large">
-                                        <Typography variant="h6">About</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" disabled>
-                                        <Typography variant="h6">Raiders</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" disabled>
-                                        <Typography variant="h6">Members</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button component={RouterLink} to={"/simulations"} size="large">
-                                        <Typography variant="h6">Simulations</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" disabled>
-                                        <Typography variant="h6">Twitch</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" disabled>
-                                        <Typography variant="h6">Youtube</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button size="large" onClick={() => this.discordToggle()}>
-                                        <Typography variant="h6">Discord</Typography>
-                                    </Button>
-                                </Grid>
-                                <Grid item style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
-                                    <IconButton
-                                        onClick={this.handleMenu}
-                                        edge={'end'}
-                                        disabled
-                                    >
-                                        <AccountCircle style={{fontSize: 46}} />
-                                    </IconButton>
+                            <Grid item xs={10}>
+                                <Grid container justifyContent='flex-end' alignItems='center'>
+                                    <Grid item>
+                                        <Button component={RouterLink} to={"/"} size="large">
+                                            <Typography variant="h6">News</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button component={RouterLink} to={"/about"} size="large">
+                                            <Typography variant="h6">About</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button size="large" disabled>
+                                            <Typography variant="h6">Members</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button component={RouterLink} to={"/simulations"} size="large">
+                                            <Typography variant="h6">Simulations</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button size="large" disabled>
+                                            <Typography variant="h6">Statistics</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button size="large" disabled>
+                                            <Typography variant="h6">Twitch</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button size="large" disabled>
+                                            <Typography variant="h6">Youtube</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button size="large" onClick={() => this.discordToggle()}>
+                                            <Typography variant="h6">Discord</Typography>
+                                        </Button>
+                                    </Grid>
+                                    <Grid item>
+                                        <Avatar
+                                            onClick={this.handleMenu}
+                                            src={<AccountCircle />}
+                                        >
+                                        </Avatar>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
                     </Toolbar>
-                    {/* <Toolbar variant={"dense"} style={{backgroundColor: "#121212"}}>
-                    </Toolbar> */}
                 </Hidden>
                 <Drawer anchor="left" open={this.state.drawerOpen} onClose={this.drawerToggle} >
                     <List>
@@ -219,17 +206,41 @@ class Header extends React.Component {
                             </ListItemIcon>
                             <ListItemText primary="About" />
                         </ListItem>
-                        <ListItem button key="discord" onClick={() => this.discordToggle()}>
+                        <ListItem button key="members" component={RouterLink} to={"/"} disabled>
                             <ListItemIcon>
-                                <DiscordIcon style={{width: "24px", height: "24px"}} />
+                                <Group />
                             </ListItemIcon>
-                            <ListItemText primary="Discord" />
+                            <ListItemText primary="Members" />
                         </ListItem>
                         <ListItem button key="simulations" component={RouterLink} to={"/simulations"}>
                             <ListItemIcon>
-                                <Assessment />
+                                <Computer />
                             </ListItemIcon>
                             <ListItemText primary="Simulations" />
+                        </ListItem>
+                        <ListItem button key="statistics" component={RouterLink} to={"/"} disabled>
+                            <ListItemIcon>
+                                <Assessment />
+                            </ListItemIcon>
+                            <ListItemText primary="Statistics" />
+                        </ListItem>
+                        <ListItem button key="twitch" component={RouterLink} to={"/"} disabled>
+                            <ListItemIcon>
+                                <TwitchIcon style={{ fill: 'white', width: "24px", height: "24px" }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Twitch" />
+                        </ListItem>
+                        <ListItem button key="youtube" component={RouterLink} to={"/"} disabled>
+                            <ListItemIcon>
+                                <YouTube />
+                            </ListItemIcon>
+                            <ListItemText primary="Youtube" />
+                        </ListItem>
+                        <ListItem button key="discord" onClick={() => this.discordToggle()}>
+                            <ListItemIcon>
+                                <DiscordIcon style={{ width: "24px", height: "24px" }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Discord" />
                         </ListItem>
                         <Divider />
                         <ListItem button key="classInfo" onClick={() => this.classDrawerToggle()}>
@@ -245,9 +256,7 @@ class Header extends React.Component {
                             <ListItemText primary="Mythic+ Affixes" />
                         </ListItem>
                         <ListItem>
-                            
-                                <MythicAffixes iconHW={30} iconSize={'small'}/>
-                            
+                            <MythicAffixes iconHW={30} iconSize={'small'} />
                         </ListItem>
                         <Divider />
                         <ListItem>
@@ -257,16 +266,16 @@ class Header extends React.Component {
                         </ListItem>
                     </List>
                 </Drawer>
-                <Drawer 
-                anchor="top" 
-                open={this.state.classDrawerOpen} 
-                onClose={this.classDrawerToggle}
+                <Drawer
+                    anchor="top"
+                    open={this.state.classDrawerOpen}
+                    onClose={this.classDrawerToggle}
                 >
                     <ClassInfo />
                 </Drawer>
-                <Discord discordOpen={this.state.discordOpen} discordToggle={this.discordToggle}/>
-                <AffixSchedule scheduleOpen={this.state.affixesOpen} scheduleToggle={this.affixesToggle}/>
-            </Appbar>
+                <Discord discordOpen={this.state.discordOpen} discordToggle={this.discordToggle} />
+                <AffixSchedule scheduleOpen={this.state.affixesOpen} scheduleToggle={this.affixesToggle} />
+            </AppBar>
         )
     }
 }
