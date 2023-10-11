@@ -4,7 +4,7 @@ import { Avatar, Card, CardActionArea, CardContent, CardHeader, CardMedia, Grid,
 
 export default function News(props) {
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={6} justifyContent="space-evenly">
             {props.news.map((news) => (
                 <Grid key={news.guid[0]._} item xs={12} sm={12} md={12} lg={6} xl={6}>
                     <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
