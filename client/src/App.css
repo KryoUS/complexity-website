@@ -6,6 +6,7 @@
   min-height: 100vh;
   background: #121212;
   background: url('./images/bg-factionless-gray-map.jpg') no-repeat fixed center;
+  background-size: cover;
 }
 
 .App-logo {
