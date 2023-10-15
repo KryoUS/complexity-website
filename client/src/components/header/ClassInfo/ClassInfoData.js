@@ -10,7 +10,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/blood-death-knight-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/death-knight/blood/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -22,7 +22,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/blood-death-knight.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-blood-death-knight.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -37,7 +37,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/frost-death-knight-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/death-knight/frost/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -49,7 +49,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/frost-death-knight.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-frost-death-knight.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -64,7 +64,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/unholy-death-knight-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/death-knight/unholy/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -76,7 +76,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/unholy-death-knight.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-unholy-death-knight.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -98,7 +98,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/havoc-demon-hunter-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/demon-hunter/havoc/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -110,7 +110,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/havoc-demon-hunter.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-aberrus-havoc-demon-hunter.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -125,7 +125,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/vengeance-demon-hunter-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/demon-hunter/vengeance/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -137,7 +137,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/vengeance-demon-hunter.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-vengeance-demon-hunter.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -159,7 +159,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/guardian-druid-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/druid/guardian/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -171,7 +171,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/guardian-druid.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-guardian-druid.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -186,7 +186,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/balance-druid-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/druid/balance/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -198,7 +198,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/balance-druid.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-balance-druid.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -213,7 +213,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/feral-druid-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/druid/feral/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -225,7 +225,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/feral-druid.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-feral-druid.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -240,7 +240,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/restoration-druid-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/druid/restoration/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -252,7 +252,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/restoration-druid.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-restoration-druid.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -286,11 +286,11 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/devastation-evoker.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-devastation-evoker.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
-                        sourceURL: "https://murlok.io/evoker/devastation/mm+" //Not Live Yet
+                        sourceURL: "https://murlok.io/evoker/devastation/mm+"
                     }                    
                 ],
                 open: false
@@ -313,11 +313,38 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/preservation-evoker.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-preservation-evoker.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
-                        sourceURL: "https://murlok.io/evoker/preservation/mm+" //Not Live Yet
+                        sourceURL: "https://murlok.io/evoker/preservation/mm+"
+                    }                    
+                ],
+                open: false
+            },
+            {
+                name: "Augmentation",
+                specIcon: "https://render.worldofwarcraft.com/us/icons/56/classicon_evoker_augmentation.jpg",
+                specInfo: [
+                    {
+                        sourceName: "Wowhead Guide",
+                        sourceURL: "https://www.wowhead.com/guide/classes/evoker/augmentation/overview-pve-dps"
+                    },
+                    {
+                        sourceName: "IcyVeins Guide",
+                        sourceURL: "https://www.icy-veins.com/wow/augmentation-evoker-pve-dps-guide"
+                    },
+                    {
+                        sourceName: "Subcreation M+",
+                        sourceURL: "https://mplus.subcreation.net/augmentation-evoker.html"
+                    },
+                    {
+                        sourceName: "Subcreation Raid",
+                        sourceURL: "https://raid.subcreation.net/aberrus-augmentation-evoker.html"
+                    },
+                    {
+                        sourceName: "MurlokIO M+",
+                        sourceURL: "https://murlok.io/evoker/augmentation/mm+"
                     }                    
                 ],
                 open: false
@@ -335,7 +362,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/beast-mastery-hunter-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/hunter/beast-mastery/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -347,7 +374,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/beast-mastery-hunter.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-beast-mastery-hunter.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -362,7 +389,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/marksmanship-hunter-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/hunter/marksmanship/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -374,7 +401,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/marksmanship-hunter.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-marksmanship-hunter.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -389,7 +416,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/survival-hunter-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/hunter/survival/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -401,7 +428,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/survival-hunter.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-survival-hunter.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -423,7 +450,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/arcane-mage-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/mage/arcane/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -435,7 +462,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/arcane-mage.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-arcane-mage.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -450,7 +477,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/fire-mage-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/mage/fire/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -462,7 +489,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/fire-mage.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-fire-mage.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -477,7 +504,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/frost-mage-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/mage/frost/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -489,7 +516,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/frost-mage.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-frost-mage.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -511,7 +538,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/brewmaster-monk-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/monk/brewmaster/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -523,7 +550,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/brewmaster-monk.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-brewmaster-monk.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -538,7 +565,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/mistweaver-monk-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/monk/mistweaver/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -550,7 +577,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/mistweaver-monk.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-mistweaver-monk.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -565,7 +592,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/windwalker-monk-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/monk/windwalker/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -577,7 +604,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/windwalker-monk.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-windwalker-monk.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -599,7 +626,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/holy-paladin-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/paladin/holy/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -611,7 +638,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/holy-paladin.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-holy-paladin.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -626,7 +653,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/protection-paladin-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/paladin/protection/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -638,7 +665,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/protection-paladin.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-protection-paladin.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -653,7 +680,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/retribution-paladin-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/paladin/retribution/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -665,7 +692,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/retribution-paladin.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-retribution-paladin.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -687,7 +714,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/discipline-priest-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/priest/discipline/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -699,7 +726,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/discipline-priest.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-discipline-priest.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -714,7 +741,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/holy-priest-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/priest/holy/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -726,7 +753,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/holy-priest.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-holy-priest.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -741,7 +768,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/shadow-priest-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/priest/shadow/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -753,7 +780,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/shadow-priest.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-shadow-priest.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -775,7 +802,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/assassination-rogue-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/rogue/assassination/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -787,7 +814,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/assassination-rogue.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-assassination-rogue.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -802,7 +829,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/outlaw-rogue-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/rogue/outlaw/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -814,7 +841,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/outlaw-rogue.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-outlaw-rogue.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -829,7 +856,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/subtlety-rogue-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/rogue/subtlety/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -841,7 +868,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/subtlety-rogue.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-subtlety-rogue.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -863,7 +890,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/elemental-shaman-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/shaman/elemental/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -875,7 +902,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/elemental-shaman.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-elemental-shaman.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -890,7 +917,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/enhancement-shaman-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/shaman/enhancement/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -902,7 +929,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/enhancement-shaman.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-enhancement-shaman.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -917,7 +944,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/restoration-shaman-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/shaman/restoration/overview-pve-healer"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -929,7 +956,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/restoration-shaman.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-restoration-shaman.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -951,7 +978,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/affliction-warlock-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warlock/affliction/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -963,7 +990,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/affliction-warlock.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-affliction-warlock.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -978,7 +1005,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/demonology-warlock-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warlock/demonology/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -990,7 +1017,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/demonology-warlock.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-demonology-warlock.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1005,7 +1032,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/destruction-warlock-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warlock/destruction/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -1017,7 +1044,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/destruction-warlock.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-destruction-warlock.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1039,7 +1066,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/arms-warrior-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warrior/arms/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -1051,7 +1078,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/arms-warrior.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-arms-warrior.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1066,7 +1093,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/fury-warrior-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warrior/fury/overview-pve-dps"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -1078,7 +1105,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/fury-warrior.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-fury-warrior.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1093,7 +1120,7 @@ module.exports = [
                 specInfo: [
                     {
                         sourceName: "Wowhead Guide",
-                        sourceURL: "https://www.wowhead.com/protection-warrior-guide"
+                        sourceURL: "https://www.wowhead.com/guide/classes/warrior/protection/overview-pve-tank"
                     },
                     {
                         sourceName: "IcyVeins Guide",
@@ -1105,7 +1132,7 @@ module.exports = [
                     },
                     {
                         sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/protection-warrior.html"
+                        sourceURL: "https://raid.subcreation.net/aberrus-protection-warrior.html"
                     },
                     {
                         sourceName: "MurlokIO M+",
