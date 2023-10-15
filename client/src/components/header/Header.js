@@ -275,7 +275,7 @@ class Header extends React.Component {
                     open={this.state.classDrawerOpen}
                     onClose={this.classDrawerToggle}
                 >
-                    <ClassInfo />
+                    <ClassInfo drawer={this.classDrawerToggle} />
                 </Drawer>
                 <Discord discordOpen={this.state.discordOpen} discordToggle={this.discordToggle} />
                 <AffixSchedule scheduleOpen={this.state.affixesOpen} scheduleToggle={this.affixesToggle} />
