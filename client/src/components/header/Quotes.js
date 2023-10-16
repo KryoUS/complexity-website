@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Typography, Fade, CircularProgress} from '@material-ui/core';
+import { Button, Typography, Fade, CircularProgress} from '@mui/material';
 
 export default class Quotes extends React.Component{
     constructor() {

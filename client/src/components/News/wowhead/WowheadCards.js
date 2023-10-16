@@ -1,12 +1,13 @@
 import React from 'react';
 import moment from 'moment';
-import { Avatar, Card, CardActionArea, CardContent, CardHeader, CardMedia, Grid, Typography } from '@material-ui/core';
+import { Avatar, Card, CardActionArea, CardContent, CardHeader, CardMedia, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function News(props) {
     return (
         <Grid container spacing={6} justifyContent="space-evenly">
             {props.news.map((news) => (
-                <Grid key={news.guid[0]._} item xs={12} sm={12} md={12} lg={6} xl={6}>
+                <Grid key={news.guid[0]._} xs={12} sm={12} md={12} lg={6} xl={6}>
                     <Card style={{ filter: 'drop-shadow(5px 5px 4px #000)' }}>
                         <CardActionArea id='CardArea' href={news.link[0]} target="_blank" rel="noopener noreferrer">
                             <CardMedia

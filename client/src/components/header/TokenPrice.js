@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 export default class TokenPrice extends React.Component{
     constructor(){

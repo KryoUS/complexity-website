@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { IconButton, CircularProgress } from '@material-ui/core';
+import { IconButton, CircularProgress } from '@mui/material';
 
 export default class MythicAffixes extends React.Component {
     constructor() {

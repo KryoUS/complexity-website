@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Typography, CircularProgress, Grid, Link } from '@material-ui/core';
+import { Typography, CircularProgress, Link } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default class BluePosts extends Component {
     constructor() {
@@ -31,7 +32,7 @@ export default class BluePosts extends Component {
             <div>
                 {this.state.bluePosts.length >= 1 ?
                     <Grid container>
-                        <Grid item xs={6}>
+                        <Grid xs={6}>
                             <div>{this.post(this.state.bluePosts[0])}</div>
                             <div>{this.post(this.state.bluePosts[1])}</div>
                             <div>{this.post(this.state.bluePosts[2])}</div>
@@ -43,7 +44,7 @@ export default class BluePosts extends Component {
                             <div>{this.post(this.state.bluePosts[8])}</div>
                             <div>{this.post(this.state.bluePosts[9])}</div>
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid xs={6}>
                             <div>{this.post(this.state.bluePosts[10])}</div>
                             <div>{this.post(this.state.bluePosts[11])}</div>
                             <div>{this.post(this.state.bluePosts[12])}</div>

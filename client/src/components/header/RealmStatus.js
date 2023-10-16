@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Error, CheckCircle, Warning } from '@material-ui/icons';
-import { Button, Tooltip, CircularProgress } from '@material-ui/core'
+import { Error, CheckCircle, Warning } from '@mui/icons-material';
+import { Button, Tooltip, CircularProgress } from '@mui/material'
 
 export default class RealmStatus extends React.Component {
     constructor() {

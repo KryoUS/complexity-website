@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
-import { Typography, CircularProgress, Hidden } from '@material-ui/core';
+import { Typography, CircularProgress, Hidden } from '@mui/material';
 
 export default class WoWNews extends Component {
     constructor() {

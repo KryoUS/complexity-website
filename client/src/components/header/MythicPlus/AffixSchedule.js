@@ -1,7 +1,8 @@
 import React from 'react';
 //import axios from 'axios';
-import Button from '@material-ui/core/Button';
-import { Container, Grid, Dialog, Paper, Typography } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { Container, Dialog, Paper, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import moment from 'moment';
 
 let currentWeek = (moment().week() % 10) + 1; //Adjusted +1 due to M+ Season not starting is cadence with the actual week of the year.
@@ -198,22 +199,22 @@ export default function AffixSchedule(props){
             <Paper>
                 <Container>
                     <Grid container> {/*Calendar*/}
-                        <Grid item xs={12} container justifyContent='space-between'>
-                            <Grid item xs={4}>
+                        <Grid xs={12} container justifyContent='space-between'>
+                            <Grid xs={4}>
                                 <Typography variant='h6'>+2</Typography>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid xs={4}>
                                 <Typography variant='h6'>+7</Typography>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid xs={4}>
                                 <Typography variant='h6'>+14</Typography>
                             </Grid>
                         </Grid>
                         {schedule.map(obj => {
                             const isCurrentWeek = currentWeek === obj.week;
 
-                            return <Grid key={`affixWeek${obj.week}`} item xs={12} container style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> {/*Week*/}
-                                <Grid item xs={4} > {/*baseAffix*/}
+                            return <Grid key={`affixWeek${obj.week}`} container xs={12} style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> {/*Week*/}
+                                <Grid xs={4} > {/*baseAffix*/}
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -235,7 +236,7 @@ export default function AffixSchedule(props){
                                         {obj.baseAffix}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={4} > {/*plusFour*/}
+                                <Grid xs={4} > {/*plusFour*/}
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -257,7 +258,7 @@ export default function AffixSchedule(props){
                                         {obj.plusFour}
                                     </Button>
                                 </Grid>
-                                <Grid item xs={4} > {/*plusSeven*/}
+                                <Grid xs={4} > {/*plusSeven*/}
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -279,7 +280,7 @@ export default function AffixSchedule(props){
                                         {obj.plusSeven}
                                     </Button>
                                 </Grid>
-                                {/* <Grid item xs={3}>
+                                {/* <Grid xs={3}>
                                     <Button 
                                     variant="text" 
                                     size="small"

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Container, IconButton, Grid, Paper } from '@material-ui/core';
-import { Cancel } from '@material-ui/icons';
+import { Box, Container, IconButton, Paper } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Cancel } from '@mui/icons-material';
 import ClassInfoList from './ClassInfoList';
 import ClassInfoData from './ClassInfoData';
 
@@ -9,10 +10,10 @@ export default function ClassInfo(props) {
     return (
         <Paper>
             <Container>
-                <Box sx={{ padding: 12 }}>
-                    <Grid container spacing={4} style={{ justifyContent: "center" }}>
+                <Box sx={{ padding: 6 }}>
+                    <Grid container spacing={4} justifyContent="center">
                         {ClassInfoData.map(classObj => {
-                            return <Grid key={classObj.className + ' Spec Info'} item container sm={6} md={4} lg={3} style={{ width: "300px" }}>
+                            return <Grid key={classObj.className + ' Spec Info'} container sm={6} md={4} lg={3} style={{ width: "300px" }}>
                                 <ClassInfoList classObj={classObj} />
                             </Grid>
                         })}

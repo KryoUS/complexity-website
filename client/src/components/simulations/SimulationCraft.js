@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { CircularProgress, Container, Box, Divider, Paper } from '@material-ui/core';
+import { CircularProgress, Container, Box, Divider, Paper } from '@mui/material';
 import BarChart from './Highcharts/BarChart';
 import Moment from 'moment';
 

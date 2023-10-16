@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AppBar, Button, Container, Divider, Drawer, Grid, Hidden, IconButton, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography } from '@material-ui/core';
-import { Assessment, Computer, Class, DateRange, Group, Home, Info, Menu, AccountCircle, YouTube } from '@material-ui/icons';
+import { AppBar, Button, Container, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Assessment, Computer, Class, DateRange, Group, Home, Info, Menu, AccountCircle, YouTube } from '@mui/icons-material';
 import { ReactComponent as DiscordIcon } from '../icons/Discord-Logo-White.svg';
 import { ReactComponent as TwitchIcon } from '../icons/twitch.svg';
 import { ReactComponent as ComplexityLogo } from '../icons/complexityMoose.svg';
@@ -55,142 +56,131 @@ class Header extends React.Component {
 
     render() {
         return (
-            <AppBar position="sticky" style={{filter: 'drop-shadow(2px 2px 2px #000)'}}>
+            <AppBar position="sticky" style={{ filter: 'drop-shadow(2px 2px 2px #000)' }}>
                 <Toolbar variant={"dense"} style={{ backgroundColor: "#121212" }}>
-                    <Hidden lgUp>   {/* MOBILE/TABLET ONLY */}
-                        <Grid container alignItems='center'>
-                            <Grid item xs={2}>
-                                <IconButton onClick={() => this.drawerToggle()} >
-                                    <Menu style={{ fontSize: 48 }} />
-                                </IconButton>
+                    {/* MOBILE ONLY */}
+                    <Grid container alignItems='center' justifyContent={'space-between'} sx={{ display: { sm: 'flex', md: 'none' }, width: '100%' }}>
+                        <Grid xs={2}>
+                            <IconButton onClick={() => this.drawerToggle()} >
+                                <Menu style={{ fontSize: 48 }} />
+                            </IconButton>
+                        </Grid>
+                        <Grid container justifyContent='center' alignItems='center' xs={8}>
+                            <Grid>
+                                <ComplexityLogo height='60px' width='60px' />
                             </Grid>
-                            <Grid item xs={8}>
-                                <Grid container justifyContent='center' alignItems='center'>
-                                    <Grid item>
-                                        <ComplexityLogo height='60px' width='60px' />
-                                    </Grid>
-                                    <Grid item style={{ paddingBottom: '8px' }}>
-                                        <Typography variant="h4">Complexity</Typography>
-                                    </Grid>
-                                </Grid>
+                            <Grid style={{ paddingBottom: '8px' }}>
+                                <Typography variant="h4">Complexity</Typography>
                             </Grid>
-                            <Grid item xs={2}>
+                        </Grid>
+                        <Grid xs={2}>
+                            <IconButton
+                                onClick={this.handleMenu}
+                                edge={'end'}
+                                disabled
+                            >
+                                <AccountCircle style={{ fontSize: 46 }} />
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                    {/* DESKTOP ONLY */}
+                    <Grid container sx={{ display: { xs: 'none', sm: 'none', md: 'flex' }, width: '100%' }}>
+                        <Grid xs={4} sm={4} md={4} lg={6} xl={6}>
+                            <Quotes />
+                        </Grid>
+                        <Grid container xs={8} sm={8} md={8} lg={6} xl={6} justifyContent='flex-end' alignItems='center'>
+                            <Grid>
+                                <RealmStatus />
+                            </Grid>
+                            <Grid>
+                                <Button
+                                    variant="text"
+                                    size="medium"
+                                    onClick={() => this.classDrawerToggle()}
+                                    startIcon={<Info />}>
+                                    Class Info
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button
+                                    variant="text"
+                                    size="medium"
+                                    onClick={() => this.affixesToggle()}
+                                    startIcon={<DateRange />}>
+                                    Mythic+ Affixes
+                                </Button>
+                                <MythicAffixes iconHW={16} iconSize={'small'} />
+                            </Grid>
+                            <Grid>
+                                <TokenPrice />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Toolbar>
+                {/* DESKTOP ONLY */}
+                <Toolbar sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }} style={{ backgroundColor: "#1A1A1A" }}>
+                    <Grid container spacing={0} alignItems='center' sx={{ width: '100%' }}>
+                        <Grid container xs={2} alignItems='center'>
+                            <Grid>
+                                <ComplexityLogo height='40px' width='40px' />
+                            </Grid>
+                            <Grid style={{ paddingBottom: '8px' }}>
+                                <Typography variant="h5">Complexity</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid container xs={10} justifyContent='flex-end' alignItems='center'>
+                            <Grid>
+                                <Button component={RouterLink} to={"/"} size="medium">
+                                    <Typography variant="h6">News</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button component={RouterLink} to={"/about"} size="medium">
+                                    <Typography variant="h6">About</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button size="medium" disabled>
+                                    <Typography variant="h6">Members</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button component={RouterLink} to={"/simulations"} size="medium">
+                                    <Typography variant="h6">Simulations</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button size="medium" disabled>
+                                    <Typography variant="h6">Statistics</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button size="medium" disabled>
+                                    <Typography variant="h6">Twitch</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button size="medium" disabled>
+                                    <Typography variant="h6">Youtube</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
+                                <Button size="medium" onClick={() => this.discordToggle()}>
+                                    <Typography variant="h6">Discord</Typography>
+                                </Button>
+                            </Grid>
+                            <Grid>
                                 <IconButton
                                     onClick={this.handleMenu}
                                     edge={'end'}
                                     disabled
                                 >
-                                    <AccountCircle style={{ fontSize: 46 }} />
+                                    <AccountCircle style={{ fontSize: 30 }} />
                                 </IconButton>
                             </Grid>
                         </Grid>
-                    </Hidden>
-                    <Hidden mdDown> {/* DESKTOP ONLY */}
-                        <Grid container>
-                            <Grid item xs={6}>
-                                <Quotes />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Grid container spacing={2} justifyContent='flex-end' alignItems='center'>
-                                    <Grid item>
-                                        <RealmStatus />
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            variant="text"
-                                            size="medium"
-                                            onClick={() => this.classDrawerToggle()}
-                                            startIcon={<Info />}>
-                                            Class Info
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button
-                                            variant="text"
-                                            size="medium"
-                                            onClick={() => this.affixesToggle()}
-                                            startIcon={<DateRange />}>
-                                            Mythic+ Affixes
-                                        </Button>
-                                        <MythicAffixes iconHW={16} iconSize={'small'} />
-                                    </Grid>
-                                    <Grid item>
-                                        <TokenPrice />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Hidden>
+                    </Grid>
                 </Toolbar>
-                <Hidden mdDown> {/* DESKTOP ONLY */}
-                    <Toolbar>
-                        <Grid container spacing={2} alignItems='center'>
-                            <Grid item xs={2}>
-                                <Grid container alignItems='center'>
-                                    <Grid item>
-                                        <ComplexityLogo height='60px' width='60px' />
-                                    </Grid>
-                                    <Grid item style={{ paddingBottom: '8px' }}>
-                                        <Typography variant="h4">Complexity</Typography>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={10}>
-                                <Grid container justifyContent='flex-end' alignItems='center'>
-                                    <Grid item>
-                                        <Button component={RouterLink} to={"/"} size="large">
-                                            <Typography variant="h6">News</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button component={RouterLink} to={"/about"} size="large">
-                                            <Typography variant="h6">About</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="large" disabled>
-                                            <Typography variant="h6">Members</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button component={RouterLink} to={"/simulations"} size="large">
-                                            <Typography variant="h6">Simulations</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="large" disabled>
-                                            <Typography variant="h6">Statistics</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="large" disabled>
-                                            <Typography variant="h6">Twitch</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="large" disabled>
-                                            <Typography variant="h6">Youtube</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                        <Button size="large" onClick={() => this.discordToggle()}>
-                                            <Typography variant="h6">Discord</Typography>
-                                        </Button>
-                                    </Grid>
-                                    <Grid item>
-                                    <IconButton
-                                        onClick={this.handleMenu}
-                                        edge={'end'}
-                                        disabled
-                                    >
-                                        <AccountCircle style={{fontSize: 46}} />
-                                    </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-                </Hidden>
                 <Drawer anchor="left" open={this.state.drawerOpen} onClose={this.drawerToggle} >
                     <List>
                         {/* MAKE PROGRAMATIC */}
@@ -198,67 +188,67 @@ class Header extends React.Component {
                             <RealmStatus />
                         </ListItem>
                         <Divider />
-                        <ListItem button key="news" component={RouterLink} to={"/"}>
+                        <ListItemButton key="news" component={RouterLink} to={"/"}>
                             <ListItemIcon>
                                 <Home />
                             </ListItemIcon>
                             <ListItemText primary="News" />
-                        </ListItem>
-                        <ListItem button key="about" component={RouterLink} to={"/about"}>
+                        </ListItemButton>
+                        <ListItemButton key="about" component={RouterLink} to={"/about"}>
                             <ListItemIcon>
                                 <Info />
                             </ListItemIcon>
                             <ListItemText primary="About" />
-                        </ListItem>
-                        <ListItem button key="members" component={RouterLink} to={"/"} disabled>
+                        </ListItemButton>
+                        <ListItemButton key="members" component={RouterLink} to={"/"} disabled>
                             <ListItemIcon>
                                 <Group />
                             </ListItemIcon>
                             <ListItemText primary="Members" />
-                        </ListItem>
-                        <ListItem button key="simulations" component={RouterLink} to={"/simulations"}>
+                        </ListItemButton>
+                        <ListItemButton key="simulations" component={RouterLink} to={"/simulations"}>
                             <ListItemIcon>
                                 <Computer />
                             </ListItemIcon>
                             <ListItemText primary="Simulations" />
-                        </ListItem>
-                        <ListItem button key="statistics" component={RouterLink} to={"/"} disabled>
+                        </ListItemButton>
+                        <ListItemButton key="statistics" component={RouterLink} to={"/"} disabled>
                             <ListItemIcon>
                                 <Assessment />
                             </ListItemIcon>
                             <ListItemText primary="Statistics" />
-                        </ListItem>
-                        <ListItem button key="twitch" component={RouterLink} to={"/"} disabled>
+                        </ListItemButton>
+                        <ListItemButton key="twitch" component={RouterLink} to={"/"} disabled>
                             <ListItemIcon>
                                 <TwitchIcon style={{ fill: 'white', width: "24px", height: "24px" }} />
                             </ListItemIcon>
                             <ListItemText primary="Twitch" />
-                        </ListItem>
-                        <ListItem button key="youtube" component={RouterLink} to={"/"} disabled>
+                        </ListItemButton>
+                        <ListItemButton key="youtube" component={RouterLink} to={"/"} disabled>
                             <ListItemIcon>
                                 <YouTube />
                             </ListItemIcon>
                             <ListItemText primary="Youtube" />
-                        </ListItem>
-                        <ListItem button key="discord" onClick={() => this.discordToggle()}>
+                        </ListItemButton>
+                        <ListItemButton key="discord" onClick={() => this.discordToggle()}>
                             <ListItemIcon>
                                 <DiscordIcon style={{ width: "24px", height: "24px" }} />
                             </ListItemIcon>
                             <ListItemText primary="Discord" />
-                        </ListItem>
+                        </ListItemButton>
                         <Divider />
-                        <ListItem button key="classInfo" onClick={() => this.classDrawerToggle()}>
+                        <ListItemButton key="classInfo" onClick={() => this.classDrawerToggle()}>
                             <ListItemIcon>
                                 <Class />
                             </ListItemIcon>
                             <ListItemText primary="Class Info" />
-                        </ListItem>
-                        <ListItem button key="mythicAffix" onClick={() => this.affixesToggle()}>
+                        </ListItemButton>
+                        <ListItemButton key="mythicAffix" onClick={() => this.affixesToggle()}>
                             <ListItemIcon>
                                 <DateRange />
                             </ListItemIcon>
                             <ListItemText primary="Mythic+ Affixes" />
-                        </ListItem>
+                        </ListItemButton>
                         <ListItem>
                             <MythicAffixes iconHW={30} iconSize={'small'} />
                         </ListItem>

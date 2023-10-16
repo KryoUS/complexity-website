@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Paper, Typography, Divider } from '@material-ui/core';
+import { Container, Paper, Typography, Divider } from '@mui/material';
 
 export default class About extends React.Component{
 

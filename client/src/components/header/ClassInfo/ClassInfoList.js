@@ -1,7 +1,7 @@
 import React from 'react';
 //import axios from 'axios';
-import { Typography, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Collapse } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
+import { Typography, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Collapse } from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { ReactComponent as DiscordIcon } from '../../icons/Discord-Logo-White.svg';
 
 class ClassInfoList extends React.Component{

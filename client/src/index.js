@@ -5,29 +5,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const theme = createTheme({
   palette: {
-    type: 'dark',
+    mode: 'dark',
     primary: {
-      main: '#1a1a1a',
+      main: '#ffffff',
     },
     secondary: {
-      main: '#772CE8',
-      contrastText: '#000000',
-    },
-    error: {
-      main: '#d32f2f',
-    },
-    divider: '#000000',
-    info: {
-      main: '#2196f3',
+      main: '#772ce8',
     },
     background: {
-      default: '#121212',
-      paper: '#1b1b1b',
-    },
+      paper: '#121212',
+      default: '#121212'
+    }
   },
   typography: {
     fontFamily: 'Oswald',
@@ -37,6 +30,7 @@ const theme = createTheme({
 
 ReactDOM.render(
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Router>
         <App />
       </Router>
