@@ -8,7 +8,7 @@ function TwitterEmbed() {
             class="twitter-timeline"
             data-theme="dark"
             href="https://twitter.com/Warcraft?ref_src=twsrc%5Etfw"
-            // data-tweet-limit={14}
+            data-width="500"
             data-chrome="noheader nofooter noborders transparent"
             charSet='utf-8'
             alt="twitter embed"
