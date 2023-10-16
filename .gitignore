@@ -7,7 +7,7 @@
 /coverage
 security
 /server/security
-/client/src/images
+**/images
 
 # production
 *build
