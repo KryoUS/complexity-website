@@ -49,20 +49,6 @@ async function getClassesAndMedia() {
 }
 
 module.exports.blizzardController = {
-    // setBlizzardToken: () => {
-    //     axios.post(`https://us.battle.net/oauth/token`, 'grant_type=client_credentials', {
-    //         auth: {
-    //             username: process.env.BLIZZ_API_CLIENT_ID, 
-    //             password: process.env.BLIZZ_API_CLIENT_SECRET
-    //         }
-    //     }).then(response => {
-    //         process.env.BLIZZ_API_TOKEN = response.data.access_token;
-    //         if (tokenPrice.price === 0) {module.exports.blizzardController.setTokenPrice()}
-    //         if (!realmObj.status) {module.exports.blizzardController.setServerStatus();}
-    //     }).catch(wowTokenFetchError => {
-    //         console.log('WoW API Token Fetch Error: ', wowTokenFetchError);
-    //     });
-    // },
 
     setBluePosts: () => {
         axios.get('https://us.forums.blizzard.com/en/wow/groups/blizzard-tracker/posts.json').then(res => {
