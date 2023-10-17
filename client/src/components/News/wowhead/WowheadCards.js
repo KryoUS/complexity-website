@@ -30,7 +30,7 @@ export default class WowheadNews extends React.Component {
                             <CardActionArea id='CardArea' href={news.link[0]} target="_blank" rel="noopener noreferrer">
                                 <CardMedia
                                     style={{ position: 'relative', height: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    image={news.hasOwnProperty("media:content") ? news["media:content"][0].$.url : 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg'}
+                                    image={news.hasOwnProperty("media:content") ? news["media:content"][0].$.url + '?maxHeight=300' : './images/blizzard.jpg'}
                                     title={news.title[0]}
                                     alt={news.title[0]}
                                     onError={e => {
