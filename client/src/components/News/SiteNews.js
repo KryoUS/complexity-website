@@ -8,13 +8,13 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 export default function News() {
     return (
-        <Container maxWidth={false}>
-            <Grid container id="NewsContent" spacing={3} style={{ padding: '20px 0px 20px 0px' }}>
-                <Grid xs={12}>
-                    <Container>
-                        <Card raised>
+        <Container maxWidth={false} style={{ padding: '0px 12px 0px 0px' }}>
+            <Grid container spacing={3} style={{ padding: '12px 0px 20px 0px' }}>
+                <Grid id="BlueNews" xs={12}>
+                    <Container maxWidth='md'>
+                        <Card id="dark-glass" raised>
                             <CardContent>
-                                <Typography variant={'h5'} color="secondary" gutterBottom>World of Warcraft - Breaking News</Typography>
+                                <Typography variant={'h4'} color="secondary" gutterBottom>World of Warcraft - Breaking News</Typography>
                                 <WoWNews />
                             </CardContent>
                         </Card>
