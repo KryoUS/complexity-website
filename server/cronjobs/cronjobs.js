@@ -36,13 +36,11 @@ const minutes =  {
 // Every x hours
 const hours = {
     every1: () => new CronJob('00 0 */1 * * *', () => {
-        if (process.env.DEV === false) {
             characterCleanup();
             bnetLogCleanup();
             twitchLogCleanup();
             wowheadLogCleanup();
             getAllCharacters();
-        }
     }, null, false, 'America/Denver'),
 }
 
