@@ -9,7 +9,7 @@ const { raiderIOController } = require('../controllers/raiderio_api_controller')
 const { wowProgressController } = require('../controllers/wowprogress_api_controller');
 const { releasesController } = require('../controllers/Database/releases_controller');
 const { statsController } = require('../controllers/Database/stats_controller');
-const { memberController } = require('../controllers/Database/members_controller');
+const { dbCharacters } = require('../controllers/Database/warcraft/characters/getAll');
 const { newsController } = require('../controllers/Database/news_controller');
 const { raiderController } = require('../controllers/Database/raider_controller');
 const { userController } = require('../controllers/Database/user_controller');
@@ -76,10 +76,7 @@ app.get('/api/guildnews', newsController.getGuildNews);
 //Raider Endpoints from DB
 app.get('/api/raiders', raiderController.get);
 //Guild Members Endpoint from DB
-app.get('/api/members', statsController.members);
-app.get('/api/members/names', statsController.memberNames);
-app.get('/api/members/all', memberController.all);
-app.get('/api/members/specs', memberController.specsOnly);
+app.get('/api/members/all', dbCharacters.getAll);
 //Stat Endpoints from DB
 app.get('/api/stats/character', statsController.characters);
 app.get('/api/stats/consumables', statsController.consumables);
