@@ -59,7 +59,7 @@ module.exports.breakingNewsController = {
             };
 
         }).catch(breakingNewsGetError => {
-            console.log(breakingNewsGetError)
+            console.log('breakingNewsGetError ', breakingNewsGetError);
         });
     }
 }
