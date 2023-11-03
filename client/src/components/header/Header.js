@@ -140,7 +140,7 @@ class Header extends React.Component {
                                 </Button>
                             </Grid>
                             <Grid>
-                                <Button size="medium" disabled>
+                                <Button component={RouterLink} to={"/members"} size="medium">
                                     <Typography variant="h6">Members</Typography>
                                 </Button>
                             </Grid>
@@ -200,7 +200,7 @@ class Header extends React.Component {
                             </ListItemIcon>
                             <ListItemText primary="About" />
                         </ListItemButton>
-                        <ListItemButton key="members" component={RouterLink} to={"/"} disabled>
+                        <ListItemButton key="members" component={RouterLink} to={"/members"}>
                             <ListItemIcon>
                                 <Group />
                             </ListItemIcon>

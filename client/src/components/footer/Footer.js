@@ -48,7 +48,7 @@ export default class News extends React.Component {
                                     </Button>
                                 </Grid>
                                 <Grid>
-                                    <Button size="small" disabled>
+                                    <Button size="small" component={RouterLink} to={"/members"}>
                                         <Typography variant="body1">Members</Typography>
                                     </Button>
                                 </Grid>
