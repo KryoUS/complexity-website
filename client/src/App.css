@@ -52,9 +52,9 @@
   background-color: #252525 !important;
 }
 
-.MuiPaper-root {
+/* .MuiPaper-root {
   background-image: none !important;
-}
+} */
 
 #BlueNews {
   padding: 40px;
@@ -118,6 +118,18 @@
   background-color: #772ce8;
   border-radius: 10px;
   border: 0px none #121212;
+}
+
+.MuiCardHeader-content {
+  z-index: 1;
+}
+
+#mem-card {
+  transition: transform .2s;
+}
+
+#mem-area:hover > #mem-card {
+  transform: scale(2);
 }
 
 /* .wowhead-tooltip p {
