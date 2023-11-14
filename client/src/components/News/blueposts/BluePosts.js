@@ -24,40 +24,30 @@ export default class BluePosts extends Component {
 
     render() {
         return (this.state.bluePosts.length > 1 ?
-            <Grid container spacing={6} justifyContent="space-evenly">
+            <Grid container spacing={3}>
                 {this.state.bluePosts.map((news) => (
                     <Grid key={'BluePost:' + news.id} xs={12}>
-                        <Card raised>
+                        <Card>
                             <CardActionArea id='CardArea' href={`https://us.forums.blizzard.com/en/wow${news.url}`} target="_blank" rel="noopener noreferrer">
-                                <CardMedia
-                                    style={{ position: 'relative', height: '100px' }}
-                                    image={'./images/blizzard.jpg'}
-                                    title={news.title}
-                                    alt={news.title}
-                                    onError={e => {
-                                        e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
+                                <CardHeader
+                                    avatar={
+                                        <Avatar
+                                            alt={news.user.name}
+                                            src={news.user.avatar_template.includes('https://') ? news.user.avatar_template : `https://us.forums.blizzard.com/en/wow${news.user.avatar_template}`}
+                                            style={{ filter: 'drop-shadow(2px 2px 2px #000)' }}
+                                        />
+                                    }
+                                    title={ news.title }
+                                    titleTypographyProps={{
+                                        align: 'left',
+                                        variant: 'body1',
+                                        color: 'white'
                                     }}
-                                >
-                                    <CardHeader
-                                        avatar={
-                                            <Avatar
-                                                alt={news.user.name}
-                                                src={news.user.avatar_template.includes('https://') ? news.user.avatar_template : `https://us.forums.blizzard.com/en/wow${news.user.avatar_template}`}
-                                                style={{ filter: 'drop-shadow(2px 2px 2px #000)' }}
-                                            />
-                                        }
-                                        title={
-                                            <div>
-                                                <Typography align='left' variant="subtitle2" color='textPrimary' gutterBottom style={{ textShadow: '2px 2px 2px #000000' }}>
-                                                    {moment(news.created_at).format('MMM. Do YYYY, h:mma')}
-                                                </Typography>
-                                                <Typography align='left' variant="subtitle1" color='textPrimary' style={{ textShadow: '2px 2px 2px #000000' }}>
-                                                    {news.title}
-                                                </Typography>
-                                            </div>
-                                        }
-                                    />
-                                </CardMedia>
+                                    subheader={ moment(news.created_at).format('MMM. Do YYYY, h:mma') }
+                                    subheaderTypographyProps={{
+                                        align: 'left'
+                                    }}
+                                />
                             </CardActionArea>
                         </Card>
                     </Grid>

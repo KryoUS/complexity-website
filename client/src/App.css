@@ -30,6 +30,7 @@
   }
 }
 
+/* Wowhead Tooltip Mods */
 .wowhead-tooltip td,
 .wowhead-tooltip th {
   background: #1a1a1acc;
@@ -56,12 +57,6 @@
   background-image: none !important;
 } */
 
-#BlueNews {
-  padding: 40px;
-  box-shadow: inset 0 0 50px #000;
-  background: url('./images/Guardians_of_the_Dream.jpg') no-repeat fixed 50% 200%;
-}
-
 #dark-glass {
   background: rgba(0, 0, 0, 0.75);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.75);
@@ -87,6 +82,20 @@
   z-index: 4;
   text-align: center;
   text-shadow: 2px 2px 2px #000000;
+}
+
+#mem-alliance {
+  left: -244px;
+  transform: skew(16deg, 0);
+  position: absolute;
+  mask-image: linear-gradient(to top, transparent 20%, black 40%);
+}
+
+#mem-horde {
+  left: -40px;
+  transform: skew(16deg, 0);
+  position: absolute;
+  mask-image: linear-gradient(to top, transparent 20%, black 40%);
 }
 
 .twitter-timeline {
@@ -122,14 +131,6 @@
 
 .MuiCardHeader-content {
   z-index: 1;
-}
-
-#mem-card {
-  transition: transform .2s;
-}
-
-#mem-area:hover > #mem-card {
-  transform: scale(2);
 }
 
 /* .wowhead-tooltip p {

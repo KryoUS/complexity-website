@@ -8,11 +8,11 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 export default function News() {
     return (
-        <Container maxWidth={false} style={{ padding: '0px 12px 0px 0px' }}>
-            <Grid container spacing={3} style={{ padding: '12px 0px 20px 0px' }}>
-                <Grid id="BlueNews" xs={12}>
+        <Container maxWidth={false}>
+            <Grid container spacing={3}>
+                <Grid xs={12}>
                     <Container maxWidth='md'>
-                        <Card id="dark-glass" raised>
+                        <Card>
                             <CardContent>
                                 <Typography variant={'h4'} color="secondary" gutterBottom>World of Warcraft - Breaking News</Typography>
                                 <WoWNews />
@@ -20,7 +20,7 @@ export default function News() {
                         </Card>
                     </Container>
                 </Grid>
-                <Grid xs={2} sm={2} md={2} lg={2} xl={2} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'none', xl: 'flex' }, flexDirection: 'column', alignItems: 'center' }}>
+                <Grid xs={2} sm={2} md={2} lg={2} xl={2} sx={{ display: { xs: 'none', sm: 'none', md: 'none', lg: 'none', xl: 'flex' }, flexDirection: 'column' }}>
                     <Divider flexItem>
                         <Typography variant='h6'>Blue Posts</Typography>
                     </Divider>
@@ -32,7 +32,7 @@ export default function News() {
                     </Divider>
                     <WowheadNews />
                 </Grid>
-                <Grid xs={3} sm={3} md={5} lg={5} xl={3} sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }, flexDirection: 'column', alignItems: 'center' }}>
+                <Grid xs={3} sm={3} md={5} lg={5} xl={3} sx={{ display: { xs: 'none', sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }, flexDirection: 'column' }}>
                     <Divider flexItem>
                         <Typography variant='h6'>Twitter</Typography>
                     </Divider>
