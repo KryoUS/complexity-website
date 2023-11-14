@@ -23,7 +23,7 @@ export default class News extends React.Component {
 
     render() {
         return (
-            <Paper style={{ paddingBottom: 12 }}>
+            <Paper style={{ marginTop: '20px' }}>
                 <Divider />
                 <Container maxWidth={false}>
                     <Box sx={{ padding: 12 }}>
