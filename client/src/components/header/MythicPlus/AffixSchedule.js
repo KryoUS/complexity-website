@@ -135,62 +135,62 @@ const schedule = [
     {
         week: 1,
         baseAffix: 'Tyrannical',
-        plusFour: 'Storming',
-        plusSeven: 'Raging'
+        plusFive: 'Storming',
+        plusTen: 'Raging'
     },
     {
         week: 2,
         baseAffix: 'Fortified',
-        plusFour: 'Entangling',
-        plusSeven: 'Bolstering'
+        plusFive: 'Entangling',
+        plusTen: 'Bolstering'
     },
     {
         week: 3,
         baseAffix: 'Tyrannical',
-        plusFour: 'Incorporeal',
-        plusSeven: 'Spiteful'
+        plusFive: 'Incorporeal',
+        plusTen: 'Spiteful'
     },
     {
         week: 4,
         baseAffix: 'Fortified',
-        plusFour: 'Afflicted',
-        plusSeven: 'Raging'
+        plusFive: 'Afflicted',
+        plusTen: 'Raging'
     },
     {
         week: 5,
         baseAffix: 'Tyrannical',
-        plusFour: 'Volcanic',
-        plusSeven: 'Sanguine'
+        plusFive: 'Volcanic',
+        plusTen: 'Sanguine'
     },
     {
         week: 6,
         baseAffix: 'Fortified',
-        plusFour: 'Storming',
-        plusSeven: 'Bursting'
+        plusFive: 'Storming',
+        plusTen: 'Bursting'
     },
     {
         week: 7,
         baseAffix: 'Tyrannical',
-        plusFour: 'Afflicted',
-        plusSeven: 'Bolstering'
+        plusFive: 'Afflicted',
+        plusTen: 'Bolstering'
     },
     {
         week: 8,
         baseAffix: 'Fortified',
-        plusFour: 'Incorporeal',
-        plusSeven: 'Sanguine'
+        plusFive: 'Incorporeal',
+        plusTen: 'Sanguine'
     },
     {
         week: 9,
         baseAffix: 'Tyrannical',
-        plusFour: 'Entangling',
-        plusSeven: 'Bursting'
+        plusFive: 'Entangling',
+        plusTen: 'Bursting'
     },
     {
         week: 10,
         baseAffix: 'Fortified',
-        plusFour: 'Volcanic',
-        plusSeven: 'Spiteful'
+        plusFive: 'Volcanic',
+        plusTen: 'Spiteful'
     }
 ]
 
@@ -211,10 +211,10 @@ export default function AffixSchedule(props){
                                 <Typography variant='h6'>+2</Typography>
                             </Grid>
                             <Grid xs={4}>
-                                <Typography variant='h6'>+7</Typography>
+                                <Typography variant='h6'>+5</Typography>
                             </Grid>
                             <Grid xs={4}>
-                                <Typography variant='h6'>+14</Typography>
+                                <Typography variant='h6'>+10</Typography>
                             </Grid>
                         </Grid>
                         {schedule.map(obj => {
@@ -243,48 +243,48 @@ export default function AffixSchedule(props){
                                         {obj.baseAffix}
                                     </Button>
                                 </Grid>
-                                <Grid xs={4} > {/*plusFour*/}
+                                <Grid xs={4} > {/*plusFive*/}
                                     <Button 
                                     variant="text" 
                                     size="medium"
                                     style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.plusFour].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.plusFour].id}`}
+                                    href={`https://wowhead.com/affix=${affixes[obj.plusFive].id}`} 
+                                    data-wowhead={`affix=${affixes[obj.plusFive].id}`}
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     startIcon={
                                         <img 
                                         style={{width: 24, height: 24}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusFour].icon}.jpg`} 
-                                        alt={obj.plusFour + ' Mythic Plus Affix'}
+                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusFive].icon}.jpg`} 
+                                        alt={obj.plusFive + ' Mythic Plus Affix'}
                                         onError={e => {
                                             e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
                                         }}
                                         />
                                     }>
-                                        {obj.plusFour}
+                                        {obj.plusFive}
                                     </Button>
                                 </Grid>
-                                <Grid xs={4} > {/*plusSeven*/}
+                                <Grid xs={4} > {/*plusTen*/}
                                     <Button 
                                     variant="text" 
                                     size="medium"
                                     style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.plusSeven].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.plusSeven].id}`}
+                                    href={`https://wowhead.com/affix=${affixes[obj.plusTen].id}`} 
+                                    data-wowhead={`affix=${affixes[obj.plusTen].id}`}
                                     target="_blank" 
                                     rel="noopener noreferrer" 
                                     startIcon={
                                         <img 
                                         style={{width: 24, height: 24}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusSeven].icon}.jpg`} 
-                                        alt={obj.plusSeven + ' Mythic Plus Affix'}
+                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusTen].icon}.jpg`} 
+                                        alt={obj.plusTen + ' Mythic Plus Affix'}
                                         onError={e => {
                                             e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
                                         }}
                                         />
                                     }>
-                                        {obj.plusSeven}
+                                        {obj.plusTen}
                                     </Button>
                                 </Grid>
                                 {/* <Grid xs={3}>
