@@ -29,13 +29,13 @@ export default class WowheadNews extends React.Component {
                         <Card raised sx={{ background: 'none', boxShadow: 'none' }}>
                             <CardActionArea id='CardArea' href={news.link[0]} target="_blank" rel="noopener noreferrer">
                                 <CardMedia
-                                    style={{ position: 'relative', height: '275px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                     image={news.hasOwnProperty("media:content") ? news["media:content"][0].$.url + '?maxHeight=300' : './images/blizzard.jpg'}
                                     title={news.title[0]}
                                     alt={news.title[0]}
                                     onError={e => {
                                         e.target.src = 'https://res.cloudinary.com/complexityguild/image/upload/v1635415242/wow/backgrounds/shadowlands_icecrown.jpg';
                                     }}
+                                    sx={{ position: 'relative', height: '275px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
                                     <CardContent id='CardDesc'>
                                         <Typography
