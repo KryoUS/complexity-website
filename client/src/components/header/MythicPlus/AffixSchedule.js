@@ -5,11 +5,18 @@ import { Container, Dialog, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import moment from 'moment';
 
-let currentWeek = (moment().week() % 10) + 1; //Adjusted +1 due to M+ Season not starting is cadence with the actual week of the year.
+let currentWeek = (moment().week() % 10 - 6); //Adjusted for DF: Season 4 based on a 10 week rotation predefined in the schedule variable
 
-//Adjust for Tuesday through Saturday
-if (moment().weekday() >= 2) {
-    currentWeek = ((moment().week() + 1) % 10) + 1;
+//Adjust for Sunday and Monday
+if (moment().weekday() < 2) {
+    //Set the current week to be last week if it is Sunday or Monday because of Tuesday reset
+    if (currentWeek - 1 === 0) {
+        //Avoid having a week 0 and set it to week 10 to emulate the last week of the rotation
+        currentWeek = 10;
+    } else {
+        //Set the week to last week since Tuesday is reset and not Sunday or Monday
+        currentWeek = currentWeek - 1;
+    }
 }
 
 //TODO: This needs to be pulled from DB and not hard-coded
