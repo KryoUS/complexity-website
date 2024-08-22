@@ -122,12 +122,12 @@ module.exports.blizzardController = {
                                 "footer": {
                                     "text": new Date()
                                 },
-                                "image": {
-                                    "url": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt563e16b3504e5808/62545b180afb5024ae74b677/rc-logo-na.png"
-                                },
-                                // "thumbnail": {
-                                //     "url": ""
+                                // "image": {
+                                //     "url": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt563e16b3504e5808/62545b180afb5024ae74b677/rc-logo-na.png"
                                 // },
+                                "thumbnail": {
+                                    "url": "https://complexityguild.net/images/tww_logo.webp"
+                                },
                                 "author": {
                                     "name": "World of Warcraft: Retail"
                                 },
@@ -167,12 +167,12 @@ module.exports.blizzardController = {
                                 "footer": {
                                     "text": new Date()
                                 },
-                                "image": {
-                                    "url": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/bltac8057c02d5c75cd/624b7a821e44bf0352b08549/logo_na.png"
-                                },
-                                // "thumbnail": {
+                                // "image": {
                                 //     "url": ""
                                 // },
+                                "thumbnail": {
+                                    "url": "https://complexityguild.net/images/cata_logo.png"
+                                },
                                 "author": {
                                     "name": "World of Warcraft: Wrath of the Lich King Classic"
                                 },
