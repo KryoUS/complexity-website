@@ -1,7 +1,7 @@
 import React from 'react';
 //import axios from 'axios';
 import Button from '@mui/material/Button';
-import { Container, Dialog, Paper, Typography } from '@mui/material';
+import { Box, Container, Dialog, Paper, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import moment from 'moment';
 
@@ -205,7 +205,9 @@ export default function AffixSchedule(props){
         >
             <Paper>
                 <Container>
-                    <Grid container> {/*Calendar*/}
+                    <Typography align='center' variant='h4' sx={{padding: 10}}>Mythic+ Starts September 17th</Typography>
+                    {/*
+                    <Grid container> 
                         <Grid xs={12} container justifyContent='space-between'>
                             <Grid xs={4}>
                                 <Typography variant='h6'>+2</Typography>
@@ -220,8 +222,8 @@ export default function AffixSchedule(props){
                         {schedule.map(obj => {
                             const isCurrentWeek = currentWeek === obj.week;
 
-                            return <Grid key={`affixWeek${obj.week}`} container xs={12} style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> {/*Week*/}
-                                <Grid xs={4} > {/*baseAffix*/}
+                            return <Grid key={`affixWeek${obj.week}`} container xs={12} style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> 
+                                <Grid xs={4} > 
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -243,7 +245,7 @@ export default function AffixSchedule(props){
                                         {obj.baseAffix}
                                     </Button>
                                 </Grid>
-                                <Grid xs={4} > {/*plusFive*/}
+                                <Grid xs={4} > 
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -265,7 +267,7 @@ export default function AffixSchedule(props){
                                         {obj.plusFive}
                                     </Button>
                                 </Grid>
-                                <Grid xs={4} > {/*plusTen*/}
+                                <Grid xs={4} > 
                                     <Button 
                                     variant="text" 
                                     size="medium"
@@ -308,10 +310,10 @@ export default function AffixSchedule(props){
                                     }>
                                         {obj.type}
                                     </Button>
-                                </Grid> */}
+                                </Grid>
                             </Grid>
-                        })}
                     </Grid>
+                    */}
                 </Container>
             </Paper>
         </Dialog>
