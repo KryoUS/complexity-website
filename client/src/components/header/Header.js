@@ -57,7 +57,7 @@ class Header extends React.Component {
     render() {
         return (
             <AppBar position="sticky" style={{ filter: 'drop-shadow(0px 0px 5px #000)', marginBottom: '20px' }}>
-                <Toolbar variant={"dense"} style={{ backgroundColor: "#121212" }}>
+                <Toolbar variant={"dense"}>
                     {/* MOBILE ONLY */}
                     <Grid container alignItems='center' justifyContent={'space-between'} sx={{ display: { sm: 'flex', md: 'none' }, width: '100%' }}>
                         <Grid xs={2}>
@@ -264,6 +264,9 @@ class Header extends React.Component {
                     anchor="top"
                     open={this.state.classDrawerOpen}
                     onClose={this.classDrawerToggle}
+                    sx={{
+                        [`& .MuiDrawer-paper`]: { minHeight: '100%' }
+                    }}
                 >
                     <ClassInfo drawer={this.classDrawerToggle} />
                 </Drawer>
