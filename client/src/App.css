@@ -30,24 +30,6 @@
   }
 }
 
-/* Wowhead Tooltip Mods */
-.wowhead-tooltip td,
-.wowhead-tooltip th {
-  background: #1a1a1acc;
-}
-
-.wowhead-tooltip table,
-.wowhead-tooltip td,
-.wowhead-tooltip th,
-.wowhead-tooltip tbody {
-  border: none !important;
-}
-
-.wowhead-tooltip {
-  border: 1px solid black !important;
-  box-shadow: 2px 2px 8px #000000 !important;
-}
-
 .MuiTooltip-tooltip {
   font-size: 0.75rem !important;
   background-color: #252525 !important;
@@ -84,20 +66,19 @@
   text-shadow: 2px 2px 2px #000000;
 }
 
+.MuiCardHeader-content {
+  z-index: 1;
+}
+
 #mem-alliance {
-  left: -244px;
-  transform: skew(16deg, 0);
-  position: absolute;
-  mask-image: linear-gradient(to top, transparent 20%, black 40%);
+  /* mask-image: linear-gradient(to top, transparent 20%, black 40%); */
 }
 
 #mem-horde {
-  left: -40px;
-  transform: skew(16deg, 0);
-  position: absolute;
-  mask-image: linear-gradient(to top, transparent 20%, black 40%);
+  /* mask-image: linear-gradient(to top, transparent 20%, black 40%); */
 }
 
+/* Twitter Embeds */
 .twitter-timeline {
   border: 1px solid #121212 !important;
   border-radius: 4px;
@@ -129,8 +110,22 @@
   border: 0px none #121212;
 }
 
-.MuiCardHeader-content {
-  z-index: 1;
+/* Wowhead Tooltip Mods */
+.wowhead-tooltip td,
+.wowhead-tooltip th {
+  background: #1a1a1acc;
+}
+
+.wowhead-tooltip table,
+.wowhead-tooltip td,
+.wowhead-tooltip th,
+.wowhead-tooltip tbody {
+  border: none !important;
+}
+
+.wowhead-tooltip {
+  border: 1px solid black !important;
+  box-shadow: 2px 2px 8px #000000 !important;
 }
 
 /* .wowhead-tooltip p {
