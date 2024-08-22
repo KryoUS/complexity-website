@@ -203,119 +203,117 @@ export default function AffixSchedule(props){
         maxWidth={window.innerWidth < 600 ? false : 'sm'}
         
         >
-            <Paper>
-                <Container>
-                    <Typography align='center' variant='h4' sx={{padding: 10}}>Mythic+ Starts September 17th</Typography>
-                    {/*
-                    <Grid container> 
-                        <Grid xs={12} container justifyContent='space-between'>
-                            <Grid xs={4}>
-                                <Typography variant='h6'>+2</Typography>
+            <Container>
+                <Typography align='center' variant='h4' sx={{padding: 10}}>Mythic+ Starts September 17th</Typography>
+                {/*
+                <Grid container> 
+                    <Grid xs={12} container justifyContent='space-between'>
+                        <Grid xs={4}>
+                            <Typography variant='h6'>+2</Typography>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Typography variant='h6'>+5</Typography>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Typography variant='h6'>+10</Typography>
+                        </Grid>
+                    </Grid>
+                    {schedule.map(obj => {
+                        const isCurrentWeek = currentWeek === obj.week;
+
+                        return <Grid key={`affixWeek${obj.week}`} container xs={12} style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> 
+                            <Grid xs={4} > 
+                                <Button 
+                                variant="text" 
+                                size="medium"
+                                style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
+                                href={`https://wowhead.com/affix=${affixes[obj.baseAffix].id}`} 
+                                data-wowhead={`affix=${affixes[obj.baseAffix].id}`}
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                startIcon={
+                                    <img
+                                    style={{width: 24, height: 24}} 
+                                    src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.baseAffix].icon}.jpg`} 
+                                    alt={obj.baseAffix + ' Mythic Plus Affix'}
+                                    onError={e => {
+                                        e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
+                                    }}
+                                    />
+                                }>
+                                    {obj.baseAffix}
+                                </Button>
                             </Grid>
-                            <Grid xs={4}>
-                                <Typography variant='h6'>+5</Typography>
+                            <Grid xs={4} > 
+                                <Button 
+                                variant="text" 
+                                size="medium"
+                                style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
+                                href={`https://wowhead.com/affix=${affixes[obj.plusFive].id}`} 
+                                data-wowhead={`affix=${affixes[obj.plusFive].id}`}
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                startIcon={
+                                    <img 
+                                    style={{width: 24, height: 24}} 
+                                    src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusFive].icon}.jpg`} 
+                                    alt={obj.plusFive + ' Mythic Plus Affix'}
+                                    onError={e => {
+                                        e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
+                                    }}
+                                    />
+                                }>
+                                    {obj.plusFive}
+                                </Button>
                             </Grid>
-                            <Grid xs={4}>
-                                <Typography variant='h6'>+10</Typography>
+                            <Grid xs={4} > 
+                                <Button 
+                                variant="text" 
+                                size="medium"
+                                style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
+                                href={`https://wowhead.com/affix=${affixes[obj.plusTen].id}`} 
+                                data-wowhead={`affix=${affixes[obj.plusTen].id}`}
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                startIcon={
+                                    <img 
+                                    style={{width: 24, height: 24}} 
+                                    src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusTen].icon}.jpg`} 
+                                    alt={obj.plusTen + ' Mythic Plus Affix'}
+                                    onError={e => {
+                                        e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
+                                    }}
+                                    />
+                                }>
+                                    {obj.plusTen}
+                                </Button>
+                            </Grid>
+                            {/* <Grid xs={3}>
+                                <Button 
+                                variant="text" 
+                                size="small"
+                                style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
+                                href={`https://wowhead.com/affix=${affixes[obj.type].id}`} 
+                                data-wowhead={`affix=${affixes[obj.type].id}`}
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                startIcon={
+                                    <img 
+                                    style={{width: 12, height: 12}} 
+                                    src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.type].icon}.jpg`} 
+                                    alt={obj.type + ' Mythic Plus Affix'}
+                                    onError={e => {
+                                        e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
+                                    }}
+                                    />
+                                }>
+                                    {obj.type}
+                                </Button>
                             </Grid>
                         </Grid>
-                        {schedule.map(obj => {
-                            const isCurrentWeek = currentWeek === obj.week;
-
-                            return <Grid key={`affixWeek${obj.week}`} container xs={12} style={{backgroundColor: `${isCurrentWeek ? '#772CE8' : null}`, justifyContent: "space-between" }}> 
-                                <Grid xs={4} > 
-                                    <Button 
-                                    variant="text" 
-                                    size="medium"
-                                    style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.baseAffix].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.baseAffix].id}`}
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    startIcon={
-                                        <img
-                                        style={{width: 24, height: 24}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.baseAffix].icon}.jpg`} 
-                                        alt={obj.baseAffix + ' Mythic Plus Affix'}
-                                        onError={e => {
-                                            e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
-                                        }}
-                                        />
-                                    }>
-                                        {obj.baseAffix}
-                                    </Button>
-                                </Grid>
-                                <Grid xs={4} > 
-                                    <Button 
-                                    variant="text" 
-                                    size="medium"
-                                    style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.plusFive].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.plusFive].id}`}
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    startIcon={
-                                        <img 
-                                        style={{width: 24, height: 24}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusFive].icon}.jpg`} 
-                                        alt={obj.plusFive + ' Mythic Plus Affix'}
-                                        onError={e => {
-                                            e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
-                                        }}
-                                        />
-                                    }>
-                                        {obj.plusFive}
-                                    </Button>
-                                </Grid>
-                                <Grid xs={4} > 
-                                    <Button 
-                                    variant="text" 
-                                    size="medium"
-                                    style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.plusTen].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.plusTen].id}`}
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    startIcon={
-                                        <img 
-                                        style={{width: 24, height: 24}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.plusTen].icon}.jpg`} 
-                                        alt={obj.plusTen + ' Mythic Plus Affix'}
-                                        onError={e => {
-                                            e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
-                                        }}
-                                        />
-                                    }>
-                                        {obj.plusTen}
-                                    </Button>
-                                </Grid>
-                                {/* <Grid xs={3}>
-                                    <Button 
-                                    variant="text" 
-                                    size="small"
-                                    style={{color: isCurrentWeek ? 'black' : null, fontSize: window.innerWidth < 600 ? 10 : null}}
-                                    href={`https://wowhead.com/affix=${affixes[obj.type].id}`} 
-                                    data-wowhead={`affix=${affixes[obj.type].id}`}
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    startIcon={
-                                        <img 
-                                        style={{width: 12, height: 12}} 
-                                        src={`https://render.worldofwarcraft.com/us/icons/56/${affixes[obj.type].icon}.jpg`} 
-                                        alt={obj.type + ' Mythic Plus Affix'}
-                                        onError={e => {
-                                            e.target.src = 'https://render.worldofwarcraft.com/us/icons/56/inv_misc_questionmark.jpg';
-                                        }}
-                                        />
-                                    }>
-                                        {obj.type}
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                    </Grid>
-                    */}
-                </Container>
-            </Paper>
+                </Grid>
+                */}
+            </Container>
         </Dialog>
     );
 }
