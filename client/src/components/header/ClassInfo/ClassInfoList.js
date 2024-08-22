@@ -17,14 +17,10 @@ class ClassInfoList extends React.Component{
         this.setState({classObj: this.props.classObj});
     }
 
-    handleClick = (specIndex, openState) => {
+    handleClick = (specIndex) => {
 
         let mutableState = this.state.classObj;
-        if (typeof openState === 'boolean') {
-            mutableState.specs[specIndex].open = openState;
-        } else {
-            mutableState.specs[specIndex].open = !this.state.classObj.specs[specIndex].open;
-        }
+        mutableState.specs[specIndex].open = !this.state.classObj.specs[specIndex].open;
 
         this.setState(({
             classObj: mutableState
@@ -56,8 +52,7 @@ class ClassInfoList extends React.Component{
                 {this.state.classObj.specs ? this.state.classObj.specs.map((obj, index) => {
                     return <div 
                     key={obj.name + " Class Info Spec"} 
-                    onMouseEnter={() => this.handleClick(index, true)} 
-                    onMouseLeave={() => this.handleClick(index, false)} 
+                    onClick={() => this.handleClick(index)}
                     style={{width: "100%"}}
                     >
                         <ListItem button dense>
