@@ -17,12 +17,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/blood-death-knight-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/blood-death-knight.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/blood/death-knight/mythic-plus/overview/high-keys/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-blood-death-knight.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/blood/death-knight/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -44,12 +44,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/frost-death-knight-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/frost-death-knight.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/frost/death-knight/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-frost-death-knight.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/frost/death-knight/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -71,12 +71,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/unholy-death-knight-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/unholy-death-knight.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/unholy/death-knight/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-unholy-death-knight.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/unholy/death-knight/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -105,12 +105,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/havoc-demon-hunter-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/havoc-demon-hunter.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/havoc/demon-hunter/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-aberrus-havoc-demon-hunter.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/havoc/demon-hunter/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -132,12 +132,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/vengeance-demon-hunter-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/vengeance-demon-hunter.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/vengeance/demon-hunter/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-vengeance-demon-hunter.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/vengeance/demon-hunter/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -166,12 +166,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/guardian-druid-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/guardian-druid.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/guardian/druid/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-guardian-druid.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/guardian/druid/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -193,12 +193,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/balance-druid-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/balance-druid.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/balance/druid/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-balance-druid.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/balance/druid/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -220,12 +220,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/feral-druid-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/feral-druid.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/feral/druid/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-feral-druid.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/feral/druid/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -247,12 +247,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/restoration-druid-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/restoration-druid.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/restoration/druid/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-restoration-druid.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/restoration/druid/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -281,12 +281,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/devastation-evoker-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/devastation-evoker.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/devastation/evoker/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-devastation-evoker.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/devastation/evoker/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -308,12 +308,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/preservation-evoker-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/preservation-evoker.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/preservation/evoker/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-preservation-evoker.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/preservation/evoker/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -335,12 +335,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/augmentation-evoker-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/augmentation-evoker.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/augmentation/evoker/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-augmentation-evoker.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/augmentation/evoker/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -369,12 +369,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/beast-mastery-hunter-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/beast-mastery-hunter.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/beast-mastery/hunter/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-beast-mastery-hunter.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/beast-mastery/hunter/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -396,12 +396,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/marksmanship-hunter-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/marksmanship-hunter.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/marksmanship/hunter/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-marksmanship-hunter.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/marksmanship/hunter/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -423,12 +423,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/survival-hunter-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/survival-hunter.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/survival/hunter/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-survival-hunter.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/survival/hunter/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -457,12 +457,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/arcane-mage-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/arcane-mage.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/arcane/mage/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-arcane-mage.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/arcane/mage/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -484,12 +484,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/fire-mage-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/fire-mage.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/fire/mage/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-fire-mage.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/fire/mage/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -511,12 +511,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/frost-mage-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/frost-mage.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/frost/mage/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-frost-mage.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/frost/mage/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -545,12 +545,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/brewmaster-monk-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/brewmaster-monk.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/brewmaster/monk/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-brewmaster-monk.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/brewmaster/monk/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -572,12 +572,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/mistweaver-monk-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/mistweaver-monk.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/mistweaver/monk/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-mistweaver-monk.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/mistweaver/monk/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -599,12 +599,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/windwalker-monk-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/windwalker-monk.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/windwalker/monk/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-windwalker-monk.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/windwalker/monk/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -633,12 +633,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/holy-paladin-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/holy-paladin.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/holy/paladin/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-holy-paladin.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/holy/paladin/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -660,12 +660,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/protection-paladin-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/protection-paladin.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/protection/paladin/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-protection-paladin.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/protection/paladin/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -687,12 +687,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/retribution-paladin-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/retribution-paladin.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/retribution/paladin/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-retribution-paladin.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/retribution/paladin/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -721,12 +721,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/discipline-priest-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/discipline-priest.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/discipline/priest/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-discipline-priest.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/discipline/priest/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -748,12 +748,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/holy-priest-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/holy-priest.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/holy/priest/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-holy-priest.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/holy/priest/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -775,12 +775,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/shadow-priest-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/shadow-priest.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/shadow/priest/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-shadow-priest.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/shadow/priest/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -809,12 +809,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/assassination-rogue-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/assassination-rogue.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/assassination/rogue/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-assassination-rogue.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/assassination/rogue/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -836,12 +836,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/outlaw-rogue-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/outlaw-rogue.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/outlaw/rogue/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-outlaw-rogue.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/outlaw/rogue/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -863,12 +863,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/subtlety-rogue-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/subtlety-rogue.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/subtlety/rogue/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-subtlety-rogue.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/subtlety/rogue/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -897,12 +897,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/enhancement-shaman-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/elemental-shaman.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/elemental/shaman/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-elemental-shaman.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/elemental/shaman/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -924,12 +924,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/enhancement-shaman-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/enhancement-shaman.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/enhancement/shaman/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-enhancement-shaman.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/enhancement/shaman/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -951,12 +951,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/restoration-shaman-pve-healing-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/restoration-shaman.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/restoration/shaman/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-restoration-shaman.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/restoration/shaman/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -985,12 +985,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/affliction-warlock-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/affliction-warlock.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/affliction/warlock/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-affliction-warlock.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/affliction/warlock/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1012,12 +1012,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/demonology-warlock-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/demonology-warlock.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/demonology/warlock/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-demonology-warlock.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/demonology/warlock/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1039,12 +1039,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/destruction-warlock-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/destruction-warlock.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/destruction/warlock/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-destruction-warlock.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/destruction/warlock/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1073,12 +1073,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/arms-warrior-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/arms-warrior.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/arms/warrior/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-arms-warrior.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/arms/warrior/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1100,12 +1100,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/fury-warrior-pve-dps-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/fury-warrior.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/fury/warrior/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-fury-warrior.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/fury/warrior/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
@@ -1127,12 +1127,12 @@ module.exports = [
                         sourceURL: "https://www.icy-veins.com/wow/protection-warrior-pve-tank-guide"
                     },
                     {
-                        sourceName: "Subcreation M+",
-                        sourceURL: "https://mplus.subcreation.net/protection-warrior.html"
+                        sourceName: "Archon M+",
+                        sourceURL: "https://www.archon.gg/wow/builds/protection/warrior/mythic-plus/overview/10/all-dungeons/this-week"
                     },
                     {
-                        sourceName: "Subcreation Raid",
-                        sourceURL: "https://raid.subcreation.net/aberrus-protection-warrior.html"
+                        sourceName: "Archon Raid",
+                        sourceURL: "https://www.archon.gg/wow/builds/protection/warrior/raid/overview/mythic/all-bosses"
                     },
                     {
                         sourceName: "MurlokIO M+",
