@@ -26,6 +26,11 @@ const theme = createTheme({
     fontFamily: 'Oswald',
     fontWeightRegular: 300,
   },
+  components: {
+    MuiPaper: {
+      styleOverrides: { root: { backgroundImage: 'unset' } },
+    },
+  },
 });
 
 ReactDOM.render(
