@@ -30,7 +30,7 @@ module.exports = async () => {
     guildChars('thunderlord', 'complexity').then(charObj => {
         charObj.map(obj => {
             const char = obj.character;
-            if (char.level === 70) {
+            if (char.level === 80) {
                 // charAuth(db, encodeURI(obj.character.name.toLowerCase()), encodeURI(obj.character.realm.slug));
                 //Check Character Status
                 charStatus(encodeURI(char.name.toLowerCase()), encodeURI(char.realm.slug)).then(charStatus => {
