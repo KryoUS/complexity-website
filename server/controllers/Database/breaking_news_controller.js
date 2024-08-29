@@ -4,7 +4,7 @@ const axios = require('axios');
 module.exports.breakingNewsController = {
 
     breakingNews: () => {
-        axios.get('http://launcher.worldofwarcraft.com/alert').then(alertRes => {
+        axios.get('https://breaking-news.support.blizzard.com/service/wow-client/live/us/en-US').then(alertRes => {
         
             //Create object for DB Insert, removing Blizzard's HTML.
             let obj = {
