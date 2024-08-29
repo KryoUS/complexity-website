@@ -131,6 +131,7 @@ module.exports.blizzardController = {
                                 "author": {
                                     "name": "World of Warcraft: Retail"
                                 },
+                                "timestamp": new Date().toISOString(),
                             }
                         ]
                     },
@@ -174,8 +175,9 @@ module.exports.blizzardController = {
                                     "url": "https://complexityguild.net/images/cata_logo.png"
                                 },
                                 "author": {
-                                    "name": "World of Warcraft: Wrath of the Lich King Classic"
+                                    "name": "World of Warcraft: Cataclysm Classic"
                                 },
+                                "timestamp": new Date().toISOString(),
                             }
                         ]
                     },
